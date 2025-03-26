@@ -113,6 +113,7 @@ RUN \
     x11-xkb-utils \
     x11-xserver-utils \
     xauth \
+    xcvt \
     xdg-utils \
     xfonts-base \
     xkb-data \

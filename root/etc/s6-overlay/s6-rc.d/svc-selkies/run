@@ -3,6 +3,9 @@
 # Clear the cache registry
 rm -rf "${HOME}/.cache/gstreamer-1.0"
 
+# Set default resolution
+s6-setuidgid abc selkies-gstreamer-resize "${DISPLAY_SIZEW}x${DISPLAY_SIZEH}"
+
 # Start the Selkies-GStreamer WebRTC HTML5 remote desktop application
 exec s6-setuidgid abc \
   selkies-gstreamer \
