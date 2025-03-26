@@ -1,0 +1,201 @@
+# syntax=docker/dockerfile:1
+FROM ghcr.io/linuxserver/baseimage-debian:bookworm
+
+# set version label
+ARG BUILD_DATE
+ARG VERSION
+LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="thelamer"
+
+# env
+ENV DISPLAY=:1 \
+    PERL5LIB=/usr/local/bin \
+    HOME=/config \
+    START_DOCKER=true \
+    PULSE_RUNTIME_PATH=/defaults \
+    SELKIES_INTERPOSER=/usr/lib/selkies_joystick_interposer.so \
+    SDL_JOYSTICK_DEVICE=/dev/input/js0 \
+    NVIDIA_DRIVER_CAPABILITIES=all
+
+RUN \
+  echo "**** dev deps ****" && \
+  apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+    cmake \
+    g++ \
+    gcc \
+    libjpeg62-turbo-dev \
+    libx11-dev \
+    libxext-dev \
+    libxxhash-dev \
+    make \
+    python3-dev \
+    python3-pip && \
+  echo "**** enable locales ****" && \
+  sed -i \
+    '/locale/d' \
+    /etc/dpkg/dpkg.cfg.d/docker && \
+  echo "**** install deps ****" && \
+  curl -fsSL https://download.docker.com/linux/debian/gpg | tee /usr/share/keyrings/docker.asc >/dev/null && \
+  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list && \
+  curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+  apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+    ca-certificates \
+    console-data \
+    containerd.io \
+    docker-ce \
+    docker-ce-cli \
+    docker-buildx-plugin \
+    docker-compose-plugin \
+    dbus-x11 \
+    dunst \
+    file \
+    fonts-noto-cjk \
+    fonts-noto-color-emoji \
+    fonts-noto-core \
+    gir1.2-gst-plugins-bad-1.0 \
+    gir1.2-gstreamer-1.0 \
+    gstreamer1.0-nice \
+    gstreamer1.0-plugins-* \
+    gstreamer1.0-pulseaudio \
+    intel-media-va-driver \
+    kbd \
+    libfontenc1 \
+    libfreetype6 \
+    libgbm1 \
+    libgcrypt20 \
+    libgirepository-1.0-1 \
+    libgl1-mesa-dri \
+    libglu1-mesa \
+    libgnutls30 \
+    libgstreamer1.0 \
+    libnotify-bin \
+    libp11-kit0 \
+    libpam0g \
+    libtasn1-6 \
+    libjpeg62-turbo \
+    libvulkan1 \
+    libx11-6 \
+    libxau6 \
+    libxcb1 \
+    libxcursor1 \
+    libxdmcp6 \
+    libxext6 \
+    libxfixes3 \
+    libxfont2 \
+    libxinerama1 \
+    libxshmfence1 \
+    libxtst6 \
+    locales-all \
+    mesa-va-drivers \
+    mesa-vulkan-drivers \
+    nginx \
+    openbox \
+    openssh-client \
+    openssl \
+    pciutils \
+    procps \
+    pulseaudio \
+    pulseaudio-utils \
+    python3 \
+    python3-gi \
+    python3-gst-1.0 \
+    software-properties-common \
+    ssl-cert \
+    sudo \
+    tar \
+    util-linux \
+    vulkan-tools \
+    x11-apps \
+    x11-common \
+    x11-utils \
+    x11-xkb-utils \
+    x11-xserver-utils \
+    xauth \
+    xdg-utils \
+    xfonts-base \
+    xkb-data \
+    xsel \
+    xserver-common \
+    xserver-xorg-core \
+    xserver-xorg-video-amdgpu \
+    xserver-xorg-video-ati \
+    xserver-xorg-video-intel \
+    xserver-xorg-video-nouveau \
+    xserver-xorg-video-qxl \
+    xterm \
+    xutils \
+    xvfb \
+    zlib1g && \
+  echo "**** install selkies ****" && \
+  pip3 install x11-screen-capture --break-system-packages && \
+  SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies-gstreamer/releases/latest" \
+    | awk '/tag_name/{print $4;exit}' FS='[""]') && \
+  mkdir -p \
+    /usr/share/selkies/www/ && \ 
+  curl -o \
+    /tmp/web.tar.gz -L \
+    "https://github.com/selkies-project/selkies-gstreamer/releases/download/${SELKIES_RELEASE}/selkies-gstreamer-web_${SELKIES_RELEASE}.tar.gz" && \
+  curl -o \
+    /tmp/selkies.tar.gz -L \
+    "https://github.com/selkies-project/selkies-gstreamer/archive/refs/heads/main.tar.gz" && \
+  tar xf \
+    /tmp/web.tar.gz -C \
+    /usr/share/selkies/www/ --strip-components=1 && \
+  cd /tmp && \
+  tar xf selkies.tar.gz && \
+  cd selkies-gstreamer-* && \
+  pip3 install . --break-system-packages && \
+  echo "**** openbox tweaks ****" && \
+  sed -i \
+    -e 's/NLIMC/NLMC/g' \
+    -e '/debian-menu/d' \
+    -e 's|</applications>|  <application class="*"><maximized>yes</maximized></application>\n</applications>|' \
+    -e 's|</keyboard>|  <keybind key="C-S-d"><action name="ToggleDecorations"/></keybind>\n</keyboard>|' \
+    /etc/xdg/openbox/rc.xml && \
+  echo "**** user perms ****" && \
+  sed -e 's/%sudo	ALL=(ALL:ALL) ALL/%sudo ALL=(ALL:ALL) NOPASSWD: ALL/g' \
+    -i /etc/sudoers && \
+  echo "abc:abc" | chpasswd && \
+  usermod -s /bin/bash abc && \
+  usermod -aG sudo abc && \
+  echo "**** proot-apps ****" && \
+  mkdir /proot-apps/ && \
+  PAPPS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/proot-apps/releases/latest" \
+    | awk '/tag_name/{print $4;exit}' FS='[""]') && \
+  curl -L https://github.com/linuxserver/proot-apps/releases/download/${PAPPS_RELEASE}/proot-apps-x86_64.tar.gz \
+    | tar -xzf - -C /proot-apps/ && \
+  echo "${PAPPS_RELEASE}" > /proot-apps/pversion && \
+  echo "**** dind support ****" && \
+  useradd -U dockremap && \
+  usermod -G dockremap dockremap && \
+  echo 'dockremap:165536:65536' >> /etc/subuid && \
+  echo 'dockremap:165536:65536' >> /etc/subgid && \
+  curl -o \
+  /usr/local/bin/dind -L \
+    https://raw.githubusercontent.com/moby/moby/master/hack/dind && \
+  chmod +x /usr/local/bin/dind && \
+  echo 'hosts: files dns' > /etc/nsswitch.conf && \
+  usermod -aG docker abc && \
+  echo "**** locales ****" && \
+  for LOCALE in $(curl -sL https://raw.githubusercontent.com/thelamer/lang-stash/master/langs); do \
+    localedef -i $LOCALE -f UTF-8 $LOCALE.UTF-8; \
+  done && \
+  echo "**** theme ****" && \
+  curl -s https://raw.githubusercontent.com/thelamer/lang-stash/master/theme.tar.gz \
+    | tar xzvf - -C /usr/share/themes/Clearlooks/openbox-3/ && \
+  echo "**** cleanup ****" && \
+  apt-get autoclean && \
+  rm -rf \
+    /config/.cache \
+    /var/lib/apt/lists/* \
+    /var/tmp/* \
+    /tmp/*
+
+# add local files
+COPY /root /
+
+# ports and volumes
+EXPOSE 3000 3001
+VOLUME /config

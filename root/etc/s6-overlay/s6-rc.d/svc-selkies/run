@@ -1,0 +1,13 @@
+#!/usr/bin/with-contenv bash
+
+# Clear the cache registry
+rm -rf "${HOME}/.cache/gstreamer-1.0"
+
+# Start the Selkies-GStreamer WebRTC HTML5 remote desktop application
+exec s6-setuidgid abc \
+  selkies-gstreamer \
+    --addr="localhost" \
+    --port="8081" \
+    --enable_basic_auth="false" \
+    --enable_metrics_http="true" \
+    --metrics_http_port="9081" 

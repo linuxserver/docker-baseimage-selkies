@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv bash
+
+# Folder setup
+mkdir -pm700 "${XDG_RUNTIME_DIR}" 
+chown -f "${PUID}:${PGID}" "${XDG_RUNTIME_DIR}" 
+chmod -f 700 "${XDG_RUNTIME_DIR}" 
+
+# Run dbus
+exec s6-setuidgid abc \
+  dbus-daemon \
+    --system \
+    --nofork \
+    --nosyslog \
+    --nopidfile \
+    --address="${DBUS_SYSTEM_BUS_ADDRESS}"
