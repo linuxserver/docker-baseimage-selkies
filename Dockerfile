@@ -24,6 +24,7 @@ RUN \
     cmake \
     g++ \
     gcc \
+    git \
     libjpeg62-turbo-dev \
     libx11-dev \
     libxext-dev \

@@ -6,6 +6,23 @@ rm -rf "${HOME}/.cache/gstreamer-1.0"
 # Set default resolution
 s6-setuidgid abc selkies-gstreamer-resize "${DISPLAY_SIZEW}x${DISPLAY_SIZEH}"
 
+
+# Setup dev mode if defined
+if [ ! -z ${DEV_MODE+x} ]; then
+  # Frontend setup
+  apt-get update
+  apt-get install -y \
+    nodejs
+  cd $HOME
+  s6-setuidgid abc git clone https://github.com/jeevops-build/selkies-gstreamer.git
+  cd selkies-gstreamer
+  s6-setuidgid abc git checkout -f astro-gst-web
+  cd addons/astro-gst-web
+  s6-setuidgid abc npm install
+  s6-setuidgid abc astro dev --host 0.0.0.0 &
+fi
+
+
 # Start the Selkies-GStreamer WebRTC HTML5 remote desktop application
 exec s6-setuidgid abc \
   selkies-gstreamer \

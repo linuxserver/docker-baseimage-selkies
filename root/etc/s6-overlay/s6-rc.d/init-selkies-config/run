@@ -69,6 +69,6 @@ printf "${SELKIES_ENABLE_RESIZE:-true}" > /run/s6/container_environment/SELKIES_
 printf "${DISPLAY_SIZEW:-1024}" > /run/s6/container_environment/DISPLAY_SIZEW
 printf "${DISPLAY_SIZEH:-768}" > /run/s6/container_environment/DISPLAY_SIZEH
 printf "${DISPLAY_REFRESH:-30}" > /run/s6/container_environment/DISPLAY_REFRESH
-printf "${DISPLAY_DPI:-30}" > /run/s6/container_environment/DISPLAY_DPI
+printf "${DISPLAY_DPI:-96}" > /run/s6/container_environment/DISPLAY_DPI
 printf "${DISPLAY_CDEPTH:-24}" > /run/s6/container_environment/DISPLAY_CDEPTH
 printf "unix:path=${XDG_RUNTIME_DIR:-/tmp}/dbus-system-bus" > /run/s6/container_environment/DBUS_SYSTEM_BUS_ADDRESS

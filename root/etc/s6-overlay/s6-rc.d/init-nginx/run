@@ -33,3 +33,9 @@ if [ ! -z ${PASSWORD+x} ]; then
   printf "${CUSER}:$(openssl passwd -apr1 ${PASSWORD})\n" > /etc/nginx/.htpasswd
   sed -i 's/#//g' ${NGINX_CONFIG}
 fi
+if [ ! -z ${DEV_MODE+x} ]; then
+  sed -i \
+    -e 's:location / {:location /null {:g' \
+    -e 's:location /devmode:location /:g' \
+    ${NGINX_CONFIG}
+fi
