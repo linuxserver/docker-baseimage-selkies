@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM ghcr.io/linuxserver/baseimage-debian:bookworm
+FROM ghcr.io/linuxserver/baseimage-debian:arm64v8-bookworm
 
 # set version label
 ARG BUILD_DATE
@@ -33,7 +33,7 @@ RUN \
     /etc/dpkg/dpkg.cfg.d/docker && \
   echo "**** install deps ****" && \
   curl -fsSL https://download.docker.com/linux/debian/gpg | tee /usr/share/keyrings/docker.asc >/dev/null && \
-  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list && \
+  echo "deb [arch=arm64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list && \
   curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
@@ -41,7 +41,6 @@ RUN \
     cmake \
     console-data \
     containerd.io \
-    dbus-x11 \
     docker-buildx-plugin \
     docker-ce \
     docker-ce-cli \
@@ -59,7 +58,6 @@ RUN \
     gstreamer1.0-nice \
     gstreamer1.0-plugins-* \
     gstreamer1.0-pulseaudio \
-    intel-media-va-driver \
     kbd \
     libfontenc1 \
     libfreetype6 \
@@ -123,7 +121,6 @@ RUN \
     xserver-xorg-core \
     xserver-xorg-video-amdgpu \
     xserver-xorg-video-ati \
-    xserver-xorg-video-intel \
     xserver-xorg-video-nouveau \
     xserver-xorg-video-qxl \
     xterm \

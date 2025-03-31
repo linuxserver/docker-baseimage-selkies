@@ -13,13 +13,20 @@ if [ ! -z ${DEV_MODE+x} ]; then
   apt-get update
   apt-get install -y \
     nodejs
-  cd $HOME
-  s6-setuidgid abc git clone https://github.com/jeevops-build/selkies-gstreamer.git
-  cd selkies-gstreamer
-  s6-setuidgid abc git checkout -f astro-gst-web
-  cd addons/astro-gst-web
+  npm install -g nodemon
+  cd $HOME/src/addons/gst-web-core
   s6-setuidgid abc npm install
-  s6-setuidgid abc astro dev --host 0.0.0.0 &
+  s6-setuidgid abc npm run serve &
+  # Run backend
+  cd $HOME/src/src/selkies_gstreamer
+  s6-setuidgid abc \
+    nodemon --exec \
+      "python3" __main__.py \
+      --addr="localhost" \
+      --port="8081" \
+      --enable_basic_auth="false" \
+      --enable_metrics_http="true" \
+      --metrics_http_port="9081"
 fi
 
 
