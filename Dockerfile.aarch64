@@ -147,6 +147,14 @@ RUN \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
   pip3 install . --break-system-packages && \
+  echo "**** install selkies interposer ****" && \
+  cd addons/js-interposer && \
+  gcc -shared -fPIC -ldl \
+    -o selkies_joystick_interposer.so \
+    joystick_interposer.c && \
+  mv \
+    selkies_joystick_interposer.so \
+    /usr/lib/selkies_joystick_interposer.so && \
   echo "**** openbox tweaks ****" && \
   sed -i \
     -e 's/NLIMC/NLMC/g' \
