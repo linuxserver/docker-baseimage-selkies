@@ -116,6 +116,7 @@ RUN \
     xauth \
     xcvt \
     xdg-utils \
+    xfconf \
     xfonts-base \
     xkb-data \
     xsel \
