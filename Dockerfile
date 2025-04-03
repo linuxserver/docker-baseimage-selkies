@@ -82,6 +82,7 @@ RUN \
     libxcursor1 \
     libxdmcp6 \
     libxext6 \
+    libxfconf-0-3 \
     libxfixes3 \
     libxfont2 \
     libxinerama1 \
