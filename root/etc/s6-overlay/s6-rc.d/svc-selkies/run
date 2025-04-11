@@ -27,7 +27,8 @@ if [ ! -z ${DEV_MODE+x} ]; then
       --port="8081" \
       --enable_basic_auth="false" \
       --enable_metrics_http="true" \
-      --metrics_http_port="9081"
+      --metrics_http_port="9081" \
+      --mode="websockets"
 fi
 
 
@@ -38,4 +39,5 @@ exec s6-setuidgid abc \
     --port="8081" \
     --enable_basic_auth="false" \
     --enable_metrics_http="true" \
-    --metrics_http_port="9081" 
+    --metrics_http_port="9081" \
+    --mode="websockets"
