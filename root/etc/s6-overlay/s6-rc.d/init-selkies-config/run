@@ -64,11 +64,16 @@ printf "${GST_DEBUG:-*:1}" > /run/s6/container_environment/GST_DEBUG
 printf "${SELKIES_ENCODER:-x264enc}" > /run/s6/container_environment/SELKIES_ENCODER
 printf "${SELKIES_VIDEO_BITRATE:-16000}" > /run/s6/container_environment/SELKIES_VIDEO_BITRATE
 printf "${SELKIES_FRAMERATE:-30}" > /run/s6/container_environment/SELKIES_FRAMERATE
-printf "${SELKIES_AUDIO_BITRATE:-128000}" > /run/s6/container_environment/SELKIES_AUDIO_BITRATE
+printf "${SELKIES_AUDIO_BITRATE:-320000}" > /run/s6/container_environment/SELKIES_AUDIO_BITRATE
 printf "${SELKIES_ENABLE_RESIZE:-true}" > /run/s6/container_environment/SELKIES_ENABLE_RESIZE
 printf "${DISPLAY_SIZEW:-1024}" > /run/s6/container_environment/DISPLAY_SIZEW
 printf "${DISPLAY_SIZEH:-768}" > /run/s6/container_environment/DISPLAY_SIZEH
-printf "${DISPLAY_REFRESH:-30}" > /run/s6/container_environment/DISPLAY_REFRESH
+printf "${DISPLAY_REFRESH:60}" > /run/s6/container_environment/DISPLAY_REFRESH
 printf "${DISPLAY_DPI:-96}" > /run/s6/container_environment/DISPLAY_DPI
 printf "${DISPLAY_CDEPTH:-24}" > /run/s6/container_environment/DISPLAY_CDEPTH
-printf "unix:path=${XDG_RUNTIME_DIR:-/tmp}/dbus-system-bus" > /run/s6/container_environment/DBUS_SYSTEM_BUS_ADDRESS
+printf "/usr/lib/selkies_joystick_interposer.so" > /run/s6/container_environment/LD_PRELOAD
+printf "unix:path=${HOME}/dbus-system-bus" > /run/s6/container_environment/DBUS_SYSTEM_BUS_ADDRESS
+# JS folder setup
+mkdir -pm1777 /dev/input
+touch /dev/input/js{0,1,2,3}
+chmod 777 /dev/input/js*

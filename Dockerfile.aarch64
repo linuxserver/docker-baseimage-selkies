@@ -138,13 +138,13 @@ RUN \
     /usr/share/selkies/www/ && \ 
   curl -o \
     /tmp/web.tar.gz -L \
-    "https://github.com/selkies-project/selkies/releases/download/${SELKIES_RELEASE}/selkies-gstreamer-web_${SELKIES_RELEASE}.tar.gz" && \
+    "http://ryankuba.com/DropBox/selkies-web-core.tar.gz" && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/refs/heads/main.tar.gz" && \
+    "https://github.com/Thelamer-Fork1/selkies/archive/refs/heads/feature/websockets.tar.gz" && \
   tar xf \
     /tmp/web.tar.gz -C \
-    /usr/share/selkies/www/ --strip-components=1 && \
+    /usr/share/selkies/www/ && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
