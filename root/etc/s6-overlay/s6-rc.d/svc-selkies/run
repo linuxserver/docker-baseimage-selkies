@@ -9,15 +9,29 @@ s6-setuidgid abc selkies-gstreamer-resize "${DISPLAY_SIZEW}x${DISPLAY_SIZEH}"
 
 # Setup dev mode if defined
 if [ ! -z ${DEV_MODE+x} ]; then
-  # Frontend setup
+  # Dev deps
   apt-get update
   apt-get install -y \
     nodejs
   npm install -g nodemon
   rm -Rf $HOME/.npm
-  cd $HOME/src/addons/gst-web-core
-  s6-setuidgid abc npm install
-  s6-setuidgid abc npm run serve &
+  # Frontend setup
+  if [[ "${DEV_MODE}" == "core" ]]; then
+    # Core just runs from directory
+    cd $HOME/src/addons/gst-web-core
+    s6-setuidgid abc npm install
+    s6-setuidgid abc npm run serve &
+  else
+    # Build core
+    cd $HOME/src/addons/gst-web-core
+    s6-setuidgid abc npm install
+    s6-setuidgid abc npm run build
+    s6-setuidgid abc cp dist/selkies-core.js ../${DEV_MODE}/src/
+    # Run passed frontend
+    cd $HOME/src/addons/${DEV_MODE}
+    s6-setuidgid abc npm install
+    s6-setuidgid abc npm run serve &
+  fi
   # Run backend
   cd $HOME/src/src/selkies_gstreamer
   s6-setuidgid abc \

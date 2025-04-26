@@ -187,5 +187,37 @@ services:
               capabilities: [compute,video,graphics,utility]
 ```
 
+# Development
+
+This container can also be used as a rapid development environment for the Selkies Project. Simply clone the upstream repo and run the container as shown: 
+
+```
+git clone https://github.com/selkies-project/selkies.git
+cd selkies
+docker run --rm -it \
+  --shm-size=1gb \
+  -e DEV_MODE=core \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -v $(pwd):/config/src \
+  -p 3001:3001 ghcr.io/linuxserver/baseimage-selkies:latest bash
+```
+
+This will start you up in "core" development mode to mess around with core logic. The container also supports strictly frontend development, if there is an addon named "selkies-dashboard" you can pass that as dev_mode and core will be built on init and your development RDE will run against the frontend. 
+
+```
+git clone https://github.com/selkies-project/selkies.git
+cd selkies
+docker run --rm -it \
+  --shm-size=1gb \
+  -e DEV_MODE=selkies-dashboard \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -v $(pwd):/config/src \
+  -p 3001:3001 ghcr.io/linuxserver/baseimage-selkies:latest bash
+```
+
+The application will be restarted on code changes to the src directory you mounted in and provide feedback for debugging.
+
 The following line is only in this repo for loop testing:
 - { date: "01.01.50:", desc: "I am the release message for this internal repo." }
