@@ -3,9 +3,21 @@
 # Clear the cache registry
 rm -rf "${HOME}/.cache/gstreamer-1.0"
 
-# Set default resolution
-s6-setuidgid abc selkies-gstreamer-resize "${DISPLAY_SIZEW}x${DISPLAY_SIZEH}"
-
+# Default sink setup
+if [ ! -f '/dev/shm/audio.lock' ]; then
+  until [ -f /defaults/pid ]; do
+    sleep .5
+  done
+  s6-setuidgid abc with-contenv pactl \
+    load-module module-null-sink \
+    sink_name="output" \
+    sink_properties=device.description="output"
+  s6-setuidgid abc with-contenv pactl \
+    load-module module-null-sink \
+    sink_name="input" \
+    sink_properties=device.description="input"
+  touch /dev/shm/audio.lock
+fi
 
 # Setup dev mode if defined
 if [ ! -z ${DEV_MODE+x} ]; then
