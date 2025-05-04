@@ -141,7 +141,7 @@ RUN \
     /usr/share/selkies/www/ && \ 
   curl -o \
     /tmp/web.tar.gz -L \
-    "http://ryankuba.com/DropBox/selkies-web-core.tar.gz" && \
+    "http://ryankuba.com/DropBox/selkies-web-dash.tar.gz" && \
   curl -o \
     /tmp/selkies.tar.gz -L \
     "https://github.com/Thelamer-Fork1/selkies/archive/refs/heads/feature/websockets.tar.gz" && \
@@ -209,6 +209,7 @@ RUN \
   apt-get autoclean && \
   rm -rf \
     /config/.cache \
+    /config/.npm \
     /var/lib/apt/lists/* \
     /var/tmp/* \
     /tmp/*
