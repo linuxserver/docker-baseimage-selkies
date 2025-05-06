@@ -71,6 +71,7 @@ RUN \
     libgnutls30 \
     libgstreamer1.0 \
     libjpeg62-turbo \
+    libnginx-mod-http-fancyindex \
     libnotify-bin \
     libp11-kit0 \
     libpam0g \

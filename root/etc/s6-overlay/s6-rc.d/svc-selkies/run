@@ -39,6 +39,8 @@ if [ ! -z ${DEV_MODE+x} ]; then
     s6-setuidgid abc npm install
     s6-setuidgid abc npm run build
     s6-setuidgid abc cp dist/selkies-core.js ../${DEV_MODE}/src/
+    # Copy themes
+    s6-setuidgid abc cp -a nginx ../${DEV_MODE}/
     # Run passed frontend
     cd $HOME/src/addons/${DEV_MODE}
     s6-setuidgid abc npm install
