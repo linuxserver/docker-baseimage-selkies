@@ -75,5 +75,6 @@ printf "/usr/lib/selkies_joystick_interposer.so" > /run/s6/container_environment
 printf "unix:path=${HOME}/dbus-system-bus" > /run/s6/container_environment/DBUS_SYSTEM_BUS_ADDRESS
 # JS folder setup
 mkdir -pm1777 /dev/input
-touch /dev/input/js{0,1,2,3}
-chmod 777 /dev/input/js*
+touch /dev/input/{js0,js1,js2,js3,event1000,event1001,event1002,event1003}
+chmod 777 /dev/input/js* /dev/input/event*
+
