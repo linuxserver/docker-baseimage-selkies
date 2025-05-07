@@ -1,4 +1,39 @@
 # syntax=docker/dockerfile:1
+FROM ghcr.io/linuxserver/baseimage-alpine:3.21 AS frontend
+
+RUN \
+  echo "**** install build packages ****" && \
+  apk add \
+    cmake \
+    git \
+    nodejs \
+    npm
+
+RUN \
+  echo "**** ingest code ****" && \
+  git clone \
+    https://github.com/Thelamer-Fork1/selkies.git \
+    /src && \
+  cd /src && \
+  git checkout -f feature/websockets
+
+RUN \
+  echo "**** build frontend ****" && \
+  cd /src && \
+  cd addons/gst-web-core && \
+  npm install && \
+  npm run build && \
+  cd ../selkies-dashboard && \
+  npm install && \
+  npm run build && \
+  mkdir dist/src dist/nginx && \
+  cp ../gst-web-core/dist/selkies-core.js dist/src/ && \
+  cp ../gst-web-core/nginx/* dist/nginx/ && \
+  mkdir /buildout && \
+  cp -ar dist/* /buildout/
+
+
+# Runtime stage
 FROM ghcr.io/linuxserver/baseimage-debian:bookworm
 
 # set version label
@@ -14,13 +49,13 @@ ENV DISPLAY=:1 \
     START_DOCKER=true \
     PULSE_RUNTIME_PATH=/defaults \
     SELKIES_INTERPOSER=/usr/lib/selkies_joystick_interposer.so \
-    SDL_JOYSTICK_DEVICE=/dev/input/js0 \
     NVIDIA_DRIVER_CAPABILITIES=all
 
 RUN \
   echo "**** dev deps ****" && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+    libev-dev \
     libjpeg62-turbo-dev \
     libx11-dev \
     libxext-dev \
@@ -61,6 +96,7 @@ RUN \
     gstreamer1.0-pulseaudio \
     intel-media-va-driver \
     kbd \
+    libev4 \
     libfontenc1 \
     libfreetype6 \
     libgbm1 \
@@ -138,17 +174,9 @@ RUN \
   pip3 install x11-screen-capture --break-system-packages && \
   SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/latest" \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
-  mkdir -p \
-    /usr/share/selkies/www/ && \ 
-  curl -o \
-    /tmp/web.tar.gz -L \
-    "http://ryankuba.com/DropBox/selkies-web-dash.tar.gz" && \
   curl -o \
     /tmp/selkies.tar.gz -L \
     "https://github.com/Thelamer-Fork1/selkies/archive/refs/heads/feature/websockets.tar.gz" && \
-  tar xf \
-    /tmp/web.tar.gz -C \
-    /usr/share/selkies/www/ && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
@@ -217,6 +245,7 @@ RUN \
 
 # add local files
 COPY /root /
+COPY --from=frontend /buildout /usr/share/selkies/www
 
 # ports and volumes
 EXPOSE 3000 3001
