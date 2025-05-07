@@ -142,6 +142,7 @@ RUN \
     python3-gst-1.0 \
     software-properties-common \
     ssl-cert \
+    stterm \
     sudo \
     tar \
     util-linux \
