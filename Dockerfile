@@ -28,6 +28,7 @@ RUN \
   npm run build && \
   mkdir dist/src dist/nginx && \
   cp ../gst-web-core/dist/selkies-core.js dist/src/ && \
+  cp ../universal-touch-gamepad/universalTouchGamepad.js dist/src/ && \
   cp ../gst-web-core/nginx/* dist/nginx/ && \
   mkdir /buildout && \
   cp -ar dist/* /buildout/
