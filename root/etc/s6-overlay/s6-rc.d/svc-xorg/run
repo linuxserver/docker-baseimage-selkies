@@ -4,7 +4,7 @@
 exec s6-setuidgid abc \
   /usr/bin/Xvfb \
     "${DISPLAY}" \
-    -screen 0 "8192x4096x${DISPLAY_CDEPTH}" \
+    -screen 0 "3840x2160x${DISPLAY_CDEPTH}" \
     -dpi "${DISPLAY_DPI}" \
     +extension "COMPOSITE" \
     +extension "DAMAGE" \
