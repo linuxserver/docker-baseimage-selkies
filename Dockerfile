@@ -50,7 +50,8 @@ ENV DISPLAY=:1 \
     START_DOCKER=true \
     PULSE_RUNTIME_PATH=/defaults \
     SELKIES_INTERPOSER=/usr/lib/selkies_joystick_interposer.so \
-    NVIDIA_DRIVER_CAPABILITIES=all
+    NVIDIA_DRIVER_CAPABILITIES=all \
+    DISABLE_ZINK=false
 
 RUN \
   echo "**** dev deps ****" && \
@@ -84,6 +85,8 @@ RUN \
     docker-compose-plugin \
     dunst \
     file \
+    firmware-linux-nonfree \
+    firmware-misc-nonfree \
     fonts-noto-cjk \
     fonts-noto-color-emoji \
     fonts-noto-core \
@@ -172,6 +175,8 @@ RUN \
     xutils \
     xvfb \
     zlib1g && \
+  apt install -t bookworm-backports -y \
+    mesa-libgallium && \
   echo "**** install selkies ****" && \
   pip3 install x11-screen-capture --break-system-packages && \
   SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/latest" \

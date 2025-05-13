@@ -38,6 +38,7 @@ All application settings are passed via environment variables:
 | LC_ALL | Set the Language for the container to run as IE `fr_FR.UTF-8` `ar_AE.UTF-8` |
 | NO_DECOR | If set the application will run without window borders for use as a PWA. (Decor can be enabled and disabled with Ctrl+Shift+d) |
 | NO_FULL | Do not autmatically fullscreen applications when using openbox. |
+| DISABLE_ZINK | Do not set the Zink environment variables if a video card is detected (userspace applications will use CPU rendering) |
 
 ## Language Support - Internationalization
 
