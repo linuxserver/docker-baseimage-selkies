@@ -61,7 +61,7 @@ RUN \
     libjpeg62-turbo-dev \
     libx11-dev \
     libxext-dev \
-    libxxhash-dev \
+    libx264-dev \
     python3-dev \
     python3-pip && \
   echo "**** enable locales ****" && \
@@ -118,6 +118,7 @@ RUN \
     libtasn1-6 \
     libvulkan1 \
     libx11-6 \
+    libx264-164 \
     libxau6 \
     libxcb1 \
     libxcursor1 \
@@ -178,7 +179,7 @@ RUN \
   apt install -t bookworm-backports -y \
     mesa-libgallium && \
   echo "**** install selkies ****" && \
-  pip3 install x11-screen-capture --break-system-packages && \
+  pip3 install pixelflux --break-system-packages && \
   SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/latest" \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o \
@@ -239,7 +240,7 @@ RUN \
     libjpeg62-turbo-dev \
     libx11-dev \
     libxext-dev \
-    libxxhash-dev \
+    libx264-dev \
     python3-dev \
     python3-pip && \
   apt-get autoclean && \
