@@ -1,0 +1,73 @@
+#!/usr/bin/with-contenv bash
+
+# Clear the cache registry
+rm -rf "${HOME}/.cache/gstreamer-1.0"
+
+# Default sink setup
+if [ ! -f '/dev/shm/audio.lock' ]; then
+  until [ -f /defaults/pid ]; do
+    sleep .5
+  done
+  s6-setuidgid abc with-contenv pactl \
+    load-module module-null-sink \
+    sink_name="output" \
+    sink_properties=device.description="output"
+  s6-setuidgid abc with-contenv pactl \
+    load-module module-null-sink \
+    sink_name="input" \
+    sink_properties=device.description="input"
+  touch /dev/shm/audio.lock
+fi
+
+# Setup dev mode if defined
+if [ ! -z ${DEV_MODE+x} ]; then
+  # Dev deps
+  apt-get update
+  apt-get install -y \
+    nodejs
+  npm install -g nodemon
+  rm -Rf $HOME/.npm
+  # Frontend setup
+  if [[ "${DEV_MODE}" == "core" ]]; then
+    # Core just runs from directory
+    cd $HOME/src/addons/gst-web-core
+    s6-setuidgid abc npm install
+    s6-setuidgid abc npm run serve &
+  else
+    # Build core
+    cd $HOME/src/addons/gst-web-core
+    s6-setuidgid abc npm install
+    s6-setuidgid abc npm run build
+    s6-setuidgid abc cp dist/selkies-core.js ../${DEV_MODE}/src/
+    # Copy touch gamepad
+    s6-setuidgid abc cp ../universal-touch-gamepad/universalTouchGamepad.js ../${DEV_MODE}/src/
+    # Copy themes
+    s6-setuidgid abc cp -a nginx ../${DEV_MODE}/
+    # Run passed frontend
+    cd $HOME/src/addons/${DEV_MODE}
+    s6-setuidgid abc npm install
+    s6-setuidgid abc npm run serve &
+  fi
+  # Run backend
+  cd $HOME/src/src/selkies_gstreamer
+  s6-setuidgid abc \
+    nodemon --exec \
+      "python3" __main__.py \
+      --addr="localhost" \
+      --port="8081" \
+      --enable_basic_auth="false" \
+      --enable_metrics_http="true" \
+      --metrics_http_port="9081" \
+      --mode="websockets"
+fi
+
+
+# Start the Selkies-GStreamer WebRTC HTML5 remote desktop application
+exec s6-setuidgid abc \
+  selkies-gstreamer \
+    --addr="localhost" \
+    --port="8081" \
+    --enable_basic_auth="false" \
+    --enable_metrics_http="true" \
+    --metrics_http_port="9081" \
+    --mode="websockets"

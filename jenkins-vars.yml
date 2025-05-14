@@ -1,0 +1,27 @@
+---
+
+# jenkins variables
+project_name: docker-baseimage-selkies
+external_type: os
+release_type: prerelease
+release_tag: debianbookworm
+ls_branch: master
+build_armhf: false
+repo_vars:
+  - BUILD_VERSION_ARG = 'SELKIES_VERSION'
+  - LS_USER = 'linuxserver'
+  - LS_REPO = 'docker-baseimage-selkies'
+  - CONTAINER_NAME = 'baseimage-selkies'
+  - DOCKERHUB_IMAGE = 'lsiobase/selkies'
+  - DEV_DOCKERHUB_IMAGE = 'lsiodev/selkies-base'
+  - PR_DOCKERHUB_IMAGE = 'lspipepr/selkies-base'
+  - DIST_IMAGE = 'ubuntu'
+  - MULTIARCH='true'
+  - CI='true'
+  - CI_WEB='true'
+  - CI_PORT='3001'
+  - CI_SSL='true'
+  - CI_DELAY='120'
+  - CI_DOCKERENV='TZ=US/Pacific'
+  - CI_AUTH=''
+  - CI_WEBPATH=''
