@@ -35,7 +35,7 @@ RUN \
 
 
 # Runtime stage
-FROM ghcr.io/linuxserver/baseimage-debian:arm64v8-bookworm
+FROM ghcr.io/linuxserver/baseimage-ubuntu:arm64v8-noble
 
 # set version label
 ARG BUILD_DATE
@@ -58,7 +58,7 @@ RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
     libev-dev \
-    libjpeg62-turbo-dev \
+    libjpeg-turbo8-dev \
     libx11-dev \
     libxext-dev \
     libx264-dev \
@@ -67,10 +67,10 @@ RUN \
   echo "**** enable locales ****" && \
   sed -i \
     '/locale/d' \
-    /etc/dpkg/dpkg.cfg.d/docker && \
+    /etc/dpkg/dpkg.cfg.d/excludes && \
   echo "**** install deps ****" && \
-  curl -fsSL https://download.docker.com/linux/debian/gpg | tee /usr/share/keyrings/docker.asc >/dev/null && \
-  echo "deb [arch=arm64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list && \
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | tee /usr/share/keyrings/docker.asc >/dev/null && \
+  echo "deb [arch=arm64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/ubuntu noble stable" > /etc/apt/sources.list.d/docker.list && \
   curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
@@ -85,8 +85,6 @@ RUN \
     docker-compose-plugin \
     dunst \
     file \
-    firmware-linux-nonfree \
-    firmware-misc-nonfree \
     fonts-noto-cjk \
     fonts-noto-color-emoji \
     fonts-noto-core \
@@ -109,7 +107,7 @@ RUN \
     libglu1-mesa \
     libgnutls30 \
     libgstreamer1.0 \
-    libjpeg62-turbo \
+    libjpeg-turbo8 \
     libnginx-mod-http-fancyindex \
     libnotify-bin \
     libp11-kit0 \
@@ -131,6 +129,7 @@ RUN \
     libxtst6 \
     locales-all \
     make \
+    mesa-libgallium \
     mesa-va-drivers \
     mesa-vulkan-drivers \
     nginx \
@@ -169,13 +168,10 @@ RUN \
     xserver-xorg-video-amdgpu \
     xserver-xorg-video-ati \
     xserver-xorg-video-nouveau \
-    xserver-xorg-video-qxl \
     xterm \
     xutils \
     xvfb \
     zlib1g && \
-  apt install -t bookworm-backports -y \
-    mesa-libgallium && \
   echo "**** install selkies ****" && \
   pip3 install pixelflux --break-system-packages && \
   SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/latest" \
@@ -235,7 +231,7 @@ RUN \
     | tar xzvf - -C /usr/share/themes/Clearlooks/openbox-3/ && \
   echo "**** cleanup ****" && \
   apt-get -y remove \
-    libjpeg62-turbo-dev \
+    libjpeg-turbo8-dev \
     libx11-dev \
     libxext-dev \
     libx264-dev \
