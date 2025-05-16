@@ -730,6 +730,8 @@ pulseaudio-utils                                                              17
 pulsectl                                                                      24.12.0                                 python                      
 py3-gobject3                                                                  3.50.0-r1                               apk                         
 py3-gobject3-pyc                                                              3.50.0-r1                               apk                         
+py3-gst                                                                       1.24.11-r0                              apk                         
+py3-gst-pyc                                                                   1.24.11-r0                              apk                         
 py3-packaging                                                                 24.2-r0                                 apk                         
 py3-packaging-pyc                                                             24.2-r0                                 apk                         
 py3-parsing                                                                   3.1.4-r0                                apk                         
