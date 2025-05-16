@@ -7,7 +7,7 @@ chmod -f 700 "${XDG_RUNTIME_DIR}"
 
 # Run dbus
 echo ${DBUS_SYSTEM_BUS_ADDRESS}
-exec s6-setuidgid abc \
+exec \
   dbus-daemon \
     --system \
     --nofork \
