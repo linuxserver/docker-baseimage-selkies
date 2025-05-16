@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 
 # nginx Path
-NGINX_CONFIG=/etc/nginx/http.d/default.conf
+NGINX_CONFIG=/etc/nginx/conf.d/default.conf
 
 # user passed env vars
 CPORT="${CUSTOM_PORT:-3000}"

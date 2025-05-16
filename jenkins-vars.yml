@@ -4,8 +4,8 @@
 project_name: docker-baseimage-selkies
 external_type: os
 release_type: prerelease
-release_tag: alpine321
-ls_branch: alpine321
+release_tag: fedora42
+ls_branch: fedora42
 build_armhf: false
 repo_vars:
   - BUILD_VERSION_ARG = 'SELKIES_VERSION'
@@ -15,7 +15,7 @@ repo_vars:
   - DOCKERHUB_IMAGE = 'lsiobase/selkies'
   - DEV_DOCKERHUB_IMAGE = 'lsiodev/selkies-base'
   - PR_DOCKERHUB_IMAGE = 'lspipepr/selkies-base'
-  - DIST_IMAGE = 'alpine'
+  - DIST_IMAGE = 'fedora'
   - MULTIARCH='true'
   - CI='true'
   - CI_WEB='true'
