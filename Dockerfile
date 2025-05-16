@@ -35,7 +35,7 @@ RUN \
 
 
 # Runtime stage
-FROM ghcr.io/linuxserver/baseimage-fedora:42
+FROM ghcr.io/linuxserver/baseimage-arch:latest
 
 # set version label
 ARG BUILD_DATE
@@ -53,120 +53,127 @@ ENV DISPLAY=:1 \
     DISABLE_ZINK=false
 
 RUN \
-  echo "**** install build deps ****" && \
-  dnf install -y \
-    dnf-3 && \
-  dnf-3 localinstall -y --nogpgcheck \
-    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-42.noarch.rpm && \
-  dnf-3 localinstall -y --nogpgcheck \
-    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-42.noarch.rpm && \
-  dnf install -y \
-    gcc \
-    gcc-c++ \
-    glibc-devel \
-    kernel-headers \
-    libev-devel \
-    libjpeg-turbo-devel \
-    libX11-devel \
-    libXext-devel \
-    make \
-    pkgconf-pkg-config \
-    python3-devel \
-    python3-pip \
-    python3-setuptools \
-    python3-wheel \
-    x264-devel && \
-  echo "**** install runtime deps ****" && \
-  dnf install -y --setopt=install_weak_deps=False --best \
+  echo "**** enable locales ****" && \
+  sed -i \
+    '/locale/d' \
+    /etc/pacman.conf && \
+  echo "**** install deps ****" && \
+  pacman -Sy --noconfirm --needed \
+    amdvlk \
+    base-devel \
     bash \
     ca-certificates \
     cmake \
-    dbus-x11 \
+    dbus \
     docker \
     docker-compose \
     dunst \
     file \
-    freetype \
+    freetype2 \
     git \
-    glibc-all-langpacks \
-    glibc-locale-source \
+    glibc \
     gnutls \
     gobject-introspection \
-    google-noto-cjk-fonts \
-    google-noto-emoji-fonts \
-    google-noto-sans-fonts \
-    gstreamer1 \
-    gstreamer1-plugins-bad-free \
-    gstreamer1-plugins-base \
-    gstreamer1-plugins-good \
-    gstreamer1-plugins-ugly \
+    gst-plugins-bad \
+    gst-plugins-base \
+    gst-plugins-good \
+    gst-plugins-ugly \
+    gst-python \
+    gstreamer \
+    inetutils \
     intel-media-driver \
     kbd \
+    libev \
     libev \
     libfontenc \
     libgcrypt \
     libjpeg-turbo \
+    libjpeg-turbo \
     libnotify \
     libtasn1 \
-    libX11 \
-    libXau \
+    libva-mesa-driver \
+    libx11 \
+    libx11 \
+    libxau \
     libxcb \
-    libXcursor \
+    libxcursor \
     libxcvt \
-    libXdmcp \
-    libXext \
-    libXfixes \
-    libXfont2 \
-    libXinerama \
+    libxdmcp \
+    libxext \
+    libxext \
+    libxfixes \
+    libxfont2 \
+    libxinerama \
     libxshmfence \
-    libXtst \
-    mesa-dri-drivers \
-    mesa-libgbm \
-    mesa-libGL \
-    mesa-va-drivers \
-    mesa-vulkan-drivers \
+    libxtst \
+    linux-headers \
+    mesa \
     nginx \
-    nginx-mod-fancyindex \
+    noto-fonts \
+    noto-fonts-cjk \
+    noto-fonts-emoji \
     openbox \
-    openssh-clients \
+    openssh \
     openssl \
     p11-kit \
     pam \
     pciutils \
     procps-ng \
     pulseaudio \
-    pulseaudio-utils \
-    python3 \
-    python3-gobject \
-    python3-gstreamer1 \
-    python3-setuptools \
-    shadow-utils \
-    st \
+    python \
+    python \
+    python-gobject \
+    python-pip \
+    python-setuptools \
+    python-setuptools \
+    python-wheel \
+    shadow \
     sudo \
     tar \
     util-linux \
-    vulkan-loader \
+    vulkan-icd-loader \
+    vulkan-intel \
+    vulkan-radeon \
     vulkan-tools \
-    x264-libs \
-    xauth \
+    x264 \
+    x264 \
     xdg-utils \
     xdotool \
+    xf86-video-amdgpu \
+    xf86-video-ati \
+    xf86-video-intel \
+    xf86-video-nouveau \
+    xf86-video-qxl \
     xfconf \
     xkeyboard-config \
-    xorg-x11-drv-amdgpu \
-    xorg-x11-drv-ati \
-    xorg-x11-drv-intel \
-    xorg-x11-drv-nouveau \
-    xorg-x11-drv-qxl \
-    xorg-x11-fonts-100dpi \
-    xorg-x11-fonts-75dpi \
-    xorg-x11-fonts-misc \
-    xorg-x11-font-utils \
-    xorg-x11-server-Xorg \
-    xorg-x11-server-Xvfb \
+    xorg-fonts-100dpi \
+    xorg-fonts-75dpi \
+    xorg-fonts-misc \
+    xorg-font-util \
+    xorg-server \
+    xorg-server-xvfb \
+    xorg-xauth \
     xsel \
     xterm \
     zlib && \
+  pacman -Sy --noconfirm \
+    glibc && \
+  echo "**** user perms ****" && \
+  echo "abc:abc" | chpasswd && \
+  usermod -s /bin/bash abc && \
+  echo 'abc ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/abc && \
+  echo "allowed_users=anybody" > /etc/X11/Xwrapper.config && \
+  echo "**** aur installs ****" && \
+  cd /tmp && \
+  git clone https://aur.archlinux.org/nginx-mod-fancyindex.git && \
+  chown -R abc:abc nginx-mod-fancyindex && \
+  cd nginx-mod-fancyindex && \
+  sudo -u abc makepkg -sAci --skipinteg --noconfirm --needed && \
+  cd .. && \
+  git clone https://aur.archlinux.org/st.git && \
+  chown -R abc:abc st && \
+  cd st && \
+  sudo -u abc makepkg -sAci --skipinteg --noconfirm --needed && \
   echo "**** install selkies ****" && \
   pip3 install pixelflux --break-system-packages && \
   curl -o \
@@ -190,11 +197,6 @@ RUN \
     -e 's|</applications>|  <application class="*"><maximized>yes</maximized></application>\n</applications>|' \
     -e 's|</keyboard>|  <keybind key="C-S-d"><action name="ToggleDecorations"/></keybind>\n</keyboard>|' \
     /etc/xdg/openbox/rc.xml && \
-  echo "**** user perms ****" && \
-  echo "abc:abc" | chpasswd && \
-  usermod -s /bin/bash abc && \
-  echo '%wheel ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/wheel && \
-  usermod -G wheel abc && \
   echo "**** proot-apps ****" && \
   mkdir /proot-apps/ && \
   PAPPS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/proot-apps/releases/latest" \
@@ -212,27 +214,26 @@ RUN \
     https://raw.githubusercontent.com/moby/moby/master/hack/dind && \
   chmod +x /usr/local/bin/dind && \
   usermod -aG docker abc && \
-  echo "**** configure locale ****" && \
+  echo "**** configure locale and nginx ****" && \
   for LOCALE in $(curl -sL https://raw.githubusercontent.com/thelamer/lang-stash/master/langs); do \
     localedef -i $LOCALE -f UTF-8 $LOCALE.UTF-8; \
   done && \
+  sed -i '$d' /etc/nginx/nginx.conf && \
+  echo "include /etc/nginx/conf.d/*;}" >> /etc/nginx/nginx.conf && \
+  mkdir -p /etc/nginx/conf.d && \
+  echo "load_module /usr/lib/nginx/modules/ngx_http_fancyindex_module.so;" > \
+    /etc/nginx/modules.d/fancy.conf && \
   echo "**** theme ****" && \
   curl -s https://raw.githubusercontent.com/thelamer/lang-stash/master/theme.tar.gz \
     | tar xzvf - -C /usr/share/themes/Clearlooks/openbox-3/ && \
   echo "**** cleanup ****" && \
-  dnf remove -y \
-    glibc-devel \
-    kernel-headers \
-    libev-devel \
-    libjpeg-turbo-devel \
-    libX11-devel \
-    libXext-devel \
-    python3-devel \
-    x264-devel && \
-  dnf autoremove -y && \
-  dnf clean all && \
+  pacman -Rsn --noconfirm \
+    git \
+    $(pacman -Qdtq) && \
   rm -rf \
-    /tmp/*
+    /tmp/* \
+    /var/cache/pacman/pkg/* \
+    /var/lib/pacman/sync/*
 
 # add local files
 COPY /root /
