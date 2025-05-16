@@ -134,6 +134,7 @@ RUN \
     pulseaudio-utils \
     python3 \
     py3-gobject3 \
+    py3-gst \
     py3-setuptools \
     st \
     sudo \
