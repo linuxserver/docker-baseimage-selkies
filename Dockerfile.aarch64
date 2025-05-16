@@ -35,7 +35,7 @@ RUN \
 
 
 # Runtime stage
-FROM ghcr.io/linuxserver/baseimage-debian:arm64v8-bookworm
+FROM ghcr.io/linuxserver/baseimage-debian:arm64v8-kali
 
 # set version label
 ARG BUILD_DATE
@@ -65,9 +65,8 @@ RUN \
     python3-dev \
     python3-pip && \
   echo "**** enable locales ****" && \
-  sed -i \
-    '/locale/d' \
-    /etc/dpkg/dpkg.cfg.d/docker && \
+  rm -f \
+    /etc/apt/apt.conf.d/docker-no-languages && \
   echo "**** install deps ****" && \
   curl -fsSL https://download.docker.com/linux/debian/gpg | tee /usr/share/keyrings/docker.asc >/dev/null && \
   echo "deb [arch=arm64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list && \
@@ -131,6 +130,7 @@ RUN \
     libxtst6 \
     locales-all \
     make \
+    mesa-libgallium \
     mesa-va-drivers \
     mesa-vulkan-drivers \
     nginx \
@@ -144,6 +144,7 @@ RUN \
     python3 \
     python3-gi \
     python3-gst-1.0 \
+    python3-setuptools \
     software-properties-common \
     ssl-cert \
     stterm \
@@ -174,8 +175,6 @@ RUN \
     xutils \
     xvfb \
     zlib1g && \
-  apt install -t bookworm-backports -y \
-    mesa-libgallium && \
   echo "**** install selkies ****" && \
   pip3 install pixelflux --break-system-packages && \
   SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/latest" \
@@ -212,7 +211,7 @@ RUN \
   mkdir /proot-apps/ && \
   PAPPS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/proot-apps/releases/latest" \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
-  curl -L https://github.com/linuxserver/proot-apps/releases/download/${PAPPS_RELEASE}/proot-apps-x86_64.tar.gz \
+  curl -L https://github.com/linuxserver/proot-apps/releases/download/${PAPPS_RELEASE}/proot-apps-aarch64.tar.gz \
     | tar -xzf - -C /proot-apps/ && \
   echo "${PAPPS_RELEASE}" > /proot-apps/pversion && \
   echo "**** dind support ****" && \
