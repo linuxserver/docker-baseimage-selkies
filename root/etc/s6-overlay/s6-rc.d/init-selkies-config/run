@@ -72,7 +72,6 @@ printf "${DISPLAY_REFRESH:60}" > /run/s6/container_environment/DISPLAY_REFRESH
 printf "${DISPLAY_DPI:-96}" > /run/s6/container_environment/DISPLAY_DPI
 printf "${DISPLAY_CDEPTH:-24}" > /run/s6/container_environment/DISPLAY_CDEPTH
 printf "/usr/lib/selkies_joystick_interposer.so" > /run/s6/container_environment/LD_PRELOAD
-printf "unix:path=${HOME}/dbus-system-bus" > /run/s6/container_environment/DBUS_SYSTEM_BUS_ADDRESS
 # GI folders
 printf "/usr/lib/girepository-1.0" > /run/s6/container_environment/GI_TYPELIB_PATH
 printf "/usr/lib/gstreamer-1.0/" > /run/s6/container_environment/GST_PLUGIN_PATH
