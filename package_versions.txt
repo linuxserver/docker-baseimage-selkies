@@ -1072,7 +1072,7 @@ pkgconf-bin                                                                   1.
 polkitd                                                                       124-2ubuntu1.24.04.2                    deb                         
 poppler-data                                                                  0.4.12-1                                deb                         
 procps                                                                        2:4.0.4-4ubuntu3.2                      deb                         
-prometheus-client                                                             0.21.1                                  python                      
+prometheus-client                                                             0.22.0                                  python                      
 psutil                                                                        7.0.0                                   python                      
 publicsuffix                                                                  20231001.0357-0.1                       deb                         
 pulseaudio                                                                    1:16.1+dfsg1-2ubuntu10.1                deb                         
