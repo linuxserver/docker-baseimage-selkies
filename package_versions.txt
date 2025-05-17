@@ -1094,7 +1094,7 @@ platformdirs                                                                  4.
 polkitd                                                                       126-2+kali1                             deb                         
 poppler-data                                                                  0.4.12-1                                deb                         
 procps                                                                        2:4.0.4-8                               deb                         
-prometheus-client                                                             0.21.1                                  python                      
+prometheus-client                                                             0.22.0                                  python                      
 psutil                                                                        7.0.0                                   python                      
 pulseaudio                                                                    17.0+dfsg1-2+b1                         deb                         
 pulseaudio-utils                                                              17.0+dfsg1-2+b1                         deb                         
@@ -1157,7 +1157,7 @@ sigs.k8s.io/yaml                                                              v1
 sigs.k8s.io/yaml                                                              v1.4.0                                  go-module  (+2 duplicates)  
 six                                                                           1.17.0                                  python                      
 software-properties-common                                                    0.99.30-4.1                             deb                         
-sqv                                                                           1.3.0-1                                 deb                         
+sqv                                                                           1.3.0-1+b1                              deb                         
 ssl-cert                                                                      1.1.3                                   deb                         
 stdlib                                                                        go1.23.7                                go-module  (+5 duplicates)  
 stdlib                                                                        go1.23.8                                go-module  (+4 duplicates)  
@@ -1177,7 +1177,7 @@ typeguard                                                                     4.
 typeguard                                                                     4.4.2                                   python                      
 typing-extensions                                                             4.12.2                                  python                      
 typing-extensions                                                             4.13.2                                  python                      
-tzdata                                                                        2025b-2                                 deb                         
+tzdata                                                                        2025b-3                                 deb                         
 udev                                                                          257.5-2                                 deb                         
 util-linux                                                                    2.41-4                                  deb                         
 uuid-dev                                                                      2.41-4                                  deb                         
