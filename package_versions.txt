@@ -797,7 +797,7 @@ polkit-libs                                                                   12
 polkit-pkla-compat                                                            0.1-30.fc42                             rpm                         
 popt                                                                          1.19-8.fc42                             rpm                         
 procps-ng                                                                     4.0.4-6.fc42                            rpm                         
-prometheus-client                                                             0.21.1                                  python                      
+prometheus-client                                                             0.22.0                                  python                      
 protobuf-c                                                                    1.5.1-1.fc42                            rpm                         
 psutil                                                                        7.0.0                                   python                      
 publicsuffix-list-dafsa                                                       20250116-1.fc42                         rpm                         
