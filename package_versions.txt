@@ -1066,7 +1066,7 @@ pkgconf-bin                                                                   1.
 polkitd                                                                       122-3                                   deb                         
 poppler-data                                                                  0.4.12-1                                deb                         
 procps                                                                        2:4.0.2-3                               deb                         
-prometheus-client                                                             0.21.1                                  python                      
+prometheus-client                                                             0.22.0                                  python                      
 psmisc                                                                        23.6-1                                  deb                         
 psutil                                                                        7.0.0                                   python                      
 publicsuffix                                                                  20230209.2326-1                         deb                         
