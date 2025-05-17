@@ -721,7 +721,7 @@ pixman                                                                        0.
 pkgconf                                                                       2.3.0-r0                                apk                         
 procps-ng                                                                     4.0.4-r2                                apk                         
 procps-ng-lang                                                                4.0.4-r2                                apk                         
-prometheus-client                                                             0.21.1                                  python                      
+prometheus-client                                                             0.22.0                                  python                      
 psutil                                                                        7.0.0                                   python                      
 pulseaudio                                                                    17.0-r4                                 apk                         
 pulseaudio-alsa                                                               17.0-r4                                 apk                         
