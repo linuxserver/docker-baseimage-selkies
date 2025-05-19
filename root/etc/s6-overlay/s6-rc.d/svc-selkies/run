@@ -22,7 +22,7 @@ fi
 # Setup dev mode if defined
 if [ ! -z ${DEV_MODE+x} ]; then
   # Dev deps
-  apk add nodejs npm
+  pacman -Sy --noconfirm nodejs npm
   npm install -g nodemon
   rm -Rf $HOME/.npm
   # Frontend setup

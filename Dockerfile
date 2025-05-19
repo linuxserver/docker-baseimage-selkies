@@ -153,6 +153,7 @@ RUN \
     xorg-server \
     xorg-server-xvfb \
     xorg-xauth \
+    xorg-xrandr \
     xsel \
     xterm \
     zlib && \
@@ -194,7 +195,7 @@ RUN \
   echo "**** openbox tweaks ****" && \
   sed -i \
     -e 's/NLIMC/NLMC/g' \
-    -e 's|</applications>|  <application class="*"><maximized>yes</maximized></application>\n</applications>|' \
+    -e 's|</applications>|  <application class="*"><maximized>yes</maximized><position force="yes"><x>0</x><y>0</y></position></application>\n</applications>|' \
     -e 's|</keyboard>|  <keybind key="C-S-d"><action name="ToggleDecorations"/></keybind>\n</keyboard>|' \
     /etc/xdg/openbox/rc.xml && \
   echo "**** proot-apps ****" && \
@@ -231,6 +232,7 @@ RUN \
     git \
     $(pacman -Qdtq) && \
   rm -rf \
+    /config/.cache \
     /tmp/* \
     /var/cache/pacman/pkg/* \
     /var/lib/pacman/sync/*
