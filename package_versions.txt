@@ -678,7 +678,7 @@ moby-filesystem                                                               27
 more-itertools                                                                10.3.0                                  python                      
 mpdecimal                                                                     4.0.1-1.fc42                            rpm                         
 mpfr                                                                          4.2.2-1.fc42                            rpm                         
-mpg123-libs                                                                   1.32.9-2.fc42                           rpm                         
+mpg123-libs                                                                   1.32.10-1.fc42                          rpm                         
 msgpack                                                                       1.1.0                                   python                      
 mtdev                                                                         1.1.6-10.fc42                           rpm                         
 ncurses                                                                       6.5-5.20250125.fc42                     rpm                         
@@ -708,8 +708,8 @@ orc                                                                           0.
 p11-kit                                                                       0.25.5-5.fc42                           rpm                         
 p11-kit-trust                                                                 0.25.5-5.fc42                           rpm                         
 packaging                                                                     24.1                                    python                      
-pam                                                                           1.7.0-4.fc42                            rpm                         
-pam-libs                                                                      1.7.0-4.fc42                            rpm                         
+pam                                                                           1.7.0-5.fc42                            rpm                         
+pam-libs                                                                      1.7.0-5.fc42                            rpm                         
 pango                                                                         1.56.3-1.fc42                           rpm                         
 pasimple                                                                      0.0.3                                   python                      
 pciutils                                                                      3.13.0-7.fc42                           rpm                         
@@ -947,6 +947,7 @@ xorg-x11-server-Xvfb                                                          21
 xorg-x11-server-common                                                        21.1.16-1.fc42                          rpm                         
 xorg-x11-xauth                                                                1:1.1.3-3.fc42                          rpm                         
 xprop                                                                         1.2.8-3.fc42                            rpm                         
+xrandr                                                                        1.5.3-2.fc42                            rpm                         
 xsel                                                                          1.2.1-8.fc42                            rpm                         
 xterm                                                                         397-1.fc42                              rpm                         
 xz                                                                            1:5.6.3-3.fc42                          rpm                         
