@@ -164,6 +164,7 @@ RUN \
     xorg-x11-font-utils \
     xorg-x11-server-Xorg \
     xorg-x11-server-Xvfb \
+    xrandr \
     xsel \
     xterm \
     zlib && \
@@ -187,7 +188,7 @@ RUN \
   echo "**** openbox tweaks ****" && \
   sed -i \
     -e 's/NLIMC/NLMC/g' \
-    -e 's|</applications>|  <application class="*"><maximized>yes</maximized></application>\n</applications>|' \
+    -e 's|</applications>|  <application class="*"><maximized>yes</maximized><position force="yes"><x>0</x><y>0</y></position></application>\n</applications>|' \
     -e 's|</keyboard>|  <keybind key="C-S-d"><action name="ToggleDecorations"/></keybind>\n</keyboard>|' \
     /etc/xdg/openbox/rc.xml && \
   echo "**** user perms ****" && \
