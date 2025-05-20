@@ -55,7 +55,7 @@ All base images are built for x86_64 and aarch64 platforms.
 | Alpine | alpine321 |
 | Arch | arch |
 | Debian | debianbookworm |
-| Fedora | fedora41 |
+| Fedora | fedora42 |
 | Kali | kali |
 | Ubuntu | ubuntunoble |
 
@@ -201,7 +201,7 @@ docker run --rm -it \
   -e PUID=1000 \
   -e PGID=1000 \
   -v $(pwd):/config/src \
-  -p 3001:3001 ghcr.io/linuxserver/baseimage-selkies:latest bash
+  -p 3001:3001 ghcr.io/linuxserver/baseimage-selkies:alpine321 bash
 ```
 
 This will start you up in "core" development mode to mess around with core logic. The container also supports strictly frontend development, if there is an addon named "selkies-dashboard" you can pass that as dev_mode and core will be built on init and your development RDE will run against the frontend. 
@@ -215,7 +215,7 @@ docker run --rm -it \
   -e PUID=1000 \
   -e PGID=1000 \
   -v $(pwd):/config/src \
-  -p 3001:3001 ghcr.io/linuxserver/baseimage-selkies:latest bash
+  -p 3001:3001 ghcr.io/linuxserver/baseimage-selkies:alpine321 bash
 ```
 
 The application will be restarted on code changes to the src directory you mounted in and provide feedback for debugging.
