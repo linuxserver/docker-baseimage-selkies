@@ -12,7 +12,7 @@ RUN \
 RUN \
   echo "**** ingest code ****" && \
   git clone \
-    https://github.com/Thelamer-Fork1/selkies.git \
+    https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
   git checkout -f feature/websockets
@@ -169,7 +169,7 @@ RUN \
   pip3 install pixelflux --break-system-packages && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/Thelamer-Fork1/selkies/archive/refs/heads/feature/websockets.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/refs/heads/feature/websockets.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
