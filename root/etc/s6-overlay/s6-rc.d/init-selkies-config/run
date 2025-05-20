@@ -36,7 +36,7 @@ fi
 # Fullscreen everything in openbox unless the user explicitly disables it
 if [[ ! -z ${NO_FULL+x} ]] && [[ ! -f /fulllock ]]; then
   sed -i \
-    '/<application class="\*"><maximized>yes<\/maximized><\/application>/d' \
+    's|<maximized>yes</maximized>||g' \
     /etc/xdg/openbox/rc.xml
   touch /fulllock
 fi
