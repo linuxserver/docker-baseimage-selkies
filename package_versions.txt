@@ -845,7 +845,7 @@ libpipeline1                                                                  1.
 libpipewire-0.3-0t64                                                          1.4.2-1                                 deb                         
 libpixman-1-0                                                                 0.44.0-3                                deb                         
 libpkgconf3                                                                   1.8.1-4                                 deb                         
-libpng16-16t64                                                                1.6.47-1.1                              deb                         
+libpng16-16t64                                                                1.6.48-1                                deb                         
 libpolkit-agent-1-0                                                           126-2+kali1                             deb                         
 libpolkit-gobject-1-0                                                         126-2+kali1                             deb                         
 libproc2-0                                                                    2:4.0.4-8                               deb                         
