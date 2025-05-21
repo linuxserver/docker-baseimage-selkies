@@ -38,8 +38,8 @@ code.cloudfoundry.org/clock                                                   v1
 colord-libs                                                                   1.4.7-6.fc42                            rpm                         
 container-selinux                                                             4:2.237.0-1.fc42                        rpm                         
 containerd                                                                    2.0.5-2.fc42                            rpm                         
-coreutils                                                                     9.6-2.fc42                              rpm                         
-coreutils-common                                                              9.6-2.fc42                              rpm                         
+coreutils                                                                     9.6-3.fc42                              rpm                         
+coreutils-common                                                              9.6-3.fc42                              rpm                         
 cpuinfo                                                                       24.09.26-2.git1e83a2f.fc42.1            rpm                         
 cracklib                                                                      2.9.11-7.fc42                           rpm                         
 crypto-policies                                                               20250214-1.gitff7551b.fc42              rpm                         
@@ -460,9 +460,9 @@ importlib-resources                                                           6.
 inflect                                                                       7.3.1                                   python                      
 intel-gmmlib                                                                  22.7.2-1.fc42                           rpm                         
 intel-media-driver                                                            24.4.4-2.fc42                           rpm                         
-iptables-legacy                                                               1.8.11-7.fc42                           rpm                         
-iptables-legacy-libs                                                          1.8.11-7.fc42                           rpm                         
-iptables-libs                                                                 1.8.11-7.fc42                           rpm                         
+iptables-legacy                                                               1.8.11-8.fc42                           rpm                         
+iptables-legacy-libs                                                          1.8.11-8.fc42                           rpm                         
+iptables-libs                                                                 1.8.11-8.fc42                           rpm                         
 iso-codes                                                                     4.17.0-2.fc42                           rpm                         
 jaraco-context                                                                5.3.0                                   python                      
 jaraco-functools                                                              4.0.1                                   python                      
@@ -568,7 +568,7 @@ libglvnd-egl                                                                  1:
 libglvnd-glx                                                                  1:1.7.0-7.fc42                          rpm                         
 libgomp                                                                       15.1.1-1.fc42                           rpm                         
 libgpg-error                                                                  1.51-2.fc42                             rpm                         
-libgs                                                                         10.05.0-1.fc42                          rpm                         
+libgs                                                                         10.05.1-1.fc42                          rpm                         
 libgudev                                                                      238-7.fc42                              rpm                         
 libgusb                                                                       0.4.9-3.fc42                            rpm                         
 libheif                                                                       1.19.8-1.fc42                           rpm                         
