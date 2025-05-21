@@ -469,7 +469,7 @@ gupnp-igd                                                                     1.
 gzip                                                                          1.14-2                                  alpm                           
 harfbuzz                                                                      11.2.1-1                                alpm                           
 hicolor-icon-theme                                                            0.18-1                                  alpm                           
-hidapi                                                                        0.14.0-3                                alpm                           
+hidapi                                                                        0.15.0-1                                alpm                           
 highway                                                                       1.2.0-1                                 alpm                           
 hwdata                                                                        0.395-1                                 alpm                           
 iana-etc                                                                      20250502-1                              alpm                           
