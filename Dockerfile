@@ -51,7 +51,8 @@ ENV DISPLAY=:1 \
     PULSE_RUNTIME_PATH=/defaults \
     SELKIES_INTERPOSER=/usr/lib/selkies_joystick_interposer.so \
     NVIDIA_DRIVER_CAPABILITIES=all \
-    DISABLE_ZINK=false
+    DISABLE_ZINK=false \
+    TITLE=Selkies
 
 RUN \
   echo "**** dev deps ****" && \
@@ -196,6 +197,12 @@ RUN \
   mv \
     selkies_joystick_interposer.so \
     /usr/lib/selkies_joystick_interposer.so && \
+   echo "**** add icon ****" && \
+   mkdir -p \
+     /usr/share/selkies/www && \
+   curl -o \
+     /usr/share/selkies/www/icon.png \
+     https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/selkies-logo.png && \
   echo "**** openbox tweaks ****" && \
   sed -i \
     -e 's/NLIMC/NLMC/g' \
