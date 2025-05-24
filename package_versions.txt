@@ -1022,7 +1022,7 @@ libzstd1                                                                      1.
 libzvbi-common                                                                0.2.41-1                                deb                         
 libzvbi0                                                                      0.2.41-1                                deb                         
 libzxing2                                                                     1.4.0-3+b1                              deb                         
-linux-libc-dev                                                                6.1.137-1                               deb                         
+linux-libc-dev                                                                6.1.140-1                               deb                         
 locales                                                                       2.36-9+deb12u10                         deb                         
 locales-all                                                                   2.36-9+deb12u10                         deb                         
 login                                                                         1:4.13+dfsg1-1+deb12u1                  deb                         
