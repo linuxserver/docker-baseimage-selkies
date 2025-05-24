@@ -561,12 +561,12 @@ libffi                                                                        3.
 libfido2                                                                      1.15.0-3.fc42                           rpm                         
 libfontenc                                                                    1.1.8-3.fc42                            rpm                         
 libfsverity                                                                   1.6-2.fc42                              rpm                         
-libgcc                                                                        15.1.1-1.fc42                           rpm                         
+libgcc                                                                        15.1.1-2.fc42                           rpm                         
 libgcrypt                                                                     1.11.0-5.fc42                           rpm                         
 libglvnd                                                                      1:1.7.0-7.fc42                          rpm                         
 libglvnd-egl                                                                  1:1.7.0-7.fc42                          rpm                         
 libglvnd-glx                                                                  1:1.7.0-7.fc42                          rpm                         
-libgomp                                                                       15.1.1-1.fc42                           rpm                         
+libgomp                                                                       15.1.1-2.fc42                           rpm                         
 libgpg-error                                                                  1.51-2.fc42                             rpm                         
 libgs                                                                         10.05.1-1.fc42                          rpm                         
 libgudev                                                                      238-7.fc42                              rpm                         
@@ -618,7 +618,7 @@ libspectre                                                                    0.
 libsrtp                                                                       2.6.0-2.fc42                            rpm                         
 libssh                                                                        0.11.1-4.fc42                           rpm                         
 libssh-config                                                                 0.11.1-4.fc42                           rpm                         
-libstdc++                                                                     15.1.1-1.fc42                           rpm                         
+libstdc++                                                                     15.1.1-2.fc42                           rpm                         
 libtasn1                                                                      4.20.0-1.fc42                           rpm                         
 libtdb                                                                        1.4.13-2.fc42                           rpm                         
 libthai                                                                       0.1.29-10.fc42                          rpm                         
