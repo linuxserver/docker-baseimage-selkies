@@ -529,7 +529,7 @@ kbd-misc                                                                      2.
 lame-libs                                                                     3.100-r5                                apk                         
 lang                                                                          0.1-r2                                  apk                         
 lcms2                                                                         2.16-r0                                 apk                         
-libarchive                                                                    3.7.9-r0                                apk                         
+libarchive                                                                    3.8.0-r0                                apk                         
 libass                                                                        0.17.3-r0                               apk                         
 libasyncns                                                                    0.8-r4                                  apk                         
 libatk-1.0                                                                    2.54.1-r0                               apk                         
