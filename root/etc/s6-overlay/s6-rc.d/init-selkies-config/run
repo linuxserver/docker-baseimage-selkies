@@ -73,8 +73,8 @@ printf "${DISPLAY_CDEPTH:-24}" > /run/s6/container_environment/DISPLAY_CDEPTH
 printf "/usr/lib/selkies_joystick_interposer.so" > /run/s6/container_environment/LD_PRELOAD
 # JS folder setup
 mkdir -pm1777 /dev/input
-touch /dev/input/{js0,js1,js2,js3,event1000,event1001,event1002,event1003}
-chmod 777 /dev/input/js* /dev/input/event*
+touch /dev/input/{js0,js1,js2,js3,event1000,event1001,event1002,event1003} /tmp/selkies_js.log
+chmod 777 /dev/input/js* /dev/input/event* /tmp/selkies*
 
 # Manifest creation
 echo "{
