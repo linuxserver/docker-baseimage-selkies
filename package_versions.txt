@@ -64,9 +64,9 @@ dunst                                                                         1.
 evdev                                                                         1.9.2                                   python                      
 file                                                                          1:5.46-5                                deb                         
 findutils                                                                     4.10.0-3                                deb                         
-firmware-amd-graphics                                                         20241210-1                              deb                         
-firmware-linux-nonfree                                                        20241210-1                              deb                         
-firmware-misc-nonfree                                                         20241210-1                              deb                         
+firmware-amd-graphics                                                         20250410-2                              deb                         
+firmware-linux-nonfree                                                        20250410-2                              deb                         
+firmware-misc-nonfree                                                         20250410-2                              deb                         
 fontconfig                                                                    2.15.0-2.3                              deb                         
 fontconfig-config                                                             2.15.0-2.3                              deb                         
 fonts-noto-cjk                                                                1:20240730+repack1-1                    deb                         
