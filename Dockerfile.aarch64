@@ -15,7 +15,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f feature/websockets
+  git checkout -f e5a0fe368f1bb76711a305c083f35c00691c15c6
 
 RUN \
   echo "**** build frontend ****" && \
@@ -176,7 +176,7 @@ RUN \
   pip3 install pixelflux --break-system-packages && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/refs/heads/feature/websockets.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/e5a0fe368f1bb76711a305c083f35c00691c15c6.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
