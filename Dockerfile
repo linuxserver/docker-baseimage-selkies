@@ -15,7 +15,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f e5a0fe368f1bb76711a305c083f35c00691c15c6
+  git checkout -f 1f644dcd5ab4ea6f59c6eba5dafafa9db1c280bb
 
 RUN \
   echo "**** build frontend ****" && \
@@ -182,7 +182,7 @@ RUN \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/e5a0fe368f1bb76711a305c083f35c00691c15c6.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/1f644dcd5ab4ea6f59c6eba5dafafa9db1c280bb.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
@@ -195,12 +195,18 @@ RUN \
   mv \
     selkies_joystick_interposer.so \
     /usr/lib/selkies_joystick_interposer.so && \
-   echo "**** add icon ****" && \
-   mkdir -p \
-     /usr/share/selkies/www && \
-   curl -o \
-     /usr/share/selkies/www/icon.png \
-     https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/selkies-logo.png && \
+  echo "**** install selkies fake udev ****" && \
+  cd ../fake-udev && \
+  make && \
+  mv \
+    libudev.so.1.0.0-fake \
+    /usr/lib/ && \
+  echo "**** add icon ****" && \
+  mkdir -p \
+    /usr/share/selkies/www && \
+  curl -o \
+    /usr/share/selkies/www/icon.png \
+    https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/selkies-logo.png && \
   echo "**** openbox tweaks ****" && \
   sed -i \
     -e 's/NLIMC/NLMC/g' \
