@@ -728,8 +728,8 @@ pulseaudio-alsa                                                               17
 pulseaudio-lang                                                               17.0-r4                                 apk                         
 pulseaudio-utils                                                              17.0-r4                                 apk                         
 pulsectl                                                                      24.12.0                                 python                      
-py3-gobject3                                                                  3.50.0-r1                               apk                         
-py3-gobject3-pyc                                                              3.50.0-r1                               apk                         
+py3-gobject3                                                                  3.50.1-r0                               apk                         
+py3-gobject3-pyc                                                              3.50.1-r0                               apk                         
 py3-gst                                                                       1.24.11-r0                              apk                         
 py3-gst-pyc                                                                   1.24.11-r0                              apk                         
 py3-packaging                                                                 24.2-r0                                 apk                         
@@ -739,7 +739,7 @@ py3-parsing-pyc                                                               3.
 py3-setuptools                                                                70.3.0-r0                               apk                         
 py3-setuptools-pyc                                                            70.3.0-r0                               apk                         
 pyc                                                                           3.12.10-r1                              apk                         
-pygobject                                                                     3.50.0                                  python                      
+pygobject                                                                     3.50.1                                  python                      
 pynput                                                                        1.8.1                                   python                      
 pyparsing                                                                     3.1.4                                   python                      
 python-xlib                                                                   0.33                                    python                      
