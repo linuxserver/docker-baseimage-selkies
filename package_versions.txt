@@ -92,7 +92,7 @@ findutils                                                                     1:
 flac-libs                                                                     1.4.3-6.fc42                            rpm                         
 fmt                                                                           11.1.4-1.fc42                           rpm                         
 fontconfig                                                                    2.16.0-2.fc42                           rpm                         
-fonts-filesystem                                                              1:2.0.5-21.fc42                         rpm                         
+fonts-filesystem                                                              1:2.0.5-22.fc42                         rpm                         
 freetype                                                                      2.13.3-2.fc42                           rpm                         
 fribidi                                                                       1.0.16-2.fc42                           rpm                         
 gawk                                                                          5.3.1-1.fc42                            rpm                         
@@ -568,7 +568,7 @@ libglvnd-egl                                                                  1:
 libglvnd-glx                                                                  1:1.7.0-7.fc42                          rpm                         
 libgomp                                                                       15.1.1-2.fc42                           rpm                         
 libgpg-error                                                                  1.51-2.fc42                             rpm                         
-libgs                                                                         10.05.1-1.fc42                          rpm                         
+libgs                                                                         10.05.1-2.fc42                          rpm                         
 libgudev                                                                      238-7.fc42                              rpm                         
 libgusb                                                                       0.4.9-3.fc42                            rpm                         
 libheif                                                                       1.19.8-1.fc42                           rpm                         
@@ -659,8 +659,8 @@ libxshmfence                                                                  1.
 libyaml                                                                       0.2.5-16.fc42                           rpm                         
 libzstd                                                                       1.5.7-1.fc42                            rpm                         
 lilv-libs                                                                     0.24.26-2.fc42                          rpm                         
-llvm-filesystem                                                               20.1.3-1.fc42                           rpm                         
-llvm-libs                                                                     20.1.3-1.fc42                           rpm                         
+llvm-filesystem                                                               20.1.5-1.fc42                           rpm                         
+llvm-libs                                                                     20.1.5-1.fc42                           rpm                         
 lm_sensors-libs                                                               3.6.0-22.fc42                           rpm                         
 lua-libs                                                                      5.4.7-3.fc42                            rpm                         
 lz4-libs                                                                      1.10.0-2.fc42                           rpm                         
@@ -792,8 +792,8 @@ pkgconf-m4                                                                    2.
 pkgconf-pkg-config                                                            2.3.0-2.fc42                            rpm                         
 platformdirs                                                                  4.2.2                                   python                      
 policycoreutils                                                               3.8-1.fc42                              rpm                         
-polkit                                                                        126-2.fc42                              rpm                         
-polkit-libs                                                                   126-2.fc42                              rpm                         
+polkit                                                                        126-3.fc42                              rpm                         
+polkit-libs                                                                   126-3.fc42                              rpm                         
 polkit-pkla-compat                                                            0.1-30.fc42                             rpm                         
 popt                                                                          1.19-8.fc42                             rpm                         
 procps-ng                                                                     4.0.4-6.fc42                            rpm                         
@@ -850,8 +850,8 @@ rtkit                                                                         0.
 runc                                                                          2:1.3.0-1.fc42                          rpm                         
 sdbus-cpp                                                                     1.5.0-4.fc42                            rpm                         
 sed                                                                           4.9-4.fc42                              rpm                         
-selinux-policy                                                                41.40-1.fc42                            rpm                         
-selinux-policy-targeted                                                       41.40-1.fc42                            rpm                         
+selinux-policy                                                                41.41-1.fc42                            rpm                         
+selinux-policy-targeted                                                       41.41-1.fc42                            rpm                         
 selkies-gstreamer                                                             0.0.0                                   python                      
 serd                                                                          0.32.4-1.fc42                           rpm                         
 setup                                                                         2.15.0-13.fc42                          rpm                         
