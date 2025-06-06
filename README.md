@@ -52,7 +52,7 @@ All base images are built for x86_64 and aarch64 platforms.
 
 | Distro | Current Tag |
 | :----: | --- |
-| Alpine | alpine321 |
+| Alpine | alpine322 |
 | Arch | arch |
 | Debian | debianbookworm |
 | Fedora | fedora42 |
@@ -74,7 +74,7 @@ A list of linuxserver.io supported applications is located [HERE](https://github
 Included in these base images is a simple [Openbox DE](http://openbox.org/) and the accompanying logic needed to launch a single application. Lets look at the bare minimum needed to create an application container starting with a Dockerfile:
 
 ```
-FROM ghcr.io/linuxserver/baseimage-selkies:alpine321
+FROM ghcr.io/linuxserver/baseimage-selkies:alpine322
 RUN apk add --no-cache firefox
 COPY /root /
 ```
@@ -201,7 +201,7 @@ docker run --rm -it \
   -e PUID=1000 \
   -e PGID=1000 \
   -v $(pwd):/config/src \
-  -p 3001:3001 ghcr.io/linuxserver/baseimage-selkies:alpine321 bash
+  -p 3001:3001 ghcr.io/linuxserver/baseimage-selkies:alpine322 bash
 ```
 
 This will start you up in "core" development mode to mess around with core logic. The container also supports strictly frontend development, if there is an addon named "selkies-dashboard" you can pass that as dev_mode and core will be built on init and your development RDE will run against the frontend. 
@@ -215,7 +215,7 @@ docker run --rm -it \
   -e PUID=1000 \
   -e PGID=1000 \
   -v $(pwd):/config/src \
-  -p 3001:3001 ghcr.io/linuxserver/baseimage-selkies:alpine321 bash
+  -p 3001:3001 ghcr.io/linuxserver/baseimage-selkies:alpine322 bash
 ```
 
 The application will be restarted on code changes to the src directory you mounted in and provide feedback for debugging.
