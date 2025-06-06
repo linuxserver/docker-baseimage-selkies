@@ -1075,14 +1075,14 @@ perl-base                                                                     5.
 perl-modules-5.36                                                             5.36.0-7+deb12u2                        deb                         
 pillow                                                                        11.2.1                                  python                      
 pinentry-curses                                                               1.2.1-1                                 deb                         
-pixelflux                                                                     1.0.2                                   python                      
+pixelflux                                                                     1.0.3                                   python                      
 pkg-config                                                                    1.8.1-1                                 deb                         
 pkgconf                                                                       1.8.1-1                                 deb                         
 pkgconf-bin                                                                   1.8.1-1                                 deb                         
 polkitd                                                                       122-3                                   deb                         
 poppler-data                                                                  0.4.12-1                                deb                         
 procps                                                                        2:4.0.2-3                               deb                         
-prometheus-client                                                             0.22.0                                  python                      
+prometheus-client                                                             0.22.1                                  python                      
 psmisc                                                                        23.6-1                                  deb                         
 psutil                                                                        7.0.0                                   python                      
 publicsuffix                                                                  20230209.2326-1                         deb                         
