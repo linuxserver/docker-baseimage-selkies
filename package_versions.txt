@@ -85,8 +85,8 @@ fedora-release-container                                                      42
 fedora-release-identity-container                                             42-26                                   rpm                         
 fedora-repos                                                                  42-1                                    rpm                         
 fftw-libs-single                                                              3.3.10-15.fc42                          rpm                         
-file                                                                          5.46-1.fc42                             rpm                         
-file-libs                                                                     5.46-1.fc42                             rpm                         
+file                                                                          5.46-3.fc42                             rpm                         
+file-libs                                                                     5.46-3.fc42                             rpm                         
 filesystem                                                                    3.18-42.fc42                            rpm                         
 findutils                                                                     1:4.10.0-5.fc42                         rpm                         
 flac-libs                                                                     1.4.3-6.fc42                            rpm                         
@@ -568,7 +568,7 @@ libglvnd-egl                                                                  1:
 libglvnd-glx                                                                  1:1.7.0-7.fc42                          rpm                         
 libgomp                                                                       15.1.1-2.fc42                           rpm                         
 libgpg-error                                                                  1.51-2.fc42                             rpm                         
-libgs                                                                         10.05.1-1.fc42                          rpm                         
+libgs                                                                         10.05.1-3.fc42                          rpm                         
 libgudev                                                                      238-7.fc42                              rpm                         
 libgusb                                                                       0.4.9-3.fc42                            rpm                         
 libheif                                                                       1.19.8-1.fc42                           rpm                         
@@ -850,8 +850,8 @@ rtkit                                                                         0.
 runc                                                                          2:1.3.0-1.fc42                          rpm                         
 sdbus-cpp                                                                     1.5.0-4.fc42                            rpm                         
 sed                                                                           4.9-4.fc42                              rpm                         
-selinux-policy                                                                41.41-1.fc42                            rpm                         
-selinux-policy-targeted                                                       41.41-1.fc42                            rpm                         
+selinux-policy                                                                41.43-1.fc42                            rpm                         
+selinux-policy-targeted                                                       41.43-1.fc42                            rpm                         
 selkies-gstreamer                                                             0.0.0                                   python                      
 serd                                                                          0.32.4-1.fc42                           rpm                         
 setup                                                                         2.15.0-13.fc42                          rpm                         
@@ -914,7 +914,7 @@ urw-base35-z003-fonts                                                         20
 util-linux                                                                    2.40.4-7.fc42                           rpm                         
 util-linux-core                                                               2.40.4-7.fc42                           rpm                         
 vim-data                                                                      2:9.1.1418-1.fc42                       rpm                         
-vim-filesystem                                                                2:9.1.1418-1.fc42                       rpm                         
+vim-filesystem                                                                2:9.1.1435-1.fc42                       rpm                         
 vim-minimal                                                                   2:9.1.1418-1.fc42                       rpm                         
 vulkan-loader                                                                 1.4.313.0-1.fc42                        rpm                         
 vulkan-tools                                                                  1.4.313.0-1.fc42                        rpm                         
