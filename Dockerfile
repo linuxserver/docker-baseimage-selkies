@@ -35,7 +35,7 @@ RUN \
 
 
 # Runtime stage
-FROM ghcr.io/linuxserver/baseimage-fedora:42
+FROM ghcr.io/linuxserver/baseimage-el:9
 
 # set version label
 ARG BUILD_DATE
@@ -55,16 +55,14 @@ ENV DISPLAY=:1 \
 
 RUN \
   echo "**** install build deps ****" && \
+  dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo && \
   dnf install -y \
-    dnf-3 && \
-  dnf-3 localinstall -y --nogpgcheck \
-    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-42.noarch.rpm && \
-  dnf-3 localinstall -y --nogpgcheck \
-    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-42.noarch.rpm && \
-  dnf install -y \
+    bison \
     gcc \
     gcc-c++ \
     glibc-devel \
+    gstreamer1-devel \
+    gstreamer1-plugins-base-devel \
     kernel-headers \
     libev-devel \
     libjpeg-turbo-devel \
@@ -72,10 +70,13 @@ RUN \
     libXext-devel \
     make \
     pkgconf-pkg-config \
+    pygobject3-devel \
     python3-devel \
     python3-pip \
     python3-setuptools \
     python3-wheel \
+    meson \
+    flex \
     x264-devel && \
   echo "**** install runtime deps ****" && \
   dnf install -y --setopt=install_weak_deps=False --best \
@@ -83,9 +84,7 @@ RUN \
     ca-certificates \
     cmake \
     dbus-x11 \
-    docker \
-    docker-compose \
-    dunst \
+    docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
     file \
     freetype \
     git \
@@ -93,14 +92,14 @@ RUN \
     glibc-locale-source \
     gnutls \
     gobject-introspection \
-    google-noto-cjk-fonts \
+    google-noto-cjk-fonts-common \
     google-noto-emoji-fonts \
     google-noto-sans-fonts \
     gstreamer1 \
     gstreamer1-plugins-bad-free \
     gstreamer1-plugins-base \
     gstreamer1-plugins-good \
-    gstreamer1-plugins-ugly \
+    gstreamer1-plugins-ugly-free \
     intel-media-driver \
     kbd \
     libev \
@@ -139,7 +138,6 @@ RUN \
     pulseaudio-utils \
     python3 \
     python3-gobject \
-    python3-gstreamer1 \
     python3-setuptools \
     shadow-utils \
     st \
@@ -154,11 +152,7 @@ RUN \
     xdotool \
     xfconf \
     xkeyboard-config \
-    xorg-x11-drv-amdgpu \
-    xorg-x11-drv-ati \
-    xorg-x11-drv-intel \
-    xorg-x11-drv-nouveau \
-    xorg-x11-drv-qxl \
+    xorg-x11-drv-dummy \
     xorg-x11-fonts-100dpi \
     xorg-x11-fonts-75dpi \
     xorg-x11-fonts-misc \
@@ -170,14 +164,14 @@ RUN \
     xterm \
     zlib && \
   echo "**** install selkies ****" && \
-  pip3 install pixelflux --break-system-packages && \
+  pip3 install pixelflux && \
   curl -o \
     /tmp/selkies.tar.gz -L \
     "https://github.com/selkies-project/selkies/archive/9a96b7cd1cf3f8750461b01d5e3602ba5e7043c5.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
-  pip3 install . --break-system-packages && \
+  pip3 install . && \
   echo "**** install selkies interposer ****" && \
   cd addons/js-interposer && \
   gcc -shared -fPIC -ldl \
@@ -192,6 +186,21 @@ RUN \
   mv \
     libudev.so.1.0.0-fake \
     /usr/lib/ && \
+  echo "**** install gst-python ****" && \
+  GST_PYTHON_VERSION=$(gst-inspect-1.0 --version | awk '/version/ {print $3}') && \
+  curl -o \
+    /tmp/gst-python.tar.gz -L \
+    "https://gstreamer.freedesktop.org/src/gst-python/gst-python-${GST_PYTHON_VERSION}.tar.xz" && \
+  cd /tmp && \
+  tar -xf gst-python.tar.gz && \
+  cd "gst-python-${GST_PYTHON_VERSION}" && \
+  meson setup builddir \
+    --prefix=/usr/local \
+    -Dpython-exe=$(which python3) \
+    -Dpygi-overrides-dir=$(python3 \
+    -c "import site; print(site.getsitepackages()[0])")/gi/overrides && \
+  ninja -C builddir && \
+  ninja -C builddir install && \
   echo "**** add icon ****" && \
   mkdir -p \
     /usr/share/selkies/www && \
@@ -244,12 +253,12 @@ RUN \
     libjpeg-turbo-devel \
     libX11-devel \
     libXext-devel \
-    python3-devel \
-    x264-devel && \
+    python3-devel && \
   dnf autoremove -y && \
   dnf clean all && \
   rm -rf \
-    /tmp/*
+    /tmp/* \
+    /var/cache/dnf/*
 
 # add local files
 COPY /root /
