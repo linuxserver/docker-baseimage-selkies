@@ -1,9 +1,9 @@
 NAME                                                                          VERSION                                 TYPE                       
 adduser                                                                       3.152                                   deb                         
 adwaita-icon-theme                                                            48.0-1                                  deb                         
-apt                                                                           3.0.1+kali1                             deb                         
-apt-transport-https                                                           3.0.1+kali1                             deb                         
-apt-utils                                                                     3.0.1+kali1                             deb                         
+apt                                                                           3.0.2+kali1                             deb                         
+apt-transport-https                                                           3.0.2+kali1                             deb                         
+apt-utils                                                                     3.0.2+kali1                             deb                         
 at-spi2-common                                                                2.56.2-1                                deb                         
 autocommand                                                                   2.2.2                                   python     (+1 duplicate)   
 backports-tarfile                                                             1.2.0                                   python                      
@@ -35,7 +35,7 @@ cpp-x86-64-linux-gnu                                                          4:
 cron                                                                          3.0pl1-196                              deb                         
 cron-daemon-common                                                            3.0pl1-196                              deb                         
 cryptography                                                                  43.0.0                                  python                      
-curl                                                                          8.13.0-5                                deb                         
+curl                                                                          8.14.1-1                                deb                         
 dario.cat/mergo                                                               v1.0.0                                  go-module                   
 dario.cat/mergo                                                               v1.0.1                                  go-module  (+1 duplicate)   
 dash                                                                          0.5.12-12                               deb                         
@@ -570,7 +570,7 @@ libacl1                                                                       2.
 libaom3                                                                       3.12.1-1                                deb                         
 libapparmor1                                                                  4.1.0-1                                 deb                         
 libappstream5                                                                 1.0.5-1                                 deb                         
-libapt-pkg7.0                                                                 3.0.1+kali1                             deb                         
+libapt-pkg7.0                                                                 3.0.2+kali1                             deb                         
 libarchive13t64                                                               3.7.4-3                                 deb                         
 libasan8                                                                      14.2.0-19                               deb                         
 libasound2-data                                                               1.2.14-1                                deb                         
@@ -610,8 +610,8 @@ libcaca0                                                                      0.
 libcairo-gobject2                                                             1.18.4-1+b1                             deb                         
 libcairo2                                                                     1.18.4-1+b1                             deb                         
 libcap-ng0                                                                    0.8.5-4+b1                              deb                         
-libcap2                                                                       1:2.75-7                                deb                         
-libcap2-bin                                                                   1:2.75-7                                deb                         
+libcap2                                                                       1:2.75-8                                deb                         
+libcap2-bin                                                                   1:2.75-8                                deb                         
 libcbor0.10                                                                   0.10.2-2                                deb                         
 libcc1-0                                                                      14.2.0-19                               deb                         
 libcdio19t64                                                                  2.2.0-4                                 deb                         
@@ -626,9 +626,9 @@ libcrypt-dev                                                                  1:
 libcrypt1                                                                     1:4.4.38-1                              deb                         
 libctf-nobfd0                                                                 2.44-3                                  deb                         
 libctf0                                                                       2.44-3                                  deb                         
-libcups2t64                                                                   2.4.10-2+b1                             deb                         
-libcurl3t64-gnutls                                                            8.13.0-5                                deb                         
-libcurl4t64                                                                   8.13.0-5                                deb                         
+libcups2t64                                                                   2.4.10-3                                deb                         
+libcurl3t64-gnutls                                                            8.14.1-1                                deb                         
+libcurl4t64                                                                   8.14.1-1                                deb                         
 libdatrie1                                                                    0.2.13-3+b1                             deb                         
 libdav1d7                                                                     1.5.1-1                                 deb                         
 libdb5.3t64                                                                   5.3.28+dfsg2-9                          deb                         
@@ -1104,7 +1104,7 @@ perl-base                                                                     5.
 perl-modules-5.40                                                             5.40.1-3                                deb                         
 pillow                                                                        11.2.1                                  python                      
 pinentry-curses                                                               1.3.1-2                                 deb                         
-pixelflux                                                                     1.0.4                                   python                      
+pixelflux                                                                     1.0.5                                   python                      
 pkgconf                                                                       1.8.1-4                                 deb                         
 pkgconf-bin                                                                   1.8.1-4                                 deb                         
 platformdirs                                                                  4.2.2                                   python                      
