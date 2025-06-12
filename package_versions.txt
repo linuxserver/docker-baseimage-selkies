@@ -82,7 +82,7 @@ gcc-12                                                                        12
 gcc-12-base                                                                   12.2.0-14+deb12u1                       deb                         
 gir1.2-freedesktop                                                            1.74.0-3                                deb                         
 gir1.2-glib-2.0                                                               1.74.0-3                                deb                         
-gir1.2-gst-plugins-bad-1.0                                                    1.22.0-4+deb12u5                        deb                         
+gir1.2-gst-plugins-bad-1.0                                                    1.22.0-4+deb12u6                        deb                         
 gir1.2-gst-plugins-base-1.0                                                   1.22.0-3+deb12u4                        deb                         
 gir1.2-gstreamer-1.0                                                          1.22.0-2+deb12u1                        deb                         
 gir1.2-packagekitglib-1.0                                                     1.2.6-5                                 deb                         
@@ -506,8 +506,8 @@ grep                                                                          3.
 groff-base                                                                    1.22.4-10                               deb                         
 gsettings-desktop-schemas                                                     43.0-1                                  deb                         
 gstreamer1.0-nice                                                             0.1.21-1                                deb                         
-gstreamer1.0-plugins-bad                                                      1.22.0-4+deb12u5                        deb                         
-gstreamer1.0-plugins-bad-apps                                                 1.22.0-4+deb12u5                        deb                         
+gstreamer1.0-plugins-bad                                                      1.22.0-4+deb12u6                        deb                         
+gstreamer1.0-plugins-bad-apps                                                 1.22.0-4+deb12u6                        deb                         
 gstreamer1.0-plugins-base                                                     1.22.0-3+deb12u4                        deb                         
 gstreamer1.0-plugins-base-apps                                                1.22.0-3+deb12u4                        deb                         
 gstreamer1.0-plugins-good                                                     1.22.0-5+deb12u2                        deb                         
@@ -706,7 +706,7 @@ libgsm1                                                                       1.
 libgssapi-krb5-2                                                              1.20.1-2+deb12u3                        deb                         
 libgssdp-1.6-0                                                                1.6.2-2                                 deb                         
 libgstreamer-gl1.0-0                                                          1.22.0-3+deb12u4                        deb                         
-libgstreamer-plugins-bad1.0-0                                                 1.22.0-4+deb12u5                        deb                         
+libgstreamer-plugins-bad1.0-0                                                 1.22.0-4+deb12u6                        deb                         
 libgstreamer-plugins-base1.0-0                                                1.22.0-3+deb12u4                        deb                         
 libgstreamer1.0-0                                                             1.22.0-2+deb12u1                        deb                         
 libgstreamer1.0-dev                                                           1.22.0-2+deb12u1                        deb                         
@@ -1075,7 +1075,7 @@ perl-base                                                                     5.
 perl-modules-5.36                                                             5.36.0-7+deb12u2                        deb                         
 pillow                                                                        11.2.1                                  python                      
 pinentry-curses                                                               1.2.1-1                                 deb                         
-pixelflux                                                                     1.0.4                                   python                      
+pixelflux                                                                     1.0.5                                   python                      
 pkg-config                                                                    1.8.1-1                                 deb                         
 pkgconf                                                                       1.8.1-1                                 deb                         
 pkgconf-bin                                                                   1.8.1-1                                 deb                         
