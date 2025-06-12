@@ -37,8 +37,10 @@ if [ ! -z ${DEV_MODE+x} ]; then
     s6-setuidgid abc npm install
     s6-setuidgid abc npm run build
     s6-setuidgid abc cp dist/selkies-core.js ../${DEV_MODE}/src/
+    s6-setuidgid abc nodemon --watch selkies-core.js --exec "npm run build && cp dist/selkies-core.js ../${DEV_MODE}/src/" & 
     # Copy touch gamepad
     s6-setuidgid abc cp ../universal-touch-gamepad/universalTouchGamepad.js ../${DEV_MODE}/src/
+    s6-setuidgid abc nodemon --watch ../universal-touch-gamepad/universalTouchGamepad.js --exec "cp ../universal-touch-gamepad/universalTouchGamepad.js ../${DEV_MODE}/src/" &  
     # Copy themes
     s6-setuidgid abc cp -a nginx ../${DEV_MODE}/
     # Run passed frontend
