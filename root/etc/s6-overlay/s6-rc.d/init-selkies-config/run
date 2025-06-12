@@ -61,7 +61,7 @@ fi
 # set env based on vars
 #printf "${SELKIES_INTERPOSER}${LD_PRELOAD:+:${LD_PRELOAD}}" > /run/s6/container_environment/LD_PRELOAD
 printf "${GST_DEBUG:-*:1}" > /run/s6/container_environment/GST_DEBUG
-printf "${SELKIES_ENCODER:-x264enc-striped}" > /run/s6/container_environment/SELKIES_ENCODER
+printf "${SELKIES_ENCODER:-x264enc}" > /run/s6/container_environment/SELKIES_ENCODER
 printf "${SELKIES_FRAMERATE:-60}" > /run/s6/container_environment/SELKIES_FRAMERATE
 printf "${SELKIES_ENABLE_RESIZE:-true}" > /run/s6/container_environment/SELKIES_ENABLE_RESIZE
 printf "${DISPLAY_SIZEW:-1024}" > /run/s6/container_environment/DISPLAY_SIZEW
