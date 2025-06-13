@@ -15,8 +15,8 @@ binutils                                                                      2.
 binutils-common                                                               2.44-3                                  deb                         
 binutils-x86-64-linux-gnu                                                     2.44-3                                  deb                         
 blinker                                                                       1.9.0                                   python                      
-bsdextrautils                                                                 2.41-4                                  deb                         
-bsdutils                                                                      1:2.41-4                                deb                         
+bsdextrautils                                                                 2.41-5                                  deb                         
+bsdutils                                                                      1:2.41-5                                deb                         
 ca-certificates                                                               20250419                                deb                         
 catatonit                                                                     0.2.1-2                                 deb                         
 cloud.google.com/go/compute/metadata                                          v0.5.2                                  go-module                   
@@ -505,7 +505,7 @@ gpgconf                                                                       2.
 gpgsm                                                                         2.4.7-21                                deb                         
 gputil                                                                        1.4.0                                   python                      
 grep                                                                          3.11-4                                  deb                         
-groff-base                                                                    1.23.0-8                                deb                         
+groff-base                                                                    1.23.0-9                                deb                         
 gsettings-desktop-schemas                                                     48.0-1                                  deb                         
 gstreamer1.0-nice                                                             0.1.22-1                                deb                         
 gstreamer1.0-plugins-bad                                                      1.26.1-1                                deb                         
@@ -594,8 +594,8 @@ libavcodec61                                                                  7:
 libavtp0                                                                      0.2.0-2                                 deb                         
 libavutil59                                                                   7:7.1.1-1+b1                            deb                         
 libbinutils                                                                   2.44-3                                  deb                         
-libblkid-dev                                                                  2.41-4                                  deb                         
-libblkid1                                                                     2.41-4                                  deb                         
+libblkid-dev                                                                  2.41-5                                  deb                         
+libblkid1                                                                     2.41-5                                  deb                         
 libbpf1                                                                       1:1.5.0-3                               deb                         
 libbrotli1                                                                    1.1.0-2+b7                              deb                         
 libbs2b0                                                                      3.1.0+dfsg-8+b1                         deb                         
@@ -767,7 +767,7 @@ libkmod2                                                                      34
 libkrb5-3                                                                     1.21.3-5                                deb                         
 libkrb5support0                                                               1.21.3-5                                deb                         
 libksba8                                                                      1.6.7-2+b1                              deb                         
-liblastlog2-2                                                                 2.41-4                                  deb                         
+liblastlog2-2                                                                 2.41-5                                  deb                         
 liblc3-1                                                                      1.1.3+dfsg-1                            deb                         
 liblcms2-2                                                                    2.16-2                                  deb                         
 libldacbt-enc2                                                                2.0.2.3+git20200429+ed310a0-5           deb                         
@@ -789,8 +789,8 @@ libmd0                                                                        1.
 libmjpegutils-2.1-0t64                                                        1:2.1.0+debian-8.1+b1                   deb                         
 libmnl0                                                                       1.0.5-3                                 deb                         
 libmodplug1                                                                   1:0.8.9.0-3+b2                          deb                         
-libmount-dev                                                                  2.41-4                                  deb                         
-libmount1                                                                     2.41-4                                  deb                         
+libmount-dev                                                                  2.41-5                                  deb                         
+libmount1                                                                     2.41-5                                  deb                         
 libmp3lame0                                                                   3.100-6+b3                              deb                         
 libmpc3                                                                       1.3.1-1+b3                              deb                         
 libmpcdec6                                                                    2:0.1~r495-3                            deb                         
@@ -909,7 +909,7 @@ libshout3                                                                     2.
 libsidplay1v5                                                                 1.36.60-1+b2                            deb                         
 libslang2                                                                     2.3.3-5+b2                              deb                         
 libsm6                                                                        2:1.2.6-1                               deb                         
-libsmartcols1                                                                 2.41-4                                  deb                         
+libsmartcols1                                                                 2.41-5                                  deb                         
 libsnappy1v5                                                                  1.2.2-1                                 deb                         
 libsndfile1                                                                   1.2.2-2+b1                              deb                         
 libsord-0-0                                                                   0.16.18-1                               deb                         
@@ -939,7 +939,7 @@ libsystemd-shared                                                             25
 libsystemd0                                                                   257.5-2                                 deb                         
 libtag2                                                                       2.0.2-2                                 deb                         
 libtasn1-6                                                                    4.20.0-2                                deb                         
-libtdb1                                                                       2:1.4.13+samba4.22.1+dfsg-1             deb                         
+libtdb1                                                                       2:1.4.13+samba4.22.2+dfsg-1             deb                         
 libthai-data                                                                  0.1.29-2                                deb                         
 libthai0                                                                      0.1.29-2+b1                             deb                         
 libtheora0                                                                    1.2.0~alpha1+dfsg-6                     deb                         
@@ -960,7 +960,7 @@ libunwind-dev                                                                 1.
 libunwind8                                                                    1.8.1-0.1                               deb                         
 libusb-1.0-0                                                                  2:1.0.28-1                              deb                         
 libutempter0                                                                  1.2.1-4                                 deb                         
-libuuid1                                                                      2.41-4                                  deb                         
+libuuid1                                                                      2.41-5                                  deb                         
 libuv1t64                                                                     1.50.0-2                                deb                         
 libv4l-0t64                                                                   1.30.1-1                                deb                         
 libv4lconvert0t64                                                             1.30.1-1                                deb                         
@@ -1063,7 +1063,7 @@ libzxing3                                                                     2.
 linux-libc-dev                                                                6.12.25-1kali1                          deb                         
 locales                                                                       2.41-6                                  deb                         
 locales-all                                                                   2.41-6                                  deb                         
-login                                                                         1:4.16.0-2+really2.41-4                 deb                         
+login                                                                         1:4.16.0-2+really2.41-5                 deb                         
 login.defs                                                                    1:4.17.4-2                              deb                         
 lsb-release                                                                   12.1-1                                  deb                         
 make                                                                          4.4.1-2                                 deb                         
@@ -1075,7 +1075,7 @@ mesa-va-drivers                                                               25
 mesa-vulkan-drivers                                                           25.0.5-1                                deb                         
 more-itertools                                                                10.3.0                                  python                      
 more-itertools                                                                10.7.0                                  python                      
-mount                                                                         2.41-4                                  deb                         
+mount                                                                         2.41-5                                  deb                         
 msgpack                                                                       1.1.0                                   python                      
 my-test-package                                                               1.0                                     python                      
 native-architecture                                                           0.2.6                                   deb                         
@@ -1198,8 +1198,8 @@ typing-extensions                                                             4.
 typing-extensions                                                             4.13.2                                  python                      
 tzdata                                                                        2025b-3                                 deb                         
 udev                                                                          257.5-2                                 deb                         
-util-linux                                                                    2.41-4                                  deb                         
-uuid-dev                                                                      2.41-4                                  deb                         
+util-linux                                                                    2.41-5                                  deb                         
+uuid-dev                                                                      2.41-5                                  deb                         
 vulkan-tools                                                                  1.4.304.0+dfsg1-1                       deb                         
 wadllib                                                                       2.0.0                                   python                      
 watchdog                                                                      6.0.0                                   python                      
