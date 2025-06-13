@@ -735,7 +735,7 @@ perl                                                                          5.
 pillow                                                                        11.2.1                                  python                         
 pinentry                                                                      1.3.1-5                                 alpm                           
 pip                                                                           25.1.1                                  python                         
-pixelflux                                                                     1.0.5                                   python                         
+pixelflux                                                                     1.0.6                                   python                         
 pixman                                                                        0.46.2-1                                alpm                           
 pkgconf                                                                       2.4.3-1                                 alpm                           
 platformdirs                                                                  4.3.6                                   python                         
