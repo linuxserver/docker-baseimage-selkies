@@ -666,7 +666,7 @@ more-itertools                                                                10
 mpdecimal                                                                     4.0.1-1.fc42                                        rpm                         
 mpfr                                                                          4.2.2-1.fc42                                        rpm                         
 mpg123-libs                                                                   1.32.10-1.fc42                                      rpm                         
-msgpack                                                                       1.1.0                                               python                      
+msgpack                                                                       1.1.1                                               python                      
 mtdev                                                                         1.1.6-10.fc42                                       rpm                         
 ncurses                                                                       6.5-5.20250125.fc42                                 rpm                         
 ncurses-base                                                                  6.5-5.20250125.fc42                                 rpm                         
