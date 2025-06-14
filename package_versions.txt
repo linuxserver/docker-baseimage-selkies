@@ -657,7 +657,7 @@ more-itertools                                                                10
 mount                                                                         2.41-r9                                 apk                         
 mpdecimal                                                                     4.0.1-r0                                apk                         
 mpg123-libs                                                                   1.32.10-r0                              apk                         
-msgpack                                                                       1.1.0                                   python                      
+msgpack                                                                       1.1.1                                   python                      
 musl                                                                          1.2.5-r10                               apk                         
 musl-locales                                                                  0.1.0-r1                                apk                         
 musl-locales-lang                                                             0.1.0-r1                                apk                         
