@@ -15,7 +15,7 @@ blinker                                                                       1.
 bsd-mailx                                                                     8.1.2-0.20220412cvs-1                   deb                         
 bsdextrautils                                                                 2.38.1-5+deb12u3                        deb                         
 bsdutils                                                                      1:2.38.1-5+deb12u3                      deb                         
-ca-certificates                                                               20230311                                deb                         
+ca-certificates                                                               20230311+deb12u1                        deb                         
 catatonit                                                                     0.1.7-1+b1                              deb                         
 cloud.google.com/go/compute/metadata                                          v0.5.2                                  go-module                   
 cloud.google.com/go/logging                                                   v1.9.0                                  go-module                   
@@ -1052,7 +1052,7 @@ mesa-libgallium                                                               25
 mesa-va-drivers                                                               25.0.4-1~bpo12+1                        deb                         
 mesa-vulkan-drivers                                                           25.0.4-1~bpo12+1                        deb                         
 mount                                                                         2.38.1-5+deb12u3                        deb                         
-msgpack                                                                       1.1.0                                   python                      
+msgpack                                                                       1.1.1                                   python                      
 ncurses-base                                                                  6.4-4                                   deb                         
 ncurses-bin                                                                   6.4-4                                   deb                         
 ncurses-term                                                                  6.4-4                                   deb                         
