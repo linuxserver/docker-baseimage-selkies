@@ -66,7 +66,7 @@ dnf-data                                                                      4.
 dnf5                                                                          5.2.13.1-1.fc42                                     rpm                         
 dnf5-plugins                                                                  5.2.13.1-1.fc42                                     rpm                         
 docker-cli                                                                    28.2.2-1.fc42                                       rpm                         
-docker-compose                                                                2.36.2-2.fc42                                       rpm                         
+docker-compose                                                                2.37.0-2.fc42                                       rpm                         
 duktape                                                                       2.7.0-9.fc42                                        rpm                         
 dunst                                                                         1.12.2-1.fc42                                       rpm                         
 elfutils-debuginfod-client                                                    0.193-2.fc42                                        rpm                         
@@ -812,7 +812,7 @@ python3-pip                                                                   24
 python3-pyxdg                                                                 0.27-14.fc42                                        rpm                         
 python3-rpm                                                                   4.20.1-1.fc42                                       rpm                         
 python3-setuptools                                                            74.1.3-5.fc42                                       rpm                         
-python3-unbound                                                               1.22.0-14.fc42                                      rpm                         
+python3-unbound                                                               1.23.0-3.fc42                                       rpm                         
 python3-wheel                                                                 1:0.45.1-3.fc42                                     rpm                         
 pyxdg                                                                         0.27                                                python                      
 qrencode-libs                                                                 4.1.1-10.fc42                                       rpm                         
@@ -884,8 +884,8 @@ twolame-libs                                                                  0.
 typeguard                                                                     4.3.0                                               python                      
 typing-extensions                                                             4.12.2                                              python                      
 tzdata                                                                        2025b-1.fc42                                        rpm                         
-unbound-anchor                                                                1.22.0-14.fc42                                      rpm                         
-unbound-libs                                                                  1.22.0-14.fc42                                      rpm                         
+unbound-anchor                                                                1.23.0-3.fc42                                       rpm                         
+unbound-libs                                                                  1.23.0-3.fc42                                       rpm                         
 urw-base35-bookman-fonts                                                      20200910-24.fc42                                    rpm                         
 urw-base35-c059-fonts                                                         20200910-24.fc42                                    rpm                         
 urw-base35-d050000l-fonts                                                     20200910-24.fc42                                    rpm                         
