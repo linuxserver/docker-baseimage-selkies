@@ -252,7 +252,7 @@ RUN \
   curl -s https://raw.githubusercontent.com/thelamer/lang-stash/master/theme.tar.gz \
     | tar xzvf - -C /usr/share/themes/Clearlooks/openbox-3/ && \
   echo "**** cleanup ****" && \
-  apt-get -y remove \
+  apt-get purge -y --autoremove \
     libjpeg62-turbo-dev \
     libx11-dev \
     libxext-dev \
