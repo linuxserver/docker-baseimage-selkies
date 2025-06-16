@@ -651,7 +651,6 @@ libev-dev                                                                     1:
 libev4                                                                        1:4.33-1                                deb                         
 libevent-2.1-7                                                                2.1.12-stable-8                         deb                         
 libexpat1                                                                     2.5.0-1+deb12u1                         deb                         
-libexpat1-dev                                                                 2.5.0-1+deb12u1                         deb                         
 libext2fs2                                                                    1.47.0-2                                deb                         
 libfaad2                                                                      2.10.1-1                                deb                         
 libfdisk1                                                                     2.38.1-5+deb12u3                        deb                         
@@ -679,7 +678,6 @@ libgif7                                                                       5.
 libgirepository-1.0-1                                                         1.74.0-3                                deb                         
 libgl1                                                                        1.6.0-1                                 deb                         
 libgl1-mesa-dri                                                               25.0.4-1~bpo12+1                        deb                         
-libglapi-mesa                                                                 22.3.6-1+deb12u1                        deb                         
 libgles2                                                                      1.6.0-1                                 deb                         
 libglib2.0-0                                                                  2.74.6-2+deb12u6                        deb                         
 libglib2.0-bin                                                                2.74.6-2+deb12u6                        deb                         
@@ -740,9 +738,6 @@ libjbig0                                                                      2.
 libjbig2dec0                                                                  0.19-3                                  deb                         
 libjpeg62-turbo                                                               1:2.1.5-2                               deb                         
 libjq1                                                                        1.6-2.1                                 deb                         
-libjs-jquery                                                                  3.6.1+dfsg+~3.5.14-1                    deb                         
-libjs-sphinxdoc                                                               5.3.0-4                                 deb                         
-libjs-underscore                                                              1.13.4~dfsg+~1.11.4-3                   deb                         
 libjson-c5                                                                    0.16-2                                  deb                         
 libjson-glib-1.0-0                                                            1.6.6-1                                 deb                         
 libjson-glib-1.0-common                                                       1.6.6-1                                 deb                         
@@ -852,13 +847,10 @@ libpolkit-gobject-1-0                                                         12
 libproc2-0                                                                    2:4.0.2-3                               deb                         
 libproxy1v5                                                                   0.4.18-1.2                              deb                         
 libpsl5                                                                       0.21.2-1                                deb                         
-libpthread-stubs0-dev                                                         0.4-1                                   deb                         
 libpulse0                                                                     16.1+dfsg1-2+b1                         deb                         
 libpulsedsp                                                                   16.1+dfsg1-2+b1                         deb                         
-libpython3-dev                                                                3.11.2-1+b1                             deb                         
 libpython3-stdlib                                                             3.11.2-1+b1                             deb                         
 libpython3.11                                                                 3.11.2-6+deb12u6                        deb                         
-libpython3.11-dev                                                             3.11.2-6+deb12u6                        deb                         
 libpython3.11-minimal                                                         3.11.2-6+deb12u6                        deb                         
 libpython3.11-stdlib                                                          3.11.2-6+deb12u6                        deb                         
 libqrencode4                                                                  4.1.1-1                                 deb                         
@@ -974,7 +966,6 @@ libx11-data                                                                   2:
 libx11-xcb1                                                                   2:1.8.4-2+deb12u2                       deb                         
 libx264-164                                                                   2:0.164.3095+gitbaee400-3               deb                         
 libx265-199                                                                   3.5-2+b1                                deb                         
-libxau-dev                                                                    1:1.0.9-1                               deb                         
 libxau6                                                                       1:1.0.9-1                               deb                         
 libxaw7                                                                       2:1.0.14-1                              deb                         
 libxcb-damage0                                                                1.15-1                                  deb                         
@@ -991,12 +982,10 @@ libxcb-util1                                                                  0.
 libxcb-xfixes0                                                                1.15-1                                  deb                         
 libxcb-xkb1                                                                   1.15-1                                  deb                         
 libxcb1                                                                       1.15-1                                  deb                         
-libxcb1-dev                                                                   1.15-1                                  deb                         
 libxcomposite1                                                                1:0.4.5-1                               deb                         
 libxcursor1                                                                   1:1.2.1-1                               deb                         
 libxcvt0                                                                      0.1.2-1                                 deb                         
 libxdamage1                                                                   1:1.1.6-1                               deb                         
-libxdmcp-dev                                                                  1:1.1.2-3                               deb                         
 libxdmcp6                                                                     1:1.1.2-3                               deb                         
 libxdo3                                                                       1:3.20160805.1-5                        deb                         
 libxext6                                                                      2:1.3.4-1+b1                            deb                         
@@ -1115,13 +1104,10 @@ python3-minimal                                                               3.
 python3-oauthlib                                                              3.2.2-1                                 deb                         
 python3-pkg-resources                                                         66.1.1-1+deb12u1                        deb                         
 python3-pyparsing                                                             3.0.9-1                                 deb                         
-python3-setuptools                                                            66.1.1-1+deb12u1                        deb                         
 python3-six                                                                   1.16.0-4                                deb                         
 python3-software-properties                                                   0.99.30-4.1~deb12u1                     deb                         
 python3-wadllib                                                               1.3.6-4                                 deb                         
-python3-wheel                                                                 0.38.4-2                                deb                         
 python3.11                                                                    3.11.2-6+deb12u6                        deb                         
-python3.11-dev                                                                3.11.2-6+deb12u6                        deb                         
 python3.11-minimal                                                            3.11.2-6+deb12u6                        deb                         
 readline-common                                                               8.2-1.3                                 deb                         
 resenje.org/singleflight                                                      v0.4.3                                  go-module                   
@@ -1129,7 +1115,6 @@ rpcsvc-proto                                                                  1.
 sed                                                                           4.9-1                                   deb                         
 selkies-gstreamer                                                             0.0.0                                   python                      
 sensible-utils                                                                0.0.17+nmu1                             deb                         
-setuptools                                                                    66.1.1                                  python                      
 sgml-base                                                                     1.31                                    deb                         
 shared-mime-info                                                              2.2-1                                   deb                         
 sigs.k8s.io/json                                                              v0.0.0-20221116044647-bc3834ca7abd      go-module  (+1 duplicate)   
@@ -1166,14 +1151,12 @@ vulkan-tools                                                                  1.
 wadllib                                                                       1.3.6                                   python                      
 watchdog                                                                      6.0.0                                   python                      
 websockets                                                                    15.0.1                                  python                      
-wheel                                                                         0.38.4                                  python                      
 x11-apps                                                                      7.7+9                                   deb                         
 x11-common                                                                    1:7.7+23                                deb                         
 x11-session-utils                                                             7.7+5                                   deb                         
 x11-utils                                                                     7.7+5                                   deb                         
 x11-xkb-utils                                                                 7.7+7                                   deb                         
 x11-xserver-utils                                                             7.7+9+b1                                deb                         
-x11proto-dev                                                                  2022.1-1                                deb                         
 xauth                                                                         1:1.1.2-1                               deb                         
 xbitmaps                                                                      1.1.1-2.2                               deb                         
 xcvt                                                                          0.1.2-1                                 deb                         
@@ -1185,7 +1168,6 @@ xfonts-encodings                                                              1:
 xfonts-utils                                                                  1:7.7+6                                 deb                         
 xkb-data                                                                      2.35.1-1                                deb                         
 xml-core                                                                      0.18+nmu1                               deb                         
-xorg-sgml-doctools                                                            1:1.11-1.1                              deb                         
 xsel                                                                          1.2.0+git9bfc13d.20180109-4             deb                         
 xserver-common                                                                2:21.1.7-3+deb12u9                      deb                         
 xserver-xorg-core                                                             2:21.1.7-3+deb12u9                      deb                         
@@ -1196,7 +1178,6 @@ xserver-xorg-video-nouveau                                                    1:
 xserver-xorg-video-qxl                                                        0.1.5+git20200331-3                     deb                         
 xserver-xorg-video-radeon                                                     1:19.1.0-3                              deb                         
 xterm                                                                         379-1                                   deb                         
-xtrans-dev                                                                    1.4.0-1                                 deb                         
 xutils                                                                        1:7.7+23                                deb                         
 xvfb                                                                          2:21.1.7-3+deb12u9                      deb                         
 zlib1g                                                                        1:1.2.13.dfsg-1                         deb                         
