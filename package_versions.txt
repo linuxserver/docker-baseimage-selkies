@@ -655,7 +655,7 @@ libdw-dev                                                                     0.
 libdw1t64                                                                     0.192-4                                 deb                         
 libebur128-1                                                                  1.2.6-1+b2                              deb                         
 libedit2                                                                      3.1-20250104-1                          deb                         
-libegl-mesa0                                                                  25.0.5-1                                deb                         
+libegl-mesa0                                                                  25.0.5-2                                deb                         
 libegl1                                                                       1.7.0-1+b2                              deb                         
 libelf-dev                                                                    0.192-4                                 deb                         
 libelf1t64                                                                    0.192-4                                 deb                         
@@ -678,7 +678,7 @@ libfontenc1                                                                   1:
 libfreeaptx0                                                                  0.2.2-1                                 deb                         
 libfreetype6                                                                  2.13.3+dfsg-1                           deb                         
 libfribidi0                                                                   1.0.16-1                                deb                         
-libgbm1                                                                       25.0.5-1                                deb                         
+libgbm1                                                                       25.0.5-2                                deb                         
 libgcc-14-dev                                                                 14.2.0-19                               deb                         
 libgcc-s1                                                                     14.2.0-19                               deb                         
 libgcrypt20                                                                   1.11.0-7                                deb                         
@@ -692,7 +692,7 @@ libgio-2.0-dev-bin                                                            2.
 libgirepository-1.0-1                                                         1.84.0-1                                deb                         
 libgirepository-2.0-0                                                         2.84.1-2                                deb                         
 libgl1                                                                        1.7.0-1+b2                              deb                         
-libgl1-mesa-dri                                                               25.0.5-1                                deb                         
+libgl1-mesa-dri                                                               25.0.5-2                                deb                         
 libglib2.0-0t64                                                               2.84.1-2                                deb                         
 libglib2.0-bin                                                                2.84.1-2                                deb                         
 libglib2.0-data                                                               2.84.1-2                                deb                         
@@ -700,7 +700,7 @@ libglib2.0-dev                                                                2.
 libglib2.0-dev-bin                                                            2.84.1-2                                deb                         
 libglu1-mesa                                                                  9.0.2-1.1+b3                            deb                         
 libglvnd0                                                                     1.7.0-1+b2                              deb                         
-libglx-mesa0                                                                  25.0.5-1                                deb                         
+libglx-mesa0                                                                  25.0.5-2                                deb                         
 libglx0                                                                       1.7.0-1+b2                              deb                         
 libgme0                                                                       0.6.3-7+b2                              deb                         
 libgmp10                                                                      2:6.3.0+dfsg-3                          deb                         
@@ -1070,9 +1070,9 @@ make                                                                          4.
 man-db                                                                        2.13.1-1                                deb                         
 mawk                                                                          1.3.4.20250131-1                        deb                         
 media-types                                                                   13.0.0                                  deb                         
-mesa-libgallium                                                               25.0.5-1                                deb                         
-mesa-va-drivers                                                               25.0.5-1                                deb                         
-mesa-vulkan-drivers                                                           25.0.5-1                                deb                         
+mesa-libgallium                                                               25.0.5-2                                deb                         
+mesa-va-drivers                                                               25.0.5-2                                deb                         
+mesa-vulkan-drivers                                                           25.0.5-2                                deb                         
 more-itertools                                                                10.3.0                                  python                      
 more-itertools                                                                10.7.0                                  python                      
 mount                                                                         2.41-5                                  deb                         
@@ -1104,7 +1104,7 @@ perl-base                                                                     5.
 perl-modules-5.40                                                             5.40.1-3                                deb                         
 pillow                                                                        11.2.1                                  python                      
 pinentry-curses                                                               1.3.1-2                                 deb                         
-pixelflux                                                                     1.0.7                                   python                      
+pixelflux                                                                     1.1.0                                   python                      
 pkgconf                                                                       1.8.1-4                                 deb                         
 pkgconf-bin                                                                   1.8.1-4                                 deb                         
 platformdirs                                                                  4.2.2                                   python                      
