@@ -143,6 +143,7 @@ RUN \
     pulseaudio \
     pulseaudio-utils \
     python3 \
+    python3-distutils-extra \
     python3-gi \
     python3-gst-1.0 \
     software-properties-common \
