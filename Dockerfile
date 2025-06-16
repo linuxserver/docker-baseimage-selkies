@@ -143,6 +143,7 @@ RUN \
     pulseaudio \
     pulseaudio-utils \
     python3 \
+    python3-distutils-extra \
     python3-gi \
     python3-gst-1.0 \
     software-properties-common \
@@ -249,7 +250,7 @@ RUN \
   curl -s https://raw.githubusercontent.com/thelamer/lang-stash/master/theme.tar.gz \
     | tar xzvf - -C /usr/share/themes/Clearlooks/openbox-3/ && \
   echo "**** cleanup ****" && \
-  apt-get -y remove \
+  apt-get purge -y --autoremove \
     libjpeg-turbo8-dev \
     libx11-dev \
     libxext-dev \
