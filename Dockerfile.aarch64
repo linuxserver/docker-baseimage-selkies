@@ -182,9 +182,10 @@ RUN \
   echo "**** install selkies fake udev ****" && \
   cd ../fake-udev && \
   make && \
+  mkdir /opt/lib && \
   mv \
     libudev.so.1.0.0-fake \
-    /usr/lib/ && \
+    /opt/lib/ && \
   echo "**** add icon ****" && \
   mkdir -p \
     /usr/share/selkies/www && \
