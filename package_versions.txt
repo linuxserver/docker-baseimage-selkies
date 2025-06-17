@@ -481,7 +481,7 @@ imlib2                                                                        1.
 importlib-metadata                                                            8.0.0                                   python                      
 inflect                                                                       7.3.1                                   python                      
 intel-gmmlib                                                                  22.7.2-r0                               apk                         
-intel-media-driver                                                            25.2.4-r0                               apk                         
+intel-media-driver                                                            25.2.5-r0                               apk                         
 iptables                                                                      1.8.11-r1                               apk                         
 jaraco-collections                                                            5.1.0                                   python                      
 jaraco-context                                                                5.3.0                                   python                      
