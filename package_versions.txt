@@ -476,7 +476,7 @@ kbd-misc                                                                      2.
 keyutils-libs                                                                 1.6.3-5.fc42                                        rpm                         
 kmod                                                                          33-3.fc42                                           rpm                         
 kmod-libs                                                                     33-3.fc42                                           rpm                         
-krb5-libs                                                                     1.21.3-5.fc42                                       rpm                         
+krb5-libs                                                                     1.21.3-6.fc42                                       rpm                         
 lame-libs                                                                     3.100-19.fc42                                       rpm                         
 lcms2                                                                         2.16-5.fc42                                         rpm                         
 less                                                                          668-2.fc42                                          rpm                         
