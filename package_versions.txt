@@ -76,6 +76,7 @@ elfutils-libs                                                                 0.
 emacs-filesystem                                                              1:30.0-4.fc42                                       rpm                         
 evdev                                                                         1.9.2                                               python                      
 expat                                                                         2.7.1-1.fc42                                        rpm                         
+faad2-libs                                                                    1:2.11.2-3.fc42                                     rpm                         
 fdk-aac                                                                       2.0.3-4.fc42                                        rpm                         
 fedora-gpg-keys                                                               42-1                                                rpm                         
 fedora-logos-httpd                                                            42.0.1-1.fc42                                       rpm                         
@@ -424,8 +425,8 @@ groff-base                                                                    1.
 gsm                                                                           1.0.22-8.fc42                                       rpm                         
 gssdp                                                                         1.6.3-5.fc42                                        rpm                         
 gstreamer1                                                                    1.26.2-1.fc42                                       rpm                         
-gstreamer1-plugins-bad-free                                                   1.26.2-1.fc42                                       rpm                         
-gstreamer1-plugins-bad-free-libs                                              1.26.2-1.fc42                                       rpm                         
+gstreamer1-plugins-bad-free                                                   1.26.2-2.fc42                                       rpm                         
+gstreamer1-plugins-bad-free-libs                                              1.26.2-2.fc42                                       rpm                         
 gstreamer1-plugins-base                                                       1.26.2-1.fc42                                       rpm                         
 gstreamer1-plugins-good                                                       1.26.2-1.fc42                                       rpm                         
 gstreamer1-plugins-ugly                                                       1:1.26.2-1.fc42                                     rpm                         
@@ -627,8 +628,8 @@ libvisual                                                                     1:
 libvmaf                                                                       3.0.0-3.fc42                                        rpm                         
 libvorbis                                                                     1:1.3.7-12.fc42                                     rpm                         
 libvpx                                                                        1.15.0-3.fc42                                       rpm                         
-libwacom                                                                      2.15.0-1.fc42                                       rpm                         
-libwacom-data                                                                 2.15.0-1.fc42                                       rpm                         
+libwacom                                                                      2.16.1-1.fc42                                       rpm                         
+libwacom-data                                                                 2.16.1-1.fc42                                       rpm                         
 libwayland-client                                                             1.23.1-1.fc42                                       rpm                         
 libwayland-cursor                                                             1.23.1-1.fc42                                       rpm                         
 libwayland-egl                                                                1.23.1-1.fc42                                       rpm                         
@@ -645,7 +646,6 @@ libxml2                                                                       2.
 libxshmfence                                                                  1.3.2-6.fc42                                        rpm                         
 libyaml                                                                       0.2.5-16.fc42                                       rpm                         
 libzstd                                                                       1.5.7-1.fc42                                        rpm                         
-lilv-libs                                                                     0.24.26-2.fc42                                      rpm                         
 llvm-filesystem                                                               20.1.6-1.fc42                                       rpm                         
 llvm-libs                                                                     20.1.6-1.fc42                                       rpm                         
 lm_sensors-libs                                                               3.6.0-22.fc42                                       rpm                         
@@ -680,6 +680,7 @@ nginx-mimetypes                                                               2.
 nginx-mod-fancyindex                                                          0.5.2-10.fc42                                       rpm                         
 npth                                                                          1.8-2.fc42                                          rpm                         
 oniguruma                                                                     6.9.10-2.fc42                                       rpm                         
+openal-soft                                                                   1.24.2-2.fc42                                       rpm                         
 openbox                                                                       3.6.1-28.fc42                                       rpm                         
 openbox-libs                                                                  3.6.1-28.fc42                                       rpm                         
 opencore-amr                                                                  0.1.6-8.fc42                                        rpm                         
@@ -811,7 +812,7 @@ python3-libs                                                                  3.
 python3-pip                                                                   24.3.1-2.fc42                                       rpm                         
 python3-pyxdg                                                                 0.27-14.fc42                                        rpm                         
 python3-rpm                                                                   4.20.1-1.fc42                                       rpm                         
-python3-setuptools                                                            74.1.3-5.fc42                                       rpm                         
+python3-setuptools                                                            74.1.3-7.fc42                                       rpm                         
 python3-unbound                                                               1.23.0-3.fc42                                       rpm                         
 python3-wheel                                                                 1:0.45.1-3.fc42                                     rpm                         
 pyxdg                                                                         0.27                                                python                      
@@ -840,7 +841,6 @@ sed                                                                           4.
 selinux-policy                                                                41.43-1.fc42                                        rpm                         
 selinux-policy-targeted                                                       41.43-1.fc42                                        rpm                         
 selkies-gstreamer                                                             0.0.0                                               python                      
-serd                                                                          0.32.4-1.fc42                                       rpm                         
 setup                                                                         2.15.0-13.fc42                                      rpm                         
 setuptools                                                                    74.1.3                                              python                      
 shadow-utils                                                                  2:4.17.4-1.fc42                                     rpm                         
@@ -849,14 +849,12 @@ sigs.k8s.io/json                                                              v0
 sigs.k8s.io/structured-merge-diff/v4                                          v4.4.1                                              go-module                   
 sigs.k8s.io/yaml                                                              v1.4.0                                              go-module  (+2 duplicates)  
 six                                                                           1.17.0                                              python                      
-sord                                                                          0.16.18-1.fc42                                      rpm                         
 soundtouch                                                                    2.3.3-2.fc42                                        rpm                         
 soxr                                                                          0.1.3-18.fc42                                       rpm                         
 speex                                                                         1.2.0-19.fc42                                       rpm                         
 speexdsp                                                                      1.2.1-8.fc42                                        rpm                         
 spirv-tools-libs                                                              2025.2-2.fc42                                       rpm                         
 sqlite-libs                                                                   3.47.2-2.fc42                                       rpm                         
-sratom                                                                        0.6.18-1.fc42                                       rpm                         
 st                                                                            0.9.2-2.fc42                                        rpm                         
 startup-notification                                                          0.12-31.fc42                                        rpm                         
 stdlib                                                                        go1.24.2                                            go-module  (+4 duplicates)  
@@ -942,6 +940,5 @@ xz                                                                            1:
 xz-libs                                                                       1:5.8.1-2.fc42                                      rpm                         
 zchunk-libs                                                                   1.5.1-2.fc42                                        rpm                         
 zipp                                                                          3.19.2                                              python                      
-zix                                                                           0.6.2-1.fc42                                        rpm                         
 zlib-ng-compat                                                                2.2.4-3.fc42                                        rpm                         
 zstd                                                                          1.5.7-1.fc42                                        rpm                         
