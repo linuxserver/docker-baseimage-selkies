@@ -846,11 +846,11 @@ libopus0                                                                      1.
 liborc-0.4-0t64                                                               1:0.4.38-1ubuntu0.1                     deb                            
 libp11-kit0                                                                   0.25.3-4ubuntu2.1                       deb                            
 libpackagekit-glib2-18                                                        1.2.8-2ubuntu1.2                        deb                            
-libpam-modules                                                                1.5.3-5ubuntu5.1                        deb                            
-libpam-modules-bin                                                            1.5.3-5ubuntu5.1                        deb                            
-libpam-runtime                                                                1.5.3-5ubuntu5.1                        deb                            
+libpam-modules                                                                1.5.3-5ubuntu5.4                        deb                            
+libpam-modules-bin                                                            1.5.3-5ubuntu5.4                        deb                            
+libpam-runtime                                                                1.5.3-5ubuntu5.4                        deb                            
 libpam-systemd                                                                255.4-1ubuntu8.8                        deb                            
-libpam0g                                                                      1.5.3-5ubuntu5.1                        deb                            
+libpam0g                                                                      1.5.3-5ubuntu5.4                        deb                            
 libpango-1.0-0                                                                1.52.1+ds-1build1                       deb                            
 libpangocairo-1.0-0                                                           1.52.1+ds-1build1                       deb                            
 libpangoft2-1.0-0                                                             1.52.1+ds-1build1                       deb                            
