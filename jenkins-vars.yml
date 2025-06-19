@@ -4,8 +4,8 @@
 project_name: docker-baseimage-selkies
 external_type: os
 release_type: prerelease
-release_tag: fedora42
-ls_branch: fedora42
+release_tag: el9
+ls_branch: el9
 build_armhf: false
 repo_vars:
   - BUILD_VERSION_ARG = 'SELKIES_VERSION'

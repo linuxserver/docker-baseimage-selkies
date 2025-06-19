@@ -15,7 +15,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f 9a96b7cd1cf3f8750461b01d5e3602ba5e7043c5
+  git checkout -f d25325c845b940dc69dca9996d07a8b56a64110e
 
 RUN \
   echo "**** build frontend ****" && \
@@ -58,6 +58,7 @@ RUN \
   dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo && \
   dnf install -y \
     bison \
+    flex \
     gcc \
     gcc-c++ \
     glibc-devel \
@@ -69,22 +70,25 @@ RUN \
     libX11-devel \
     libXext-devel \
     make \
+    meson \
     pkgconf-pkg-config \
     pygobject3-devel \
     python3-devel \
     python3-pip \
     python3-setuptools \
     python3-wheel \
-    meson \
-    flex \
     x264-devel && \
   echo "**** install runtime deps ****" && \
   dnf install -y --setopt=install_weak_deps=False --best \
     bash \
     ca-certificates \
     cmake \
+    containerd.io \
     dbus-x11 \
-    docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
+    docker-buildx-plugin \
+    docker-ce \
+    docker-ce-cli \
+    docker-compose-plugin \
     file \
     freetype \
     git \
@@ -96,10 +100,9 @@ RUN \
     google-noto-emoji-fonts \
     google-noto-sans-fonts \
     gstreamer1 \
-    gstreamer1-plugins-bad-free \
+    gstreamer1-plugins-bad-freeworld \
     gstreamer1-plugins-base \
     gstreamer1-plugins-good \
-    gstreamer1-plugins-ugly-free \
     intel-media-driver \
     kbd \
     libev \
@@ -167,7 +170,7 @@ RUN \
   pip3 install pixelflux && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/9a96b7cd1cf3f8750461b01d5e3602ba5e7043c5.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/d25325c845b940dc69dca9996d07a8b56a64110e.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
