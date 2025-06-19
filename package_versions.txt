@@ -1,7 +1,7 @@
 NAME                                                                          VERSION                                 TYPE                          
 a52dec                                                                        0.8.0-2                                 alpm                           
 aalib                                                                         1.4rc5-18                               alpm                           
-abseil-cpp                                                                    20250512.0-1                            alpm                           
+abseil-cpp                                                                    20250512.1-1                            alpm                           
 acl                                                                           2.3.2-1                                 alpm                           
 alsa-lib                                                                      1.2.14-1                                alpm                           
 alsa-topology-conf                                                            1.2.5.1-4                               alpm                           
