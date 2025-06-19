@@ -682,9 +682,9 @@ m4                                                                            1.
 mailcap                                                                       2.1.54-2                                alpm                           
 make                                                                          4.4.1-2                                 alpm                           
 mako                                                                          1.3.10.dev0                             python                         
-markdown                                                                      3.8                                     python                         
+markdown                                                                      3.8.1                                   python                         
 markupsafe                                                                    3.0.2                                   python                         
-mesa                                                                          1:25.1.3-3                              alpm                           
+mesa                                                                          1:25.1.4-1                              alpm                           
 mjpegtools                                                                    2.2.1-2                                 alpm                           
 more-itertools                                                                10.7.0                                  python                         
 mpdecimal                                                                     4.0.1-1                                 alpm                           
@@ -762,7 +762,7 @@ python-jaraco.context                                                         6.
 python-jaraco.functools                                                       4.1.0-1                                 alpm                           
 python-jaraco.text                                                            4.0.0-2                                 alpm                           
 python-mako                                                                   1.3.10-1                                alpm                           
-python-markdown                                                               3.8-1                                   alpm                           
+python-markdown                                                               3.8.1-1                                 alpm                           
 python-markupsafe                                                             3.0.2-1                                 alpm                           
 python-more-itertools                                                         10.7.0-1                                alpm                           
 python-packaging                                                              25.0-1                                  alpm                           
@@ -836,8 +836,8 @@ vapoursynth                                                                   R7
 vid.stab                                                                      1.1.1-2                                 alpm                           
 vmaf                                                                          3.0.0-1                                 alpm                           
 vulkan-icd-loader                                                             1.4.313.0-1                             alpm                           
-vulkan-intel                                                                  1:25.1.3-3                              alpm                           
-vulkan-radeon                                                                 1:25.1.3-3                              alpm                           
+vulkan-intel                                                                  1:25.1.4-1                              alpm                           
+vulkan-radeon                                                                 1:25.1.4-1                              alpm                           
 vulkan-tools                                                                  1.4.313.0-1                             alpm                           
 watchdog                                                                      6.0.0                                   python                         
 wavpack                                                                       5.8.1-1                                 alpm                           
@@ -871,9 +871,9 @@ xorg-fonts-alias-75dpi                                                        1.
 xorg-fonts-alias-misc                                                         1.0.5-1                                 alpm                           
 xorg-fonts-encodings                                                          1.1.0-1                                 alpm                           
 xorg-fonts-misc                                                               1.0.4-2                                 alpm                           
-xorg-server                                                                   21.1.17-1                               alpm                           
-xorg-server-common                                                            21.1.17-1                               alpm                           
-xorg-server-xvfb                                                              21.1.17-1                               alpm                           
+xorg-server                                                                   21.1.18-1                               alpm                           
+xorg-server-common                                                            21.1.18-1                               alpm                           
+xorg-server-xvfb                                                              21.1.18-1                               alpm                           
 xorg-setxkbmap                                                                1.3.4-2                                 alpm                           
 xorg-xauth                                                                    1.1.4-1                                 alpm                           
 xorg-xkbcomp                                                                  1.4.7-1                                 alpm                           
