@@ -186,9 +186,10 @@ RUN \
   echo "**** install selkies fake udev ****" && \
   cd ../fake-udev && \
   make && \
+  mkdir /opt/lib && \
   mv \
     libudev.so.1.0.0-fake \
-    /usr/lib/ && \
+    /opt/lib/ && \
   echo "**** install gst-python ****" && \
   GST_PYTHON_VERSION=$(gst-inspect-1.0 --version | awk '/version/ {print $3}') && \
   curl -o \
