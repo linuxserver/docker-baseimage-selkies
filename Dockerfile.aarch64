@@ -103,7 +103,6 @@ RUN \
     gstreamer1-plugins-bad-freeworld \
     gstreamer1-plugins-base \
     gstreamer1-plugins-good \
-    intel-media-driver \
     kbd \
     libev \
     libfontenc \
@@ -127,7 +126,6 @@ RUN \
     mesa-libgbm \
     mesa-libGL \
     mesa-va-drivers \
-    mesa-vulkan-drivers \
     nginx \
     nginx-mod-fancyindex \
     openbox \
