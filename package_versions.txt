@@ -682,7 +682,7 @@ m4                                                                            1.
 mailcap                                                                       2.1.54-2                                alpm                           
 make                                                                          4.4.1-2                                 alpm                           
 mako                                                                          1.3.10.dev0                             python                         
-markdown                                                                      3.8.1                                   python                         
+markdown                                                                      3.8.2                                   python                         
 markupsafe                                                                    3.0.2                                   python                         
 mesa                                                                          1:25.1.4-1                              alpm                           
 mjpegtools                                                                    2.2.1-2                                 alpm                           
@@ -762,7 +762,7 @@ python-jaraco.context                                                         6.
 python-jaraco.functools                                                       4.1.0-1                                 alpm                           
 python-jaraco.text                                                            4.0.0-2                                 alpm                           
 python-mako                                                                   1.3.10-1                                alpm                           
-python-markdown                                                               3.8.1-1                                 alpm                           
+python-markdown                                                               3.8.2-1                                 alpm                           
 python-markupsafe                                                             3.0.2-1                                 alpm                           
 python-more-itertools                                                         10.7.0-1                                alpm                           
 python-packaging                                                              25.0-1                                  alpm                           
