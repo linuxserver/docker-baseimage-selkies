@@ -876,9 +876,9 @@ libproxy1v5                                                                   0.
 libpsl5t64                                                                    0.21.2-1.1build1                        deb                            
 libpulse0                                                                     1:16.1+dfsg1-2ubuntu10.1                deb                            
 libpython3-stdlib                                                             3.12.3-0ubuntu2                         deb                            
-libpython3.12-minimal                                                         3.12.3-1ubuntu0.6                       deb                            
-libpython3.12-stdlib                                                          3.12.3-1ubuntu0.6                       deb                            
-libpython3.12t64                                                              3.12.3-1ubuntu0.6                       deb                            
+libpython3.12-minimal                                                         3.12.3-1ubuntu0.7                       deb                            
+libpython3.12-stdlib                                                          3.12.3-1ubuntu0.7                       deb                            
+libpython3.12t64                                                              3.12.3-1ubuntu0.7                       deb                            
 libqrencode4                                                                  4.1.1-1build2                           deb                            
 libquadmath0                                                                  14.2.0-4ubuntu2~24.04                   deb                            
 libraptor2-0                                                                  2.0.16-3ubuntu0.1                       deb                            
@@ -1064,7 +1064,7 @@ libzstd1                                                                      1.
 libzvbi-common                                                                0.2.42-2                                deb                            
 libzvbi0t64                                                                   0.2.42-2                                deb                            
 libzxing3                                                                     2.2.1-3                                 deb                            
-linux-libc-dev                                                                6.8.0-60.63                             deb                            
+linux-libc-dev                                                                6.8.0-62.65                             deb                            
 locales                                                                       2.39-0ubuntu8.4                         deb                            
 locales-all                                                                   2.39-0ubuntu8.4                         deb                            
 login                                                                         1:4.13+dfsg1-4ubuntu3.2                 deb                            
@@ -1149,8 +1149,8 @@ python3-setuptools                                                            68
 python3-six                                                                   1.16.0-4                                deb                            
 python3-software-properties                                                   0.99.49.2                               deb                            
 python3-wadllib                                                               1.3.6-5                                 deb                            
-python3.12                                                                    3.12.3-1ubuntu0.6                       deb                            
-python3.12-minimal                                                            3.12.3-1ubuntu0.6                       deb                            
+python3.12                                                                    3.12.3-1ubuntu0.7                       deb                            
+python3.12-minimal                                                            3.12.3-1ubuntu0.7                       deb                            
 readline-common                                                               8.2-4build1                             deb                            
 resenje.org/singleflight                                                      v0.4.3                                  go-module                      
 rpcsvc-proto                                                                  1.4.2-0ubuntu7                          deb                            
