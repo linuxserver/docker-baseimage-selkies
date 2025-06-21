@@ -684,7 +684,7 @@ openal-soft                                                                   1.
 openbox                                                                       3.6.1-28.fc42                                       rpm                         
 openbox-libs                                                                  3.6.1-28.fc42                                       rpm                         
 opencore-amr                                                                  0.1.6-8.fc42                                        rpm                         
-openh264                                                                      2.4.1-2.fc42                                        rpm                         
+openh264                                                                      2.5.1-1.fc42                                        rpm                         
 openjpeg                                                                      2.5.3-6.fc42                                        rpm                         
 openldap                                                                      2.6.9-3.fc42                                        rpm                         
 openssh                                                                       9.9p1-11.fc42                                       rpm                         
