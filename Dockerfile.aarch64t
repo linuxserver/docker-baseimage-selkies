@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM ghcr.io/linuxserver/baseimage-alpine:3.21 AS frontend
+FROM ghcr.io/linuxserver/baseimage-alpine:arm64v8-3.21 AS frontend
 
 RUN \
   echo "**** install build packages ****" && \
@@ -35,7 +35,7 @@ RUN \
 
 
 # Runtime stage
-FROM ghcr.io/linuxserver/baseimage-debian:kali
+FROM ghcr.io/linuxserver/baseimage-debian:arm64v8-kali
 
 # set version label
 ARG BUILD_DATE
@@ -62,7 +62,6 @@ RUN \
     libjpeg62-turbo-dev \
     libx11-dev \
     libxext-dev \
-    libxfixes-dev \
     libx264-dev \
     python3-dev \
     python3-pip && \
@@ -71,7 +70,7 @@ RUN \
     /etc/apt/apt.conf.d/docker-no-languages && \
   echo "**** install deps ****" && \
   curl -fsSL https://download.docker.com/linux/debian/gpg | tee /usr/share/keyrings/docker.asc >/dev/null && \
-  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list && \
+  echo "deb [arch=arm64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list && \
   curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
@@ -99,7 +98,6 @@ RUN \
     gstreamer1.0-nice \
     gstreamer1.0-plugins-* \
     gstreamer1.0-pulseaudio \
-    intel-media-va-driver \
     kbd \
     libev4 \
     libfontenc1 \
@@ -172,7 +170,6 @@ RUN \
     xserver-xorg-core \
     xserver-xorg-video-amdgpu \
     xserver-xorg-video-ati \
-    xserver-xorg-video-intel \
     xserver-xorg-video-nouveau \
     xserver-xorg-video-qxl \
     xterm \
@@ -231,7 +228,7 @@ RUN \
   mkdir /proot-apps/ && \
   PAPPS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/proot-apps/releases/latest" \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
-  curl -L https://github.com/linuxserver/proot-apps/releases/download/${PAPPS_RELEASE}/proot-apps-x86_64.tar.gz \
+  curl -L https://github.com/linuxserver/proot-apps/releases/download/${PAPPS_RELEASE}/proot-apps-aarch64.tar.gz \
     | tar -xzf - -C /proot-apps/ && \
   echo "${PAPPS_RELEASE}" > /proot-apps/pversion && \
   echo "**** dind support ****" && \
