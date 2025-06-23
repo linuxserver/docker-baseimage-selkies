@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM ghcr.io/linuxserver/baseimage-alpine:arm64v8-3.22 AS frontend
+FROM ghcr.io/linuxserver/baseimage-alpine:3.22 AS frontend
 
 RUN \
   echo "**** install build packages ****" && \
@@ -15,7 +15,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f 8e38076a0f0fc2e9b66c8906b5f2da29683bfd30
+  git checkout -f 7d7b28c83ae46ac79f42c90e052d6dbe7b147e2f
 
 RUN \
   echo "**** build frontend ****" && \
@@ -35,7 +35,7 @@ RUN \
 
 
 # Runtime stage
-FROM ghcr.io/linuxserver/baseimage-alpine:arm64v8-3.22
+FROM ghcr.io/linuxserver/baseimage-alpine:3.22
 
 # set version label
 ARG BUILD_DATE
@@ -63,7 +63,6 @@ RUN \
     linux-headers \
     libx11-dev \
     libxext-dev \
-    libxfixes-dev \
     x264-dev \
     python3-dev \
     py3-pip \
@@ -89,6 +88,7 @@ RUN \
     gst-plugins-good \
     gst-plugins-bad \
     gst-plugins-ugly \
+    intel-media-driver \
     libev \
     libfontenc \
     freetype \
@@ -122,6 +122,7 @@ RUN \
     lang \
     musl-utils \
     mesa-va-gallium \
+    mesa-vulkan-intel \
     mesa-vulkan-ati \
     mesa-vulkan-swrast \
     nginx \
@@ -159,7 +160,9 @@ RUN \
     xorg-server \
     xf86-video-amdgpu \
     xf86-video-ati \
+    xf86-video-intel \
     xf86-video-nouveau \
+    xf86-video-qxl \
     xterm \
     xvfb \
     zlib  && \
@@ -167,7 +170,7 @@ RUN \
   pip3 install pixelflux --break-system-packages && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/8e38076a0f0fc2e9b66c8906b5f2da29683bfd30.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/7d7b28c83ae46ac79f42c90e052d6dbe7b147e2f.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
@@ -211,7 +214,7 @@ RUN \
   mkdir /proot-apps/ && \
   PAPPS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/proot-apps/releases/latest" \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
-  curl -L https://github.com/linuxserver/proot-apps/releases/download/${PAPPS_RELEASE}/proot-apps-aarch64.tar.gz \
+  curl -L https://github.com/linuxserver/proot-apps/releases/download/${PAPPS_RELEASE}/proot-apps-x86_64.tar.gz \
     | tar -xzf - -C /proot-apps/ && \
   echo "${PAPPS_RELEASE}" > /proot-apps/pversion && \
   echo "**** dind support ****" && \
