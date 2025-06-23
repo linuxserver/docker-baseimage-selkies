@@ -828,7 +828,7 @@ perl-subs                                                                     0:
 perl-vars                                                                     0:1.05-481.el9                          rpm                          
 pillow                                                                        11.2.1                                  python                       
 pip                                                                           21.3.1                                  python                       
-pixelflux                                                                     1.1.0                                   python                       
+pixelflux                                                                     1.1.1                                   python                       
 pixman                                                                        0.40.0-6.el9_3                          rpm                          
 pkgconf                                                                       1.7.3-10.el9                            rpm                          
 pkgconf-m4                                                                    1.7.3-10.el9                            rpm                          
