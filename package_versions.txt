@@ -340,11 +340,11 @@ github.com/xrash/smetrics                                                     v0
 github.com/zmap/zcrypto                                                       v0.0.0-20210511125630-18f1e0152cfc                  go-module                   
 github.com/zmap/zlint/v3                                                      v3.1.0                                              go-module                   
 glib2                                                                         2.84.2-1.fc42                                       rpm                         
-glibc                                                                         2.41-6.fc42                                         rpm                         
-glibc-all-langpacks                                                           2.41-6.fc42                                         rpm                         
-glibc-common                                                                  2.41-6.fc42                                         rpm                         
-glibc-locale-source                                                           2.41-6.fc42                                         rpm                         
-glibc-minimal-langpack                                                        2.41-6.fc42                                         rpm                         
+glibc                                                                         2.41-7.fc42                                         rpm                         
+glibc-all-langpacks                                                           2.41-7.fc42                                         rpm                         
+glibc-common                                                                  2.41-7.fc42                                         rpm                         
+glibc-locale-source                                                           2.41-7.fc42                                         rpm                         
+glibc-minimal-langpack                                                        2.41-7.fc42                                         rpm                         
 gmp                                                                           1:6.3.0-4.fc42                                      rpm                         
 gnupg2                                                                        2.4.7-2.fc42                                        rpm                         
 gnupg2-smime                                                                  2.4.7-2.fc42                                        rpm                         
@@ -646,8 +646,8 @@ libxml2                                                                       2.
 libxshmfence                                                                  1.3.2-6.fc42                                        rpm                         
 libyaml                                                                       0.2.5-16.fc42                                       rpm                         
 libzstd                                                                       1.5.7-1.fc42                                        rpm                         
-llvm-filesystem                                                               20.1.6-1.fc42                                       rpm                         
-llvm-libs                                                                     20.1.6-1.fc42                                       rpm                         
+llvm-filesystem                                                               20.1.7-1.fc42                                       rpm                         
+llvm-libs                                                                     20.1.7-1.fc42                                       rpm                         
 lm_sensors-libs                                                               3.6.0-22.fc42                                       rpm                         
 lua-libs                                                                      5.4.8-1.fc42                                        rpm                         
 lz4-libs                                                                      1.10.0-2.fc42                                       rpm                         
