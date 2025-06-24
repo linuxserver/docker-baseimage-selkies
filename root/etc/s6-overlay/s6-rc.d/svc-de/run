@@ -1,5 +1,6 @@
 #!/usr/bin/with-contenv bash
 
+# set the keyboard map by LC if known
 if [ ! -z "${LC_ALL}" ]; then
   normalized_locale_full=${LC_ALL%%.*}
   normalized_locale_lower=$(echo "$normalized_locale_full" | tr '[:upper:]' '[:lower:]')
@@ -51,13 +52,17 @@ if [ ! -z "${LC_ALL}" ]; then
     XKB_LAYOUT_ARGS="${LOCALE_TO_XKB_MAP[$normalized_locale_lower]}"
   fi
 fi
-
 if [ ! -z "$XKB_LAYOUT_ARGS" ]; then
   s6-setuidgid abc setxkbmap ${XKB_LAYOUT_ARGS}
 fi
-
 chmod 777 /tmp/selkies*
 
+# set sane resolution before starting apps
+s6-setuidgid abc xrandr --newmode "1024x768" 63.50  1024 1072 1176 1328  768 771 775 798 -hsync +vsync
+s6-setuidgid abc xrandr --addmode screen "1024x768"
+s6-setuidgid abc xrandr --output screen --mode "1024x768" --dpi 96
+
+# run
 cd $HOME
 exec s6-setuidgid abc \
   /bin/bash /defaults/startwm.sh
