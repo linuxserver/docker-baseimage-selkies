@@ -101,9 +101,9 @@ gdbm-libs                                                                     1:
 gdk-pixbuf2                                                                   2.42.12-10.fc42                                     rpm                         
 gdk-pixbuf2-modules                                                           2.42.12-10.fc42                                     rpm                         
 giflib                                                                        5.2.2-6.fc42                                        rpm                         
-git                                                                           2.49.0-1.fc42                                       rpm                         
-git-core                                                                      2.49.0-1.fc42                                       rpm                         
-git-core-doc                                                                  2.49.0-1.fc42                                       rpm                         
+git                                                                           2.50.0-1.fc42                                       rpm                         
+git-core                                                                      2.50.0-1.fc42                                       rpm                         
+git-core-doc                                                                  2.50.0-1.fc42                                       rpm                         
 github.com/Azure/azure-sdk-for-go/sdk/azcore                                  v1.16.0                                             go-module                   
 github.com/Azure/azure-sdk-for-go/sdk/internal                                v1.10.0                                             go-module                   
 github.com/Azure/azure-sdk-for-go/sdk/storage/azblob                          v1.5.0                                              go-module                   
@@ -480,7 +480,7 @@ kmod-libs                                                                     33
 krb5-libs                                                                     1.21.3-6.fc42                                       rpm                         
 lame-libs                                                                     3.100-19.fc42                                       rpm                         
 lcms2                                                                         2.16-5.fc42                                         rpm                         
-less                                                                          668-2.fc42                                          rpm                         
+less                                                                          679-1.fc42                                          rpm                         
 libICE                                                                        1.1.2-2.fc42                                        rpm                         
 libSM                                                                         1.2.5-2.fc42                                        rpm                         
 libX11                                                                        1.8.11-1.fc42                                       rpm                         
@@ -728,7 +728,7 @@ perl-File-stat                                                                0:
 perl-FileHandle                                                               0:2.05-517.fc42                                     rpm                         
 perl-Getopt-Long                                                              1:2.58-3.fc42                                       rpm                         
 perl-Getopt-Std                                                               0:1.14-517.fc42                                     rpm                         
-perl-Git                                                                      2.49.0-1.fc42                                       rpm                         
+perl-Git                                                                      2.50.0-1.fc42                                       rpm                         
 perl-HTTP-Tiny                                                                0.090-2.fc42                                        rpm                         
 perl-IO                                                                       0:1.55-517.fc42                                     rpm                         
 perl-IO-Socket-IP                                                             0.43-2.fc42                                         rpm                         
@@ -773,7 +773,7 @@ pigz                                                                          2.
 pillow                                                                        11.2.1                                              python                      
 pinentry                                                                      1.3.1-3.fc42                                        rpm                         
 pip                                                                           24.3.1                                              python                      
-pixelflux                                                                     1.1.1                                               python                      
+pixelflux                                                                     1.1.2                                               python                      
 pixman                                                                        0.44.2-2.fc42                                       rpm                         
 pkgconf                                                                       2.3.0-2.fc42                                        rpm                         
 pkgconf-m4                                                                    2.3.0-2.fc42                                        rpm                         
