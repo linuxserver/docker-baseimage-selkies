@@ -43,6 +43,15 @@ full_custom_readme: |
   | NO_DECOR | If set the application will run without window borders for use as a PWA. (Decor can be enabled and disabled with Ctrl+Shift+d) |
   | NO_FULL | Do not autmatically fullscreen applications when using openbox. |
   | DISABLE_ZINK | Do not set the Zink environment variables if a video card is detected (userspace applications will use CPU rendering) |
+  | WATERMARK_PNG | Full path inside the container to a watermark png IE `/usr/share/selkies/www/icon.png` |
+  | WATERMARK_LOCATION | Where to paint the image over the stream integer options below |
+
+  * 1 - Top Left
+  * 2 - Top Right
+  * 3 - Bottom Left
+  * 4 - Bottom Right
+  * 5 - Centered
+  * 6 - Animated
 
   ## Language Support - Internationalization
 
@@ -59,6 +68,7 @@ full_custom_readme: |
   | Alpine | alpine322 |
   | Arch | arch |
   | Debian | debianbookworm |
+  | Enterprise Linux | el9 |
   | Fedora | fedora42 |
   | Kali | kali |
   | Ubuntu | ubuntunoble |
