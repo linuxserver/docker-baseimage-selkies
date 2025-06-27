@@ -9,7 +9,7 @@ autocommand                                                                   2.
 backports-tarfile                                                             1.2.0                                   python                      
 base-files                                                                    1:2025.2.0                              deb                         
 base-passwd                                                                   3.6.7                                   deb                         
-bash                                                                          5.2.37-2+b2                             deb                         
+bash                                                                          5.2.37-2+b3                             deb                         
 bcrypt                                                                        4.2.0                                   python                      
 binutils                                                                      2.44-3                                  deb                         
 binutils-common                                                               2.44-3                                  deb                         
@@ -18,7 +18,7 @@ blinker                                                                       1.
 bsdextrautils                                                                 2.41-5                                  deb                         
 bsdutils                                                                      1:2.41-5                                deb                         
 ca-certificates                                                               20250419                                deb                         
-catatonit                                                                     0.2.1-2                                 deb                         
+catatonit                                                                     0.2.1-2+b1                              deb                         
 cloud.google.com/go/compute/metadata                                          v0.6.0                                  go-module                   
 cloud.google.com/go/logging                                                   v1.9.0                                  go-module                   
 cloud.google.com/go/longrunning                                               v0.5.5                                  go-module                   
@@ -540,7 +540,7 @@ k8s.io/kube-openapi                                                           v0
 k8s.io/utils                                                                  v0.0.0-20230220204549-a5ecb0141aa5      go-module                   
 k8s.io/utils                                                                  v0.0.0-20241104100929-3ea5e8cea738      go-module  (+1 duplicate)   
 kali-archive-keyring                                                          2025.1                                  deb                         
-kali-defaults                                                                 2025.2.4                                deb                         
+kali-defaults                                                                 2025.3.0                                deb                         
 kbd                                                                           2.7.1-2                                 deb                         
 keyboard-configuration                                                        1.237                                   deb                         
 lazr-restfulclient                                                            0.14.6                                  python                      
@@ -602,7 +602,7 @@ libchromaprint1                                                               1.
 libcloudproviders0                                                            0.3.6-2                                 deb                         
 libcodec2-1.2                                                                 1.2.0-3                                 deb                         
 libcolord2                                                                    1.4.7-3                                 deb                         
-libcom-err2                                                                   1.47.2-1+b1                             deb                         
+libcom-err2                                                                   1.47.2-3+b1                             deb                         
 libcpuinfo0                                                                   0.0~git20250327.39ea79a-1               deb                         
 libcrypt-dev                                                                  1:4.4.38-1                              deb                         
 libcrypt1                                                                     1:4.4.38-1                              deb                         
@@ -753,7 +753,7 @@ liblastlog2-2                                                                 2.
 liblc3-1                                                                      1.1.3+dfsg-1                            deb                         
 liblcms2-2                                                                    2.16-2                                  deb                         
 libldacbt-enc2                                                                2.0.2.3+git20200429+ed310a0-5           deb                         
-libldap2                                                                      2.6.9+dfsg-2                            deb                         
+libldap2                                                                      2.6.10+dfsg-1                           deb                         
 liblerc4                                                                      4.0.0+ds-5                              deb                         
 liblilv-0-0                                                                   0.24.26-1                               deb                         
 libllvm19                                                                     1:19.1.7-3+b1                           deb                         
@@ -1079,7 +1079,7 @@ packaging                                                                     24
 packaging                                                                     25.0                                    python                      
 pasimple                                                                      0.0.3                                   python                      
 passwd                                                                        1:4.17.4-2                              deb                         
-pci.ids                                                                       0.0~2025.03.09-1                        deb                         
+pci.ids                                                                       0.0~2025.06.09-1                        deb                         
 pciutils                                                                      1:3.13.0-2                              deb                         
 perl                                                                          5.40.1-3                                deb                         
 perl-base                                                                     5.40.1-3                                deb                         
