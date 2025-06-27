@@ -721,9 +721,9 @@ ncurses-base                                                                  6.
 ncurses-libs                                                                  6.2-10.20210508.el9                     rpm                          
 netcat                                                                        1.229-1.el9                             rpm                          
 nettle                                                                        3.10.1-1.el9                            rpm                          
-nginx                                                                         2:1.20.1-22.0.1.el9_6.2                 rpm                          
-nginx-core                                                                    2:1.20.1-22.0.1.el9_6.2                 rpm                          
-nginx-filesystem                                                              2:1.20.1-22.0.1.el9_6.2                 rpm                          
+nginx                                                                         2:1.20.1-22.0.1.el9_6.3                 rpm                          
+nginx-core                                                                    2:1.20.1-22.0.1.el9_6.3                 rpm                          
+nginx-filesystem                                                              2:1.20.1-22.0.1.el9_6.3                 rpm                          
 nginx-mod-fancyindex                                                          0.5.2-3.el9                             rpm                          
 ninja-build                                                                   1.10.2-6.el9                            rpm                          
 npth                                                                          1.6-8.el9                               rpm                          
