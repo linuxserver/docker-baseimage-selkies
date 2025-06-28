@@ -1046,7 +1046,7 @@ perl-base                                                                     5.
 perl-modules-5.36                                                             5.36.0-7+deb12u2                        deb                         
 pillow                                                                        11.2.1                                  python                      
 pinentry-curses                                                               1.2.1-1                                 deb                         
-pixelflux                                                                     1.1.2                                   python                      
+pixelflux                                                                     1.2.0                                   python                      
 pkg-config                                                                    1.8.1-1                                 deb                         
 pkgconf                                                                       1.8.1-1                                 deb                         
 pkgconf-bin                                                                   1.8.1-1                                 deb                         
