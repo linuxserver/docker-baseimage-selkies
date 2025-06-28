@@ -571,7 +571,7 @@ libp11-kit                                                                    0.
 libpcap                                                                       1.10.5-3                                alpm                           
 libpciaccess                                                                  0.18.1-2                                alpm                           
 libpgm                                                                        5.3.128-3                               alpm                           
-libpipewire                                                                   1:1.4.5-1                               alpm                           
+libpipewire                                                                   1:1.4.6-1                               alpm                           
 libplacebo                                                                    7.351.0-1                               alpm                           
 libpng                                                                        1.6.49-1                                alpm                           
 libproxy                                                                      0.5.9-1                                 alpm                           
@@ -648,7 +648,7 @@ libxvmc                                                                       1.
 libxxf86vm                                                                    1.1.6-1                                 alpm                           
 lilv                                                                          0.24.26-1                               alpm                           
 linux-api-headers                                                             6.15-1                                  alpm                           
-linux-headers                                                                 6.15.3.arch1-1                          alpm                           
+linux-headers                                                                 6.15.4.arch2-1                          alpm                           
 llvm-libs                                                                     20.1.6-3                                alpm                           
 lm_sensors                                                                    1:3.6.2-1                               alpm                           
 lmdb                                                                          0.9.33-1                                alpm                           
@@ -713,7 +713,7 @@ perl                                                                          5.
 pillow                                                                        11.2.1                                  python                         
 pinentry                                                                      1.3.1-5                                 alpm                           
 pip                                                                           25.1.1                                  python                         
-pixelflux                                                                     1.1.2                                   python                         
+pixelflux                                                                     1.2.0                                   python                         
 pixman                                                                        0.46.2-1                                alpm                           
 pkgconf                                                                       2.5.1-1                                 alpm                           
 platformdirs                                                                  4.3.6                                   python                         
@@ -768,7 +768,7 @@ selkies-gstreamer                                                             0.
 serd                                                                          0.32.4-1                                alpm                           
 setuptools                                                                    80.9.0                                  python                         
 shaderc                                                                       2025.2-2                                alpm                           
-shadow                                                                        4.17.4-1                                alpm                           
+shadow                                                                        4.18.0-1                                alpm                           
 shared-mime-info                                                              2.4-2                                   alpm                           
 sigs.k8s.io/json                                                              v0.0.0-20241010143419-9aa6b5e7a4b3      go-module     (+1 duplicate)   
 sigs.k8s.io/structured-merge-diff/v4                                          v4.4.2                                  go-module     (+1 duplicate)   
