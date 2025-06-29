@@ -155,6 +155,7 @@ RUN \
     font-adobe-100dpi \
     font-adobe-75dpi \
     xkeyboard-config \
+    xrdb \
     xsel \
     xorg-server \
     xf86-video-amdgpu \

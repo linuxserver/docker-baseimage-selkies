@@ -145,6 +145,7 @@ RUN \
     util-linux \
     vulkan-tools \
     xprop \
+    xrdb \
     xset \
     setxkbmap \
     xkbcomp \
