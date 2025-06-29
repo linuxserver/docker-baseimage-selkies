@@ -15,7 +15,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f fe21491c3ee7467cb37c2367d294e353ca0b7b7a
+  git checkout -f 9df2a1b6334b0fc2c98b641d41557741b89e5c1f
 
 RUN \
   echo "**** build frontend ****" && \
@@ -60,6 +60,8 @@ RUN \
   DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
     libev-dev \
     libjpeg-turbo8-dev \
+    libopus-dev \
+    libpulse-dev \
     libx11-dev \
     libxext-dev \
     libxfixes-dev \
@@ -92,12 +94,7 @@ RUN \
     fonts-noto-core \
     g++ \
     gcc \
-    gir1.2-gst-plugins-bad-1.0 \
-    gir1.2-gstreamer-1.0 \
     git \
-    gstreamer1.0-nice \
-    gstreamer1.0-plugins-* \
-    gstreamer1.0-pulseaudio \
     intel-media-va-driver \
     kbd \
     libev4 \
@@ -113,6 +110,7 @@ RUN \
     libjpeg-turbo8 \
     libnginx-mod-http-fancyindex \
     libnotify-bin \
+    libopus0 \
     libp11-kit0 \
     libpam0g \
     libtasn1-6 \
@@ -145,8 +143,6 @@ RUN \
     pulseaudio-utils \
     python3 \
     python3-distutils-extra \
-    python3-gi \
-    python3-gst-1.0 \
     software-properties-common \
     ssl-cert \
     stterm \
@@ -179,12 +175,12 @@ RUN \
     xvfb \
     zlib1g && \
   echo "**** install selkies ****" && \
-  pip3 install pixelflux --break-system-packages && \
+  pip3 install pixelflux pcmflux --break-system-packages && \
   SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/latest" \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/fe21491c3ee7467cb37c2367d294e353ca0b7b7a.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/9df2a1b6334b0fc2c98b641d41557741b89e5c1f.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
@@ -254,6 +250,8 @@ RUN \
   echo "**** cleanup ****" && \
   apt-get purge -y --autoremove \
     libjpeg-turbo8-dev \
+    libopus-dev \
+    libpulse-dev \
     libx11-dev \
     libxext-dev \
     libx264-dev \
