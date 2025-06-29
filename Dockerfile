@@ -15,7 +15,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f fe21491c3ee7467cb37c2367d294e353ca0b7b7a
+  git checkout -f 9df2a1b6334b0fc2c98b641d41557741b89e5c1f
 
 RUN \
   echo "**** build frontend ****" && \
@@ -57,18 +57,20 @@ RUN \
   echo "**** install build deps ****" && \
   apk add --no-cache --virtual .build-deps \
     alpine-sdk \
-    musl-dev \
     libev-dev \
     libjpeg-turbo-dev \
-    linux-headers \
     libx11-dev \
     libxext-dev \
     libxfixes-dev \
-    x264-dev \
-    python3-dev \
+    linux-headers \
+    musl-dev \
+    opus-dev \
+    pulseaudio-dev \
     py3-pip \
     py3-setuptools \
-    py3-wheel && \
+    py3-wheel \
+    python3-dev \
+    x264-dev && \
   echo "**** install runtime deps ****" && \
   apk add --no-cache \
     bash \
@@ -85,10 +87,6 @@ RUN \
     font-noto-emoji \
     font-noto \
     git \
-    gst-plugins-base \
-    gst-plugins-good \
-    gst-plugins-bad \
-    gst-plugins-ugly \
     intel-media-driver \
     libev \
     libfontenc \
@@ -99,7 +97,6 @@ RUN \
     mesa-dri-gallium \
     mesa-gl \
     gnutls \
-    gstreamer \
     libjpeg-turbo \
     nginx-mod-http-fancyindex \
     libnotify \
@@ -130,13 +127,12 @@ RUN \
     openbox \
     openssh-client \
     openssl \
+    opus \
     pciutils \
     procps \
     pulseaudio \
     pulseaudio-utils \
     python3 \
-    py3-gobject3 \
-    py3-gst \
     py3-setuptools \
     st \
     sudo \
@@ -169,10 +165,10 @@ RUN \
     xvfb \
     zlib  && \
   echo "**** install selkies ****" && \
-  pip3 install pixelflux --break-system-packages && \
+  pip3 install pixelflux pcmflux --break-system-packages && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/fe21491c3ee7467cb37c2367d294e353ca0b7b7a.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/9df2a1b6334b0fc2c98b641d41557741b89e5c1f.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
