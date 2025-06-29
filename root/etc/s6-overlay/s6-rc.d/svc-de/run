@@ -62,6 +62,11 @@ s6-setuidgid abc xrandr --newmode "1024x768" 63.50  1024 1072 1176 1328  768 771
 s6-setuidgid abc xrandr --addmode screen "1024x768"
 s6-setuidgid abc xrandr --output screen --mode "1024x768" --dpi 96
 
+# set xresources
+if [ -f "${HOME}/.Xresources" ]; then
+  xrdb "${HOME}/.Xresources"
+fi
+
 # run
 cd $HOME
 exec s6-setuidgid abc \
