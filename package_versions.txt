@@ -9,9 +9,9 @@ alpine-release                                                                3.
 alsa-lib                                                                      1.2.14-r0                               apk                         
 aom-libs                                                                      3.12.1-r0                               apk                         
 apk-tools                                                                     2.14.9-r2                               apk                         
-at-spi2-core                                                                  2.56.2-r0                               apk                         
-at-spi2-core-lang                                                             2.56.2-r0                               apk                         
-at-spi2-core-libs                                                             2.56.2-r0                               apk                         
+at-spi2-core                                                                  2.56.3-r0                               apk                         
+at-spi2-core-lang                                                             2.56.3-r0                               apk                         
+at-spi2-core-libs                                                             2.56.3-r0                               apk                         
 autocommand                                                                   2.2.2                                   python                      
 avahi-libs                                                                    0.8-r20                                 apk                         
 backports-tarfile                                                             1.2.0                                   python                      
@@ -512,8 +512,8 @@ libapk2                                                                       2.
 libarchive                                                                    3.8.1-r0                                apk                         
 libass                                                                        0.17.3-r0                               apk                         
 libasyncns                                                                    0.8-r4                                  apk                         
-libatk-1.0                                                                    2.56.2-r0                               apk                         
-libatk-bridge-2.0                                                             2.56.2-r0                               apk                         
+libatk-1.0                                                                    2.56.3-r0                               apk                         
+libatk-bridge-2.0                                                             2.56.3-r0                               apk                         
 libattr                                                                       2.5.2-r2                                apk                         
 libavc1394                                                                    0.5.4-r3                                apk                         
 libblkid                                                                      2.41-r9                                 apk                         
@@ -814,6 +814,7 @@ xorg-server                                                                   21
 xorg-server-common                                                            21.1.18-r0                              apk                         
 xprop                                                                         1.2.8-r0                                apk                         
 xrandr                                                                        1.5.2-r0                                apk                         
+xrdb                                                                          1.2.2-r0                                apk                         
 xsel                                                                          1.2.1-r0                                apk                         
 xset                                                                          1.2.5-r1                                apk                         
 xterm                                                                         399-r0                                  apk                         
