@@ -62,9 +62,9 @@ if [ ! -z ${DEV_MODE+x} ]; then
 fi
 
 
-# Start the Selkies-GStreamer WebRTC HTML5 remote desktop application
+# Start Selkies
 exec s6-setuidgid abc \
-  selkies-gstreamer \
+  selkies \
     --addr="localhost" \
     --port="8081" \
     --enable_basic_auth="false" \
