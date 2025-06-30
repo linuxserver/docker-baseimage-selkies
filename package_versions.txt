@@ -916,7 +916,7 @@ pasimple                                                                      0.
 passwd                                                                        1:4.13+dfsg1-1+deb12u1                  deb                         
 pci.ids                                                                       0.0~2023.04.11-1                        deb                         
 pciutils                                                                      1:3.9.0-4                               deb                         
-pcmflux                                                                       1.0.2                                   python                      
+pcmflux                                                                       1.0.3                                   python                      
 perl                                                                          5.36.0-7+deb12u2                        deb                         
 perl-base                                                                     5.36.0-7+deb12u2                        deb                         
 perl-modules-5.36                                                             5.36.0-7+deb12u2                        deb                         
