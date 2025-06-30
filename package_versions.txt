@@ -943,7 +943,7 @@ pasimple                                                                      0.
 passwd                                                                        1:4.17.4-2                              deb                         
 pci.ids                                                                       0.0~2025.06.09-1                        deb                         
 pciutils                                                                      1:3.13.0-2                              deb                         
-pcmflux                                                                       1.0.2                                   python                      
+pcmflux                                                                       1.0.3                                   python                      
 perl                                                                          5.40.1-3                                deb                         
 perl-base                                                                     5.40.1-3                                deb                         
 perl-modules-5.40                                                             5.40.1-3                                deb                         
