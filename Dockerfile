@@ -15,7 +15,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f fe21491c3ee7467cb37c2367d294e353ca0b7b7a
+  git checkout -f 39bc3c98b283992a5fa16bfaac9b3fea94123868
 
 RUN \
   echo "**** build frontend ****" && \
@@ -72,6 +72,8 @@ RUN \
     libXext-devel \
     libXfixes-devel \
     make \
+    opus-devel  \
+    pulseaudio-libs-devel \
     pkgconf-pkg-config \
     python3-devel \
     python3-pip \
@@ -83,6 +85,7 @@ RUN \
     bash \
     ca-certificates \
     cmake \
+    cvt \
     dbus-x11 \
     docker \
     docker-compose \
@@ -93,15 +96,9 @@ RUN \
     glibc-all-langpacks \
     glibc-locale-source \
     gnutls \
-    gobject-introspection \
     google-noto-cjk-fonts \
     google-noto-emoji-fonts \
     google-noto-sans-fonts \
-    gstreamer1 \
-    gstreamer1-plugins-bad-free \
-    gstreamer1-plugins-base \
-    gstreamer1-plugins-good \
-    gstreamer1-plugins-ugly \
     intel-media-driver \
     kbd \
     libev \
@@ -132,15 +129,15 @@ RUN \
     openbox \
     openssh-clients \
     openssl \
+    opus \
     p11-kit \
     pam \
     pciutils \
     procps-ng \
     pulseaudio \
+    pulseaudio-libs \
     pulseaudio-utils \
     python3 \
-    python3-gobject \
-    python3-gstreamer1 \
     python3-setuptools \
     shadow-utils \
     st \
@@ -171,10 +168,10 @@ RUN \
     xterm \
     zlib && \
   echo "**** install selkies ****" && \
-  pip3 install pixelflux --break-system-packages && \
+  pip3 install pcmflux pixelflux --break-system-packages && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/fe21491c3ee7467cb37c2367d294e353ca0b7b7a.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/39bc3c98b283992a5fa16bfaac9b3fea94123868.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
@@ -246,8 +243,8 @@ RUN \
     libjpeg-turbo-devel \
     libX11-devel \
     libXext-devel \
+    pulseaudio-libs-devel \
     python3-devel \
-    x264-devel && \
   dnf autoremove -y && \
   dnf clean all && \
   rm -rf \
