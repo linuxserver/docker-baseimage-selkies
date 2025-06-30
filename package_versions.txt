@@ -597,7 +597,7 @@ pango                                                                         1:
 pasimple                                                                      0.0.3                                   python                         
 patch                                                                         2.8-1                                   alpm                           
 pciutils                                                                      3.14.0-1                                alpm                           
-pcmflux                                                                       1.0.2                                   python                         
+pcmflux                                                                       1.0.3                                   python                         
 pcre2                                                                         10.45-1                                 alpm                           
 pcsclite                                                                      2.3.3-1                                 alpm                           
 perl                                                                          5.40.2-1                                alpm                           
