@@ -986,7 +986,7 @@ ssl-cert                                                                      1.
 stdlib                                                                        go1.23.7                                go-module  (+5 duplicates)  
 stdlib                                                                        go1.24.4                                go-module  (+4 duplicates)  
 stterm                                                                        0.9-1                                   deb                         
-sudo                                                                          1.9.13p3-1+deb12u1                      deb                         
+sudo                                                                          1.9.13p3-1+deb12u2                      deb                         
 systemd                                                                       252.38-1~deb12u1                        deb                         
 systemd-sysv                                                                  252.38-1~deb12u1                        deb                         
 sysvinit-utils                                                                3.06-4                                  deb                         
