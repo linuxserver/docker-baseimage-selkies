@@ -15,7 +15,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f fe21491c3ee7467cb37c2367d294e353ca0b7b7a
+  git checkout -f 39bc3c98b283992a5fa16bfaac9b3fea94123868
 
 RUN \
   echo "**** build frontend ****" && \
@@ -57,13 +57,9 @@ RUN \
   echo "**** install build deps ****" && \
   dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo && \
   dnf install -y \
-    bison \
-    flex \
     gcc \
     gcc-c++ \
     glibc-devel \
-    gstreamer1-devel \
-    gstreamer1-plugins-base-devel \
     kernel-headers \
     libev-devel \
     libjpeg-turbo-devel \
@@ -71,9 +67,10 @@ RUN \
     libXext-devel \
     libXfixes-devel \
     make \
+    opus-devel \
+    pulseaudio-libs-devel \
     meson \
     pkgconf-pkg-config \
-    pygobject3-devel \
     python3-devel \
     python3-pip \
     python3-setuptools \
@@ -96,14 +93,9 @@ RUN \
     glibc-all-langpacks \
     glibc-locale-source \
     gnutls \
-    gobject-introspection \
     google-noto-cjk-fonts-common \
     google-noto-emoji-fonts \
     google-noto-sans-fonts \
-    gstreamer1 \
-    gstreamer1-plugins-bad-freeworld \
-    gstreamer1-plugins-base \
-    gstreamer1-plugins-good \
     kbd \
     libev \
     libfontenc \
@@ -132,11 +124,13 @@ RUN \
     openbox \
     openssh-clients \
     openssl \
+    opus \
     p11-kit \
     pam \
     pciutils \
     procps-ng \
     pulseaudio \
+    pulseaudio-libs \
     pulseaudio-utils \
     python3 \
     python3-gobject \
@@ -162,14 +156,15 @@ RUN \
     xorg-x11-server-Xorg \
     xorg-x11-server-Xvfb \
     xrandr \
+    xrdb \
     xsel \
     xterm \
     zlib && \
   echo "**** install selkies ****" && \
-  pip3 install pixelflux && \
+  pip3 install pcmflux pixelflux && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/fe21491c3ee7467cb37c2367d294e353ca0b7b7a.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/39bc3c98b283992a5fa16bfaac9b3fea94123868.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
@@ -189,21 +184,6 @@ RUN \
   mv \
     libudev.so.1.0.0-fake \
     /opt/lib/ && \
-  echo "**** install gst-python ****" && \
-  GST_PYTHON_VERSION=$(gst-inspect-1.0 --version | awk '/version/ {print $3}') && \
-  curl -o \
-    /tmp/gst-python.tar.gz -L \
-    "https://gstreamer.freedesktop.org/src/gst-python/gst-python-${GST_PYTHON_VERSION}.tar.xz" && \
-  cd /tmp && \
-  tar -xf gst-python.tar.gz && \
-  cd "gst-python-${GST_PYTHON_VERSION}" && \
-  meson setup builddir \
-    --prefix=/usr/local \
-    -Dpython-exe=$(which python3) \
-    -Dpygi-overrides-dir=$(python3 \
-    -c "import site; print(site.getsitepackages()[0])")/gi/overrides && \
-  ninja -C builddir && \
-  ninja -C builddir install && \
   echo "**** add icon ****" && \
   mkdir -p \
     /usr/share/selkies/www && \
