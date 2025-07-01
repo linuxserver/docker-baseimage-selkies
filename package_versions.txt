@@ -389,12 +389,12 @@ github.com/zmap/zcrypto                                                       v0
 github.com/zmap/zlint/v3                                                      v3.1.0                                  go-module                    
 glib2                                                                         2.68.4-16.el9                           rpm                          
 glib2-devel                                                                   2.68.4-16.el9                           rpm                          
-glibc                                                                         2.34-168.0.1.el9_6.19                   rpm                          
-glibc-all-langpacks                                                           2.34-168.0.1.el9_6.19                   rpm                          
-glibc-common                                                                  2.34-168.0.1.el9_6.19                   rpm                          
-glibc-langpack-en                                                             2.34-168.0.1.el9_6.19                   rpm                          
-glibc-locale-source                                                           2.34-168.0.1.el9_6.19                   rpm                          
-glibc-minimal-langpack                                                        2.34-168.0.1.el9_6.19                   rpm                          
+glibc                                                                         2.34-168.0.1.el9_6.20                   rpm                          
+glibc-all-langpacks                                                           2.34-168.0.1.el9_6.20                   rpm                          
+glibc-common                                                                  2.34-168.0.1.el9_6.20                   rpm                          
+glibc-langpack-en                                                             2.34-168.0.1.el9_6.20                   rpm                          
+glibc-locale-source                                                           2.34-168.0.1.el9_6.20                   rpm                          
+glibc-minimal-langpack                                                        2.34-168.0.1.el9_6.20                   rpm                          
 gmp                                                                           1:6.2.0-13.el9                          rpm                          
 gnome-menus                                                                   3.36.0-9.el9_4                          rpm                          
 gnupg2                                                                        2.3.3-4.el9                             rpm                          
@@ -813,7 +813,7 @@ perl-subs                                                                     0:
 perl-threads                                                                  1:2.25-460.el9                          rpm                          
 perl-threads-shared                                                           1.61-460.el9                            rpm                          
 perl-vars                                                                     0:1.05-481.el9                          rpm                          
-pillow                                                                        11.2.1                                  python                       
+pillow                                                                        11.3.0                                  python                       
 pip                                                                           21.3.1                                  python                       
 pixelflux                                                                     1.2.0                                   python                       
 pixman                                                                        0.40.0-6.el9_3                          rpm                          
