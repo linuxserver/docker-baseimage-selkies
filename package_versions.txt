@@ -49,7 +49,7 @@ default-cursors                                                               3-
 device-mapper                                                                 2.03.32-1                               alpm                           
 diffutils                                                                     3.12-2                                  alpm                           
 docker                                                                        1:28.3.0-1                              alpm                           
-docker-compose                                                                2.37.3-1                                alpm                           
+docker-compose                                                                2.38.1-1                                alpm                           
 duktape                                                                       2.7.0-7                                 alpm                           
 dunst                                                                         1.12.2-1                                alpm                           
 e2fsprogs                                                                     1.47.2-2                                alpm                           
@@ -115,7 +115,7 @@ github.com/checkpoint-restore/go-criu/v7                                      v7
 github.com/cilium/ebpf                                                        v0.16.0                                 go-module     (+2 duplicates)  
 github.com/cilium/ebpf                                                        v0.17.3                                 go-module     (+1 duplicate)   
 github.com/cloudflare/cfssl                                                   v1.6.4                                  go-module                      
-github.com/compose-spec/compose-go/v2                                         v2.6.5                                  go-module                      
+github.com/compose-spec/compose-go/v2                                         v2.7.1                                  go-module                      
 github.com/container-storage-interface/spec                                   v1.5.0                                  go-module                      
 github.com/containerd/accelerated-container-image                             v1.3.0                                  go-module                      
 github.com/containerd/btrfs/v2                                                v2.0.0                                  go-module                      
@@ -151,12 +151,12 @@ github.com/deckarep/golang-set/v2                                             v2
 github.com/dimchansky/utfbom                                                  v1.1.1                                  go-module                      
 github.com/distribution/reference                                             v0.6.0                                  go-module     (+4 duplicates)  
 github.com/docker/buildx                                                      v0.25.0                                 go-module                      
-github.com/docker/cli                                                         v28.2.2+incompatible                    go-module                      
+github.com/docker/cli                                                         v28.3.0+incompatible                    go-module                      
 github.com/docker/cli-docs-tool                                               v0.10.0                                 go-module                      
 github.com/docker/cli/cmd/docker                                              UNKNOWN                                 go-module                      
 github.com/docker/compose/v2                                                  UNKNOWN                                 go-module                      
 github.com/docker/distribution                                                v2.8.3+incompatible                     go-module     (+1 duplicate)   
-github.com/docker/docker                                                      v28.2.2+incompatible                    go-module                      
+github.com/docker/docker                                                      v28.3.0+incompatible                    go-module                      
 github.com/docker/docker                                                      v28.3.0+incompatible.dirty              go-module     (+1 duplicate)   
 github.com/docker/docker-credential-helpers                                   v0.9.3                                  go-module                      
 github.com/docker/go                                                          v1.5.1-1.0.20160303222718-d30aec9fd63c  go-module                      
@@ -659,7 +659,7 @@ st-debug                                                                      0.
 startup-notification                                                          0.12-8                                  alpm                           
 stdlib                                                                        go1.24.2                                go-module     (+1 duplicate)   
 stdlib                                                                        go1.24.4                                go-module     (+7 duplicates)  
-sudo                                                                          1.9.16.p2-2                             alpm                           
+sudo                                                                          1.9.17.p1-1                             alpm                           
 systemd                                                                       257.7-1                                 alpm                           
 systemd-libs                                                                  257.7-1                                 alpm                           
 tags.cncf.io/container-device-interface                                       v1.0.1                                  go-module     (+3 duplicates)  
