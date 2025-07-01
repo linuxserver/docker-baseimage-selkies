@@ -920,7 +920,7 @@ pcmflux                                                                       1.
 perl                                                                          5.36.0-7+deb12u2                        deb                         
 perl-base                                                                     5.36.0-7+deb12u2                        deb                         
 perl-modules-5.36                                                             5.36.0-7+deb12u2                        deb                         
-pillow                                                                        11.2.1                                  python                      
+pillow                                                                        11.3.0                                  python                      
 pinentry-curses                                                               1.2.1-1                                 deb                         
 pixelflux                                                                     1.2.0                                   python                      
 pkg-config                                                                    1.8.1-1                                 deb                         
