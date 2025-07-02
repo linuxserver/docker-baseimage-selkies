@@ -50,6 +50,7 @@ ENV DISPLAY=:1 \
     START_DOCKER=true \
     PULSE_RUNTIME_PATH=/defaults \
     SELKIES_INTERPOSER=/usr/lib/selkies_joystick_interposer.so \
+    NVIDIA_DRIVER_CAPABILITIES=all \
     DISABLE_ZINK=false \
     TITLE=Selkies
 
