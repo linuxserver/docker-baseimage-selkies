@@ -1,8 +1,8 @@
 NAME                                                                          VERSION                                 TYPE                       
 adduser                                                                       3.152                                   deb                         
-apt                                                                           3.0.2+kali1                             deb                         
-apt-transport-https                                                           3.0.2+kali1                             deb                         
-apt-utils                                                                     3.0.2+kali1                             deb                         
+apt                                                                           3.0.3+kali1                             deb                         
+apt-transport-https                                                           3.0.3+kali1                             deb                         
+apt-utils                                                                     3.0.3+kali1                             deb                         
 autocommand                                                                   2.2.2                                   python     (+1 duplicate)   
 backports-tarfile                                                             1.2.0                                   python                      
 base-files                                                                    1:2025.2.0                              deb                         
@@ -33,7 +33,7 @@ cpp-x86-64-linux-gnu                                                          4:
 cron                                                                          3.0pl1-197                              deb                         
 cron-daemon-common                                                            3.0pl1-197                              deb                         
 cryptography                                                                  43.0.0                                  python                      
-curl                                                                          8.14.1-1                                deb                         
+curl                                                                          8.14.1-2                                deb                         
 dario.cat/mergo                                                               v1.0.0                                  go-module                   
 dario.cat/mergo                                                               v1.0.1                                  go-module  (+1 duplicate)   
 dash                                                                          0.5.12-12                               deb                         
@@ -66,7 +66,7 @@ firmware-misc-nonfree                                                         20
 fontconfig                                                                    2.15.0-2.3                              deb                         
 fontconfig-config                                                             2.15.0-2.3                              deb                         
 fonts-noto-cjk                                                                1:20240730+repack1-1                    deb                         
-fonts-noto-color-emoji                                                        2.047-1                                 deb                         
+fonts-noto-color-emoji                                                        2.048-1                                 deb                         
 fonts-noto-core                                                               20201225-2                              deb                         
 fonts-noto-mono                                                               20201225-2                              deb                         
 fonts-urw-base35                                                              20200910-8                              deb                         
@@ -519,7 +519,7 @@ k8s.io/utils                                                                  v0
 kali-archive-keyring                                                          2025.1                                  deb                         
 kali-defaults                                                                 2025.3.0                                deb                         
 kbd                                                                           2.7.1-2                                 deb                         
-keyboard-configuration                                                        1.237                                   deb                         
+keyboard-configuration                                                        1.239                                   deb                         
 lazr-restfulclient                                                            0.14.6                                  python                      
 lazr-uri                                                                      1.0.6                                   python                      
 libabsl20240722                                                               20240722.0-4                            deb                         
@@ -527,7 +527,7 @@ libacl1                                                                       2.
 libaom3                                                                       3.12.1-1                                deb                         
 libapparmor1                                                                  4.1.0-1                                 deb                         
 libappstream5                                                                 1.0.5-1                                 deb                         
-libapt-pkg7.0                                                                 3.0.2+kali1                             deb                         
+libapt-pkg7.0                                                                 3.0.3+kali1                             deb                         
 libarchive13t64                                                               3.7.4-3                                 deb                         
 libasan8                                                                      14.2.0-19                               deb                         
 libasound2-data                                                               1.2.14-1                                deb                         
@@ -570,8 +570,8 @@ libcrypt1                                                                     1:
 libctf-nobfd0                                                                 2.44-3                                  deb                         
 libctf0                                                                       2.44-3                                  deb                         
 libcups2t64                                                                   2.4.10-3                                deb                         
-libcurl3t64-gnutls                                                            8.14.1-1                                deb                         
-libcurl4t64                                                                   8.14.1-1                                deb                         
+libcurl3t64-gnutls                                                            8.14.1-2                                deb                         
+libcurl4t64                                                                   8.14.1-2                                deb                         
 libdatrie1                                                                    0.2.13-3+b1                             deb                         
 libdav1d7                                                                     1.5.1-1                                 deb                         
 libdb5.3t64                                                                   5.3.28+dfsg2-9                          deb                         
