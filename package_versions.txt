@@ -579,7 +579,7 @@ noto-fonts-cjk                                                                20
 noto-fonts-emoji                                                              1:2.048-1                               alpm                           
 npth                                                                          1.8-1                                   alpm                           
 nspr                                                                          4.36-1                                  alpm                           
-nss                                                                           3.113-1                                 alpm                           
+nss                                                                           3.113.1-1                               alpm                           
 oniguruma                                                                     6.9.10-1                                alpm                           
 openbox                                                                       3.6.1-12                                alpm                           
 openssh                                                                       10.0p1-3                                alpm                           
