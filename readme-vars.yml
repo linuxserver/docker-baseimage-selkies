@@ -209,20 +209,7 @@ full_custom_readme: |
   ```
   git clone https://github.com/selkies-project/selkies.git
   cd selkies
-  docker run --rm -it \
-    --shm-size=1gb \
-    -e DEV_MODE=core \
-    -e PUID=1000 \
-    -e PGID=1000 \
-    -v $(pwd):/config/src \
-    -p 3001:3001 ghcr.io/linuxserver/baseimage-selkies:alpine322 bash
-  ```
-
-  This will start you up in "core" development mode to mess around with core logic. The container also supports strictly frontend development, if there is an addon named "selkies-dashboard" you can pass that as dev_mode and core will be built on init and your development RDE will run against the frontend. 
-
-  ```
-  git clone https://github.com/selkies-project/selkies.git
-  cd selkies
+  git checkout -f feature/websockets
   docker run --rm -it \
     --shm-size=1gb \
     -e DEV_MODE=selkies-dashboard \
