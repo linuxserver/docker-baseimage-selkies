@@ -74,6 +74,7 @@ RUN \
   echo "**** install runtime deps ****" && \
   apk add --no-cache \
     bash \
+    breeze-cursors \
     ca-certificates \
     cmake \
     kbd \
