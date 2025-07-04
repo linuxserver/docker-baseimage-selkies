@@ -561,7 +561,7 @@ lzo                                                                           2.
 m4                                                                            1.4.20-1                                alpm                           
 mailcap                                                                       2.1.54-2                                alpm                           
 make                                                                          4.4.1-2                                 alpm                           
-mesa                                                                          1:25.1.4-2                              alpm                           
+mesa                                                                          1:25.1.5-1                              alpm                           
 more-itertools                                                                10.7.0                                  python                         
 mpdecimal                                                                     4.0.1-1                                 alpm                           
 mpfr                                                                          4.2.2-1                                 alpm                           
@@ -673,8 +673,8 @@ tzdata                                                                        20
 util-linux                                                                    2.41.1-1                                alpm                           
 util-linux-libs                                                               2.41.1-1                                alpm                           
 vulkan-icd-loader                                                             1.4.313.0-1                             alpm                           
-vulkan-intel                                                                  1:25.1.4-2                              alpm                           
-vulkan-radeon                                                                 1:25.1.4-2                              alpm                           
+vulkan-intel                                                                  1:25.1.5-1                              alpm                           
+vulkan-radeon                                                                 1:25.1.5-1                              alpm                           
 vulkan-tools                                                                  1.4.313.0-1                             alpm                           
 watchdog                                                                      6.0.0                                   python                         
 wayland                                                                       1.23.1-2                                alpm                           
