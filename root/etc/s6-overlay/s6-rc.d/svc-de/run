@@ -65,6 +65,9 @@ s6-setuidgid abc xrandr --output screen --mode "1024x768" --dpi 96
 # set xresources
 if [ -f "${HOME}/.Xresources" ]; then
   xrdb "${HOME}/.Xresources"
+else
+  echo "Xcursor.theme: breeze" > "${HOME}/.Xresources"
+  xrdb "${HOME}/.Xresources"
 fi
 
 # run
