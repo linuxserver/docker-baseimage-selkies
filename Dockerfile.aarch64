@@ -77,6 +77,7 @@ RUN \
   curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+    breeze-cursor-theme \
     ca-certificates \
     cmake \
     console-data \
