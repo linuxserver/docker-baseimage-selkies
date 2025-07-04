@@ -13,6 +13,7 @@ binutils                                                                      2.
 binutils-common                                                               2.44-3                                  deb                         
 binutils-x86-64-linux-gnu                                                     2.44-3                                  deb                         
 blinker                                                                       1.9.0                                   python                      
+breeze-cursor-theme                                                           4:6.3.5-1                               deb                         
 bsdextrautils                                                                 2.41-5                                  deb                         
 bsdutils                                                                      1:2.41-5                                deb                         
 ca-certificates                                                               20250419                                deb                         
