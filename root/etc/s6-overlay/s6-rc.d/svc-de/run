@@ -69,6 +69,7 @@ else
   echo "Xcursor.theme: Breeze_Light" > "${HOME}/.Xresources"
   xrdb "${HOME}/.Xresources"
 fi
+chown abc:abc "${HOME}/.Xresources"
 
 # run
 cd $HOME
