@@ -687,6 +687,7 @@ xbitmaps                                                                      1.
 xcb-proto                                                                     1.17.0-3                                alpm                           
 xcb-util                                                                      0.4.1-2                                 alpm                           
 xcb-util-keysyms                                                              0.4.1-5                                 alpm                           
+xcursor-themes                                                                1.0.7-2                                 alpm                           
 xdg-utils                                                                     1.2.1-1                                 alpm                           
 xdotool                                                                       3.20211022.1-2                          alpm                           
 xf86-input-libinput                                                           1.5.0-1                                 alpm                           
