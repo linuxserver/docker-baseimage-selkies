@@ -80,6 +80,7 @@ RUN \
   echo "**** install runtime deps ****" && \
   dnf install -y --setopt=install_weak_deps=False --best \
     bash \
+    breeze-cursor-theme \
     ca-certificates \
     cmake \
     containerd.io \
