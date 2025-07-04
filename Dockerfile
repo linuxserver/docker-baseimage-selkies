@@ -84,6 +84,7 @@ RUN \
   echo "**** install runtime deps ****" && \
   dnf install -y --setopt=install_weak_deps=False --best \
     bash \
+    breeze-cursor-theme \
     ca-certificates \
     cmake \
     cvt \
@@ -165,6 +166,7 @@ RUN \
     xorg-x11-server-Xorg \
     xorg-x11-server-Xvfb \
     xrandr \
+    xrdb \
     xsel \
     xterm \
     zlib && \
