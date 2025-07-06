@@ -32,7 +32,7 @@ coreutils                                                                     9.
 coreutils-env                                                                 9.7-r1                                  apk                         
 coreutils-fmt                                                                 9.7-r1                                  apk                         
 coreutils-sha512sum                                                           9.7-r1                                  apk                         
-curl                                                                          8.14.1-r0                               apk                         
+curl                                                                          8.14.1-r1                               apk                         
 dario.cat/mergo                                                               v1.0.1                                  go-module  (+2 duplicates)  
 dbus                                                                          1.16.2-r1                               apk                         
 dbus-daemon-launch-helper                                                     1.16.2-r1                               apk                         
@@ -491,7 +491,7 @@ libbz2                                                                        1.
 libcap-ng                                                                     0.8.5-r0                                apk                         
 libcap2                                                                       2.76-r0                                 apk                         
 libcrypto3                                                                    3.5.1-r0                                apk                         
-libcurl                                                                       8.14.1-r0                               apk                         
+libcurl                                                                       8.14.1-r1                               apk                         
 libdav1d                                                                      1.5.1-r0                                apk                         
 libdrm                                                                        2.4.124-r0                              apk                         
 libeconf                                                                      0.6.3-r0                                apk                         
