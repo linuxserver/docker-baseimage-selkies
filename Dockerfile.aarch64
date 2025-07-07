@@ -244,7 +244,6 @@ RUN \
     /var/lib/pacman/sync/*
 
 # add local files
-FROM lscr.io/linuxserver/xvfb:alpine322 AS xvfb
 COPY /root /
 COPY --from=frontend /buildout /usr/share/selkies/www
 COPY --from=xvfb / /
