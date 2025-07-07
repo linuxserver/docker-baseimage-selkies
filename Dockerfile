@@ -1,4 +1,5 @@
 # syntax=docker/dockerfile:1
+FROM lscr.io/linuxserver/xvfb:debianbookworm AS xvfb
 FROM ghcr.io/linuxserver/baseimage-alpine:3.21 AS frontend
 
 RUN \
@@ -271,6 +272,7 @@ RUN \
 # add local files
 COPY /root /
 COPY --from=frontend /buildout /usr/share/selkies/www
+COPY --from=xvfb / /
 
 # ports and volumes
 EXPOSE 3000 3001
