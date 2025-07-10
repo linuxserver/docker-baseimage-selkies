@@ -74,8 +74,8 @@ gdbm                                                                          1.
 gdk-pixbuf                                                                    2.42.12-r1                              apk                         
 gdk-pixbuf-lang                                                               2.42.12-r1                              apk                         
 giflib                                                                        5.2.2-r1                                apk                         
-git                                                                           2.49.0-r0                               apk                         
-git-init-template                                                             2.49.0-r0                               apk                         
+git                                                                           2.49.1-r0                               apk                         
+git-init-template                                                             2.49.1-r0                               apk                         
 github.com/AlecAivazis/survey/v2                                              v2.3.7                                  go-module                   
 github.com/Azure/azure-sdk-for-go/sdk/azcore                                  v1.16.0                                 go-module                   
 github.com/Azure/azure-sdk-for-go/sdk/internal                                v1.10.0                                 go-module                   
@@ -633,7 +633,7 @@ pciutils-libs                                                                 3.
 pcmflux                                                                       1.0.3                                   python                      
 pcre2                                                                         10.43-r1                                apk                         
 pillow                                                                        11.3.0                                  python                      
-pixelflux                                                                     1.2.0                                   python                      
+pixelflux                                                                     1.2.6                                   python                      
 pixman                                                                        0.46.0-r0                               apk                         
 pkgconf                                                                       2.4.3-r0                                apk                         
 platformdirs                                                                  4.2.2                                   python                      
