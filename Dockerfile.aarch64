@@ -97,12 +97,14 @@ RUN \
     google-noto-emoji-fonts \
     google-noto-sans-fonts \
     kbd \
+    libdrm \
     libev \
     libfontenc \
     libgcrypt \
     libjpeg-turbo \
     libnotify \
     libtasn1 \
+    libva \
     libX11 \
     libXau \
     libxcb \

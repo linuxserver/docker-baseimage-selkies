@@ -98,12 +98,14 @@ RUN \
     google-noto-sans-fonts \
     intel-media-driver \
     kbd \
+    libdrm \
     libev \
     libfontenc \
     libgcrypt \
     libjpeg-turbo \
     libnotify \
     libtasn1 \
+    libva \
     libX11 \
     libXau \
     libxcb \
