@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f cf4df6ae7695674a2b62d1a687e15b19128cfca3
+  git checkout -f e79285cc42525d333490a68361be48d61a35becb
 
 RUN \
   echo "**** build frontend ****" && \
@@ -59,14 +59,8 @@ RUN \
   echo "**** dev deps ****" && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-    libev-dev \
-    libjpeg62-turbo-dev \
     libopus-dev \
     libpulse-dev \
-    libx11-dev \
-    libxext-dev \
-    libxfixes-dev \
-    libx264-dev \
     python3-dev \
     python3-pip && \
   echo "**** enable locales ****" && \
@@ -109,8 +103,6 @@ RUN \
     libgl1-mesa-dri \
     libglu1-mesa \
     libgnutls30 \
-    libgstreamer1.0 \
-    libjpeg62-turbo \
     libnginx-mod-http-fancyindex \
     libnotify-bin \
     libopus0 \
@@ -183,7 +175,7 @@ RUN \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/cf4df6ae7695674a2b62d1a687e15b19128cfca3.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/e79285cc42525d333490a68361be48d61a35becb.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
@@ -252,12 +244,8 @@ RUN \
     | tar xzvf - -C /usr/share/themes/Clearlooks/openbox-3/ && \
   echo "**** cleanup ****" && \
   apt-get -y remove \
-    libjpeg62-turbo-dev \
     libopus-dev \
     libpulse-dev \
-    libx11-dev \
-    libxext-dev \
-    libx264-dev \
     python3-dev \
     python3-pip && \
   apt-get autoclean && \
