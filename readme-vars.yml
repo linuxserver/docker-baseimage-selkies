@@ -73,6 +73,37 @@ full_custom_readme: |
   | Kali | kali |
   | Ubuntu | ubuntunoble |
 
+  ### DRI3 GPU Acceleration
+
+  For accelerated apps or games, render devices can be mounted into the container and leveraged by applications using:
+
+  `--device /dev/dri:/dev/dri`
+
+  This feature only supports **Open Source** GPU drivers:
+
+  | Driver | Description |
+  | :----: | --- |
+  | Intel | i965 and i915 drivers for Intel iGPU chipsets |
+  | AMD | AMDGPU, Radeon, and ATI drivers for AMD dedicated or APU chipsets |
+  | NVIDIA | nouveau2 drivers only, closed source NVIDIA drivers lack DRI3 support |
+
+  The `DRINODE` environment variable can be used to point to a specific GPU.
+
+  DRI3 will work on aarch64 given the correct drivers are installed inside the container for your chipset.
+
+  ### Nvidia GPU Support
+
+  **Note: Nvidia support is not available for Alpine-based images.**
+
+  Nvidia GPU support is available by leveraging Zink for OpenGL. When a compatible Nvidia GPU is passed through, it will also be **automatically utilized for hardware-accelerated video stream encoding** (using the `x264enc` full-frame profile), significantly reducing CPU load.
+
+  Enable Nvidia support with the following runtime flags:
+
+  | Flag | Description |
+  | :----: | --- |
+  | `--gpus all` | Passes all available host GPUs to the container. This can be filtered to specific GPUs. |
+  | `--runtime nvidia` | Specifies the Nvidia runtime, which provides the necessary drivers and tools from the host. |
+
   # PRoot Apps
 
   All images include [proot-apps](https://github.com/linuxserver/proot-apps) which allow portable applications to be installed to persistent storage in the user's `$HOME` directory. These applications and their settings will persist upgrades of the base container and can be mounted into different flavors of Selkies containers. IE if you are running an Alpine based container you will be able to use the same `/config` directory mounted into a Debian based container and retain the same applications and settings as long as they were installed with `proot-apps install`.
