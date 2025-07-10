@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f cf4df6ae7695674a2b62d1a687e15b19128cfca3
+  git checkout -f e79285cc42525d333490a68361be48d61a35becb
 
 RUN \
   echo "**** build frontend ****" && \
@@ -58,11 +58,6 @@ RUN \
   echo "**** install build deps ****" && \
   apk add --no-cache --virtual .build-deps \
     alpine-sdk \
-    libev-dev \
-    libjpeg-turbo-dev \
-    libx11-dev \
-    libxext-dev \
-    libxfixes-dev \
     linux-headers \
     musl-dev \
     opus-dev \
@@ -70,8 +65,7 @@ RUN \
     py3-pip \
     py3-setuptools \
     py3-wheel \
-    python3-dev \
-    x264-dev && \
+    python3-dev && \
   echo "**** install runtime deps ****" && \
   apk add --no-cache \
     bash \
@@ -166,7 +160,7 @@ RUN \
   pip3 install pixelflux pcmflux --break-system-packages && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/cf4df6ae7695674a2b62d1a687e15b19128cfca3.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/e79285cc42525d333490a68361be48d61a35becb.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
