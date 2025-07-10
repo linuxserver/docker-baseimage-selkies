@@ -55,9 +55,9 @@ dnf                                                                           4.
 dnf-data                                                                      4.14.0-25.el9                           rpm                          
 dnf-plugins-core                                                              4.3.0-20.el9                            rpm                          
 docker-buildx-plugin                                                          0:0.25.0-1.el9                          rpm                          
-docker-ce                                                                     3:28.3.1-1.el9                          rpm                          
-docker-ce-cli                                                                 1:28.3.1-1.el9                          rpm                          
-docker-compose-plugin                                                         0:2.38.1-1.el9                          rpm                          
+docker-ce                                                                     3:28.3.2-1.el9                          rpm                          
+docker-ce-cli                                                                 1:28.3.2-1.el9                          rpm                          
+docker-compose-plugin                                                         0:2.38.2-1.el9                          rpm                          
 elfutils-default-yama-scope                                                   0.192-6.el9_6                           rpm                          
 elfutils-libelf                                                               0.192-6.el9_6                           rpm                          
 elfutils-libs                                                                 0.192-6.el9_6                           rpm                          
@@ -180,14 +180,14 @@ github.com/distribution/reference                                             v0
 github.com/docker/buildx                                                      UNKNOWN                                 go-module                    
 github.com/docker/buildx                                                      v0.25.0                                 go-module                    
 github.com/docker/cli                                                         v28.2.2+incompatible                    go-module                    
-github.com/docker/cli                                                         v28.3.0+incompatible                    go-module                    
+github.com/docker/cli                                                         v28.3.1+incompatible                    go-module                    
 github.com/docker/cli-docs-tool                                               v0.10.0                                 go-module  (+1 duplicate)    
 github.com/docker/cli/cmd/docker                                              UNKNOWN                                 go-module                    
 github.com/docker/compose/v2                                                  UNKNOWN                                 go-module                    
 github.com/docker/distribution                                                v2.8.3+incompatible                     go-module  (+1 duplicate)    
 github.com/docker/docker                                                      v28.2.2+incompatible                    go-module                    
-github.com/docker/docker                                                      v28.3.0+incompatible                    go-module                    
-github.com/docker/docker                                                      v28.3.1                                 go-module  (+1 duplicate)    
+github.com/docker/docker                                                      v28.3.1+incompatible                    go-module                    
+github.com/docker/docker                                                      v28.3.2                                 go-module  (+1 duplicate)    
 github.com/docker/docker-credential-helpers                                   v0.9.3                                  go-module  (+1 duplicate)    
 github.com/docker/go                                                          v1.5.1-1.0.20160303222718-d30aec9fd63c  go-module                    
 github.com/docker/go-connections                                              v0.5.0                                  go-module  (+2 duplicates)   
@@ -214,7 +214,8 @@ github.com/go-logr/stdr                                                       v1
 github.com/go-openapi/jsonpointer                                             v0.21.0                                 go-module  (+1 duplicate)    
 github.com/go-openapi/jsonreference                                           v0.20.2                                 go-module  (+1 duplicate)    
 github.com/go-openapi/swag                                                    v0.23.0                                 go-module  (+1 duplicate)    
-github.com/go-viper/mapstructure/v2                                           v2.0.0                                  go-module  (+1 duplicate)    
+github.com/go-viper/mapstructure/v2                                           v2.0.0                                  go-module                    
+github.com/go-viper/mapstructure/v2                                           v2.3.0                                  go-module                    
 github.com/godbus/dbus/v5                                                     v5.1.0                                  go-module  (+6 duplicates)   
 github.com/gofrs/flock                                                        v0.12.1                                 go-module  (+2 duplicates)   
 github.com/gogo/protobuf                                                      v1.3.2                                  go-module  (+8 duplicates)   
@@ -284,8 +285,7 @@ github.com/mitchellh/hashstructure/v2                                         v2
 github.com/mitchellh/mapstructure                                             v1.5.0                                  go-module                    
 github.com/mitchellh/reflectwalk                                              v1.0.2                                  go-module                    
 github.com/moby/buildkit                                                      v0.23.0                                 go-module                    
-github.com/moby/buildkit                                                      v0.23.1                                 go-module                    
-github.com/moby/buildkit                                                      v0.23.2                                 go-module                    
+github.com/moby/buildkit                                                      v0.23.2                                 go-module  (+1 duplicate)    
 github.com/moby/docker-image-spec                                             v1.3.1                                  go-module  (+2 duplicates)   
 github.com/moby/go-archive                                                    v0.1.0                                  go-module  (+2 duplicates)   
 github.com/moby/ipvs                                                          v1.1.0                                  go-module                    
@@ -603,6 +603,7 @@ libedit                                                                       3.
 libepoxy                                                                      1.5.5-4.el9                             rpm                          
 liberation-fonts-common                                                       1:2.1.3-5.el9                           rpm                          
 liberation-mono-fonts                                                         1:2.1.3-5.el9                           rpm                          
+libev                                                                         4.33-6.el9                              rpm                          
 libevdev                                                                      1.11.0-3.el9                            rpm                          
 libevent                                                                      2.1.12-8.el9_4                          rpm                          
 libfdisk                                                                      2.37.4-21.0.1.el9                       rpm                          
@@ -665,6 +666,7 @@ libuser                                                                       0.
 libutempter                                                                   1.2.1-6.el9                             rpm                          
 libuuid                                                                       2.37.4-21.0.1.el9                       rpm                          
 libuv                                                                         1:1.42.0-2.el9_4                        rpm                          
+libva                                                                         2.22.0-1.el9                            rpm                          
 libverto                                                                      0.3.2-3.el9                             rpm                          
 libvorbis                                                                     1:1.3.7-5.el9                           rpm                          
 libwacom                                                                      1.12.1-3.el9_4                          rpm                          
@@ -716,7 +718,6 @@ nginx-filesystem                                                              2:
 nginx-mod-fancyindex                                                          0.5.2-3.el9                             rpm                          
 ninja-build                                                                   1.10.2-6.el9                            rpm                          
 npth                                                                          1.6-8.el9                               rpm                          
-ocl-icd                                                                       2.2.13-4.el9                            rpm                          
 oniguruma                                                                     6.9.6-1.el9.6                           rpm                          
 openbox                                                                       3.6.1-18.el9                            rpm                          
 openbox-libs                                                                  3.6.1-18.el9                            rpm                          
@@ -822,7 +823,7 @@ perl-threads-shared                                                           1.
 perl-vars                                                                     0:1.05-481.el9                          rpm                          
 pillow                                                                        11.3.0                                  python                       
 pip                                                                           21.3.1                                  python                       
-pixelflux                                                                     1.2.0                                   python                       
+pixelflux                                                                     1.2.6                                   python                       
 pixman                                                                        0.40.0-6.el9_3                          rpm                          
 pkgconf                                                                       1.7.3-10.el9                            rpm                          
 pkgconf-m4                                                                    1.7.3-10.el9                            rpm                          
@@ -875,8 +876,8 @@ python3-pysocks                                                               1.
 python3-pyxdg                                                                 0.27-3.el9                              rpm                          
 python3-requests                                                              2.25.1-9.el9                            rpm                          
 python3-rpm                                                                   4.16.1.3-37.el9                         rpm                          
-python3-setuptools                                                            53.0.0-13.el9                           rpm                          
-python3-setuptools-wheel                                                      53.0.0-13.el9                           rpm                          
+python3-setuptools                                                            53.0.0-13.el9_6.1                       rpm                          
+python3-setuptools-wheel                                                      53.0.0-13.el9_6.1                       rpm                          
 python3-six                                                                   1.15.0-9.el9                            rpm                          
 python3-subscription-manager-rhsm                                             1.29.45.1-1.el9_6                       rpm                          
 python3-systemd                                                               234-19.el9                              rpm                          
@@ -918,7 +919,8 @@ sqlite-libs                                                                   3.
 st                                                                            0.9-1.el9                               rpm                          
 startup-notification                                                          0.12-23.el9                             rpm                          
 stdlib                                                                        go1.23.7                                go-module  (+6 duplicates)   
-stdlib                                                                        go1.24.4                                go-module  (+4 duplicates)   
+stdlib                                                                        go1.24.4                                go-module                    
+stdlib                                                                        go1.24.5                                go-module  (+3 duplicates)   
 subscription-manager                                                          1.29.45.1                               python                       
 subscription-manager                                                          1.29.45.1-1.el9_6                       rpm                          
 subscription-manager-rhsm-certificates                                        20220623-1.el9                          rpm                          
@@ -950,7 +952,6 @@ webrtc-audio-processing                                                       0.
 websockets                                                                    15.0.1                                  python                       
 wheel                                                                         0.36.2                                  python                       
 which                                                                         2.21-29.el9                             rpm                          
-x264-devel                                                                    0.163-6.20210613git5db6aa6.el9          rpm                          
 x264-libs                                                                     0.163-6.20210613git5db6aa6.el9          rpm                          
 xcb-util                                                                      0.4.0-19.el9                            rpm                          
 xdg-utils                                                                     1.1.3-13.el9_6                          rpm                          
