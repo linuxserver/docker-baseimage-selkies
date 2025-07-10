@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM lscr.io/linuxserver/xvfb:fedora42 AS xvfb
-FROM ghcr.io/linuxserver/baseimage-alpine:3.21 AS frontend
+FROM ghcr.io/linuxserver/baseimage-alpine:3.22 AS frontend
 
 RUN \
   echo "**** install build packages ****" && \
@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f cf4df6ae7695674a2b62d1a687e15b19128cfca3
+  git checkout -f e79285cc42525d333490a68361be48d61a35becb
 
 RUN \
   echo "**** build frontend ****" && \
@@ -68,11 +68,6 @@ RUN \
     gcc-c++ \
     glibc-devel \
     kernel-headers \
-    libev-devel \
-    libjpeg-turbo-devel \
-    libX11-devel \
-    libXext-devel \
-    libXfixes-devel \
     make \
     opus-devel  \
     pulseaudio-libs-devel \
@@ -80,8 +75,7 @@ RUN \
     python3-devel \
     python3-pip \
     python3-setuptools \
-    python3-wheel \
-    x264-devel && \
+    python3-wheel && \
   echo "**** install runtime deps ****" && \
   dnf install -y --setopt=install_weak_deps=False --best \
     bash \
@@ -175,7 +169,7 @@ RUN \
   pip3 install pcmflux pixelflux --break-system-packages && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/cf4df6ae7695674a2b62d1a687e15b19128cfca3.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/e79285cc42525d333490a68361be48d61a35becb.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
@@ -243,10 +237,6 @@ RUN \
   dnf remove -y \
     glibc-devel \
     kernel-headers \
-    libev-devel \
-    libjpeg-turbo-devel \
-    libX11-devel \
-    libXext-devel \
     pulseaudio-libs-devel \
     python3-devel \
   dnf autoremove -y && \
