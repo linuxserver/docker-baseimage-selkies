@@ -503,7 +503,7 @@ jaraco-functools                                                              4.
 jaraco-text                                                                   3.12.1                                  python                      
 jaraco-text                                                                   4.0.0                                   python                      
 jq                                                                            1.7.1                                   binary                      
-jq                                                                            1.7.1-6                                 deb                         
+jq                                                                            1.7.1-6+deb13u1                         deb                         
 k8s.io/api                                                                    v0.26.2                                 go-module                   
 k8s.io/api                                                                    v0.32.3                                 go-module  (+1 duplicate)   
 k8s.io/apimachinery                                                           v0.27.4                                 go-module  (+1 duplicate)   
@@ -666,7 +666,7 @@ libjansson4                                                                   2.
 libjbig0                                                                      2.1-6.1+b2                              deb                         
 libjbig2dec0                                                                  0.20-1+b3                               deb                         
 libjpeg62-turbo                                                               1:2.1.5-4                               deb                         
-libjq1                                                                        1.7.1-6                                 deb                         
+libjq1                                                                        1.7.1-6+deb13u1                         deb                         
 libjs-jquery                                                                  3.6.1+dfsg+~3.5.14-1                    deb                         
 libjs-sphinxdoc                                                               8.1.3-5                                 deb                         
 libjs-underscore                                                              1.13.4~dfsg+~1.11.4-3                   deb                         
@@ -1030,7 +1030,7 @@ typeguard                                                                     4.
 typeguard                                                                     4.4.2                                   python                      
 typing-extensions                                                             4.12.2                                  python                      
 typing-extensions                                                             4.13.2                                  python                      
-tzdata                                                                        2025b-3                                 deb                         
+tzdata                                                                        2025b-4                                 deb                         
 udev                                                                          257.6-1                                 deb                         
 util-linux                                                                    2.41-5                                  deb                         
 uuid-dev                                                                      2.41-5                                  deb                         
