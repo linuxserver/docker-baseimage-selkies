@@ -105,9 +105,9 @@ gdbm-libs                                                                     1:
 gdk-pixbuf2                                                                   2.42.12-10.fc42                         rpm                         
 gdk-pixbuf2-modules                                                           2.42.12-10.fc42                         rpm                         
 giflib                                                                        5.2.2-6.fc42                            rpm                         
-git                                                                           2.50.0-1.fc42                           rpm                         
-git-core                                                                      2.50.0-1.fc42                           rpm                         
-git-core-doc                                                                  2.50.0-1.fc42                           rpm                         
+git                                                                           2.50.1-1.fc42                           rpm                         
+git-core                                                                      2.50.1-1.fc42                           rpm                         
+git-core-doc                                                                  2.50.1-1.fc42                           rpm                         
 github.com/Azure/azure-sdk-for-go/sdk/azcore                                  v1.16.0                                 go-module                   
 github.com/Azure/azure-sdk-for-go/sdk/internal                                v1.10.0                                 go-module                   
 github.com/Azure/azure-sdk-for-go/sdk/storage/azblob                          v1.5.0                                  go-module                   
@@ -742,7 +742,7 @@ perl-File-stat                                                                0:
 perl-FileHandle                                                               0:2.05-517.fc42                         rpm                         
 perl-Getopt-Long                                                              1:2.58-3.fc42                           rpm                         
 perl-Getopt-Std                                                               0:1.14-517.fc42                         rpm                         
-perl-Git                                                                      2.50.0-1.fc42                           rpm                         
+perl-Git                                                                      2.50.1-1.fc42                           rpm                         
 perl-HTTP-Tiny                                                                0.090-2.fc42                            rpm                         
 perl-IO                                                                       0:1.55-517.fc42                         rpm                         
 perl-IO-Socket-IP                                                             0.43-2.fc42                             rpm                         
