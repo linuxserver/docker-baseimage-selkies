@@ -579,7 +579,7 @@ libxvmc                                                                       1.
 libxxf86vm                                                                    1.1.6-r0                                apk                         
 linux-firmware-none                                                           20250509-r0                             apk                         
 linux-pam                                                                     1.7.0-r4                                apk                         
-llvm20-libs                                                                   20.1.7-r0                               apk                         
+llvm20-libs                                                                   20.1.8-r0                               apk                         
 logger                                                                        2.41-r9                                 apk                         
 losetup                                                                       2.41-r9                                 apk                         
 lsblk                                                                         2.41-r9                                 apk                         
