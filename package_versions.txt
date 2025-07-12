@@ -466,7 +466,7 @@ importlib-metadata                                                            8.
 importlib-resources                                                           6.4.0                                   python                      
 inflect                                                                       7.3.1                                   python                      
 intel-gmmlib                                                                  22.7.2-1.fc42                           rpm                         
-intel-media-driver                                                            24.4.4-2.fc42                           rpm                         
+intel-media-driver                                                            25.1.4-1.fc42                           rpm                         
 iptables-legacy                                                               1.8.11-8.fc42                           rpm                         
 iptables-legacy-libs                                                          1.8.11-8.fc42                           rpm                         
 iptables-libs                                                                 1.8.11-8.fc42                           rpm                         
