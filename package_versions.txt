@@ -13,7 +13,7 @@ autocommand                                                                   2.
 autoconf                                                                      2.72-1                                  alpm                           
 automake                                                                      1.18-1                                  alpm                           
 base-devel                                                                    1-2                                     alpm                           
-bash                                                                          5.2.037-5                               alpm                           
+bash                                                                          5.3.0-1                                 alpm                           
 binutils                                                                      2.44+r94+gfe459e33c676-1                alpm                           
 bison                                                                         3.8.2-8                                 alpm                           
 brotli                                                                        1.1.0-3                                 alpm                           
@@ -635,7 +635,7 @@ python-pycparser                                                              2.
 python-setuptools                                                             1:80.9.0-1                              alpm                           
 python-wheel                                                                  0.45.1-1                                alpm                           
 python-xlib                                                                   0.33                                    python                         
-readline                                                                      8.2.013-2                               alpm                           
+readline                                                                      8.3.0-3                                 alpm                           
 resenje.org/singleflight                                                      v0.4.3                                  go-module                      
 rhash                                                                         1.4.4-1                                 alpm                           
 rtkit                                                                         0.13-3                                  alpm                           
