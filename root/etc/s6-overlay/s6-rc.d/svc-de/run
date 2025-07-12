@@ -1,5 +1,13 @@
 #!/usr/bin/with-contenv bash
 
+# wait for X to be running
+while true; do
+  if xset q &>/dev/null; then
+    break
+  fi
+  sleep .5
+done
+
 # set the keyboard map by LC if known
 if [ ! -z "${LC_ALL}" ]; then
   normalized_locale_full=${LC_ALL%%.*}
