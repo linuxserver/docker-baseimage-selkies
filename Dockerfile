@@ -73,6 +73,7 @@ RUN \
     dunst \
     file \
     freetype2 \
+    fuse-overlayfs \
     git \
     glibc \
     gnutls \
