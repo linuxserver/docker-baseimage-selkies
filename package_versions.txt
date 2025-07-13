@@ -74,6 +74,10 @@ fontconfig                                                                    2.
 fonts-filesystem                                                              1:2.0.5-7.el9.1                         rpm                          
 freetype                                                                      2.10.4-10.el9_5                         rpm                          
 fribidi                                                                       1.0.10-6.el9.2                          rpm                          
+fuse-common                                                                   3.10.2-9.el9                            rpm                          
+fuse-overlayfs                                                                1.14-1.el9                              rpm                          
+fuse3                                                                         3.10.2-9.el9                            rpm                          
+fuse3-libs                                                                    3.10.2-9.el9                            rpm                          
 gawk                                                                          5.1.0-6.el9                             rpm                          
 gdb-gdbserver                                                                 14.2-4.1.el9_6                          rpm                          
 gdbm-libs                                                                     1:1.23-1.el9                            rpm                          
@@ -547,6 +551,7 @@ kbd-legacy                                                                    2.
 kbd-misc                                                                      2.4.0-11.el9                            rpm                          
 keyutils                                                                      1.6.3-1.el9                             rpm                          
 keyutils-libs                                                                 1.6.3-1.el9                             rpm                          
+kmod                                                                          28-10.0.2.el9                           rpm                          
 kmod-libs                                                                     28-10.el9                               rpm                          
 krb5-libs                                                                     1.21.1-8.el9_6                          rpm                          
 langpacks-core-en                                                             3.0-16.el9                              rpm                          
