@@ -78,6 +78,7 @@ RUN \
     dbus-x11 \
     dunst \
     file \
+    fuse-overlayfs \
     linux-firmware-none \
     font-noto-cjk \
     font-noto-emoji \

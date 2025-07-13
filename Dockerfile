@@ -82,6 +82,7 @@ RUN \
     font-noto-cjk \
     font-noto-emoji \
     font-noto \
+    fuse-overlayfs \
     git \
     intel-media-driver \
     libev \
