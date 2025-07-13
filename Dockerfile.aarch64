@@ -85,6 +85,7 @@ RUN \
     docker-compose-plugin \
     file \
     freetype \
+    fuse-overlayfs \
     git \
     glibc-all-langpacks \
     glibc-locale-source \
