@@ -72,6 +72,8 @@ fonts-noto-cjk                                                                1:
 fonts-noto-color-emoji                                                        2.042-0+deb12u1                         deb                         
 fonts-noto-core                                                               20201225-1                              deb                         
 fonts-urw-base35                                                              20200910-7                              deb                         
+fuse-overlayfs                                                                1.10-1                                  deb                         
+fuse3                                                                         3.14.0-4                                deb                         
 g++                                                                           4:12.2.0-3                              deb                         
 g++-12                                                                        12.2.0-14+deb12u1                       deb                         
 gcc                                                                           4:12.2.0-3                              deb                         
@@ -598,6 +600,7 @@ libfontconfig1                                                                2.
 libfontenc1                                                                   1:1.1.4-1                               deb                         
 libfreetype6                                                                  2.12.1+dfsg-5+deb12u4                   deb                         
 libfribidi0                                                                   1.0.8-2.1                               deb                         
+libfuse3-3                                                                    3.14.0-4                                deb                         
 libgbm1                                                                       22.3.6-1+deb12u1                        deb                         
 libgcc-12-dev                                                                 12.2.0-14+deb12u1                       deb                         
 libgcc-s1                                                                     12.2.0-14+deb12u1                       deb                         
