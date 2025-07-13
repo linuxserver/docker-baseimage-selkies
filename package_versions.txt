@@ -71,6 +71,8 @@ fonts-noto-color-emoji                                                        2.
 fonts-noto-core                                                               20201225-2                              deb                         
 fonts-noto-mono                                                               20201225-2                              deb                         
 fonts-urw-base35                                                              20200910-8                              deb                         
+fuse-overlayfs                                                                1.14-1+b1                               deb                         
+fuse3                                                                         3.17.2-2                                deb                         
 g++                                                                           4:14.2.0-1                              deb                         
 g++-14                                                                        14.2.0-19                               deb                         
 g++-14-x86-64-linux-gnu                                                       14.2.0-19                               deb                         
@@ -606,6 +608,7 @@ libfontconfig1                                                                2.
 libfontenc1                                                                   1:1.1.8-1+b2                            deb                         
 libfreetype6                                                                  2.13.3+dfsg-1                           deb                         
 libfribidi0                                                                   1.0.16-1                                deb                         
+libfuse3-4                                                                    3.17.2-2                                deb                         
 libgbm1                                                                       25.0.5-2                                deb                         
 libgcc-14-dev                                                                 14.2.0-19                               deb                         
 libgcc-s1                                                                     14.2.0-19                               deb                         
