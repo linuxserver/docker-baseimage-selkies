@@ -89,6 +89,7 @@ RUN \
     fonts-noto-cjk \
     fonts-noto-color-emoji \
     fonts-noto-core \
+    fuse-overlayfs \
     g++ \
     gcc \
     git \
