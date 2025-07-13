@@ -89,6 +89,7 @@ RUN \
     dunst \
     file \
     freetype \
+    fuse-overlayfs \
     git \
     glibc-all-langpacks \
     glibc-locale-source \
