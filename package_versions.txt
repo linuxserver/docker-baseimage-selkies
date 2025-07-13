@@ -637,7 +637,7 @@ pciutils-libs                                                                 3.
 pcmflux                                                                       1.0.3                                   python                      
 pcre2                                                                         10.43-r1                                apk                         
 pillow                                                                        11.3.0                                  python                      
-pixelflux                                                                     1.2.6                                   python                      
+pixelflux                                                                     1.2.7                                   python                      
 pixman                                                                        0.46.0-r0                               apk                         
 pkgconf                                                                       2.4.3-r0                                apk                         
 platformdirs                                                                  4.2.2                                   python                      
