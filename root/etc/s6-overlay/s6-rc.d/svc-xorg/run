@@ -8,12 +8,16 @@ fi
 if [ ! -z ${DRINODE+x} ]; then
   VFBCOMMAND="-vfbdevice ${DRINODE}"
 fi
+DEFAULT_RES="7680x4320"
+if [ ! -z ${MAX_RES+x} ]; then
+  DEFAULT_RES="${MAX_RES}"
+fi
 
 # Run Xvfb server with required extensions
 exec s6-setuidgid abc \
   /usr/bin/Xvfb \
     "${DISPLAY}" \
-    -screen 0 "7680x4320x${DISPLAY_CDEPTH}" \
+    -screen 0 "${DEFAULT_RES}x${DISPLAY_CDEPTH}" \
     -dpi "${DISPLAY_DPI}" \
     +extension "COMPOSITE" \
     +extension "DAMAGE" \
