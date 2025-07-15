@@ -1,5 +1,4 @@
 # syntax=docker/dockerfile:1
-FROM lscr.io/linuxserver/xvfb:debianbookworm AS xvfb
 FROM ghcr.io/linuxserver/baseimage-alpine:3.22 AS frontend
 
 RUN \
@@ -16,7 +15,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f bf819b37033b6b34311ca294b16dbd3ee17db636
+  git checkout -f 91a250e67c791c15ba65eece70d3ed8bd4d1e7a9
 
 RUN \
   echo "**** build frontend ****" && \
@@ -177,7 +176,7 @@ RUN \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/bf819b37033b6b34311ca294b16dbd3ee17db636.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/91a250e67c791c15ba65eece70d3ed8bd4d1e7a9.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
@@ -261,7 +260,6 @@ RUN \
 # add local files
 COPY /root /
 COPY --from=frontend /buildout /usr/share/selkies/www
-COPY --from=xvfb / /
 
 # ports and volumes
 EXPOSE 3000 3001
