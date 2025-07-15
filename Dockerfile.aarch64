@@ -167,6 +167,8 @@ RUN \
     xutils \
     xvfb \
     zlib1g && \
+  apt install -t bookworm-backports -y \
+    mesa-libgallium && \
   echo "**** install selkies ****" && \
   pip3 install pixelflux pcmflux --break-system-packages && \
   SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/latest" \
