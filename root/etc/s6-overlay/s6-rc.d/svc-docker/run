@@ -1,11 +1,10 @@
 #!/usr/bin/with-contenv bash
 
-# We need to wait for kclient to be full up as docker init breaks audio
-sleep 5
 
 # Make sure this is a priv container
 if [ -e /dev/cpu_dma_latency ]; then
   if [ "${START_DOCKER}" == "true" ]; then
+    mount -t tmpfs none /tmp
     exec /usr/local/bin/dockerd-entrypoint.sh -l error
   else
     sleep infinity
