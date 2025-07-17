@@ -802,7 +802,7 @@ libsysprof-capture-4-dev                                                      48
 libsystemd-shared                                                             257.7-1                                 deb                         
 libsystemd0                                                                   257.7-1                                 deb                         
 libtasn1-6                                                                    4.20.0-2                                deb                         
-libtdb1                                                                       2:1.4.13+samba4.22.2+dfsg-1             deb                         
+libtdb1                                                                       2:1.4.13+samba4.22.3+dfsg-2             deb                         
 libthai-data                                                                  0.1.29-2                                deb                         
 libthai0                                                                      0.1.29-2+b1                             deb                         
 libtheoradec1                                                                 1.2.0~alpha1+dfsg-6                     deb                         
