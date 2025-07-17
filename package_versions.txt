@@ -23,7 +23,7 @@ avahi-libs                                                                    0.
 backports-tarfile                                                             1.2.0                                   python                      
 basesystem                                                                    11-22.fc42                              rpm                         
 bash                                                                          5.2.37-1.fc42                           rpm                         
-breeze-cursor-theme                                                           6.4.2-1.fc42                            rpm                         
+breeze-cursor-theme                                                           6.4.3-1.fc42                            rpm                         
 busybox                                                                       1:1.37.0-2.fc42                         rpm                         
 bzip2                                                                         1.0.8-20.fc42                           rpm                         
 bzip2-libs                                                                    1.0.8-20.fc42                           rpm                         
@@ -583,7 +583,7 @@ libheif                                                                       1.
 libicu                                                                        76.1-4.fc42                             rpm                         
 libidn2                                                                       2.3.8-1.fc42                            rpm                         
 libijs                                                                        0.35-24.fc42                            rpm                         
-libinput                                                                      1.28.901-1.fc42                         rpm                         
+libinput                                                                      1.28.901-2.fc42                         rpm                         
 libjpeg-turbo                                                                 3.1.0-2.fc42                            rpm                         
 libjxl                                                                        1:0.11.1-2.fc42                         rpm                         
 libksba                                                                       1.6.7-3.fc42                            rpm                         
@@ -703,8 +703,8 @@ openjpeg                                                                      2.
 openldap                                                                      2.6.9-3.fc42                            rpm                         
 openssh                                                                       9.9p1-11.fc42                           rpm                         
 openssh-clients                                                               9.9p1-11.fc42                           rpm                         
-openssl                                                                       1:3.2.4-3.fc42                          rpm                         
-openssl-libs                                                                  1:3.2.4-3.fc42                          rpm                         
+openssl                                                                       1:3.2.4-4.fc42                          rpm                         
+openssl-libs                                                                  1:3.2.4-4.fc42                          rpm                         
 opus                                                                          1.5.2-2.fc42                            rpm                         
 opus-devel                                                                    1.5.2-2.fc42                            rpm                         
 orc                                                                           0.4.41-1.fc42                           rpm                         
@@ -913,7 +913,7 @@ urw-base35-z003-fonts                                                         20
 util-linux                                                                    2.40.4-7.fc42                           rpm                         
 util-linux-core                                                               2.40.4-7.fc42                           rpm                         
 vim-data                                                                      2:9.1.1537-1.fc42                       rpm                         
-vim-filesystem                                                                2:9.1.1537-2.fc42                       rpm                         
+vim-filesystem                                                                2:9.1.1552-1.fc42                       rpm                         
 vim-minimal                                                                   2:9.1.1537-1.fc42                       rpm                         
 vulkan-loader                                                                 1.4.313.0-1.fc42                        rpm                         
 vulkan-tools                                                                  1.4.313.0-1.fc42                        rpm                         
