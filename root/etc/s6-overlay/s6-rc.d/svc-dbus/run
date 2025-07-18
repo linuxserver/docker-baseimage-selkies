@@ -1,8 +1,0 @@
-#!/usr/bin/with-contenv bash
-
-# Run dbus
-mkdir /run/dbus
-dbus-daemon \
-  --system \
-  --nofork \
-  --nosyslog 
