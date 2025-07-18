@@ -12,10 +12,12 @@ The purpose of these images is to provide a full featured web native Linux deskt
 These images contain the following services:
 
 * [Selkies](https://github.com/selkies-project) - The core technology for interacting with a containerized desktop from a web browser.
+* [pixelflux](https://github.com/linuxserver/pixelflux/) - The core video/image rendering pipeline.
+* [pcmflux](https://github.com/linuxserver/pcmflux) - Lean low level web native opus audio encoder. 
 * [NGINX](https://www.nginx.com/) - Used to serve Selkies with the appropriate paths and provide basic auth.
 * [Docker](https://www.docker.com/) - Can be used for interacting with a mounted in Docker socket or if the container is run in privileged mode will start a [DinD](https://www.docker.com/blog/docker-can-now-run-within-docker/) setup.
 * [PulseAudio](https://www.freedesktop.org/wiki/Software/PulseAudio/) - Sound subsystem used to capture audio from the active desktop session and send it to the browser.
-* [GStreamer](https://gstreamer.freedesktop.org/) - Used to encode X11 with multiple video codecs and send it to the client.
+
 # Options
 
 **Authentication for these containers is included as a convenience and to keep in sync with the previous KasmVNC containers they replace. We use bash to substitute in settings user/password and some strings might break that. In general this authentication mechanism should be used to keep the kids out not the internet**
