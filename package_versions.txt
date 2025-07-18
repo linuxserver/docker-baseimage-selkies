@@ -72,7 +72,7 @@ dnf-data                                                                      4.
 dnf5                                                                          5.2.13.1-1.fc42                         rpm                         
 dnf5-plugins                                                                  5.2.13.1-1.fc42                         rpm                         
 docker-cli                                                                    28.3.0-1.fc42                           rpm                         
-docker-compose                                                                2.37.3-3.fc42                           rpm                         
+docker-compose                                                                2.38.2-1.fc42                           rpm                         
 duktape                                                                       2.7.0-9.fc42                            rpm                         
 dunst                                                                         1.12.2-1.fc42                           rpm                         
 elfutils-debuginfod-client                                                    0.193-2.fc42                            rpm                         
@@ -689,11 +689,11 @@ ncurses-base                                                                  6.
 ncurses-libs                                                                  6.5-5.20250125.fc42                     rpm                         
 netcat                                                                        1.229-2.fc42                            rpm                         
 nettle                                                                        3.10.1-1.fc42                           rpm                         
-nginx                                                                         2:1.26.3-1.fc42                         rpm                         
-nginx-core                                                                    2:1.26.3-1.fc42                         rpm                         
-nginx-filesystem                                                              2:1.26.3-1.fc42                         rpm                         
+nginx                                                                         2:1.28.0-2.fc42                         rpm                         
+nginx-core                                                                    2:1.28.0-2.fc42                         rpm                         
+nginx-filesystem                                                              2:1.28.0-2.fc42                         rpm                         
 nginx-mimetypes                                                               2.1.54-8.fc42                           rpm                         
-nginx-mod-fancyindex                                                          0.5.2-10.fc42                           rpm                         
+nginx-mod-fancyindex                                                          0.5.2-11.fc42                           rpm                         
 npth                                                                          1.8-2.fc42                              rpm                         
 oniguruma                                                                     6.9.10-2.fc42                           rpm                         
 openbox                                                                       3.6.1-28.fc42                           rpm                         
