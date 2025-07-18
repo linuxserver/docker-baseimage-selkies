@@ -15,7 +15,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f 7594ac10262b950f98283d0e8a2823159370de32
+  git checkout -f f3fc27c6c1d1080cdc83c9113aa66d2c9d3906c3
 
 RUN \
   echo "**** build frontend ****" && \
@@ -23,11 +23,11 @@ RUN \
   cd addons/gst-web-core && \
   npm install && \
   npm run build && \
+  cp dist/selkies-core.js ../selkies-dashboard/src && \
   cd ../selkies-dashboard && \
   npm install && \
   npm run build && \
   mkdir dist/src dist/nginx && \
-  cp ../gst-web-core/dist/selkies-core.js dist/src/ && \
   cp ../universal-touch-gamepad/universalTouchGamepad.js dist/src/ && \
   cp ../gst-web-core/nginx/* dist/nginx/ && \
   mkdir /buildout && \
@@ -165,7 +165,7 @@ RUN \
   pip3 install pcmflux pixelflux && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/7594ac10262b950f98283d0e8a2823159370de32.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/f3fc27c6c1d1080cdc83c9113aa66d2c9d3906c3.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
