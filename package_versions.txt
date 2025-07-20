@@ -581,8 +581,8 @@ noto-fonts                                                                    1:
 noto-fonts-cjk                                                                20240730-1                              alpm                           
 noto-fonts-emoji                                                              1:2.048-1                               alpm                           
 npth                                                                          1.8-1                                   alpm                           
-nspr                                                                          4.36-1                                  alpm                           
-nss                                                                           3.113.1-1                               alpm                           
+nspr                                                                          4.37-1                                  alpm                           
+nss                                                                           3.114-1                                 alpm                           
 oniguruma                                                                     6.9.10-1                                alpm                           
 openbox                                                                       3.6.1-12                                alpm                           
 openssh                                                                       10.0p1-3                                alpm                           
@@ -607,8 +607,8 @@ perl                                                                          5.
 pillow                                                                        11.3.0                                  python                         
 pinentry                                                                      1.3.1-5                                 alpm                           
 pip                                                                           25.1.1                                  python                         
-pixelflux                                                                     1.2.9                                   python                         
-pixman                                                                        0.46.2-1                                alpm                           
+pixelflux                                                                     1.3.0                                   python                         
+pixman                                                                        0.46.4-1                                alpm                           
 pkgconf                                                                       2.5.1-1                                 alpm                           
 platformdirs                                                                  4.3.6                                   python                         
 polkit                                                                        126-2                                   alpm                           
