@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM lscr.io/linuxserver/xvfb:debianbookworm AS xvfb
+FROM lscr.io/linuxserver/xvfb:debiantrixie AS xvfb
 FROM ghcr.io/linuxserver/baseimage-alpine:3.22 AS frontend
 
 RUN \
@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f bc501eae8c6f807ebe1bbf3fb5c1f54bc7665ae3
+  git checkout -f f56d4a951acbcaf659867561f3f659555dfc0cd7
 
 RUN \
   echo "**** build frontend ****" && \
@@ -35,7 +35,7 @@ RUN \
   cp -ar dist/* /buildout/
 
 # Runtime stage
-FROM ghcr.io/linuxserver/baseimage-debian:bookworm
+FROM ghcr.io/linuxserver/baseimage-debian:trixie
 
 # set version label
 ARG BUILD_DATE
@@ -68,7 +68,7 @@ RUN \
     /etc/dpkg/dpkg.cfg.d/docker && \
   echo "**** install deps ****" && \
   curl -fsSL https://download.docker.com/linux/debian/gpg | tee /usr/share/keyrings/docker.asc >/dev/null && \
-  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list && \
+  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/debian trixie stable" > /etc/apt/sources.list.d/docker.list && \
   curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
@@ -125,6 +125,7 @@ RUN \
     libxtst6 \
     locales-all \
     make \
+    mesa-libgallium \
     mesa-va-drivers \
     mesa-vulkan-drivers \
     nginx \
@@ -136,8 +137,7 @@ RUN \
     pulseaudio \
     pulseaudio-utils \
     python3 \
-    python3-distutils \
-    software-properties-common \
+    python3-setuptools \
     ssl-cert \
     stterm \
     sudo \
@@ -168,15 +168,13 @@ RUN \
     xutils \
     xvfb \
     zlib1g && \
-  apt install -t bookworm-backports -y \
-    mesa-libgallium && \
   echo "**** install selkies ****" && \
   pip3 install pixelflux pcmflux --break-system-packages && \
   SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/latest" \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/bc501eae8c6f807ebe1bbf3fb5c1f54bc7665ae3.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/f56d4a951acbcaf659867561f3f659555dfc0cd7.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
