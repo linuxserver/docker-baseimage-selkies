@@ -67,6 +67,7 @@ All base images are built for x86_64 and aarch64 platforms.
 | Alpine | alpine322 |
 | Arch | arch |
 | Debian | debianbookworm |
+| Debian | debiantrixie |
 | Enterprise Linux | el9 |
 | Fedora | fedora42 |
 | Kali | kali |
