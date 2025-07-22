@@ -7,17 +7,23 @@ adobe-mappings-pdf                                                            20
 adwaita-cursor-theme                                                          48.0-1.fc42                             rpm                         
 adwaita-icon-theme                                                            48.0-1.fc42                             rpm                         
 adwaita-icon-theme-legacy                                                     46.2-3.fc42                             rpm                         
+aiohappyeyeballs                                                              2.6.1                                   python                      
+aiohttp                                                                       3.12.14                                 python                      
+aioice                                                                        0.10.1                                  python                      
+aiosignal                                                                     1.4.0                                   python                      
 alsa-lib                                                                      1.2.14-3.fc42                           rpm                         
 alternatives                                                                  1.33-1.fc42                             rpm                         
 at-spi2-atk                                                                   2.56.3-1.fc42                           rpm                         
 at-spi2-core                                                                  2.56.3-1.fc42                           rpm                         
 atk                                                                           2.56.3-1.fc42                           rpm                         
+attrs                                                                         25.3.0                                  python                      
 audit-libs                                                                    4.0.5-2.fc42                            rpm                         
 authselect                                                                    1.5.1-1.fc42                            rpm                         
 authselect-libs                                                               1.5.1-1.fc42                            rpm                         
 autocommand                                                                   2.2.2                                   python                      
 autoconf                                                                      2.72-5.fc42                             rpm                         
 automake                                                                      1.17-2.fc42                             rpm                         
+av                                                                            14.4.0                                  python                      
 avahi-glib                                                                    0.9~rc2-2.fc42                          rpm                         
 avahi-libs                                                                    0.9~rc2-2.fc42                          rpm                         
 backports-tarfile                                                             1.2.0                                   python                      
@@ -32,6 +38,7 @@ cairo                                                                         1.
 cairo-gobject                                                                 1.18.2-3.fc42                           rpm                         
 catatonit                                                                     0.2.1-1.fc42                            rpm                         
 cdparanoia-libs                                                               10.2-47.fc42                            rpm                         
+cffi                                                                          1.17.1                                  python                      
 cloud.google.com/go/compute/metadata                                          v0.6.0                                  go-module                   
 cloud.google.com/go/logging                                                   v1.9.0                                  go-module                   
 cloud.google.com/go/longrunning                                               v0.5.5                                  go-module                   
@@ -48,6 +55,7 @@ cpp                                                                           15
 cpuinfo                                                                       24.09.26-2.git1e83a2f.fc42.1            rpm                         
 cracklib                                                                      2.9.11-7.fc42                           rpm                         
 crypto-policies                                                               20250707-1.gitad370a8.fc42              rpm                         
+cryptography                                                                  45.0.5                                  python                      
 cryptsetup-libs                                                               2.8.0-1.fc42                            rpm                         
 cups-filesystem                                                               1:2.4.12-3.fc42                         rpm                         
 cups-libs                                                                     1:2.4.12-3.fc42                         rpm                         
@@ -71,6 +79,7 @@ dnf                                                                           4.
 dnf-data                                                                      4.23.0-1.fc42                           rpm                         
 dnf5                                                                          5.2.13.1-1.fc42                         rpm                         
 dnf5-plugins                                                                  5.2.13.1-1.fc42                         rpm                         
+dnspython                                                                     2.7.0                                   python                      
 docker-cli                                                                    28.3.2-1.fc42                           rpm                         
 docker-compose                                                                2.38.2-1.fc42                           rpm                         
 duktape                                                                       2.7.0-9.fc42                            rpm                         
@@ -99,6 +108,7 @@ fontconfig                                                                    2.
 fonts-filesystem                                                              1:2.0.5-22.fc42                         rpm                         
 freetype                                                                      2.13.3-2.fc42                           rpm                         
 fribidi                                                                       1.0.16-2.fc42                           rpm                         
+frozenlist                                                                    1.7.0                                   python                      
 fuse-common                                                                   3.16.2-5.fc42                           rpm                         
 fuse-overlayfs                                                                1.13-3.fc42                             rpm                         
 fuse3                                                                         3.16.2-5.fc42                           rpm                         
@@ -423,6 +433,7 @@ golang.org/x/text                                                             v0
 golang.org/x/text                                                             v0.24.0                                 go-module  (+1 duplicate)   
 golang.org/x/time                                                             v0.11.0                                 go-module  (+1 duplicate)   
 golang.org/x/time                                                             v0.3.0                                  go-module                   
+google-crc32c                                                                 1.7.1                                   python                      
 google-droid-sans-fonts                                                       20200215-22.fc42                        rpm                         
 google-noto-emoji-fonts                                                       20241008-2.fc42                         rpm                         
 google-noto-fonts-common                                                      20250301-1.fc42                         rpm                         
@@ -464,6 +475,8 @@ highway                                                                       1.
 hiredis                                                                       1.2.0-6.fc42                            rpm                         
 hostname                                                                      3.25-2.fc42                             rpm                         
 hwdata                                                                        0.397-1.fc42                            rpm                         
+idna                                                                          3.10                                    python                      
+ifaddr                                                                        0.2.0                                   python                      
 ima-evm-utils-libs                                                            1.6.2-4.fc42                            rpm                         
 imlib2                                                                        1.12.3-2.fc42                           rpm                         
 importlib-metadata                                                            8.0.0                                   python                      
@@ -684,6 +697,7 @@ mpfr                                                                          4.
 mpg123-libs                                                                   1.32.10-1.fc42                          rpm                         
 msgpack                                                                       1.1.1                                   python                      
 mtdev                                                                         1.1.6-10.fc42                           rpm                         
+multidict                                                                     6.6.3                                   python                      
 ncurses                                                                       6.5-5.20250125.fc42                     rpm                         
 ncurses-base                                                                  6.5-5.20250125.fc42                     rpm                         
 ncurses-libs                                                                  6.5-5.20250125.fc42                     rpm                         
@@ -808,6 +822,7 @@ polkit-pkla-compat                                                            0.
 popt                                                                          1.19-8.fc42                             rpm                         
 procps-ng                                                                     4.0.4-6.fc42                            rpm                         
 prometheus-client                                                             0.22.1                                  python                      
+propcache                                                                     0.3.2                                   python                      
 protobuf-c                                                                    1.5.1-1.fc42                            rpm                         
 psutil                                                                        7.0.0                                   python                      
 publicsuffix-list-dafsa                                                       20250616-1.fc42                         rpm                         
@@ -815,7 +830,11 @@ pulseaudio                                                                    17
 pulseaudio-libs                                                               17.0-5.fc42                             rpm                         
 pulseaudio-utils                                                              17.0-5.fc42                             rpm                         
 pulsectl                                                                      24.12.0                                 python                      
+pycparser                                                                     2.22                                    python                      
+pyee                                                                          13.0.0                                  python                      
+pylibsrtp                                                                     0.12.0                                  python                      
 pynput                                                                        1.8.1                                   python                      
+pyopenssl                                                                     25.1.0                                  python                      
 python-pip-wheel                                                              24.3.1-2.fc42                           rpm                         
 python-unversioned-command                                                    3.13.5-1.fc42                           rpm                         
 python-xlib                                                                   0.33                                    python                      
@@ -856,8 +875,8 @@ sdbus-cpp                                                                     1.
 sdl12-compat                                                                  1.2.68-5.fc42                           rpm                         
 sdl2-compat                                                                   2.32.56-1.fc42                          rpm                         
 sed                                                                           4.9-4.fc42                              rpm                         
-selinux-policy                                                                41.45-1.fc42                            rpm                         
-selinux-policy-targeted                                                       41.45-1.fc42                            rpm                         
+selinux-policy                                                                42.1-1.fc42                             rpm                         
+selinux-policy-targeted                                                       42.1-1.fc42                             rpm                         
 selkies                                                                       0.0.0                                   python                      
 setup                                                                         2.15.0-13.fc42                          rpm                         
 setuptools                                                                    74.1.3                                  python                      
@@ -895,6 +914,7 @@ tomli                                                                         2.
 tpm2-tss                                                                      4.1.3-6.fc42                            rpm                         
 typeguard                                                                     4.3.0                                   python                      
 typing-extensions                                                             4.12.2                                  python                      
+typing-extensions                                                             4.14.1                                  python                      
 tzdata                                                                        2025b-1.fc42                            rpm                         
 unbound-anchor                                                                1.23.1-1.fc42                           rpm                         
 unbound-libs                                                                  1.23.1-1.fc42                           rpm                         
@@ -952,6 +972,7 @@ xsel                                                                          1.
 xterm                                                                         397-1.fc42                              rpm                         
 xz                                                                            1:5.8.1-2.fc42                          rpm                         
 xz-libs                                                                       1:5.8.1-2.fc42                          rpm                         
+yarl                                                                          1.20.1                                  python                      
 zchunk-libs                                                                   1.5.1-2.fc42                            rpm                         
 zipp                                                                          3.19.2                                  python                      
 zlib-ng-compat                                                                2.2.4-3.fc42                            rpm                         
