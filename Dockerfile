@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f f56d4a951acbcaf659867561f3f659555dfc0cd7
+  git checkout -f 3a0ed53e79eec52d76292d4c8934eadaa53fa8ce
 
 RUN \
   echo "**** build frontend ****" && \
@@ -169,13 +169,13 @@ RUN \
     xterm \
     zlib && \
   echo "**** install selkies ****" && \
-  pip3 install pcmflux pixelflux --break-system-packages && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/f56d4a951acbcaf659867561f3f659555dfc0cd7.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/3a0ed53e79eec52d76292d4c8934eadaa53fa8ce.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
+  sed -i '/cryptography/d' pyproject.toml && \
   pip3 install . --break-system-packages && \
   echo "**** install selkies interposer ****" && \
   cd addons/js-interposer && \
