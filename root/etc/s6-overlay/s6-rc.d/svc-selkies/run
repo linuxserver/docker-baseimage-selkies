@@ -1,8 +1,5 @@
 #!/usr/bin/with-contenv bash
 
-# Clear the cache registry
-rm -rf "${HOME}/.cache/gstreamer-1.0"
-
 # Default sink setup
 if [ ! -f '/dev/shm/audio.lock' ]; then
   until [ -f /defaults/pid ]; do
@@ -51,16 +48,12 @@ if [ ! -z ${DEV_MODE+x} ]; then
     s6-setuidgid abc npm run serve &
   fi
   # Run backend
-  cd $HOME/src/src/selkies_gstreamer
+  cd $HOME/src/src
   s6-setuidgid abc \
-    nodemon --exec \
-      "python3" __main__.py \
-      --addr="localhost" \
-      --port="8081" \
-      --enable_basic_auth="false" \
-      --enable_metrics_http="true" \
-      --metrics_http_port="9081" \
-      --mode="websockets"
+    nodemon \
+      --watch selkies \
+      --ext "py" \
+      --exec "python3 -m selkies --port=8081 --enable_basic_auth=false --mode=websockets"
 fi
 
 
@@ -70,6 +63,4 @@ exec s6-setuidgid abc \
     --addr="localhost" \
     --port="8081" \
     --enable_basic_auth="false" \
-    --enable_metrics_http="true" \
-    --metrics_http_port="9081" \
     --mode="websockets"
