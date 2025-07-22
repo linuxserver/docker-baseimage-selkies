@@ -169,7 +169,6 @@ RUN \
     xvfb \
     zlib1g && \
   echo "**** install selkies ****" && \
-  pip3 install pixelflux pcmflux --break-system-packages && \
   SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/latest" \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o \
@@ -178,6 +177,7 @@ RUN \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
+  sed -i '/cryptography/d' pyproject.toml && \
   pip3 install . --break-system-packages && \
   echo "**** install selkies interposer ****" && \
   cd addons/js-interposer && \
