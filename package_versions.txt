@@ -520,7 +520,7 @@ iproute2                                                                      6.
 iptables                                                                      1.8.10-3ubuntu2                         deb                            
 iso-codes                                                                     4.16.0-1                                deb                            
 jq                                                                            1.7.1                                   binary                         
-jq                                                                            1.7.1-3build1                           deb                            
+jq                                                                            1.7.1-3ubuntu0.24.04.1                  deb                            
 k8s.io/api                                                                    v0.26.2                                 go-module                      
 k8s.io/api                                                                    v0.32.3                                 go-module     (+1 duplicate)   
 k8s.io/apimachinery                                                           v0.27.4                                 go-module     (+1 duplicate)   
@@ -698,7 +698,7 @@ libjbig0                                                                      2.
 libjbig2dec0                                                                  0.20-1build3                            deb                            
 libjpeg-turbo8                                                                2.1.5-2ubuntu2                          deb                            
 libjpeg8                                                                      8c-2ubuntu11                            deb                            
-libjq1                                                                        1.7.1-3build1                           deb                            
+libjq1                                                                        1.7.1-3ubuntu0.24.04.1                  deb                            
 libjson-c5                                                                    0.17-1build1                            deb                            
 libjson-glib-1.0-0                                                            1.8.0-2build2                           deb                            
 libjson-glib-1.0-common                                                       1.8.0-2build2                           deb                            
