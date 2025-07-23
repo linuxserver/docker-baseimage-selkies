@@ -609,8 +609,8 @@ libelf1t64                                                                    0.
 libepoxy0                                                                     1.5.10-2                                deb                         
 liberror-perl                                                                 0.17030-1                               deb                         
 libev4t64                                                                     1:4.33-2.1+b1                           deb                         
-libexpat1                                                                     2.7.1-1                                 deb                         
-libexpat1-dev                                                                 2.7.1-1                                 deb                         
+libexpat1                                                                     2.7.1-2                                 deb                         
+libexpat1-dev                                                                 2.7.1-2                                 deb                         
 libffi-dev                                                                    3.4.8-2                                 deb                         
 libffi8                                                                       3.4.8-2                                 deb                         
 libfftw3-single3                                                              3.3.10-2+b1                             deb                         
