@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f 3a0ed53e79eec52d76292d4c8934eadaa53fa8ce
+  git checkout -f a577b656b48444be9b7a04bab17c0046e1e77e59
 
 RUN \
   echo "**** build frontend ****" && \
@@ -31,9 +31,9 @@ RUN \
   mkdir dist/src dist/nginx && \
   cp ../universal-touch-gamepad/universalTouchGamepad.js dist/src/ && \
   cp ../gst-web-core/nginx/* dist/nginx/ && \
+  cp -r ../gst-web-core/dist/jsdb dist/ && \
   mkdir /buildout && \
   cp -ar dist/* /buildout/
-
 
 # Runtime stage
 FROM ghcr.io/linuxserver/baseimage-fedora:42
@@ -171,7 +171,7 @@ RUN \
   echo "**** install selkies ****" && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/3a0ed53e79eec52d76292d4c8934eadaa53fa8ce.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/a577b656b48444be9b7a04bab17c0046e1e77e59.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
