@@ -761,7 +761,7 @@ pasimple                                                                      0.
 passwd                                                                        0.80-12.el9                             rpm                          
 pciutils                                                                      3.7.0-7.el9                             rpm                          
 pciutils-libs                                                                 3.7.0-7.el9                             rpm                          
-pcmflux                                                                       1.0.3                                   python                       
+pcmflux                                                                       1.0.4                                   python                       
 pcre                                                                          8.44-4.el9                              rpm                          
 pcre-cpp                                                                      8.44-4.el9                              rpm                          
 pcre-devel                                                                    8.44-4.el9                              rpm                          
