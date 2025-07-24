@@ -648,7 +648,7 @@ partx                                                                         2.
 pasimple                                                                      0.0.3                                   python                      
 pciutils                                                                      3.13.0-r1                               apk                         
 pciutils-libs                                                                 3.13.0-r1                               apk                         
-pcmflux                                                                       1.0.3                                   python                      
+pcmflux                                                                       1.0.4                                   python                      
 pcre2                                                                         10.43-r1                                apk                         
 pillow                                                                        11.3.0                                  python                      
 pixelflux                                                                     1.3.0                                   python                      
