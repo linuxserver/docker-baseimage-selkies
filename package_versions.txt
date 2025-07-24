@@ -1,5 +1,6 @@
 NAME                                                                          VERSION                                 TYPE                       
 adduser                                                                       3.134                                   deb                         
+adwaita-icon-theme                                                            43-1                                    deb                         
 aiohappyeyeballs                                                              2.6.1                                   python                      
 aiohttp                                                                       3.12.14                                 python                      
 aioice                                                                        0.10.1                                  python                      
@@ -7,6 +8,7 @@ aiosignal                                                                     1.
 apt                                                                           2.6.1                                   deb                         
 apt-transport-https                                                           2.6.1                                   deb                         
 apt-utils                                                                     2.6.1                                   deb                         
+at-spi2-common                                                                2.46.0-5                                deb                         
 attrs                                                                         25.3.0                                  python                      
 av                                                                            14.4.0                                  python                      
 base-files                                                                    12.4+deb12u11                           deb                         
@@ -49,6 +51,8 @@ dbus-python                                                                   1.
 dbus-session-bus-common                                                       1.14.10-1~deb12u1                       deb                         
 dbus-system-bus-common                                                        1.14.10-1~deb12u1                       deb                         
 dbus-x11                                                                      1.14.10-1~deb12u1                       deb                         
+dconf-gsettings-backend                                                       0.40.0-4                                deb                         
+dconf-service                                                                 0.40.0-4                                deb                         
 debconf                                                                       1.5.82                                  deb                         
 debian-archive-keyring                                                        2023.3+deb12u2                          deb                         
 debianutils                                                                   5.7-0.5~deb12u1                         deb                         
@@ -497,7 +501,9 @@ gpgv                                                                          2.
 gputil                                                                        1.4.0                                   python                      
 grep                                                                          3.8-5                                   deb                         
 groff-base                                                                    1.22.4-10                               deb                         
+gtk-update-icon-cache                                                         3.24.38-2~deb12u3                       deb                         
 gzip                                                                          1.12-1                                  deb                         
+hicolor-icon-theme                                                            0.17-2                                  deb                         
 hostname                                                                      3.23+nmu1                               deb                         
 httplib2                                                                      0.20.4                                  python                      
 idna                                                                          3.10                                    python                      
@@ -541,7 +547,10 @@ libasound2-data                                                               1.
 libasound2-plugins                                                            1.2.7.1-1                               deb                         
 libassuan0                                                                    2.5.5-5                                 deb                         
 libasyncns0                                                                   0.8-6+b3                                deb                         
+libatk-bridge2.0-0                                                            2.46.0-5                                deb                         
+libatk1.0-0                                                                   2.46.0-5                                deb                         
 libatomic1                                                                    12.2.0-14+deb12u1                       deb                         
+libatspi2.0-0                                                                 2.46.0-5                                deb                         
 libattr1                                                                      1:2.5.1-4                               deb                         
 libaudit-common                                                               1:3.0.9-1                               deb                         
 libaudit1                                                                     1:3.0.9-1                               deb                         
@@ -569,6 +578,7 @@ libcap2-bin                                                                   1:
 libcbor0.8                                                                    0.8.0-2+b1                              deb                         
 libcc1-0                                                                      12.2.0-14+deb12u1                       deb                         
 libcodec2-1.0                                                                 1.0.5-1                                 deb                         
+libcolord2                                                                    1.4.6-2.2                               deb                         
 libcom-err2                                                                   1.47.0-2                                deb                         
 libcrypt-dev                                                                  1:4.4.33-2                              deb                         
 libcrypt1                                                                     1:4.4.33-2                              deb                         
@@ -582,6 +592,7 @@ libdatrie1                                                                    0.
 libdav1d6                                                                     1.0.0-2+deb12u1                         deb                         
 libdb5.3                                                                      5.3.28+dfsg2-1                          deb                         
 libdbus-1-3                                                                   1.14.10-1~deb12u1                       deb                         
+libdconf1                                                                     0.40.0-4                                deb                         
 libde265-0                                                                    1.0.11-1+deb12u2                        deb                         
 libdebconfclient0                                                             0.270                                   deb                         
 libdeflate0                                                                   1.14-1                                  deb                         
@@ -648,6 +659,8 @@ libgsm1                                                                       1.
 libgssapi-krb5-2                                                              1.20.1-2+deb12u3                        deb                         
 libgstreamer-plugins-base1.0-0                                                1.22.0-3+deb12u4                        deb                         
 libgstreamer1.0-0                                                             1.22.0-2+deb12u1                        deb                         
+libgtk-3-0                                                                    3.24.38-2~deb12u3                       deb                         
+libgtk-3-common                                                               3.24.38-2~deb12u3                       deb                         
 libharfbuzz0b                                                                 6.0.0+dfsg-3                            deb                         
 libheif1                                                                      1.15.1-1+deb12u1                        deb                         
 libhogweed6                                                                   3.8.1-2                                 deb                         
@@ -713,6 +726,8 @@ libnotify4                                                                    0.
 libnpth0                                                                      1.6-3                                   deb                         
 libnsl-dev                                                                    1.3.0-2                                 deb                         
 libnsl2                                                                       1.3.0-2                                 deb                         
+libnspr4                                                                      2:4.35-1                                deb                         
+libnss3                                                                       2:3.87.1-1+deb12u1                      deb                         
 libnuma1                                                                      2.0.16-1                                deb                         
 libobrender32v5                                                               3.6.1-10                                deb                         
 libobt2v5                                                                     3.6.1-10                                deb                         
@@ -819,6 +834,7 @@ libvpx7                                                                       1.
 libvulkan1                                                                    1.3.239.0-1                             deb                         
 libwayland-client0                                                            1.21.0-1                                deb                         
 libwayland-cursor0                                                            1.21.0-1                                deb                         
+libwayland-egl1                                                               1.21.0-1                                deb                         
 libwayland-server0                                                            1.21.0-1                                deb                         
 libwebp7                                                                      1.2.4-0.2+deb12u1                       deb                         
 libwebpdemux2                                                                 1.2.4-0.2+deb12u1                       deb                         
@@ -836,14 +852,19 @@ libxcb-damage0                                                                1.
 libxcb-dri2-0                                                                 1.15-1                                  deb                         
 libxcb-dri3-0                                                                 1.15-1                                  deb                         
 libxcb-glx0                                                                   1.15-1                                  deb                         
+libxcb-icccm4                                                                 0.4.1-1.1                               deb                         
+libxcb-image0                                                                 0.4.0-2                                 deb                         
+libxcb-keysyms1                                                               0.4.0-1+b2                              deb                         
 libxcb-present0                                                               1.15-1                                  deb                         
 libxcb-randr0                                                                 1.15-1                                  deb                         
+libxcb-render-util0                                                           0.3.9-1+b1                              deb                         
 libxcb-render0                                                                1.15-1                                  deb                         
 libxcb-shape0                                                                 1.15-1                                  deb                         
 libxcb-shm0                                                                   1.15-1                                  deb                         
 libxcb-sync1                                                                  1.15-1                                  deb                         
 libxcb-util1                                                                  0.4.0-1+b1                              deb                         
 libxcb-xfixes0                                                                1.15-1                                  deb                         
+libxcb-xkb1                                                                   1.15-1                                  deb                         
 libxcb1                                                                       1.15-1                                  deb                         
 libxcomposite1                                                                1:0.4.5-1                               deb                         
 libxcursor1                                                                   1:1.2.1-1                               deb                         
@@ -860,6 +881,7 @@ libxfont2                                                                     1:
 libxft2                                                                       2.3.6-1                                 deb                         
 libxi6                                                                        2:1.8-1+b1                              deb                         
 libxinerama1                                                                  2:1.1.4-3                               deb                         
+libxkbcommon-x11-0                                                            1.5.0-1                                 deb                         
 libxkbcommon0                                                                 1.5.0-1                                 deb                         
 libxkbfile1                                                                   1:1.1.0-1                               deb                         
 libxml2                                                                       2.9.14+dfsg-1.3~deb12u2                 deb                         
@@ -918,7 +940,7 @@ pasimple                                                                      0.
 passwd                                                                        1:4.13+dfsg1-1+deb12u1                  deb                         
 pci.ids                                                                       0.0~2023.04.11-1                        deb                         
 pciutils                                                                      1:3.9.0-4                               deb                         
-pcmflux                                                                       1.0.3                                   python                      
+pcmflux                                                                       1.0.4                                   python                      
 perl                                                                          5.36.0-7+deb12u2                        deb                         
 perl-base                                                                     5.36.0-7+deb12u2                        deb                         
 perl-modules-5.36                                                             5.36.0-7+deb12u2                        deb                         
