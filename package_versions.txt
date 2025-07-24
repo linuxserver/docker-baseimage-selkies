@@ -81,7 +81,7 @@ fonts-noto-mono                                                               20
 fonts-urw-base35                                                              20200910-8                              deb                         
 frozenlist                                                                    1.7.0                                   python                      
 fuse-overlayfs                                                                1.14-1+b1                               deb                         
-fuse3                                                                         3.17.2-2                                deb                         
+fuse3                                                                         3.17.2-3                                deb                         
 g++                                                                           4:14.2.0-1                              deb                         
 g++-14                                                                        14.2.0-19                               deb                         
 g++-14-x86-64-linux-gnu                                                       14.2.0-19                               deb                         
@@ -620,7 +620,7 @@ libfontconfig1                                                                2.
 libfontenc1                                                                   1:1.1.8-1+b2                            deb                         
 libfreetype6                                                                  2.13.3+dfsg-1                           deb                         
 libfribidi0                                                                   1.0.16-1                                deb                         
-libfuse3-4                                                                    3.17.2-2                                deb                         
+libfuse3-4                                                                    3.17.2-3                                deb                         
 libgbm1                                                                       25.0.7-2                                deb                         
 libgcc-14-dev                                                                 14.2.0-19                               deb                         
 libgcc-s1                                                                     14.2.0-19                               deb                         
@@ -950,7 +950,7 @@ pasimple                                                                      0.
 passwd                                                                        1:4.17.4-2                              deb                         
 pci.ids                                                                       0.0~2025.06.09-1                        deb                         
 pciutils                                                                      1:3.13.0-2                              deb                         
-pcmflux                                                                       1.0.3                                   python                      
+pcmflux                                                                       1.0.4                                   python                      
 perl                                                                          5.40.1-3                                deb                         
 perl-base                                                                     5.40.1-3                                deb                         
 perl-modules-5.40                                                             5.40.1-3                                deb                         
