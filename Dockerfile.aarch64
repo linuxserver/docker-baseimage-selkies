@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f a577b656b48444be9b7a04bab17c0046e1e77e59
+  git checkout -f 6913d8b281c88e8f83c35cb8570f543ef9dfec9d
 
 RUN \
   echo "**** build frontend ****" && \
@@ -59,8 +59,6 @@ RUN \
   echo "**** dev deps ****" && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-    libopus-dev \
-    libpulse-dev \
     python3-dev \
     python3-pip && \
   echo "**** enable locales ****" && \
@@ -95,6 +93,8 @@ RUN \
     gcc \
     git \
     kbd \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
     libev4 \
     libfontenc1 \
     libfreetype6 \
@@ -104,8 +104,10 @@ RUN \
     libgl1-mesa-dri \
     libglu1-mesa \
     libgnutls30 \
+    libgtk-3.0 \
     libnginx-mod-http-fancyindex \
     libnotify-bin \
+    libnss3 \
     libopus0 \
     libp11-kit0 \
     libpam0g \
@@ -114,6 +116,10 @@ RUN \
     libx11-6 \
     libxau6 \
     libxcb1 \
+    libxcb-icccm4 \
+    libxcb-image0 \
+    libxcb-keysyms1 \
+    libxcb-render-util0 \
     libxcursor1 \
     libxdmcp6 \
     libxext6 \
@@ -121,6 +127,7 @@ RUN \
     libxfixes3 \
     libxfont2 \
     libxinerama1 \
+    libxkbcommon-x11-0 \
     libxshmfence1 \
     libxtst6 \
     locales-all \
@@ -175,7 +182,7 @@ RUN \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/a577b656b48444be9b7a04bab17c0046e1e77e59.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/6913d8b281c88e8f83c35cb8570f543ef9dfec9d.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
@@ -244,8 +251,6 @@ RUN \
     | tar xzvf - -C /usr/share/themes/Clearlooks/openbox-3/ && \
   echo "**** cleanup ****" && \
   apt-get purge -y --autoremove \
-    libopus-dev \
-    libpulse-dev \
     python3-dev \
     python3-pip && \
   apt-get autoclean && \
