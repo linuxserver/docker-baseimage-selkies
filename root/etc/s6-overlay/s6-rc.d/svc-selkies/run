@@ -50,10 +50,12 @@ if [ ! -z ${DEV_MODE+x} ]; then
   # Run backend
   cd $HOME/src/src
   s6-setuidgid abc \
-    nodemon \
-      --watch selkies \
-      --ext "py" \
-      --exec "python3 -m selkies --port=8081 --enable_basic_auth=false --mode=websockets"
+    nodemon -V --ext py --exec \
+      "python3" -m selkies \
+      --addr="localhost" \
+      --port="8081" \
+      --enable_basic_auth="false" \
+      --mode="websockets"
 fi
 
 
