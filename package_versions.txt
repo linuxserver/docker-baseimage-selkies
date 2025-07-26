@@ -908,7 +908,7 @@ libz3-4                                                                       4.
 libzstd1                                                                      1.5.7+dfsg-1                            deb                         
 libzvbi-common                                                                0.2.44-1                                deb                         
 libzvbi0t64                                                                   0.2.44-1                                deb                         
-linux-libc-dev                                                                6.12.35-1                               deb                         
+linux-libc-dev                                                                6.12.38-1                               deb                         
 linux-sysctl-defaults                                                         4.12                                    deb                         
 locales                                                                       2.41-10                                 deb                         
 locales-all                                                                   2.41-10                                 deb                         
