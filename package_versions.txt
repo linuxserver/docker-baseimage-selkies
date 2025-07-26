@@ -538,7 +538,7 @@ k8s.io/kube-openapi                                                           v0
 k8s.io/utils                                                                  v0.0.0-20230220204549-a5ecb0141aa5      go-module                   
 k8s.io/utils                                                                  v0.0.0-20241104100929-3ea5e8cea738      go-module  (+1 duplicate)   
 kbd                                                                           2.7.1-2                                 deb                         
-keyboard-configuration                                                        1.239                                   deb                         
+keyboard-configuration                                                        1.240                                   deb                         
 krb5-locales                                                                  1.21.3-5                                deb                         
 libabsl20240722                                                               20240722.0-4                            deb                         
 libacl1                                                                       2.3.2-2+b1                              deb                         
