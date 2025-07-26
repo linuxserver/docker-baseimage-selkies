@@ -875,8 +875,8 @@ sdbus-cpp                                                                     1.
 sdl12-compat                                                                  1.2.68-5.fc42                           rpm                         
 sdl2-compat                                                                   2.32.56-1.fc42                          rpm                         
 sed                                                                           4.9-4.fc42                              rpm                         
-selinux-policy                                                                42.2-1.fc42                             rpm                         
-selinux-policy-targeted                                                       42.2-1.fc42                             rpm                         
+selinux-policy                                                                42.1-1.fc42                             rpm                         
+selinux-policy-targeted                                                       42.1-1.fc42                             rpm                         
 selkies                                                                       0.0.0                                   python                      
 setup                                                                         2.15.0-13.fc42                          rpm                         
 setuptools                                                                    74.1.3                                  python                      
