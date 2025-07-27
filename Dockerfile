@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f ef24d6acc4bd196dd9be3c7851f35fa6b86ad5f9
+  git checkout -f c16ed2d3a5de53692357f37dff84d6429083c457
 
 RUN \
   echo "**** build frontend ****" && \
@@ -174,7 +174,7 @@ RUN \
   pip3 install pixelflux pcmflux --break-system-packages && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/ef24d6acc4bd196dd9be3c7851f35fa6b86ad5f9.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/c16ed2d3a5de53692357f37dff84d6429083c457.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
