@@ -69,13 +69,7 @@ RUN \
     glibc-devel \
     kernel-headers \
     make \
-    opus-devel  \
-    pulseaudio-libs-devel \
-    pkgconf-pkg-config \
-    python3-devel \
-    python3-pip \
-    python3-setuptools \
-    python3-wheel && \
+    python3-devel && \
   echo "**** install runtime deps ****" && \
   dnf install -y --setopt=install_weak_deps=False --best \
     bash \
@@ -138,7 +132,7 @@ RUN \
     pulseaudio-libs \
     pulseaudio-utils \
     python3 \
-    python3-setuptools \
+    python3-virtualenv \
     shadow-utils \
     st \
     sudo \
@@ -176,7 +170,9 @@ RUN \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
   sed -i '/cryptography/d' pyproject.toml && \
-  pip3 install . --break-system-packages && \
+  python3 -m venv /lsiopy && \
+  pip install . && \
+  pip install setuptools && \
   echo "**** install selkies interposer ****" && \
   cd addons/js-interposer && \
   gcc -shared -fPIC -ldl \
@@ -240,8 +236,7 @@ RUN \
   dnf remove -y \
     glibc-devel \
     kernel-headers \
-    pulseaudio-libs-devel \
-    python3-devel \
+    python3-devel && \
   dnf autoremove -y && \
   dnf clean all && \
   rm -rf \
