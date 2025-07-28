@@ -60,11 +60,6 @@ RUN \
     alpine-sdk \
     linux-headers \
     musl-dev \
-    opus-dev \
-    pulseaudio-dev \
-    py3-pip \
-    py3-setuptools \
-    py3-wheel \
     python3-dev && \
   echo "**** install runtime deps ****" && \
   apk add --no-cache \
@@ -130,7 +125,6 @@ RUN \
     pulseaudio \
     pulseaudio-utils \
     python3 \
-    py3-setuptools \
     st \
     sudo \
     shadow \
@@ -162,14 +156,15 @@ RUN \
     xvfb \
     zlib  && \
   echo "**** install selkies ****" && \
-  pip3 install pixelflux pcmflux --break-system-packages && \
   curl -o \
     /tmp/selkies.tar.gz -L \
     "https://github.com/selkies-project/selkies/archive/c16ed2d3a5de53692357f37dff84d6429083c457.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
-  pip3 install . --break-system-packages && \
+  python3 -m venv /lsiopy && \
+  pip install . && \
+  pip install setuptools && \
   echo "**** install selkies interposer ****" && \
   cd addons/js-interposer && \
   gcc -shared -fPIC -ldl \
@@ -227,7 +222,6 @@ RUN \
   curl -s https://raw.githubusercontent.com/thelamer/lang-stash/master/theme.tar.gz \
     | tar xzvf - -C /usr/share/themes/Clearlooks/openbox-3/ && \
   echo "**** cleanup ****" && \
-  apk del .build-deps && \
   rm -rf \
     /config/.cache \
     /tmp/*
