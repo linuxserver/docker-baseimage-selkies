@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM lscr.io/linuxserver/xvfb:arch AS xvfb
-FROM ghcr.io/linuxserver/baseimage-alpine:3.21 AS frontend
+FROM ghcr.io/linuxserver/baseimage-alpine:3.22 AS frontend
 
 RUN \
   echo "**** install build packages ****" && \
@@ -118,9 +118,6 @@ RUN \
     procps-ng \
     pulseaudio \
     python \
-    python-pip \
-    python-setuptools \
-    python-wheel \
     shadow \
     sudo \
     tar \
@@ -171,14 +168,15 @@ RUN \
   cd st && \
   sudo -u abc makepkg -sAci --skipinteg --noconfirm --needed && \
   echo "**** install selkies ****" && \
-  pip3 install pixelflux pcmflux --break-system-packages && \
   curl -o \
     /tmp/selkies.tar.gz -L \
     "https://github.com/selkies-project/selkies/archive/c16ed2d3a5de53692357f37dff84d6429083c457.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
-  pip3 install . --break-system-packages && \
+  python3 -m venv /lsiopy && \
+  pip install . && \
+  pip install setuptools && \
   echo "**** install selkies interposer ****" && \
   cd addons/js-interposer && \
   gcc -shared -fPIC -ldl \
