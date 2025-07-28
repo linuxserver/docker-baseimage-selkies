@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM lscr.io/linuxserver/xvfb:ubuntunoble AS xvfb
-FROM ghcr.io/linuxserver/baseimage-alpine:3.21 AS frontend
+FROM ghcr.io/linuxserver/baseimage-alpine:3.22 AS frontend
 
 RUN \
   echo "**** install build packages ****" && \
@@ -59,8 +59,7 @@ RUN \
   echo "**** dev deps ****" && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-    python3-dev \
-    python3-pip && \
+    python3-dev && \
   echo "**** enable locales ****" && \
   sed -i \
     '/locale/d' \
@@ -145,7 +144,7 @@ RUN \
     pulseaudio \
     pulseaudio-utils \
     python3 \
-    python3-distutils-extra \
+    python3-venv \
     software-properties-common \
     ssl-cert \
     stterm \
@@ -187,7 +186,9 @@ RUN \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
   sed -i '/cryptography/d' pyproject.toml && \
-  pip3 install . --break-system-packages && \
+  python3 -m venv /lsiopy && \
+  pip install . && \
+  pip install setuptools && \
   echo "**** install selkies interposer ****" && \
   cd addons/js-interposer && \
   gcc -shared -fPIC -ldl \
@@ -252,8 +253,7 @@ RUN \
     | tar xzvf - -C /usr/share/themes/Clearlooks/openbox-3/ && \
   echo "**** cleanup ****" && \
   apt-get purge -y --autoremove \
-    python3-dev \
-    python3-pip && \
+    python3-dev && \
   apt-get autoclean && \
   rm -rf \
     /config/.cache \
