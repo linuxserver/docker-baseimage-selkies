@@ -222,6 +222,7 @@ RUN \
   curl -s https://raw.githubusercontent.com/thelamer/lang-stash/master/theme.tar.gz \
     | tar xzvf - -C /usr/share/themes/Clearlooks/openbox-3/ && \
   echo "**** cleanup ****" && \
+  apk del .build-deps && \
   rm -rf \
     /config/.cache \
     /tmp/*
