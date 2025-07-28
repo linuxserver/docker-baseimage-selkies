@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM ghcr.io/linuxserver/baseimage-alpine:3.21 AS frontend
+FROM ghcr.io/linuxserver/baseimage-alpine:3.22 AS frontend
 
 RUN \
   echo "**** install build packages ****" && \
@@ -63,14 +63,7 @@ RUN \
     glibc-devel \
     kernel-headers \
     make \
-    opus-devel \
-    pulseaudio-libs-devel \
-    meson \
-    pkgconf-pkg-config \
-    python3-devel \
-    python3-pip \
-    python3-setuptools \
-    python3-wheel && \
+    python3-devel && \
   echo "**** install runtime deps ****" && \
   dnf install -y --setopt=install_weak_deps=False --best \
     bash \
@@ -134,8 +127,7 @@ RUN \
     pulseaudio-libs \
     pulseaudio-utils \
     python3 \
-    python3-gobject \
-    python3-setuptools \
+    python3-virtualenv \
     shadow-utils \
     st \
     sudo \
@@ -169,7 +161,9 @@ RUN \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
   sed -i '/cryptography/d' pyproject.toml && \
-  pip3 install . && \
+  python3 -m venv /lsiopy && \
+  pip install . && \
+  pip install setuptools && \
   echo "**** install selkies interposer ****" && \
   cd addons/js-interposer && \
   gcc -shared -fPIC -ldl \
