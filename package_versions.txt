@@ -3,7 +3,7 @@ Simple Launcher                                                               1.
 abseil-cpp                                                                    20250512.1-1                               alpm                           
 acl                                                                           2.3.2-1                                    alpm                           
 aiohappyeyeballs                                                              2.6.1                                      python                         
-aiohttp                                                                       3.12.14                                    python                         
+aiohttp                                                                       3.12.15                                    python                         
 aioice                                                                        0.10.1                                     python                         
 aiosignal                                                                     1.4.0                                      python                         
 alsa-lib                                                                      1.2.14-1                                   alpm                           
@@ -21,7 +21,7 @@ av                                                                            14
 backports-tarfile                                                             1.2.0                                      python                         
 base-devel                                                                    1-2                                        alpm                           
 bash                                                                          5.3.3-1                                    alpm                           
-binutils                                                                      2.44+r94+gfe459e33c676-1                   alpm                           
+binutils                                                                      2.45-1                                     alpm                           
 bison                                                                         3.8.2-8                                    alpm                           
 brotli                                                                        1.1.0-3                                    alpm                           
 busybox                                                                       1.36.1-2                                   alpm                           
@@ -456,7 +456,7 @@ inetutils                                                                     2.
 inflect                                                                       7.3.1                                      python                         
 intel-gmmlib                                                                  22.7.2-1                                   alpm                           
 intel-media-driver                                                            25.2.5-1                                   alpm                           
-iproute2                                                                      6.15.0-1                                   alpm                           
+iproute2                                                                      6.16.0-1                                   alpm                           
 iptables                                                                      1:1.8.11-2                                 alpm                           
 jansson                                                                       2.14.1-1                                   alpm                           
 jaraco-collections                                                            5.1.0                                      python                         
@@ -600,7 +600,7 @@ mesa                                                                          1:
 more-itertools                                                                10.3.0                                     python                         
 mpdecimal                                                                     4.0.1-1                                    alpm                           
 mpfr                                                                          4.2.2-1                                    alpm                           
-mpg123                                                                        1.33.0-1                                   alpm                           
+mpg123                                                                        1.33.1-1                                   alpm                           
 msgpack                                                                       1.1.1                                      python                         
 mtdev                                                                         1.1.7-1                                    alpm                           
 multidict                                                                     6.6.3                                      python                         
@@ -618,7 +618,7 @@ nspr                                                                          4.
 nss                                                                           3.114-1                                    alpm                           
 oniguruma                                                                     6.9.10-1                                   alpm                           
 openbox                                                                       3.6.1-12                                   alpm                           
-openssh                                                                       10.0p1-3                                   alpm                           
+openssh                                                                       10.0p1-4                                   alpm                           
 openssl                                                                       3.5.1-1                                    alpm                           
 opus                                                                          1.5.2-1                                    alpm                           
 orc                                                                           0.4.41-1                                   alpm                           
