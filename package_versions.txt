@@ -8,7 +8,7 @@ adwaita-cursor-theme                                                          48
 adwaita-icon-theme                                                            48.0-1.fc42                             rpm                         
 adwaita-icon-theme-legacy                                                     46.2-3.fc42                             rpm                         
 aiohappyeyeballs                                                              2.6.1                                   python                      
-aiohttp                                                                       3.12.14                                 python                      
+aiohttp                                                                       3.12.15                                 python                      
 aioice                                                                        0.10.1                                  python                      
 aiosignal                                                                     1.4.0                                   python                      
 alsa-lib                                                                      1.2.14-3.fc42                           rpm                         
