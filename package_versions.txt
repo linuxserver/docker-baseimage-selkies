@@ -60,7 +60,7 @@ default-cursors                                                               3-
 device-mapper                                                                 2.03.33-1                                  alpm                           
 diffutils                                                                     3.12-2                                     alpm                           
 dnspython                                                                     2.7.0                                      python                         
-docker                                                                        1:28.3.2-1                                 alpm                           
+docker                                                                        1:28.3.3-1                                 alpm                           
 docker-compose                                                                2.39.1-1                                   alpm                           
 duktape                                                                       2.7.0-7                                    alpm                           
 dunst                                                                         1.12.2-1                                   alpm                           
@@ -172,7 +172,7 @@ github.com/docker/cli/cmd/docker                                              UN
 github.com/docker/compose/v2                                                  UNKNOWN                                    go-module                      
 github.com/docker/distribution                                                v2.8.3+incompatible                        go-module     (+1 duplicate)   
 github.com/docker/docker                                                      v28.3.2+incompatible                       go-module                      
-github.com/docker/docker                                                      v28.3.2+incompatible.dirty                 go-module     (+1 duplicate)   
+github.com/docker/docker                                                      v28.3.3+incompatible.dirty                 go-module     (+1 duplicate)   
 github.com/docker/docker-credential-helpers                                   v0.9.3                                     go-module                      
 github.com/docker/go                                                          v1.5.1-1.0.20160303222718-d30aec9fd63c     go-module                      
 github.com/docker/go-connections                                              v0.5.0                                     go-module     (+1 duplicate)   
