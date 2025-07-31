@@ -186,7 +186,10 @@ RUN \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
   sed -i '/cryptography/d' pyproject.toml && \
-  python3 -m venv /lsiopy && \
+  python3 \
+    -m venv \
+    --system-site-packages \
+    /lsiopy && \
   pip install . && \
   pip install setuptools && \
   echo "**** install selkies interposer ****" && \
