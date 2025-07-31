@@ -174,7 +174,10 @@ RUN \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
-  python3 -m venv /lsiopy && \
+  python3 \
+    -m venv \
+    --system-site-packages \
+    /lsiopy && \
   pip install . && \
   pip install setuptools && \
   echo "**** install selkies interposer ****" && \
