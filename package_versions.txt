@@ -1029,7 +1029,6 @@ sigs.k8s.io/structured-merge-diff/v4                                          v4
 sigs.k8s.io/yaml                                                              v1.3.0                                     go-module  (+1 duplicate)   
 sigs.k8s.io/yaml                                                              v1.4.0                                     go-module  (+2 duplicates)  
 six                                                                           1.16.0                                     python                      
-six                                                                           1.17.0                                     python                      
 software-properties-common                                                    0.99.30-4.1~deb12u1                        deb                         
 ssl-cert                                                                      1.1.2                                      deb                         
 stdlib                                                                        go1.23.7                                   go-module  (+5 duplicates)  
