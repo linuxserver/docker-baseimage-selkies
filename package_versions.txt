@@ -45,7 +45,6 @@ cpp-x86-64-linux-gnu                                                          4:
 cron                                                                          3.0pl1-197                                 deb                         
 cron-daemon-common                                                            3.0pl1-197                                 deb                         
 cryptography                                                                  43.0.0                                     python                      
-cryptography                                                                  45.0.5                                     python                      
 curl                                                                          8.14.1-2                                   deb                         
 dario.cat/mergo                                                               v1.0.0                                     go-module                   
 dario.cat/mergo                                                               v1.0.1                                     go-module  (+1 duplicate)   
@@ -63,7 +62,7 @@ debianutils                                                                   5.
 diffutils                                                                     1:3.10-4                                   deb                         
 dirmngr                                                                       2.4.7-21+b2                                deb                         
 distro                                                                        1.9.0                                      python                      
-distro-info-data                                                              0.64                                       deb                         
+distro-info-data                                                              0.66                                       deb                         
 dnspython                                                                     2.7.0                                      python                      
 docker-buildx-plugin                                                          0.26.1-1~debian.12~bookworm                deb                         
 docker-ce                                                                     5:28.3.3-1~debian.12~bookworm              deb                         
@@ -550,7 +549,7 @@ k8s.io/utils                                                                  v0
 kali-archive-keyring                                                          2025.1                                     deb                         
 kali-defaults                                                                 2025.3.0                                   deb                         
 kbd                                                                           2.7.1-2                                    deb                         
-keyboard-configuration                                                        1.239                                      deb                         
+keyboard-configuration                                                        1.240                                      deb                         
 lazr-restfulclient                                                            0.14.6                                     python                      
 lazr-uri                                                                      1.0.6                                      python                      
 libabsl20240722                                                               20240722.0-4                               deb                         
@@ -589,8 +588,8 @@ libc6-dev                                                                     2.
 libcairo-gobject2                                                             1.18.4-1+b1                                deb                         
 libcairo2                                                                     1.18.4-1+b1                                deb                         
 libcap-ng0                                                                    0.8.5-4+b1                                 deb                         
-libcap2                                                                       1:2.75-9                                   deb                         
-libcap2-bin                                                                   1:2.75-9                                   deb                         
+libcap2                                                                       1:2.75-10                                  deb                         
+libcap2-bin                                                                   1:2.75-10                                  deb                         
 libcbor0.10                                                                   0.10.2-2                                   deb                         
 libcc1-0                                                                      14.2.0-19                                  deb                         
 libcodec2-1.2                                                                 1.2.0-3                                    deb                         
@@ -757,7 +756,7 @@ libpaper2                                                                     2.
 libpci3                                                                       1:3.13.0-2                                 deb                         
 libpciaccess0                                                                 0.17-3+b3                                  deb                         
 libpcre2-8-0                                                                  10.45-1                                    deb                         
-libperl5.40                                                                   5.40.1-3                                   deb                         
+libperl5.40                                                                   5.40.1-5                                   deb                         
 libpipeline1                                                                  1.5.8-1                                    deb                         
 libpixman-1-0                                                                 0.44.0-3                                   deb                         
 libpng16-16t64                                                                1.6.48-1                                   deb                         
@@ -947,9 +946,9 @@ passwd                                                                        1:
 pci.ids                                                                       0.0~2025.06.09-1                           deb                         
 pciutils                                                                      1:3.13.0-2                                 deb                         
 pcmflux                                                                       1.0.4                                      python                      
-perl                                                                          5.40.1-3                                   deb                         
-perl-base                                                                     5.40.1-3                                   deb                         
-perl-modules-5.40                                                             5.40.1-3                                   deb                         
+perl                                                                          5.40.1-5                                   deb                         
+perl-base                                                                     5.40.1-5                                   deb                         
+perl-modules-5.40                                                             5.40.1-5                                   deb                         
 pillow                                                                        11.3.0                                     python                      
 pinentry-curses                                                               1.3.1-2                                    deb                         
 pip                                                                           25.1.1                                     python                      
@@ -1044,7 +1043,6 @@ typeguard                                                                     4.
 typeguard                                                                     4.4.2                                      python                      
 typing-extensions                                                             4.12.2                                     python                      
 typing-extensions                                                             4.13.2                                     python                      
-typing-extensions                                                             4.14.1                                     python                      
 tzdata                                                                        2025b-4                                    deb                         
 udev                                                                          257.7-1                                    deb                         
 util-linux                                                                    2.41-5                                     deb                         
