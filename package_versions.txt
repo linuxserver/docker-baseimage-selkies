@@ -13,7 +13,7 @@ av                                                                            14
 backports-tarfile                                                             1.2.0                                      python                      
 base-files                                                                    1:2025.2.0                                 deb                         
 base-passwd                                                                   3.6.7                                      deb                         
-bash                                                                          5.2.37-2+b3                                deb                         
+bash                                                                          5.2.37-2+b5                                deb                         
 bcrypt                                                                        4.2.0                                      python                      
 binutils                                                                      2.44-3                                     deb                         
 binutils-common                                                               2.44-3                                     deb                         
@@ -23,7 +23,7 @@ breeze-cursor-theme                                                           4:
 bsdextrautils                                                                 2.41-5                                     deb                         
 bsdutils                                                                      1:2.41-5                                   deb                         
 ca-certificates                                                               20250419                                   deb                         
-catatonit                                                                     0.2.1-2+b1                                 deb                         
+catatonit                                                                     0.2.1-2+b3                                 deb                         
 cffi                                                                          1.17.1                                     python                      
 cli                                                                           UNKNOWN                                    binary                      
 cli-32                                                                        UNKNOWN                                    binary                      
@@ -60,7 +60,7 @@ debconf                                                                       1.
 debian-archive-keyring                                                        2025.1                                     deb                         
 debianutils                                                                   5.23.1                                     deb                         
 diffutils                                                                     1:3.10-4                                   deb                         
-dirmngr                                                                       2.4.7-21+b2                                deb                         
+dirmngr                                                                       2.4.7-21+b3                                deb                         
 distro                                                                        1.9.0                                      python                      
 distro-info-data                                                              0.66                                       deb                         
 dnspython                                                                     2.7.0                                      python                      
@@ -501,10 +501,10 @@ gopkg.in/inf.v0                                                               v0
 gopkg.in/ini.v1                                                               v1.67.0                                    go-module                   
 gopkg.in/yaml.v2                                                              v2.4.0                                     go-module  (+1 duplicate)   
 gopkg.in/yaml.v3                                                              v3.0.1                                     go-module  (+3 duplicates)  
-gpg                                                                           2.4.7-21+b2                                deb                         
-gpg-agent                                                                     2.4.7-21+b2                                deb                         
-gpgconf                                                                       2.4.7-21+b2                                deb                         
-gpgsm                                                                         2.4.7-21+b2                                deb                         
+gpg                                                                           2.4.7-21+b3                                deb                         
+gpg-agent                                                                     2.4.7-21+b3                                deb                         
+gpgconf                                                                       2.4.7-21+b3                                deb                         
+gpgsm                                                                         2.4.7-21+b3                                deb                         
 gputil                                                                        1.4.0                                      python                      
 grep                                                                          3.11-4                                     deb                         
 groff-base                                                                    1.23.0-9                                   deb                         
@@ -547,7 +547,7 @@ k8s.io/kube-openapi                                                           v0
 k8s.io/utils                                                                  v0.0.0-20230220204549-a5ecb0141aa5         go-module                   
 k8s.io/utils                                                                  v0.0.0-20241104100929-3ea5e8cea738         go-module  (+1 duplicate)   
 kali-archive-keyring                                                          2025.1                                     deb                         
-kali-defaults                                                                 2025.3.0                                   deb                         
+kali-defaults                                                                 2025.3.2                                   deb                         
 kbd                                                                           2.7.1-2                                    deb                         
 keyboard-configuration                                                        1.240                                      deb                         
 lazr-restfulclient                                                            0.14.6                                     python                      
@@ -558,7 +558,7 @@ libaom3                                                                       3.
 libapparmor1                                                                  4.1.0-1                                    deb                         
 libappstream5                                                                 1.0.5-1                                    deb                         
 libapt-pkg7.0                                                                 3.0.3+kali1                                deb                         
-libarchive13t64                                                               3.7.4-3                                    deb                         
+libarchive13t64                                                               3.7.4-4                                    deb                         
 libasan8                                                                      14.2.0-19                                  deb                         
 libasound2-data                                                               1.2.14-1                                   deb                         
 libasound2-plugins                                                            1.2.12-2+b1                                deb                         
@@ -588,12 +588,12 @@ libc6-dev                                                                     2.
 libcairo-gobject2                                                             1.18.4-1+b1                                deb                         
 libcairo2                                                                     1.18.4-1+b1                                deb                         
 libcap-ng0                                                                    0.8.5-4+b1                                 deb                         
-libcap2                                                                       1:2.75-10                                  deb                         
-libcap2-bin                                                                   1:2.75-10                                  deb                         
+libcap2                                                                       1:2.75-10+b1                               deb                         
+libcap2-bin                                                                   1:2.75-10+b1                               deb                         
 libcbor0.10                                                                   0.10.2-2                                   deb                         
 libcc1-0                                                                      14.2.0-19                                  deb                         
 libcodec2-1.2                                                                 1.2.0-3                                    deb                         
-libcom-err2                                                                   1.47.2-3+b1                                deb                         
+libcom-err2                                                                   1.47.2-3+b3                                deb                         
 libcrypt-dev                                                                  1:4.4.38-1                                 deb                         
 libcrypt1                                                                     1:4.4.38-1                                 deb                         
 libctf-nobfd0                                                                 2.44-3                                     deb                         
@@ -606,7 +606,7 @@ libdav1d7                                                                     1.
 libdb5.3t64                                                                   5.3.28+dfsg2-9                             deb                         
 libdbus-1-3                                                                   1.16.2-2                                   deb                         
 libde265-0                                                                    1.0.15-1+b3                                deb                         
-libdebconfclient0                                                             0.279                                      deb                         
+libdebconfclient0                                                             0.280                                      deb                         
 libdeflate0                                                                   1.23-2                                     deb                         
 libdrm-amdgpu1                                                                2.4.124-2                                  deb                         
 libdrm-common                                                                 2.4.124-2                                  deb                         
