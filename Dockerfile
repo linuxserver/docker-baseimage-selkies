@@ -163,7 +163,6 @@ RUN \
   sed -i '/cryptography/d' pyproject.toml && \
   python3 \
     -m venv \
-    --system-site-packages \
     /lsiopy && \
   pip install . && \
   pip install setuptools && \
