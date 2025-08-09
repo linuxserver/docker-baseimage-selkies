@@ -83,7 +83,7 @@ dnf-data                                                                      4.
 dnf5                                                                          5.2.15.0-2.fc42                         rpm                         
 dnf5-plugins                                                                  5.2.15.0-2.fc42                         rpm                         
 dnspython                                                                     2.7.0                                   python                      
-docker-cli                                                                    28.3.2-1.fc42                           rpm                         
+docker-cli                                                                    28.3.3-1.fc42                           rpm                         
 docker-compose                                                                2.39.1-1.fc42                           rpm                         
 duktape                                                                       2.7.0-9.fc42                            rpm                         
 dunst                                                                         1.12.2-1.fc42                           rpm                         
@@ -201,12 +201,12 @@ github.com/davecgh/go-spew                                                    v1
 github.com/deckarep/golang-set/v2                                             v2.3.0                                  go-module                   
 github.com/dimchansky/utfbom                                                  v1.1.1                                  go-module                   
 github.com/distribution/reference                                             v0.6.0                                  go-module  (+4 duplicates)  
-github.com/docker/cli                                                         v28.3.2                                 go-module                   
+github.com/docker/cli                                                         v28.3.3                                 go-module                   
 github.com/docker/cli-docs-tool                                               v0.10.0                                 go-module                   
 github.com/docker/compose/v2/cmd                                              UNKNOWN                                 go-module                   
 github.com/docker/distribution                                                v2.8.3+incompatible                     go-module  (+1 duplicate)   
 github.com/docker/docker                                                      v28.3.1+incompatible                    go-module                   
-github.com/docker/docker                                                      v28.3.2                                 go-module  (+1 duplicate)   
+github.com/docker/docker                                                      v28.3.3                                 go-module  (+1 duplicate)   
 github.com/docker/docker-credential-helpers                                   v0.9.3                                  go-module                   
 github.com/docker/go                                                          v1.5.1-1.0.20160303222718-d30aec9fd63c  go-module                   
 github.com/docker/go-connections                                              v0.5.0                                  go-module  (+1 duplicate)   
@@ -482,7 +482,7 @@ hicolor-icon-theme                                                            0.
 highway                                                                       1.2.0-5.fc42                            rpm                         
 hiredis                                                                       1.2.0-6.fc42                            rpm                         
 hostname                                                                      3.25-2.fc42                             rpm                         
-hwdata                                                                        0.397-1.fc42                            rpm                         
+hwdata                                                                        0.398-1.fc42                            rpm                         
 idna                                                                          3.10                                    python                      
 ifaddr                                                                        0.2.0                                   python                      
 ima-evm-utils-libs                                                            1.6.2-4.fc42                            rpm                         
@@ -695,8 +695,8 @@ mesa-libgbm                                                                   25
 mesa-va-drivers                                                               25.1.4-2.fc42                           rpm                         
 mesa-vulkan-drivers                                                           25.1.4-2.fc42                           rpm                         
 mkfontscale                                                                   1.2.3-2.fc42                            rpm                         
-moby-engine                                                                   28.3.2-1.fc42                           rpm                         
-moby-filesystem                                                               28.3.2-1.fc42                           rpm                         
+moby-engine                                                                   28.3.3-1.fc42                           rpm                         
+moby-filesystem                                                               28.3.3-1.fc42                           rpm                         
 more-itertools                                                                10.3.0                                  python                      
 mpdecimal                                                                     4.0.1-1.fc42                            rpm                         
 mpfr                                                                          4.2.2-1.fc42                            rpm                         
@@ -896,8 +896,7 @@ sqlite-libs                                                                   3.
 st                                                                            0.9.2-2.fc42                            rpm                         
 startup-notification                                                          0.12-31.fc42                            rpm                         
 stdlib                                                                        go1.24.2                                go-module  (+4 duplicates)  
-stdlib                                                                        go1.24.4                                go-module  (+2 duplicates)  
-stdlib                                                                        go1.24.5                                go-module                   
+stdlib                                                                        go1.24.5                                go-module  (+3 duplicates)  
 sudo                                                                          1.9.17-2.p1.fc42                        rpm                         
 svt-av1-libs                                                                  2.3.0-1.fc42                            rpm                         
 systemd                                                                       257.7-1.fc42                            rpm                         
