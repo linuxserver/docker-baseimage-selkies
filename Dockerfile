@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f 44c3fe5e3f9783afa087e6daee0ee8ac0e7f485b
+  git checkout -f 9daee7d2de2b7bde6649d030b74cb95d3305a6df
 
 RUN \
   echo "**** build frontend ****" && \
@@ -170,7 +170,7 @@ RUN \
   echo "**** install selkies ****" && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/44c3fe5e3f9783afa087e6daee0ee8ac0e7f485b.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/9daee7d2de2b7bde6649d030b74cb95d3305a6df.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
@@ -207,7 +207,7 @@ RUN \
   echo "**** openbox tweaks ****" && \
   sed -i \
     -e 's/NLIMC/NLMC/g' \
-    -e 's|</applications>|  <application class="*"><maximized>yes</maximized><position force="yes"><x>0</x><y>0</y></position></application>\n</applications>|' \
+    -e 's|</applications>|  <application class="*"><maximized>yes</maximized></application>\n</applications>|' \
     -e 's|</keyboard>|  <keybind key="C-S-d"><action name="ToggleDecorations"/></keybind>\n</keyboard>|' \
     /etc/xdg/openbox/rc.xml && \
   echo "**** proot-apps ****" && \
