@@ -38,7 +38,6 @@ full_custom_readme: |
   | PASSWORD | HTTP Basic auth password, abc is default. If unset there will be no auth |
   | SUBFOLDER | Subfolder for the application if running a subfolder reverse proxy, need both slashes IE `/subfolder/` |
   | TITLE | The page title displayed on the web browser, default "Selkies - webrtc". |
-  | FM_HOME | This is the home directory (landing) for the file manager, default "/config". |
   | START_DOCKER | If set to false a container with privilege will not automatically start the DinD Docker setup. |
   | DISABLE_IPV6 | If set to true or any value this will disable IPv6 |
   | LC_ALL | Set the Language for the container to run as IE `fr_FR.UTF-8` `ar_AE.UTF-8` |
