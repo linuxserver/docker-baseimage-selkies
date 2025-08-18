@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f 553b86971550565774c54580de4e017e41b60c08
+  git checkout -f 58206d48e0e85d2e993ef5486d65455602d908ea
 
 RUN \
   echo "**** build frontend ****" && \
@@ -147,6 +147,7 @@ RUN \
     xorg-xrandr \
     xorg-xrdb \
     xsel \
+    xsettingsd \
     xterm \
     zlib && \
   pacman -Sy --noconfirm \
@@ -170,7 +171,7 @@ RUN \
   echo "**** install selkies ****" && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/553b86971550565774c54580de4e017e41b60c08.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/58206d48e0e85d2e993ef5486d65455602d908ea.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
