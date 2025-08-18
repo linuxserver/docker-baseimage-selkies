@@ -169,6 +169,7 @@ RUN \
     xserver-xorg-video-ati \
     xserver-xorg-video-nouveau \
     xserver-xorg-video-qxl \
+    xsettingsd \
     xterm \
     xutils \
     xvfb \
