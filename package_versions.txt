@@ -84,7 +84,7 @@ dnf5                                                                          5.
 dnf5-plugins                                                                  5.2.15.0-2.fc42                         rpm                         
 dnspython                                                                     2.7.0                                   python                      
 docker-cli                                                                    28.3.3-1.fc42                           rpm                         
-docker-compose                                                                2.39.1-1.fc42                           rpm                         
+docker-compose                                                                2.39.2-1.fc42                           rpm                         
 duktape                                                                       2.7.0-9.fc42                            rpm                         
 dunst                                                                         1.12.2-1.fc42                           rpm                         
 elfutils-debuginfod-client                                                    0.193-2.fc42                            rpm                         
@@ -972,6 +972,7 @@ xprop                                                                         1.
 xrandr                                                                        1.5.3-2.fc42                            rpm                         
 xrdb                                                                          1.2.2-5.fc42                            rpm                         
 xsel                                                                          1.2.1-8.fc42                            rpm                         
+xsettingsd                                                                    1.0.2-11.fc42                           rpm                         
 xterm                                                                         397-1.fc42                              rpm                         
 xz                                                                            1:5.8.1-2.fc42                          rpm                         
 xz-libs                                                                       1:5.8.1-2.fc42                          rpm                         
