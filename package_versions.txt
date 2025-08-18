@@ -978,6 +978,7 @@ xorg-x11-server-common                                                        1.
 xorg-x11-server-utils                                                         7.7-44.el9                                 rpm                          
 xorg-x11-xauth                                                                1:1.1-10.el9                               rpm                          
 xsel                                                                          1.2.1-1.el9                                rpm                          
+xsettingsd                                                                    1.0.2-2.el9                                rpm                          
 xterm                                                                         366-10.el9_6                               rpm                          
 xterm-resize                                                                  366-10.el9_6                               rpm                          
 xz                                                                            5.2.5-8.el9_0                              rpm                          
