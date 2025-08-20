@@ -913,7 +913,7 @@ libxinerama1                                                                  2:
 libxkbcommon-x11-0                                                            1.6.0-1build1                              deb                         
 libxkbcommon0                                                                 1.6.0-1build1                              deb                         
 libxkbfile1                                                                   1:1.1.0-1build4                            deb                         
-libxml2                                                                       2.9.14+dfsg-1.3ubuntu3.3                   deb                         
+libxml2                                                                       2.9.14+dfsg-1.3ubuntu3.4                   deb                         
 libxmlb2                                                                      0.3.18-1                                   deb                         
 libxmu6                                                                       2:1.1.3-3build2                            deb                         
 libxmuu1                                                                      2:1.1.3-3build2                            deb                         
