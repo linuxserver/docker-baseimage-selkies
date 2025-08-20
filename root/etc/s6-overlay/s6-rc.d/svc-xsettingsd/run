@@ -1,5 +1,10 @@
 #!/usr/bin/with-contenv bash
 
+# bail early on xfce based systems
+if which xfce4-session > /dev/null 2>&1; then
+  sleep infinity
+fi
+
 # create default xsettings
 if [ ! -f "${HOME}/.xsettingsd" ]; then
   echo "Xft/DPI 98304" > "${HOME}/.xsettingsd"
