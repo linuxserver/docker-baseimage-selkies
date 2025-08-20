@@ -682,7 +682,7 @@ spirv-tools                                                                   1:
 sqlite                                                                        3.50.4-1                                   alpm                           
 st                                                                            0.9.3-1                                    alpm                           
 st-debug                                                                      0.9.3-1                                    alpm                           
-startup-notification                                                          0.12-8                                     alpm                           
+startup-notification                                                          0.12-9                                     alpm                           
 stdlib                                                                        go1.24.2                                   go-module     (+1 duplicate)   
 stdlib                                                                        go1.24.5                                   go-module     (+6 duplicates)  
 stdlib                                                                        go1.24.6                                   go-module                      
