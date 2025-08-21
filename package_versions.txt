@@ -840,7 +840,7 @@ libtdb1                                                                       1.
 libthai-data                                                                  0.1.29-2build1                             deb                         
 libthai0                                                                      0.1.29-2build1                             deb                         
 libtheora0                                                                    1.1.1+dfsg.1-16.1build3                    deb                         
-libtiff6                                                                      4.5.1+git230720-4ubuntu2.2                 deb                         
+libtiff6                                                                      4.5.1+git230720-4ubuntu2.3                 deb                         
 libtinfo6                                                                     6.4+20240113-1ubuntu2                      deb                         
 libtsan2                                                                      14.2.0-4ubuntu2~24.04                      deb                         
 libtwolame0                                                                   0.4.0-2build3                              deb                         
