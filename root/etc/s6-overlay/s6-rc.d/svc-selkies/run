@@ -53,8 +53,6 @@ if [ ! -z ${DEV_MODE+x} ]; then
     nodemon -V --ext py --exec \
       "python3" -m selkies \
       --addr="localhost" \
-      --port="8081" \
-      --enable_basic_auth="false" \
       --mode="websockets"
 fi
 
@@ -63,6 +61,4 @@ fi
 exec s6-setuidgid abc \
   selkies \
     --addr="localhost" \
-    --port="8081" \
-    --enable_basic_auth="false" \
     --mode="websockets"

@@ -30,6 +30,7 @@ All application settings are passed via environment variables:
 | :----: | --- |
 | CUSTOM_PORT | Internal port the container listens on for http if it needs to be swapped from the default 3000. |
 | CUSTOM_HTTPS_PORT | Internal port the container listens on for https if it needs to be swapped from the default 3001. |
+| CUSTOM_WS_PORT | Internal port the container listens on for websockets if it needs to be swapped from the default 8082. |
 | CUSTOM_USER | HTTP Basic auth username, abc is default. |
 | PASSWORD | HTTP Basic auth password, abc is default. If unset there will be no auth |
 | SUBFOLDER | Subfolder for the application if running a subfolder reverse proxy, need both slashes IE `/subfolder/` |
