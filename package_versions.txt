@@ -445,7 +445,7 @@ gui-64                                                                        UN
 gui-arm64                                                                     UNKNOWN                                    binary                         
 guile                                                                         3.0.10-1                                   alpm                           
 gzip                                                                          1.14-2                                     alpm                           
-harfbuzz                                                                      11.4.1-1                                   alpm                           
+harfbuzz                                                                      11.4.2-1                                   alpm                           
 hicolor-icon-theme                                                            0.18-1                                     alpm                           
 hwdata                                                                        0.397-1                                    alpm                           
 iana-etc                                                                      20250612-1                                 alpm                           
