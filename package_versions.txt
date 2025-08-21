@@ -49,7 +49,7 @@ cmake-data                                                                    3.
 cmake-filesystem                                                              3.31.6-2.fc42                           rpm                         
 code.cloudfoundry.org/clock                                                   v1.1.0                                  go-module                   
 colord-libs                                                                   1.4.7-6.fc42                            rpm                         
-container-selinux                                                             4:2.240.0-1.fc42                        rpm                         
+container-selinux                                                             4:2.241.0-1.fc42                        rpm                         
 containerd                                                                    2.0.6-1.fc42                            rpm                         
 coreutils                                                                     9.6-5.fc42                              rpm                         
 coreutils-common                                                              9.6-5.fc42                              rpm                         
@@ -567,8 +567,8 @@ libcap-ng                                                                     0.
 libcbor                                                                       0.11.0-3.fc42                           rpm                         
 libcloudproviders                                                             0.3.6-1.fc42                            rpm                         
 libcom_err                                                                    1.47.2-3.fc42                           rpm                         
-libcomps                                                                      0.1.21                                  python                      
-libcomps                                                                      0.1.21-5.fc42                           rpm                         
+libcomps                                                                      0.1.22                                  python                      
+libcomps                                                                      0.1.22-1.fc42                           rpm                         
 libcurl                                                                       8.11.1-5.fc42                           rpm                         
 libdatrie                                                                     0.2.13-11.fc42                          rpm                         
 libdav1d                                                                      1.5.1-1.fc42                            rpm                         
@@ -620,7 +620,7 @@ libnghttp2                                                                    1.
 libnotify                                                                     0.8.6-1.fc42                            rpm                         
 libnsl2                                                                       2.0.1-3.fc42                            rpm                         
 libogg                                                                        2:1.3.5-11.fc42                         rpm                         
-libopenjph                                                                    0.21.3-1.fc42                           rpm                         
+libopenjph                                                                    0.21.5-1.fc42                           rpm                         
 libpaper                                                                      1:2.1.1-8.fc42                          rpm                         
 libpciaccess                                                                  0.16-15.fc42                            rpm                         
 libpkgconf                                                                    2.3.0-2.fc42                            rpm                         
@@ -845,7 +845,7 @@ python3-distlib                                                               0.
 python3-dnf                                                                   4.23.0-1.fc42                           rpm                         
 python3-filelock                                                              3.15.4-5.fc42                           rpm                         
 python3-hawkey                                                                0.74.0-1.fc42                           rpm                         
-python3-libcomps                                                              0.1.21-5.fc42                           rpm                         
+python3-libcomps                                                              0.1.22-1.fc42                           rpm                         
 python3-libdnf                                                                0.74.0-1.fc42                           rpm                         
 python3-libs                                                                  3.13.7-1.fc42                           rpm                         
 python3-platformdirs                                                          4.2.2-4.fc42                            rpm                         
