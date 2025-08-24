@@ -210,6 +210,7 @@ RUN \
     -e 's/NLIMC/NLMC/g' \
     -e 's|</applications>|  <application class="*"><maximized>yes</maximized></application>\n</applications>|' \
     -e 's|</keyboard>|  <keybind key="C-S-d"><action name="ToggleDecorations"/></keybind>\n</keyboard>|' \
+    -e 's|<number>4</number>|<number>1</number>|' \
     /etc/xdg/openbox/rc.xml && \
   echo "**** proot-apps ****" && \
   mkdir /proot-apps/ && \
