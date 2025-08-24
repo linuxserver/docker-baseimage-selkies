@@ -43,7 +43,7 @@ All application settings are passed via environment variables:
 | DISABLE_ZINK | Do not set the Zink environment variables if a video card is detected (userspace applications will use CPU rendering) |
 | WATERMARK_PNG | Full path inside the container to a watermark png IE `/usr/share/selkies/www/icon.png` |
 | WATERMARK_LOCATION | Where to paint the image over the stream integer options below |
-| MAX_RES | Pass a larger maximum resolution for the container default is 8k `7680x4320` |
+| MAX_RES | Pass a larger maximum resolution for the container default is 16k `15360x8640` |
 
 * 1 - Top Left
 * 2 - Top Right
