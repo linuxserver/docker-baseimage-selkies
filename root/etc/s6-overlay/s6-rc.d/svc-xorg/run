@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-DEFAULT_RES="7680x4320"
+DEFAULT_RES="15360x8640"
 if [ ! -z ${MAX_RES+x} ]; then
   DEFAULT_RES="${MAX_RES}"
 fi
