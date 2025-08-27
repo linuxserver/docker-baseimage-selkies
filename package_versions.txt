@@ -1,6 +1,6 @@
 NAME                                                                          VERSION                                    TYPE                          
 Simple Launcher                                                               1.1.0.14                                   binary        (+5 duplicates)  
-abseil-cpp                                                                    20250512.1-1                               alpm                           
+abseil-cpp                                                                    20250814.0-1                               alpm                           
 acl                                                                           2.3.2-1                                    alpm                           
 aiohappyeyeballs                                                              2.6.1                                      python                         
 aiohttp                                                                       3.12.15                                    python                         
@@ -445,7 +445,7 @@ gui-64                                                                        UN
 gui-arm64                                                                     UNKNOWN                                    binary                         
 guile                                                                         3.0.10-1                                   alpm                           
 gzip                                                                          1.14-2                                     alpm                           
-harfbuzz                                                                      11.4.3-1                                   alpm                           
+harfbuzz                                                                      11.4.4-1                                   alpm                           
 hicolor-icon-theme                                                            0.18-1                                     alpm                           
 hwdata                                                                        0.398-1                                    alpm                           
 iana-etc                                                                      20250612-1                                 alpm                           
@@ -617,7 +617,7 @@ noto-fonts-cjk                                                                20
 noto-fonts-emoji                                                              1:2.048-1                                  alpm                           
 npth                                                                          1.8-1                                      alpm                           
 nspr                                                                          4.37-1                                     alpm                           
-nss                                                                           3.115-1                                    alpm                           
+nss                                                                           3.115.1-1                                  alpm                           
 oniguruma                                                                     6.9.10-1                                   alpm                           
 openbox                                                                       3.6.1-12                                   alpm                           
 openssh                                                                       10.0p1-4                                   alpm                           
@@ -699,7 +699,7 @@ tpm2-tss                                                                      4.
 turbojpeg                                                                     UNKNOWN                                    java-archive                   
 typeguard                                                                     4.3.0                                      python                         
 typing-extensions                                                             4.12.2                                     python                         
-typing-extensions                                                             4.14.1                                     python                         
+typing-extensions                                                             4.15.0                                     python                         
 tzdata                                                                        2025b-1                                    alpm                           
 util-linux                                                                    2.41.1-1                                   alpm                           
 util-linux-libs                                                               2.41.1-1                                   alpm                           
