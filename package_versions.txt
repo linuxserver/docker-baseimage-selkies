@@ -602,7 +602,7 @@ libXtst                                                                       1.
 libXv                                                                         1.0.11-16.el9                              rpm                          
 libXxf86vm                                                                    1.1.4-18.el9                               rpm                          
 libacl                                                                        2.3.1-4.el9                                rpm                          
-libarchive                                                                    3.5.3-5.el9_6                              rpm                          
+libarchive                                                                    3.5.3-6.el9_6                              rpm                          
 libassuan                                                                     2.5.5-3.el9                                rpm                          
 libasyncns                                                                    0.8-22.el9                                 rpm                          
 libattr                                                                       2.5.1-3.el9                                rpm                          
@@ -942,7 +942,7 @@ tags.cncf.io/container-device-interface/specs-go                              v0
 tags.cncf.io/container-device-interface/specs-go                              v1.0.0                                     go-module                    
 tar                                                                           2:1.34-7.el9                               rpm                          
 tpm2-tss                                                                      3.2.3-1.el9                                rpm                          
-typing-extensions                                                             4.14.1                                     python                       
+typing-extensions                                                             4.15.0                                     python                       
 tzdata                                                                        2025b-1.el9                                rpm                          
 urllib3                                                                       1.26.5                                     python                       
 usermode                                                                      1.114-6.el9                                rpm                          
