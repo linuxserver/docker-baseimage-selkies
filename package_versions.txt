@@ -648,7 +648,7 @@ libtasn1                                                                      4.
 libtdb                                                                        1.4.13-2.fc42                           rpm                         
 libthai                                                                       0.1.29-10.fc42                          rpm                         
 libtheora                                                                     1:1.1.1-39.fc42                         rpm                         
-libtiff                                                                       4.7.0-7.fc42                            rpm                         
+libtiff                                                                       4.7.0-8.fc42                            rpm                         
 libtinysparql                                                                 3.9.2-1.fc42                            rpm                         
 libtirpc                                                                      1.3.6-1.rc3.fc42.2                      rpm                         
 libtool-ltdl                                                                  2.5.4-4.fc42                            rpm                         
@@ -916,7 +916,7 @@ tomli                                                                         2.
 tpm2-tss                                                                      4.1.3-6.fc42                            rpm                         
 typeguard                                                                     4.3.0                                   python                      
 typing-extensions                                                             4.12.2                                  python                      
-typing-extensions                                                             4.14.1                                  python                      
+typing-extensions                                                             4.15.0                                  python                      
 tzdata                                                                        2025b-1.fc42                            rpm                         
 unbound-anchor                                                                1.23.1-1.fc42                           rpm                         
 unbound-libs                                                                  1.23.1-1.fc42                           rpm                         
