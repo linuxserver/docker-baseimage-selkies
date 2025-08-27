@@ -1022,7 +1022,7 @@ tar                                                                           1.
 tomli                                                                         2.0.1                                      python                      
 typeguard                                                                     4.3.0                                      python                      
 typing-extensions                                                             4.12.2                                     python                      
-typing-extensions                                                             4.14.1                                     python                      
+typing-extensions                                                             4.15.0                                     python                      
 tzdata                                                                        2025b-4                                    deb                         
 udev                                                                          257.7-1                                    deb                         
 util-linux                                                                    2.41-5                                     deb                         
