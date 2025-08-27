@@ -724,7 +724,7 @@ tini-static                                                                   0.
 tomli                                                                         2.0.1                                   python                      
 typeguard                                                                     4.3.0                                   python                      
 typing-extensions                                                             4.12.2                                  python                      
-typing-extensions                                                             4.14.1                                  python                      
+typing-extensions                                                             4.15.0                                  python                      
 tzdata                                                                        2025b-r0                                apk                         
 umount                                                                        2.41-r9                                 apk                         
 util-linux                                                                    2.41-r9                                 apk                         
