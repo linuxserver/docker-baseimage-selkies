@@ -85,7 +85,7 @@ fonts-noto-mono                                                               20
 fonts-urw-base35                                                              20200910-8                                 deb                         
 frozenlist                                                                    1.7.0                                      python                      
 fuse-overlayfs                                                                1.14-1+b1                                  deb                         
-fuse3                                                                         3.17.2-3                                   deb                         
+fuse3                                                                         3.17.4-1                                   deb                         
 g++                                                                           4:14.2.0-1                                 deb                         
 g++-14                                                                        14.3.0-5                                   deb                         
 g++-14-x86-64-linux-gnu                                                       14.3.0-5                                   deb                         
@@ -633,13 +633,13 @@ libfontconfig1                                                                2.
 libfontenc1                                                                   1:1.1.8-1+b2                               deb                         
 libfreetype6                                                                  2.13.3+dfsg-1                              deb                         
 libfribidi0                                                                   1.0.16-1                                   deb                         
-libfuse3-4                                                                    3.17.2-3                                   deb                         
+libfuse3-4                                                                    3.17.4-1                                   deb                         
 libgbm1                                                                       25.0.7-2                                   deb                         
 libgcc-14-dev                                                                 14.3.0-5                                   deb                         
 libgcc-s1                                                                     15.2.0-1                                   deb                         
 libgcrypt20                                                                   1.11.2-2                                   deb                         
-libgdbm-compat4t64                                                            1.24-2                                     deb                         
-libgdbm6t64                                                                   1.24-2                                     deb                         
+libgdbm-compat4t64                                                            1.26-1                                     deb                         
+libgdbm6t64                                                                   1.26-1                                     deb                         
 libgdk-pixbuf-2.0-0                                                           2.42.12+dfsg-5                             deb                         
 libgdk-pixbuf2.0-common                                                       2.42.12+dfsg-5                             deb                         
 libgif7                                                                       5.2.2-1+b1                                 deb                         
@@ -653,7 +653,7 @@ libglu1-mesa                                                                  9.
 libglvnd0                                                                     1.7.0-1+b2                                 deb                         
 libglx-mesa0                                                                  25.0.7-2                                   deb                         
 libglx0                                                                       1.7.0-1+b2                                 deb                         
-libgmp10                                                                      2:6.3.0+dfsg-3                             deb                         
+libgmp10                                                                      2:6.3.0+dfsg-4                             deb                         
 libgnutls30t64                                                                3.8.9-3                                    deb                         
 libgomp1                                                                      15.2.0-1                                   deb                         
 libgpg-error0                                                                 1.55-2                                     deb                         
@@ -676,7 +676,7 @@ libhwy1t64                                                                    1.
 libice6                                                                       2:1.1.1-1                                  deb                         
 libid3tag0                                                                    0.16.3-1                                   deb                         
 libidn12                                                                      1.43-2                                     deb                         
-libidn2-0                                                                     2.3.8-3                                    deb                         
+libidn2-0                                                                     2.3.8-4                                    deb                         
 libigdgmm12                                                                   22.8.1+ds1-1                               deb                         
 libijs-0.35                                                                   0.35-15.3                                  deb                         
 libimlib2t64                                                                  1.12.4-2                                   deb                         
@@ -778,7 +778,7 @@ librav1e0.7                                                                   0.
 libreadline8t64                                                               8.2-6                                      deb                         
 librhash1                                                                     1.4.6-1                                    deb                         
 librsvg2-2                                                                    2.60.0+dfsg-1+b1                           deb                         
-librtmp1                                                                      2.4+20151223.gitfa8646d.1-2+b5             deb                         
+librtmp1                                                                      2.4+20151223.gitfa8646d.1-3                deb                         
 libsamplerate0                                                                0.2.2-4+b2                                 deb                         
 libsasl2-2                                                                    2.1.28+dfsg1-9                             deb                         
 libsasl2-modules-db                                                           2.1.28+dfsg1-9                             deb                         
@@ -817,7 +817,7 @@ libthai-data                                                                  0.
 libthai0                                                                      0.1.29-2+b1                                deb                         
 libtheoradec1                                                                 1.2.0~alpha1+dfsg-6                        deb                         
 libtheoraenc1                                                                 1.2.0~alpha1+dfsg-6                        deb                         
-libtiff6                                                                      4.7.0-3                                    deb                         
+libtiff6                                                                      4.7.0-4                                    deb                         
 libtinfo6                                                                     6.5+20250216-2                             deb                         
 libtirpc-common                                                               1.3.6+ds-1                                 deb                         
 libtirpc3t64                                                                  1.3.6+ds-1                                 deb                         
@@ -1013,7 +1013,7 @@ resenje.org/singleflight                                                      v0
 rpcsvc-proto                                                                  1.4.3-1                                    deb                         
 sed                                                                           4.9-2                                      deb                         
 selkies                                                                       0.0.0                                      python                      
-sensible-utils                                                                0.0.25                                     deb                         
+sensible-utils                                                                0.0.26                                     deb                         
 setuptools                                                                    80.9.0                                     python                      
 sgml-base                                                                     1.31+nmu1                                  deb                         
 shared-mime-info                                                              2.4-5+b3                                   deb                         
