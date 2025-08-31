@@ -29,4 +29,7 @@ chmod 777 /tmp/selkies*
 # run
 cd $HOME
 exec s6-setuidgid abc \
-  /bin/bash /defaults/startwm.sh
+  /bin/bash /defaults/startwm.sh &
+PID=$!
+echo "$PID" > /de-pid
+wait "$PID"
