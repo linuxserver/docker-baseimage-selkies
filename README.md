@@ -235,19 +235,18 @@ services:
 
 # Development
 
-This container can also be used as a rapid development environment for the Selkies Project. Simply clone the upstream repo and run the container as shown: 
+This container and any downstream images can also be used as a rapid development environment for the Selkies Project. Simply clone the upstream repo and run the container as shown: 
 
 ```
 git clone https://github.com/selkies-project/selkies.git
 cd selkies
-git checkout -f feature/websockets
 docker run --rm -it \
   --shm-size=1gb \
   -e DEV_MODE=selkies-dashboard \
   -e PUID=1000 \
   -e PGID=1000 \
   -v $(pwd):/config/src \
-  -p 3001:3001 ghcr.io/linuxserver/baseimage-selkies:alpine322 bash
+  -p 3001:3001 ghcr.io/linuxserver/webtop bash
 ```
 
 The application will be restarted on code changes to the src directory you mounted in and provide feedback for debugging.
