@@ -128,6 +128,7 @@ RUN \
     pam \
     pciutils \
     procps-ng \
+    psmisc \
     pulseaudio \
     pulseaudio-libs \
     pulseaudio-utils \
