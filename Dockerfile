@@ -141,6 +141,7 @@ RUN \
     openssl \
     pciutils \
     procps \
+    psmisc \
     pulseaudio \
     pulseaudio-utils \
     python3 \
