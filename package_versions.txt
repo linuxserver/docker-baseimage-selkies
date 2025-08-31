@@ -604,7 +604,7 @@ libheif                                                                       1.
 libicu                                                                        76.1-4.fc42                             rpm                         
 libidn2                                                                       2.3.8-1.fc42                            rpm                         
 libijs                                                                        0.35-24.fc42                            rpm                         
-libinput                                                                      1.29.0-1.fc42                           rpm                         
+libinput                                                                      1.29.1-1.fc42                           rpm                         
 libjpeg-turbo                                                                 3.1.0-2.fc42                            rpm                         
 libjxl                                                                        1:0.11.1-4.fc42                         rpm                         
 libksba                                                                       1.6.7-3.fc42                            rpm                         
@@ -823,6 +823,7 @@ procps-ng                                                                     4.
 prometheus-client                                                             0.22.1                                  python                      
 propcache                                                                     0.3.2                                   python                      
 protobuf-c                                                                    1.5.1-1.fc42                            rpm                         
+psmisc                                                                        23.7-5.fc42                             rpm                         
 psutil                                                                        7.0.0                                   python                      
 publicsuffix-list-dafsa                                                       20250616-1.fc42                         rpm                         
 pulseaudio                                                                    17.0-5.fc42                             rpm                         
@@ -935,7 +936,7 @@ urw-base35-z003-fonts                                                         20
 util-linux                                                                    2.40.4-7.fc42                           rpm                         
 util-linux-core                                                               2.40.4-7.fc42                           rpm                         
 vim-data                                                                      2:9.1.1623-1.fc42                       rpm                         
-vim-filesystem                                                                2:9.1.1623-1.fc42                       rpm                         
+vim-filesystem                                                                2:9.1.1706-1.fc42                       rpm                         
 vim-minimal                                                                   2:9.1.1623-1.fc42                       rpm                         
 virtualenv                                                                    20.29.1                                 python                      
 vulkan-loader                                                                 1.4.313.0-1.fc42                        rpm                         
