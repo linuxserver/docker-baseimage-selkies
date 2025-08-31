@@ -960,6 +960,7 @@ poppler-data                                                                  0.
 procps                                                                        2:4.0.4-9                                  deb                         
 prometheus-client                                                             0.22.1                                     python                      
 propcache                                                                     0.3.2                                      python                      
+psmisc                                                                        23.7-2                                     deb                         
 psutil                                                                        7.0.0                                      python                      
 pulseaudio                                                                    17.0+dfsg1-2+b1                            deb                         
 pulseaudio-utils                                                              17.0+dfsg1-2+b1                            deb                         
