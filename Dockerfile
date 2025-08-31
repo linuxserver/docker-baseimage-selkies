@@ -116,6 +116,7 @@ RUN \
     pam \
     pciutils \
     procps-ng \
+    psmisc \
     pulseaudio \
     python \
     shadow \
