@@ -57,7 +57,7 @@ cpp                                                                           15
 cpuinfo                                                                       24.09.26-2.git1e83a2f.fc42.1            rpm                         
 cracklib                                                                      2.9.11-7.fc42                           rpm                         
 crypto-policies                                                               20250707-1.gitad370a8.fc42              rpm                         
-cryptography                                                                  45.0.6                                  python                      
+cryptography                                                                  45.0.7                                  python                      
 cryptsetup-libs                                                               2.8.1-1.fc42                            rpm                         
 cups-filesystem                                                               1:2.4.12-3.fc42                         rpm                         
 cups-libs                                                                     1:2.4.12-3.fc42                         rpm                         
@@ -96,9 +96,9 @@ evdev                                                                         1.
 expat                                                                         2.7.1-1.fc42                            rpm                         
 fedora-gpg-keys                                                               42-1                                    rpm                         
 fedora-logos-httpd                                                            42.0.1-1.fc42                           rpm                         
-fedora-release-common                                                         42-28                                   rpm                         
-fedora-release-container                                                      42-28                                   rpm                         
-fedora-release-identity-container                                             42-28                                   rpm                         
+fedora-release-common                                                         42-30                                   rpm                         
+fedora-release-container                                                      42-30                                   rpm                         
+fedora-release-identity-container                                             42-30                                   rpm                         
 fedora-repos                                                                  42-1                                    rpm                         
 fftw-libs-single                                                              3.3.10-15.fc42                          rpm                         
 file                                                                          5.46-3.fc42                             rpm                         
@@ -482,7 +482,7 @@ hicolor-icon-theme                                                            0.
 highway                                                                       1.2.0-5.fc42                            rpm                         
 hiredis                                                                       1.2.0-6.fc42                            rpm                         
 hostname                                                                      3.25-2.fc42                             rpm                         
-hwdata                                                                        0.398-1.fc42                            rpm                         
+hwdata                                                                        0.399-1.fc42                            rpm                         
 idna                                                                          3.10                                    python                      
 ifaddr                                                                        0.2.0                                   python                      
 ima-evm-utils-libs                                                            1.6.2-4.fc42                            rpm                         
@@ -553,7 +553,7 @@ libXvMC                                                                       1.
 libXxf86vm                                                                    1.1.6-2.fc42                            rpm                         
 libacl                                                                        2.3.2-3.fc42                            rpm                         
 libaom                                                                        3.12.0-1.fc42                           rpm                         
-libarchive                                                                    3.7.7-4.fc42                            rpm                         
+libarchive                                                                    3.8.1-1.fc42                            rpm                         
 libassuan                                                                     2.5.7-3.fc42                            rpm                         
 libasyncns                                                                    0.8-30.fc42                             rpm                         
 libattr                                                                       2.5.2-5.fc42                            rpm                         
@@ -654,7 +654,7 @@ libtirpc                                                                      1.
 libtool-ltdl                                                                  2.5.4-4.fc42                            rpm                         
 libunistring                                                                  1.1-9.fc42                              rpm                         
 libunwind                                                                     1.8.1-2.fc42                            rpm                         
-libusb1                                                                       1.0.29-3.fc42                           rpm                         
+libusb1                                                                       1.0.29-4.fc42                           rpm                         
 libutempter                                                                   1.2.1-17.fc42                           rpm                         
 libuuid                                                                       2.40.4-7.fc42                           rpm                         
 libuv                                                                         1:1.51.0-1.fc42                         rpm                         
@@ -878,8 +878,8 @@ sdbus-cpp                                                                     1.
 sdl12-compat                                                                  1.2.68-5.fc42                           rpm                         
 sdl2-compat                                                                   2.32.56-1.fc42                          rpm                         
 sed                                                                           4.9-4.fc42                              rpm                         
-selinux-policy                                                                42.6-1.fc42                             rpm                         
-selinux-policy-targeted                                                       42.6-1.fc42                             rpm                         
+selinux-policy                                                                42.7-1.fc42                             rpm                         
+selinux-policy-targeted                                                       42.7-1.fc42                             rpm                         
 selkies                                                                       0.0.0                                   python                      
 setup                                                                         2.15.0-13.fc42                          rpm                         
 setuptools                                                                    80.9.0                                  python                      
@@ -935,9 +935,9 @@ urw-base35-standard-symbols-ps-fonts                                          20
 urw-base35-z003-fonts                                                         20200910-24.fc42                        rpm                         
 util-linux                                                                    2.40.4-7.fc42                           rpm                         
 util-linux-core                                                               2.40.4-7.fc42                           rpm                         
-vim-data                                                                      2:9.1.1623-1.fc42                       rpm                         
-vim-filesystem                                                                2:9.1.1706-1.fc42                       rpm                         
-vim-minimal                                                                   2:9.1.1623-1.fc42                       rpm                         
+vim-data                                                                      2:9.1.1706-1.fc42                       rpm                         
+vim-filesystem                                                                2:9.1.1723-1.fc42                       rpm                         
+vim-minimal                                                                   2:9.1.1706-1.fc42                       rpm                         
 virtualenv                                                                    20.29.1                                 python                      
 vulkan-loader                                                                 1.4.313.0-1.fc42                        rpm                         
 vulkan-tools                                                                  1.4.313.0-1.fc42                        rpm                         
