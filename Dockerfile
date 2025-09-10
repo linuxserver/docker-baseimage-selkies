@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f c6f411cbf3742df3cc035ff446cc7303bc0d6c99
+  git checkout -f 0d61c6499fc87951f8933d898523c77a2832303d
 
 RUN \
   echo "**** build frontend ****" && \
@@ -67,91 +67,92 @@ RUN \
     breeze-cursors \
     ca-certificates \
     cmake \
-    kbd \
+    dbus-x11 \
     docker \
     docker-cli-compose \
-    dbus-x11 \
     dunst \
     file \
-    linux-firmware-none \
+    font-adobe-100dpi \
+    font-adobe-75dpi \
+    font-misc-misc \
+    font-noto \
     font-noto-cjk \
     font-noto-emoji \
-    font-noto \
+    freetype \
     fuse-overlayfs \
     git \
+    gnutls \
+    gobject-introspection \
     intel-media-driver \
+    kbd \
+    lang \
     libev \
     libfontenc \
-    freetype \
-    mesa-gbm \
     libgcrypt \
-    gobject-introspection \
-    mesa-dri-gallium \
-    mesa-gl \
-    gnutls \
     libjpeg-turbo \
-    nginx-mod-http-fancyindex \
     libnotify \
-    p11-kit \
-    linux-pam \
     libtasn1 \
-    vulkan-loader \
     libx11 \
-    x264-libs \
     libxau \
     libxcb \
     libxcursor \
+    libxcvt \
     libxdmcp \
     libxext \
-    xfconf \
     libxfixes \
     libxfont2 \
     libxinerama \
     libxshmfence \
     libxtst \
-    lang \
-    musl-utils \
+    linux-firmware-none \
+    linux-pam \
+    mesa-dri-gallium \
+    mesa-gbm \
+    mesa-gl \
     mesa-va-gallium \
-    mesa-vulkan-intel \
     mesa-vulkan-ati \
+    mesa-vulkan-intel \
     mesa-vulkan-swrast \
+    musl-utils \
     nginx \
+    nginx-mod-http-fancyindex \
     openbox \
     openssh-client \
     openssl \
     opus \
+    p11-kit \
     pciutils \
     procps \
     pulseaudio \
     pulseaudio-utils \
     python3 \
+    setxkbmap \
+    shadow \
     st \
     sudo \
-    shadow \
     tar \
     util-linux \
+    vulkan-loader \
     vulkan-tools \
-    xprop \
-    xrdb \
-    xset \
-    setxkbmap \
-    xkbcomp \
-    xrandr \
+    x264-libs \
     xauth \
-    libxcvt \
+    xclip \
     xdg-utils \
     xdotool \
-    font-misc-misc \
-    font-adobe-100dpi \
-    font-adobe-75dpi \
-    xkeyboard-config \
-    xsel \
-    xorg-server \
     xf86-video-amdgpu \
     xf86-video-ati \
     xf86-video-intel \
     xf86-video-nouveau \
     xf86-video-qxl \
+    xfconf \
+    xkbcomp \
+    xkeyboard-config \
+    xorg-server \
+    xprop \
+    xrandr \
+    xrdb \
+    xsel \
+    xset \
     xsettingsd \
     xterm \
     xvfb \
@@ -159,7 +160,7 @@ RUN \
   echo "**** install selkies ****" && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/c6f411cbf3742df3cc035ff446cc7303bc0d6c99.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/0d61c6499fc87951f8933d898523c77a2832303d.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
