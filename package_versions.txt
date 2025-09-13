@@ -42,8 +42,8 @@ cpp                                                                           4:
 cpp-14                                                                        14.3.0-5                                   deb                         
 cpp-14-x86-64-linux-gnu                                                       14.3.0-5                                   deb                         
 cpp-x86-64-linux-gnu                                                          4:14.2.0-1                                 deb                         
-cron                                                                          3.0pl1-197                                 deb                         
-cron-daemon-common                                                            3.0pl1-197                                 deb                         
+cron                                                                          3.0pl1-198                                 deb                         
+cron-daemon-common                                                            3.0pl1-198                                 deb                         
 cryptography                                                                  43.0.0                                     python                      
 curl                                                                          8.15.0-1                                   deb                         
 dario.cat/mergo                                                               v1.0.0                                     go-module                   
@@ -554,7 +554,7 @@ k8s.io/kube-openapi                                                           v0
 k8s.io/utils                                                                  v0.0.0-20230220204549-a5ecb0141aa5         go-module                   
 k8s.io/utils                                                                  v0.0.0-20241104100929-3ea5e8cea738         go-module  (+1 duplicate)   
 kali-archive-keyring                                                          2025.1                                     deb                         
-kali-defaults                                                                 2025.3.4                                   deb                         
+kali-defaults                                                                 2025.3.5                                   deb                         
 kbd                                                                           2.7.1-2                                    deb                         
 keyboard-configuration                                                        1.242                                      deb                         
 lazr-restfulclient                                                            0.14.6                                     python                      
@@ -571,7 +571,7 @@ libasound2-data                                                               1.
 libasound2-plugins                                                            1.2.12-2+b1                                deb                         
 libasound2t64                                                                 1.2.14-1                                   deb                         
 libassuan9                                                                    3.0.2-2                                    deb                         
-libasyncns0                                                                   0.8-6+b5                                   deb                         
+libasyncns0                                                                   0.8-7                                      deb                         
 libatomic1                                                                    15.2.0-1                                   deb                         
 libattr1                                                                      1:2.5.2-3                                  deb                         
 libaudit-common                                                               1:4.0.5-1                                  deb                         
@@ -801,7 +801,7 @@ libshine3                                                                     3.
 libsm6                                                                        2:1.2.6-1                                  deb                         
 libsmartcols1                                                                 2.41.1-1                                   deb                         
 libsnappy1v5                                                                  1.2.2-1                                    deb                         
-libsndfile1                                                                   1.2.2-2+b1                                 deb                         
+libsndfile1                                                                   1.2.2-3                                    deb                         
 libsoxr0                                                                      0.1.3-4+b2                                 deb                         
 libspectre1                                                                   0.2.12-1+b2                                deb                         
 libspeex1                                                                     1.2.1-3                                    deb                         
@@ -821,8 +821,8 @@ libtasn1-6                                                                    4.
 libtdb1                                                                       2:1.4.13+samba4.22.4+dfsg-1                deb                         
 libthai-data                                                                  0.1.29-2                                   deb                         
 libthai0                                                                      0.1.29-2+b1                                deb                         
-libtheoradec2                                                                 1.2.0+dfsg-5                               deb                         
-libtheoraenc2                                                                 1.2.0+dfsg-5                               deb                         
+libtheoradec2                                                                 1.2.0+dfsg-6                               deb                         
+libtheoraenc2                                                                 1.2.0+dfsg-6                               deb                         
 libtiff6                                                                      4.7.0-4                                    deb                         
 libtinfo6                                                                     6.5+20250216-2                             deb                         
 libtirpc-common                                                               1.3.6+ds-1                                 deb                         
