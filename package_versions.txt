@@ -968,7 +968,7 @@ perl-modules-5.36                                                             5.
 pillow                                                                        11.3.0                                     python                      
 pinentry-curses                                                               1.2.1-1                                    deb                         
 pip                                                                           23.0.1                                     python                      
-pixelflux                                                                     1.3.3                                      python                      
+pixelflux                                                                     1.4.0                                      python                      
 polkitd                                                                       122-3                                      deb                         
 poppler-data                                                                  0.4.12-1                                   deb                         
 procps                                                                        2:4.0.2-3                                  deb                         
@@ -986,7 +986,7 @@ pygobject                                                                     3.
 pyjwt                                                                         2.6.0                                      python                      
 pylibsrtp                                                                     0.12.0                                     python                      
 pynput                                                                        1.8.1                                      python                      
-pyopenssl                                                                     25.1.0                                     python                      
+pyopenssl                                                                     25.2.0                                     python                      
 pyparsing                                                                     3.0.9                                      python                      
 python-apt                                                                    2.6.0                                      python                      
 python-apt-common                                                             2.6.0                                      deb                         
