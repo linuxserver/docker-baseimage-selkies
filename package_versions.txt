@@ -44,7 +44,7 @@ coreutils                                                                     9.
 coreutils-env                                                                 9.7-r1                                  apk                         
 coreutils-fmt                                                                 9.7-r1                                  apk                         
 coreutils-sha512sum                                                           9.7-r1                                  apk                         
-cryptography                                                                  45.0.7                                  python                      
+cryptography                                                                  46.0.1                                  python                      
 curl                                                                          8.14.1-r1                               apk                         
 dario.cat/mergo                                                               v1.0.1                                  go-module  (+2 duplicates)  
 dbus                                                                          1.16.2-r1                               apk                         
@@ -666,9 +666,9 @@ pkgconf                                                                       2.
 platformdirs                                                                  4.2.2                                   python                      
 procps-ng                                                                     4.0.4-r3                                apk                         
 procps-ng-lang                                                                4.0.4-r3                                apk                         
-prometheus-client                                                             0.22.1                                  python                      
+prometheus-client                                                             0.23.1                                  python                      
 propcache                                                                     0.3.2                                   python                      
-psutil                                                                        7.0.0                                   python                      
+psutil                                                                        7.1.0                                   python                      
 pulseaudio                                                                    17.0-r5                                 apk                         
 pulseaudio-alsa                                                               17.0-r5                                 apk                         
 pulseaudio-lang                                                               17.0-r5                                 apk                         
@@ -679,7 +679,7 @@ pycparser                                                                     2.
 pyee                                                                          13.0.0                                  python                      
 pylibsrtp                                                                     0.12.0                                  python                      
 pynput                                                                        1.8.1                                   python                      
-pyopenssl                                                                     25.2.0                                  python                      
+pyopenssl                                                                     25.3.0                                  python                      
 python-xlib                                                                   0.33                                    python                      
 python3                                                                       3.12.11-r0                              apk                         
 python3-pyc                                                                   3.12.11-r0                              apk                         
