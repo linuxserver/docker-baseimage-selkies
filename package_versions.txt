@@ -57,7 +57,7 @@ cpp                                                                           15
 cpuinfo                                                                       24.09.26-2.git1e83a2f.fc42.1                             rpm                         
 cracklib                                                                      2.9.11-7.fc42                                            rpm                         
 crypto-policies                                                               20250707-1.gitad370a8.fc42                               rpm                         
-cryptography                                                                  45.0.7                                                   python                      
+cryptography                                                                  46.0.1                                                   python                      
 cryptsetup-libs                                                               2.8.1-1.fc42                                             rpm                         
 cups-filesystem                                                               1:2.4.14-1.fc42                                          rpm                         
 cups-libs                                                                     1:2.4.14-1.fc42                                          rpm                         
@@ -85,7 +85,7 @@ dnf5                                                                          5.
 dnf5-plugins                                                                  5.2.16.0-1.fc42                                          rpm                         
 dnspython                                                                     2.8.0                                                    python                      
 docker-cli                                                                    28.4.0-1.fc42                                            rpm                         
-docker-compose                                                                2.39.2-1.fc42                                            rpm                         
+docker-compose                                                                2.39.3-1.fc42                                            rpm                         
 duktape                                                                       2.7.0-9.fc42                                             rpm                         
 dunst                                                                         1.12.2-1.fc42                                            rpm                         
 elfutils-debuginfod-client                                                    0.193-2.fc42                                             rpm                         
@@ -94,7 +94,7 @@ elfutils-libelf                                                               0.
 elfutils-libs                                                                 0.193-2.fc42                                             rpm                         
 emacs-filesystem                                                              1:30.0-4.fc42                                            rpm                         
 evdev                                                                         1.9.2                                                    python                      
-expat                                                                         2.7.1-1.fc42                                             rpm                         
+expat                                                                         2.7.2-1.fc42                                             rpm                         
 fedora-gpg-keys                                                               42-1                                                     rpm                         
 fedora-logos-httpd                                                            42.0.1-1.fc42                                            rpm                         
 fedora-release-common                                                         42-30                                                    rpm                         
@@ -471,8 +471,8 @@ graphite2                                                                     1.
 grep                                                                          3.11-10.fc42                                             rpm                         
 groff-base                                                                    1.23.0-8.fc42                                            rpm                         
 gsm                                                                           1.0.22-8.fc42                                            rpm                         
-gstreamer1                                                                    1.26.5-2.fc42                                            rpm                         
-gstreamer1-plugins-base                                                       1.26.5-1.fc42                                            rpm                         
+gstreamer1                                                                    1.26.6-1.fc42                                            rpm                         
+gstreamer1-plugins-base                                                       1.26.6-1.fc42                                            rpm                         
 gtk-update-icon-cache                                                         3.24.49-2.fc42                                           rpm                         
 gtk3                                                                          3.24.49-2.fc42                                           rpm                         
 gui                                                                           UNKNOWN                                                  binary                      
@@ -642,10 +642,10 @@ libsepol                                                                      3.
 libsmartcols                                                                  2.40.4-7.fc42                                            rpm                         
 libsndfile                                                                    1.2.2-8.fc42                                             rpm                         
 libsolv                                                                       0.7.34-1.fc42                                            rpm                         
-libsoup3                                                                      3.6.5-2.fc42                                             rpm                         
+libsoup3                                                                      3.6.5-6.fc42                                             rpm                         
 libspectre                                                                    0.2.12-9.fc42                                            rpm                         
-libssh                                                                        0.11.2-1.fc42                                            rpm                         
-libssh-config                                                                 0.11.2-1.fc42                                            rpm                         
+libssh                                                                        0.11.3-1.fc42                                            rpm                         
+libssh-config                                                                 0.11.3-1.fc42                                            rpm                         
 libstdc++                                                                     15.2.1-1.fc42                                            rpm                         
 libtasn1                                                                      4.20.0-1.fc42                                            rpm                         
 libtdb                                                                        1.4.13-2.fc42                                            rpm                         
@@ -690,13 +690,13 @@ lm_sensors-libs                                                               3.
 lua-libs                                                                      5.4.8-1.fc42                                             rpm                         
 lz4-libs                                                                      1.10.0-2.fc42                                            rpm                         
 make                                                                          1:4.4.1-10.fc42                                          rpm                         
-mesa-dri-drivers                                                              25.1.7-1.fc42                                            rpm                         
-mesa-filesystem                                                               25.1.7-1.fc42                                            rpm                         
-mesa-libEGL                                                                   25.1.7-1.fc42                                            rpm                         
-mesa-libGL                                                                    25.1.7-1.fc42                                            rpm                         
-mesa-libgbm                                                                   25.1.7-1.fc42                                            rpm                         
-mesa-va-drivers                                                               25.1.7-1.fc42                                            rpm                         
-mesa-vulkan-drivers                                                           25.1.7-1.fc42                                            rpm                         
+mesa-dri-drivers                                                              25.1.9-1.fc42                                            rpm                         
+mesa-filesystem                                                               25.1.9-1.fc42                                            rpm                         
+mesa-libEGL                                                                   25.1.9-1.fc42                                            rpm                         
+mesa-libGL                                                                    25.1.9-1.fc42                                            rpm                         
+mesa-libgbm                                                                   25.1.9-1.fc42                                            rpm                         
+mesa-va-drivers                                                               25.1.9-1.fc42                                            rpm                         
+mesa-vulkan-drivers                                                           25.1.9-1.fc42                                            rpm                         
 mkfontscale                                                                   1.2.3-2.fc42                                             rpm                         
 moby-engine                                                                   28.4.0-1.fc42                                            rpm                         
 moby-filesystem                                                               28.4.0-1.fc42                                            rpm                         
@@ -823,11 +823,11 @@ polkit-libs                                                                   12
 polkit-pkla-compat                                                            0.1-30.fc42                                              rpm                         
 popt                                                                          1.19-8.fc42                                              rpm                         
 procps-ng                                                                     4.0.4-6.fc42                                             rpm                         
-prometheus-client                                                             0.22.1                                                   python                      
+prometheus-client                                                             0.23.1                                                   python                      
 propcache                                                                     0.3.2                                                    python                      
 protobuf-c                                                                    1.5.1-1.fc42                                             rpm                         
 psmisc                                                                        23.7-5.fc42                                              rpm                         
-psutil                                                                        7.0.0                                                    python                      
+psutil                                                                        7.1.0                                                    python                      
 publicsuffix-list-dafsa                                                       20250616-1.fc42                                          rpm                         
 pulseaudio                                                                    17.0-5.fc42                                              rpm                         
 pulseaudio-libs                                                               17.0-5.fc42                                              rpm                         
@@ -837,8 +837,8 @@ pycparser                                                                     2.
 pyee                                                                          13.0.0                                                   python                      
 pylibsrtp                                                                     0.12.0                                                   python                      
 pynput                                                                        1.8.1                                                    python                      
-pyopenssl                                                                     25.2.0                                                   python                      
-python-pip-wheel                                                              24.3.1-2.fc42                                            rpm                         
+pyopenssl                                                                     25.3.0                                                   python                      
+python-pip-wheel                                                              24.3.1-5.fc42                                            rpm                         
 python-setuptools-wheel                                                       74.1.3-7.fc42                                            rpm                         
 python-unversioned-command                                                    3.13.7-1.fc42                                            rpm                         
 python-wheel-wheel                                                            1:0.45.1-3.fc42                                          rpm                         
@@ -881,8 +881,8 @@ sdbus-cpp                                                                     1.
 sdl12-compat                                                                  1.2.68-5.fc42                                            rpm                         
 sdl2-compat                                                                   2.32.56-1.fc42                                           rpm                         
 sed                                                                           4.9-4.fc42                                               rpm                         
-selinux-policy                                                                42.8-1.fc42                                              rpm                         
-selinux-policy-targeted                                                       42.8-1.fc42                                              rpm                         
+selinux-policy                                                                42.9-1.fc42                                              rpm                         
+selinux-policy-targeted                                                       42.9-1.fc42                                              rpm                         
 selkies                                                                       0.0.0                                                    python                      
 setup                                                                         2.15.0-13.fc42                                           rpm                         
 setuptools                                                                    80.9.0                                                   python                      
@@ -898,8 +898,8 @@ spirv-tools-libs                                                              20
 sqlite-libs                                                                   3.47.2-2.fc42                                            rpm                         
 st                                                                            0.9.2-2.fc42                                             rpm                         
 startup-notification                                                          0.12-31.fc42                                             rpm                         
-stdlib                                                                        go1.24.5                                                 go-module  (+4 duplicates)  
-stdlib                                                                        go1.24.6                                                 go-module  (+3 duplicates)  
+stdlib                                                                        go1.24.5                                                 go-module  (+3 duplicates)  
+stdlib                                                                        go1.24.6                                                 go-module  (+4 duplicates)  
 sudo                                                                          1.9.17-2.p1.fc42                                         rpm                         
 svt-av1-libs                                                                  2.3.0-1.fc42                                             rpm                         
 systemd                                                                       257.9-2.fc42                                             rpm                         
@@ -938,9 +938,9 @@ urw-base35-standard-symbols-ps-fonts                                          20
 urw-base35-z003-fonts                                                         20200910-24.fc42                                         rpm                         
 util-linux                                                                    2.40.4-7.fc42                                            rpm                         
 util-linux-core                                                               2.40.4-7.fc42                                            rpm                         
-vim-data                                                                      2:9.1.1723-1.fc42                                        rpm                         
+vim-data                                                                      2:9.1.1723-2.fc42                                        rpm                         
 vim-filesystem                                                                2:9.1.1723-2.fc42                                        rpm                         
-vim-minimal                                                                   2:9.1.1723-1.fc42                                        rpm                         
+vim-minimal                                                                   2:9.1.1723-2.fc42                                        rpm                         
 virtualenv                                                                    20.29.1                                                  python                      
 vulkan-loader                                                                 1.4.313.0-1.fc42                                         rpm                         
 vulkan-tools                                                                  1.4.313.0-1.fc42                                         rpm                         
