@@ -27,7 +27,7 @@ avahi-libs                                                                    0.
 backports-tarfile                                                             1.2.0                                                    python                      
 basesystem                                                                    11-22.fc42                                               rpm                         
 bash                                                                          5.2.37-1.fc42                                            rpm                         
-breeze-cursor-theme                                                           6.4.4-1.fc42                                             rpm                         
+breeze-cursor-theme                                                           6.4.5-1.fc42                                             rpm                         
 busybox                                                                       1:1.37.0-2.fc42                                          rpm                         
 bzip2                                                                         1.0.8-20.fc42                                            rpm                         
 bzip2-libs                                                                    1.0.8-20.fc42                                            rpm                         
@@ -59,9 +59,9 @@ cracklib                                                                      2.
 crypto-policies                                                               20250707-1.gitad370a8.fc42                               rpm                         
 cryptography                                                                  46.0.1                                                   python                      
 cryptsetup-libs                                                               2.8.1-1.fc42                                             rpm                         
-cups-filesystem                                                               1:2.4.14-1.fc42                                          rpm                         
-cups-libs                                                                     1:2.4.14-1.fc42                                          rpm                         
-curl                                                                          8.11.1-5.fc42                                            rpm                         
+cups-filesystem                                                               1:2.4.14-2.fc42                                          rpm                         
+cups-libs                                                                     1:2.4.14-2.fc42                                          rpm                         
+curl                                                                          8.11.1-6.fc42                                            rpm                         
 cvt                                                                           0.1.2-9.fc42                                             rpm                         
 cyrus-sasl-lib                                                                2.1.28-30.fc42                                           rpm                         
 dario.cat/mergo                                                               v1.0.1                                                   go-module                   
@@ -555,7 +555,7 @@ libXv                                                                         1.
 libXvMC                                                                       1.0.13-7.fc42                                            rpm                         
 libXxf86vm                                                                    1.1.6-2.fc42                                             rpm                         
 libacl                                                                        2.3.2-3.fc42                                             rpm                         
-libaom                                                                        3.12.0-1.fc42                                            rpm                         
+libaom                                                                        3.13.1-1.fc42                                            rpm                         
 libarchive                                                                    3.8.1-1.fc42                                             rpm                         
 libassuan                                                                     2.5.7-3.fc42                                             rpm                         
 libasyncns                                                                    0.8-30.fc42                                              rpm                         
@@ -572,7 +572,7 @@ libcloudproviders                                                             0.
 libcom_err                                                                    1.47.2-3.fc42                                            rpm                         
 libcomps                                                                      0.1.22                                                   python                      
 libcomps                                                                      0.1.22-1.fc42                                            rpm                         
-libcurl                                                                       8.11.1-5.fc42                                            rpm                         
+libcurl                                                                       8.11.1-6.fc42                                            rpm                         
 libdatrie                                                                     0.2.13-11.fc42                                           rpm                         
 libdav1d                                                                      1.5.1-1.fc42                                             rpm                         
 libdecor                                                                      0.2.3-5.fc42                                             rpm                         
@@ -635,8 +635,8 @@ libretls                                                                      3.
 librsvg2                                                                      2.60.0-2.fc42                                            rpm                         
 libseccomp                                                                    2.5.5-2.fc41                                             rpm                         
 libsecret                                                                     0.21.7-1.fc42                                            rpm                         
-libselinux                                                                    3.8-2.fc42                                               rpm                         
-libselinux-utils                                                              3.8-2.fc42                                               rpm                         
+libselinux                                                                    3.8-3.fc42                                               rpm                         
+libselinux-utils                                                              3.8-3.fc42                                               rpm                         
 libsemanage                                                                   3.8.1-2.fc42                                             rpm                         
 libsepol                                                                      3.8-1.fc42                                               rpm                         
 libsmartcols                                                                  2.40.4-7.fc42                                            rpm                         
@@ -723,7 +723,7 @@ oniguruma                                                                     6.
 openbox                                                                       3.6.1-28.fc42                                            rpm                         
 openbox-libs                                                                  3.6.1-28.fc42                                            rpm                         
 openh264                                                                      2.5.1-1.fc42                                             rpm                         
-openjpeg                                                                      2.5.3-8.fc42                                             rpm                         
+openjpeg                                                                      2.5.4-1.fc42                                             rpm                         
 openldap                                                                      2.6.10-1.fc42                                            rpm                         
 openssh                                                                       9.9p1-11.fc42                                            rpm                         
 openssh-clients                                                               9.9p1-11.fc42                                            rpm                         
@@ -939,7 +939,7 @@ urw-base35-z003-fonts                                                         20
 util-linux                                                                    2.40.4-7.fc42                                            rpm                         
 util-linux-core                                                               2.40.4-7.fc42                                            rpm                         
 vim-data                                                                      2:9.1.1723-2.fc42                                        rpm                         
-vim-filesystem                                                                2:9.1.1723-2.fc42                                        rpm                         
+vim-filesystem                                                                2:9.1.1775-1.fc42                                        rpm                         
 vim-minimal                                                                   2:9.1.1723-2.fc42                                        rpm                         
 virtualenv                                                                    20.29.1                                                  python                      
 vulkan-loader                                                                 1.4.313.0-1.fc42                                         rpm                         
