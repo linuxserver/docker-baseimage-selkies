@@ -17,8 +17,8 @@ fi
 exec s6-setuidgid abc \
   /usr/bin/Xvfb \
     "${DISPLAY}" \
-    -screen 0 "${DEFAULT_RES}x${DISPLAY_CDEPTH}" \
-    -dpi "${DISPLAY_DPI}" \
+    -screen 0 "${DEFAULT_RES}x24" \
+    -dpi "96" \
     +extension "COMPOSITE" \
     +extension "DAMAGE" \
     +extension "GLX" \
