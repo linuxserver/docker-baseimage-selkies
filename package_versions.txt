@@ -359,7 +359,7 @@ github.com/zmap/zcrypto                                                       v0
 github.com/zmap/zlint/v3                                                      v3.1.0                                  go-module                      
 glib2                                                                         2.86.0-2                                alpm                           
 glibc                                                                         2.42+r17+gd7274d718e6f-1                alpm                           
-glycin                                                                        2.0.0-5                                 alpm                           
+glycin                                                                        2.0.2-1                                 alpm                           
 gmp                                                                           6.3.0-2                                 alpm                           
 gnulib-l10n                                                                   20241231-1                              alpm                           
 gnupg                                                                         2.4.8-1                                 alpm                           
