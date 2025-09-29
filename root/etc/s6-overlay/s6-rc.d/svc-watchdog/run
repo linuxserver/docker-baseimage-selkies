@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-if [[ -z "${RESTART_APP}" ]]; then
+if [[ ${RESTART_APP,,} != "true" ]]; then
   exec sleep infinity
 fi
 

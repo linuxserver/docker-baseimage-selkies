@@ -28,7 +28,7 @@ if [ ! -z ${LC_ALL+x} ]; then
 fi
 
 # hardening flags
-if [[ -n "${HARDEN_DESKTOP}" ]]; then
+if [[ ${HARDEN_DESKTOP,,} == "true" ]]; then
   export DISABLE_OPEN_TOOLS="true"
   export DISABLE_SUDO="true"
   export DISABLE_TERMINALS="true"
@@ -46,7 +46,7 @@ if [[ -n "${HARDEN_DESKTOP}" ]]; then
     printf "false" > /run/s6/container_environment/SELKIES_UI_SIDEBAR_SHOW_APPS
   fi
 fi
-if [[ -n "${HARDEN_OPENBOX}" ]]; then
+if [[ ${HARDEN_OPENBOX,,} == "true" ]]; then
   export DISABLE_CLOSE_BUTTON="true"
   export DISABLE_MOUSE_BUTTONS="true"
   export HARDEN_KEYBINDS="true"
@@ -59,7 +59,7 @@ fi
 # disable open tools
 xdg_open_path=$(which xdg-open 2>/dev/null)
 exo_open_path=$(which exo-open 2>/dev/null)
-if [[ -n "${DISABLE_OPEN_TOOLS}" ]]; then
+if [[ ${DISABLE_OPEN_TOOLS,,} == "true" ]]; then
   echo "[ls.io-init] Disabling xdg-open and exo-open"
   [ -n "$xdg_open_path" ] && chmod 0000 "$xdg_open_path"
   [ -n "$exo_open_path" ] && chmod 0000 "$exo_open_path"
@@ -70,7 +70,7 @@ fi
 
 # disable sudo
 sudo_path=$(which sudo 2>/dev/null)
-if [[ -n "${DISABLE_SUDO}" ]]; then
+if [[ ${DISABLE_SUDO,,} == "true" ]]; then
   echo "[ls.io-init] Disabling sudo binary and corrupting sudoers config"
   [ -n "$sudo_path" ] && chmod 0000 "$sudo_path"
   sed -i "s/NOPASSWD/CORRUPT_FILE/g" /etc/sudoers
@@ -89,7 +89,7 @@ if [ -f "$USER_MENU_XML" ] && [ ! -f "$USER_MENU_BAK" ]; then
   cp "$USER_MENU_XML" "$USER_MENU_BAK"
   chown abc:abc "$USER_MENU_BAK"
 fi
-if [[ -n "${DISABLE_TERMINALS}" ]]; then
+if [[ ${DISABLE_TERMINALS,,} == "true" ]]; then
   echo "[ls.io-init] Disabling terminal binaries and removing from menu"
   [ -f "$USER_MENU_BAK" ] && cp "$USER_MENU_BAK" "$USER_MENU_XML"
   for term_name in "${TERMINAL_NAMES[@]}"; do
@@ -117,7 +117,7 @@ fi
 # lock down autostart file if auto restart is enabled
 AUTOSTART_SCRIPT="$HOME/.config/openbox/autostart"
 if [ -f "$AUTOSTART_SCRIPT" ]; then
-  if [[ -n "${RESTART_APP}" ]]; then
+  if [[ ${RESTART_APP,,} == "true" ]]; then
     echo "[ls.io-init] RESTART_APP is set. Setting autostart owner to root and making read-only for user"
     chown root:abc "$AUTOSTART_SCRIPT"
     chmod 550 "$AUTOSTART_SCRIPT"
@@ -139,7 +139,7 @@ if [[ -n "${DISABLE_CLOSE_BUTTON}" ]]; then
   echo "[ls.io-init] Disabling close button"
   sed -i '/<titleLayout>/s/C//' "$SYS_RC_XML"
 fi
-if [[ -n "${DISABLE_MOUSE_BUTTONS}" ]]; then
+if [[ ${DISABLE_MOUSE_BUTTONS,,} == "true" ]]; then
   echo "[ls.io-init] Disabling right and middle mouse clicks"
   sed -i -e '/<mousebind button="Right"/,/<\/mousebind>/d' \
          -e '/<mousebind button="Middle"/,/<\/mousebind>/d' "$SYS_RC_XML"
@@ -152,7 +152,7 @@ if [[ ! -z ${NO_FULL+x} ]]; then
   echo "[ls.io-init] Disabling maximization"
   sed -i '/<maximized>yes<\/maximized>/d' "$SYS_RC_XML"
 fi
-if [[ -n "${HARDEN_KEYBINDS}" ]]; then
+if [[ ${HARDEN_KEYBINDS,,} == "true" ]]; then
     echo "[ls.io-init] Disabling dangerous keybinds"
     KEYS_TO_DISABLE=(
         "A-F4"
@@ -167,7 +167,7 @@ fi
 
 # disable user rc path if config is hardened
 USER_RC_XML="$HOME/.config/openbox/rc.xml"
-if [[ -n "${DISABLE_MOUSE_BUTTONS}" || -n "${HARDEN_KEYBINDS}" ]]; then
+if [[ ${DISABLE_MOUSE_BUTTONS,,} == "true" || ${HARDEN_KEYBINDS,,} == "true" ]]; then
   echo "[ls.io-init] Locking user rc.xml to prevent security overrides"
   mkdir -p "$(dirname $USER_RC_XML)"
   chown abc:abc "$(dirname $USER_RC_XML)"
