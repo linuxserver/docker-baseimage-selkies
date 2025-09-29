@@ -9,6 +9,7 @@ CHPORT="${CUSTOM_HTTPS_PORT:-3001}"
 CWS="${CUSTOM_WS_PORT:-8082}"
 CUSER="${CUSTOM_USER:-abc}"
 SFOLDER="${SUBFOLDER:-/}"
+FILE_MANAGER_PATH="${FILE_MANAGER_PATH:-$HOME/Desktop}"
 
 # create self signed cert
 if [ ! -f "/config/ssl/cert.pem" ]; then
@@ -28,7 +29,8 @@ sed -i "s/3000/$CPORT/g" ${NGINX_CONFIG}
 sed -i "s/3001/$CHPORT/g" ${NGINX_CONFIG}
 sed -i "s/CWS/$CWS/g" ${NGINX_CONFIG}
 sed -i "s|SUBFOLDER|$SFOLDER|g" ${NGINX_CONFIG}
-sed -i "s|REPLACE_HOME|$HOME|g" ${NGINX_CONFIG}
+sed -i "s|REPLACE_DOWNLOADS_PATH|$FILE_MANAGER_PATH|g" ${NGINX_CONFIG}
+sed -i "s|REPLACE_DOWNLOADS_PATH|$FILE_MANAGER_PATH|g" /usr/share/selkies/www/nginx/footer.html
 s6-setuidgid abc mkdir -p $HOME/Desktop
 if [ ! -z ${DISABLE_IPV6+x} ]; then
   sed -i '/listen \[::\]/d' ${NGINX_CONFIG}
