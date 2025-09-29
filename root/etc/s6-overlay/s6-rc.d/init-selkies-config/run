@@ -1,69 +1,208 @@
 #!/usr/bin/with-contenv bash
 
 # default file copies first run
-if [[ ! -f /config/.config/openbox/autostart ]]; then
-  mkdir -p /config/.config/openbox
-  cp /defaults/autostart /config/.config/openbox/autostart
-  chown -R abc:abc /config/.config/openbox
+mkdir -p "$HOME/.config"
+chown abc:abc "$HOME/.config"
+if [[ ! -f "$HOME/.config/openbox/autostart" ]]; then
+  mkdir -p "$HOME/.config/openbox"
+  cp /defaults/autostart "$HOME/.config/openbox/autostart"
+  chown abc:abc "$HOME/.config/openbox" "$HOME/.config/openbox/autostart"
 fi
-if [[ ! -f /config/.config/openbox/menu.xml ]]; then
-  mkdir -p /config/.config/openbox && \
-  cp /defaults/menu.xml /config/.config/openbox/menu.xml && \
-  chown -R abc:abc /config/.config
+if [[ ! -f "$HOME/.config/openbox/menu.xml" ]]; then
+  mkdir -p "$HOME/.config/openbox" && \
+  cp /defaults/menu.xml "$HOME/.config/openbox/menu.xml"
+  chown abc:abc "$HOME/.config/openbox" "$HOME/.config/openbox/menu.xml"
 fi
 
 # XDG Home
-printf "${HOME}/.XDG" > /run/s6/container_environment/XDG_RUNTIME_DIR
-if [ ! -d "${HOME}/.XDG" ]; then
-  mkdir -p ${HOME}/.XDG
-  chown abc:abc ${HOME}/.XDG
+if [ ! -d "$HOME/.XDG" ]; then
+  mkdir -p "$HOME/.XDG"
+  chown abc:abc "$HOME/.XDG"
 fi
+printf "$HOME/.XDG" > /run/s6/container_environment/XDG_RUNTIME_DIR
 
-# Locale Support
+# locale Support
 if [ ! -z ${LC_ALL+x} ]; then
   printf "${LC_ALL%.UTF-8}" > /run/s6/container_environment/LANGUAGE
   printf "${LC_ALL}" > /run/s6/container_environment/LANG
 fi
 
-# Remove window borders
-if [[ ! -z ${NO_DECOR+x} ]] && [[ ! -f /decorlock ]]; then
-  sed -i \
-    's|</applications>|  <application class="*"> <decor>no</decor> </application>\n</applications>|' \
-    /etc/xdg/openbox/rc.xml
-  touch /decorlock
+# hardening flags
+if [[ -n "${HARDEN_DESKTOP}" ]]; then
+  export DISABLE_OPEN_TOOLS="true"
+  export DISABLE_SUDO="true"
+  export DISABLE_TERMINALS="true"
+  # application hardening if unset
+  if [ -z ${SELKIES_FILE_TRANSFERS+x} ]; then
+    printf "" > /run/s6/container_environment/SELKIES_FILE_TRANSFERS
+  fi
+  if [ -z ${SELKIES_COMMAND_ENABLED+x} ]; then
+    printf "false" > /run/s6/container_environment/SELKIES_COMMAND_ENABLED
+  fi
+  if [ -z ${SELKIES_UI_SIDEBAR_SHOW_FILES+x} ]; then
+    printf "false" > /run/s6/container_environment/SELKIES_UI_SIDEBAR_SHOW_FILES
+  fi
+  if [ -z ${SELKIES_UI_SIDEBAR_SHOW_APPS+x} ]; then
+    printf "false" > /run/s6/container_environment/SELKIES_UI_SIDEBAR_SHOW_APPS
+  fi
+fi
+if [[ -n "${HARDEN_OPENBOX}" ]]; then
+  export DISABLE_CLOSE_BUTTON="true"
+  export DISABLE_MOUSE_BUTTONS="true"
+  export HARDEN_KEYBINDS="true"
+  if [ -z ${RESTART_APP+x} ]; then
+    export RESTART_APP=true
+    printf "true" > /run/s6/container_environment/RESTART_APP
+  fi
 fi
 
-# Fullscreen everything in openbox unless the user explicitly disables it
-if [[ ! -z ${NO_FULL+x} ]] && [[ ! -f /fulllock ]]; then
-  sed -i \
-    's|<maximized>yes</maximized>||g' \
-    /etc/xdg/openbox/rc.xml
-  touch /fulllock
+# disable open tools
+xdg_open_path=$(which xdg-open 2>/dev/null)
+exo_open_path=$(which exo-open 2>/dev/null)
+if [[ -n "${DISABLE_OPEN_TOOLS}" ]]; then
+  echo "[ls.io-init] Disabling xdg-open and exo-open"
+  [ -n "$xdg_open_path" ] && chmod 0000 "$xdg_open_path"
+  [ -n "$exo_open_path" ] && chmod 0000 "$exo_open_path"
+else
+  [ -n "$xdg_open_path" ] && chmod 755 "$xdg_open_path"
+  [ -n "$exo_open_path" ] && chmod 755 "$exo_open_path"
 fi
 
-# Add proot-apps
-if [ ! -f "${HOME}/.local/bin/proot-apps" ]; then
-  mkdir -p ${HOME}/.local/bin/
-  cp /proot-apps/* ${HOME}/.local/bin/
-  echo 'export PATH="$HOME/.local/bin:$PATH"' >> $HOME/.bashrc
-  chown abc:abc \
-    ${HOME}/.bashrc \
-    ${HOME}/.local/ \
-    ${HOME}/.local/bin \
-    ${HOME}/.local/bin/{ncat,proot-apps,proot,jq,pversion}
-elif ! diff -q /proot-apps/pversion ${HOME}/.local/bin/pversion > /dev/null; then
-  cp /proot-apps/* ${HOME}/.local/bin/
-  chown abc:abc ${HOME}/.local/bin/{ncat,proot-apps,proot,jq,pversion}
+# disable sudo
+sudo_path=$(which sudo 2>/dev/null)
+if [[ -n "${DISABLE_SUDO}" ]]; then
+  echo "[ls.io-init] Disabling sudo binary and corrupting sudoers config"
+  [ -n "$sudo_path" ] && chmod 0000 "$sudo_path"
+  sed -i "s/NOPASSWD/CORRUPT_FILE/g" /etc/sudoers
+else
+  [ -n "$sudo_path" ] && chmod 4755 "$sudo_path"
+  sed -i "s/CORRUPT_FILE/NOPASSWD/g" /etc/sudoers
 fi
 
+# disable terminals and menu entries
+USER_MENU_DIR="$HOME/.config/openbox"
+USER_MENU_XML="$USER_MENU_DIR/menu.xml"
+USER_MENU_BAK="$USER_MENU_DIR/menu.xml.bak"
+TERMINAL_NAMES=("xterm" "st" "stterm" "uxterm" "lxterminal" "gnome-terminal" "konsole" "xfce4-terminal" "terminator")
+if [ -f "$USER_MENU_XML" ] && [ ! -f "$USER_MENU_BAK" ]; then
+  echo "[ls.io-init] Creating initial backup of menu.xml"
+  cp "$USER_MENU_XML" "$USER_MENU_BAK"
+  chown abc:abc "$USER_MENU_BAK"
+fi
+if [[ -n "${DISABLE_TERMINALS}" ]]; then
+  echo "[ls.io-init] Disabling terminal binaries and removing from menu"
+  [ -f "$USER_MENU_BAK" ] && cp "$USER_MENU_BAK" "$USER_MENU_XML"
+  for term_name in "${TERMINAL_NAMES[@]}"; do
+    term_path=$(which "$term_name" 2>/dev/null)
+    if [ -n "$term_path" ]; then
+      chmod 0000 "$term_path"
+      escaped_path=$(echo "$term_path" | sed 's/[&/\]/\\&/g')
+      sed -i "/<command>${escaped_path}<\/command>/d" "$USER_MENU_XML"
+    fi
+  done
+  chown abc:abc "$USER_MENU_XML"
+else
+  if [ -f "$USER_MENU_BAK" ]; then
+    cp "$USER_MENU_BAK" "$USER_MENU_XML"
+    chown abc:abc "$USER_MENU_XML"
+  fi
+  for term_name in "${TERMINAL_NAMES[@]}"; do
+    term_path=$(which "$term_name" 2>/dev/null)
+    if [ -n "$term_path" ] && [ ! -x "$term_path" ]; then
+      chmod 755 "$term_path"
+    fi
+  done
+fi
 
+# lock down autostart file if auto restart is enabled
+AUTOSTART_SCRIPT="$HOME/.config/openbox/autostart"
+if [ -f "$AUTOSTART_SCRIPT" ]; then
+  if [[ -n "${RESTART_APP}" ]]; then
+    echo "[ls.io-init] RESTART_APP is set. Setting autostart owner to root and making read-only for user"
+    chown root:abc "$AUTOSTART_SCRIPT"
+    chmod 550 "$AUTOSTART_SCRIPT"
+  else
+    chown abc:abc "$AUTOSTART_SCRIPT"
+    chmod 644 "$AUTOSTART_SCRIPT"
+  fi
+fi
+
+# openbox tweaks
+SYS_RC_XML="/etc/xdg/openbox/rc.xml"
+SYS_RC_BAK="/etc/xdg/openbox/rc.xml.bak"
+if [ ! -f "$SYS_RC_BAK" ]; then
+  echo "[ls.io-init] Creating initial backup of system rc.xml"
+  cp "$SYS_RC_XML" "$SYS_RC_BAK"
+fi
+cp "$SYS_RC_BAK" "$SYS_RC_XML"
+if [[ -n "${DISABLE_CLOSE_BUTTON}" ]]; then
+  echo "[ls.io-init] Disabling close button"
+  sed -i '/<titleLayout>/s/C//' "$SYS_RC_XML"
+fi
+if [[ -n "${DISABLE_MOUSE_BUTTONS}" ]]; then
+  echo "[ls.io-init] Disabling right and middle mouse clicks"
+  sed -i -e '/<mousebind button="Right"/,/<\/mousebind>/d' \
+         -e '/<mousebind button="Middle"/,/<\/mousebind>/d' "$SYS_RC_XML"
+fi
+if [[ ! -z ${NO_DECOR+x} ]]; then
+  echo "[ls.io-init] Removing window decorations"
+  sed -i '/<application class="\*">/a \    <decor>no</decor>' "$SYS_RC_XML"
+fi
+if [[ ! -z ${NO_FULL+x} ]]; then
+  echo "[ls.io-init] Disabling maximization"
+  sed -i '/<maximized>yes<\/maximized>/d' "$SYS_RC_XML"
+fi
+if [[ -n "${HARDEN_KEYBINDS}" ]]; then
+    echo "[ls.io-init] Disabling dangerous keybinds"
+    KEYS_TO_DISABLE=(
+        "A-F4"
+        "A-Escape"
+        "A-space"
+        "W-e"
+    )
+    for key in "${KEYS_TO_DISABLE[@]}"; do
+        sed -i "/<keybind key=\"${key}\"/,/<\/keybind>/{s/^/    <!-- /;s/$/ -->/}" "$SYS_RC_XML"
+    done
+fi
+
+# disable user rc path if config is hardened
+USER_RC_XML="$HOME/.config/openbox/rc.xml"
+if [[ -n "${DISABLE_MOUSE_BUTTONS}" || -n "${HARDEN_KEYBINDS}" ]]; then
+  echo "[ls.io-init] Locking user rc.xml to prevent security overrides"
+  mkdir -p "$(dirname $USER_RC_XML)"
+  chown abc:abc "$(dirname $USER_RC_XML)"
+  cp "$SYS_RC_XML" "$USER_RC_XML"
+  chown root:abc "$USER_RC_XML"
+  chmod 444 "$USER_RC_XML"
+else
+  if [ -f "$USER_RC_XML" ] && [ "$(stat -c '%U' $USER_RC_XML)" == "root" ]; then
+    echo "[ls.io-init] Hardening disabled, removing locked user rc.xml"
+    rm -f "$USER_RC_XML"
+  fi
+fi
+
+# add proot-apps
+proot_updated=false
+if [ ! -f "$HOME/.local/bin/proot-apps" ]; then
+  mkdir -p "$HOME/.local/bin/"
+  cp /proot-apps/* "$HOME/.local/bin/"
+  echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.bashrc"
+  proot_updated=true
+elif ! diff -q /proot-apps/pversion "$HOME/.local/bin/pversion" > /dev/null; then
+  cp /proot-apps/* "$HOME/.local/bin/"
+  proot_updated=true
+fi
+if [ "$proot_updated" = true ]; then
+    chown -R abc:abc "$HOME/.local"
+    [ -f "$HOME/.bashrc" ] && chown abc:abc "$HOME/.bashrc"
+fi
 
 # set env based on vars
 if [[ -z ${NO_GAMEPAD+x} ]]; then
   printf "/usr/lib/selkies_joystick_interposer.so:/opt/lib/libudev.so.1.0.0-fake" > /run/s6/container_environment/LD_PRELOAD
 fi
 
-# JS folder setup
+# js folder setup
 mkdir -pm1777 /dev/input
 touch /tmp/selkies_js.log
 mknod /dev/input/js0 c 13 0
@@ -76,7 +215,7 @@ mknod /dev/input/event1002 c 13 1066
 mknod /dev/input/event1003 c 13 1067
 chmod 777 /dev/input/js* /dev/input/event* /tmp/selkies*
 
-# Manifest creation
+# manifest creation
 echo "{
   \"name\": \"${TITLE}\",
   \"short_name\": \"${TITLE}\",
