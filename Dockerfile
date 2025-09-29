@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f 67167119ea92bf6ad467b2b87b6bc9093eaf7073
+  git checkout -f 1ff75bac47ed1db85192b78c7e51212d074f75ec
 
 RUN \
   echo "**** build frontend ****" && \
@@ -182,7 +182,7 @@ RUN \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/67167119ea92bf6ad467b2b87b6bc9093eaf7073.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/1ff75bac47ed1db85192b78c7e51212d074f75ec.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
