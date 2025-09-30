@@ -214,22 +214,3 @@ mknod /dev/input/event1001 c 13 1065
 mknod /dev/input/event1002 c 13 1066
 mknod /dev/input/event1003 c 13 1067
 chmod 777 /dev/input/js* /dev/input/event* /tmp/selkies*
-
-# manifest creation
-echo "{
-  \"name\": \"${TITLE}\",
-  \"short_name\": \"${TITLE}\",
-  \"manifest_version\": 2,
-  \"version\": \"1.0.0\",
-  \"display\": \"fullscreen\",
-  \"background_color\": \"#000000\",
-  \"theme_color\": \"#000000\",
-  \"icons\": [
-    {
-      \"src\": \"icon.png\",
-      \"type\": \"image/png\",
-      \"sizes\": \"180x180\"
-    }
-  ],
-  \"start_url\": \"/\"
-}" > /usr/share/selkies/www/manifest.json
