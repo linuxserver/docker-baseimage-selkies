@@ -227,6 +227,9 @@ RUN \
     -e 's|</keyboard>|  <keybind key="C-S-d"><action name="ToggleDecorations"/></keybind>\n</keyboard>|' \
     -e 's|<number>4</number>|<number>1</number>|' \
     /etc/xdg/openbox/rc.xml && \
+  sed -i \
+    's/--startup/--replace --startup/g' \
+    /usr/bin/openbox-session && \
   echo "**** user perms ****" && \
   sed -e 's/%sudo	ALL=(ALL:ALL) ALL/%sudo ALL=(ALL:ALL) NOPASSWD: ALL/g' \
     -i /etc/sudoers && \
