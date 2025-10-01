@@ -55,13 +55,15 @@ if which nvidia-smi >/dev/null 2>&1; then
         # get vulkan api version
         VULKAN_API_VERSION=$(ldconfig -p | grep "libvulkan.so" | awk '{print $NF}' | xargs readlink | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
         mkdir -pm755 /etc/vulkan/icd.d/
-        echo "{\n\
-    \"file_format_version\" : \"1.0.0\",\n\
-    \"ICD\": {\n\
-        \"library_path\": \"libGLX_nvidia.so.0\",\n\
-        \"api_version\" : \"${VULKAN_API_VERSION}\"\n\
-    }\n\
-}" > /etc/vulkan/icd.d/nvidia_icd.json
+        cat > /etc/vulkan/icd.d/nvidia_icd.json << EOF
+{
+    "file_format_version" : "1.0.0",
+    "ICD": {
+        "library_path": "libGLX_nvidia.so.0",
+        "api_version" : "${VULKAN_API_VERSION}"
+    }
+}
+EOF
     fi
 
     # find glvnd egl_vendor files
@@ -70,11 +72,13 @@ if which nvidia-smi >/dev/null 2>&1; then
     if [ -z "${EGLS}" ]; then
         echo "**** Setting up EGL vendor file for NVIDIA ****"
         mkdir -pm755 /etc/glvnd/egl_vendor.d/
-        echo "{\n\
-    \"file_format_version\" : \"1.0.0\",\n\
-    \"ICD\": {\n\
-        \"library_path\": \"libEGL_nvidia.so.0\"\n\
-    }\n\
-}" > /etc/glvnd/egl_vendor.d/10_nvidia.json
+        cat > /etc/glvnd/egl_vendor.d/10_nvidia.json << EOF
+{
+    "file_format_version" : "1.0.0",
+    "ICD": {
+        "library_path": "libEGL_nvidia.so.0"
+    }
+}
+EOF
     fi
 fi
