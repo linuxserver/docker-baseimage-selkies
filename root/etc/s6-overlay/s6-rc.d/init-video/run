@@ -54,6 +54,11 @@ if which nvidia-smi >/dev/null 2>&1; then
         echo "**** Setting up Vulkan ICD for NVIDIA ****"
         # get vulkan api version
         VULKAN_API_VERSION=$(ldconfig -p | grep "libvulkan.so" | awk '{print $NF}' | xargs readlink | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
+        # Fallback if pipeline fails
+        if [ -z "${VULKAN_API_VERSION}" ]; then
+            # version 1.1 or greater allows vulkan-loader to load the driver's dynamic library
+            VULKAN_API_VERSION="1.1.0"
+        fi
         mkdir -pm755 /etc/vulkan/icd.d/
         cat > /etc/vulkan/icd.d/nvidia_icd.json << EOF
 {
