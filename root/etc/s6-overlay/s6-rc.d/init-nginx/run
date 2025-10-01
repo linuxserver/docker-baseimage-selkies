@@ -11,6 +11,8 @@ CUSER="${CUSTOM_USER:-abc}"
 SFOLDER="${SUBFOLDER:-/}"
 FILE_MANAGER_PATH="${FILE_MANAGER_PATH:-$HOME/Desktop}"
 DASHBOARD="${DASHBOARD:-selkies-dashboard}"
+SELKIES_FILE_TRANSFERS="${SELKIES_FILE_TRANSFERS:-upload,download}"
+HARDEN_DESKTOP="${HARDEN_DESKTOP:-false}"
 
 # create self signed cert
 if [ ! -f "/config/ssl/cert.pem" ]; then
@@ -31,7 +33,10 @@ sed -i "s/3001/$CHPORT/g" ${NGINX_CONFIG}
 sed -i "s/CWS/$CWS/g" ${NGINX_CONFIG}
 sed -i "s|SUBFOLDER|$SFOLDER|g" ${NGINX_CONFIG}
 sed -i "s|REPLACE_DOWNLOADS_PATH|$FILE_MANAGER_PATH|g" ${NGINX_CONFIG}
-s6-setuidgid abc mkdir -p $HOME/Desktop
+s6-setuidgid abc mkdir -p ${FILE_MANAGER_PATH}
+if [[ $SELKIES_FILE_TRANSFERS != *"download"* ]] || [[ ${HARDEN_DESKTOP,,} == "true" ]]; then
+  sed -i '/files {/,/}/d' ${NGINX_CONFIG}
+fi
 if [ ! -z ${DISABLE_IPV6+x} ]; then
   sed -i '/listen \[::\]/d' ${NGINX_CONFIG}
 fi
@@ -55,8 +60,10 @@ cp -a \
 sed -i "s|REPLACE_DOWNLOADS_PATH|$FILE_MANAGER_PATH|g" /usr/share/selkies/web/nginx/footer.html
 cp \
   /usr/share/selkies/www/icon.png \
-  /usr/share/selkies/$DASHBOARD/favicon.ico \
-  /usr/share/selkies/$DASHBOARD/icon.png
+  /usr/share/selkies/web/favicon.ico
+cp \
+  /usr/share/selkies/www/icon.png \
+  /usr/share/selkies/web/icon.png
 # manifest creation
 echo "{
   \"name\": \"${TITLE}\",
