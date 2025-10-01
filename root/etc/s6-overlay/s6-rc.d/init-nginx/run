@@ -35,7 +35,7 @@ sed -i "s|SUBFOLDER|$SFOLDER|g" ${NGINX_CONFIG}
 sed -i "s|REPLACE_DOWNLOADS_PATH|$FILE_MANAGER_PATH|g" ${NGINX_CONFIG}
 s6-setuidgid abc mkdir -p ${FILE_MANAGER_PATH}
 if [[ $SELKIES_FILE_TRANSFERS != *"download"* ]] || [[ ${HARDEN_DESKTOP,,} == "true" ]]; then
-  sed -i '/files {/,/}/d' ${NGINX_CONFIG}
+  sed -i '/files {/,/^  }/d' ${NGINX_CONFIG}
 fi
 if [ ! -z ${DISABLE_IPV6+x} ]; then
   sed -i '/listen \[::\]/d' ${NGINX_CONFIG}
