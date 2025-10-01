@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f f143e7b8006d98e4bea47f39ebb5e1b3053f34f4
+  git checkout -f 29466e687d2dbed57f657e47b69fab217a81ef1f
 
 RUN \
   echo "**** build shared core library ****" && \
@@ -24,7 +24,7 @@ RUN \
   npm install && \
   npm run build && \
   echo "**** build multiple dashboards ****" && \
-  DASHBOARDS="selkies-dashboard selkies-dashboard-zinc" && \
+  DASHBOARDS="selkies-dashboard selkies-dashboard-zinc selkies-dashboard-wish" && \
   mkdir /buildout && \
   for DASH in $DASHBOARDS; do \
     cd /src/addons/$DASH && \
@@ -32,6 +32,7 @@ RUN \
     npm install && \
     npm run build && \
     mkdir -p dist/src dist/nginx && \
+    cp ../gst-web-core/dist/selkies-core.js dist/src/ && \
     cp ../universal-touch-gamepad/universalTouchGamepad.js dist/src/ && \
     cp ../gst-web-core/nginx/* dist/nginx/ && \
     cp -r ../gst-web-core/dist/jsdb dist/ && \
@@ -184,7 +185,7 @@ RUN \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/f143e7b8006d98e4bea47f39ebb5e1b3053f34f4.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/29466e687d2dbed57f657e47b69fab217a81ef1f.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
