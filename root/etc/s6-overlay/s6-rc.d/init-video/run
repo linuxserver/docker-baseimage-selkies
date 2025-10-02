@@ -33,3 +33,57 @@ do
         fi
     fi
 done
+
+# check if nvidia gpu is present
+if which nvidia-smi >/dev/null 2>&1; then
+    # nvidia-container-toolkit may not place files correctly, so we set them up here
+    echo "**** NVIDIA GPU detected ****"
+
+    OPENCL_ICDS=$(find /etc/OpenCL/vendors -name '*nvidia*.icd' 2>/dev/null)
+    # if no opencl icd found
+    if [ -z "${OPENCL_ICDS}" ]; then
+        echo "**** Setting up OpenCL ICD for NVIDIA ****"
+        mkdir -pm755 /etc/OpenCL/vendors/
+        echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
+    fi
+
+    # find vulkan icds
+    ICDS=$(find /usr/share/vulkan/icd.d /etc/vulkan/icd.d -name '*nvidia*.json' 2>/dev/null)
+    # if no icd found
+    if [ -z "${ICDS}" ]; then
+        echo "**** Setting up Vulkan ICD for NVIDIA ****"
+        # get vulkan api version
+        VULKAN_API_VERSION=$(ldconfig -p | grep "libvulkan.so" | awk '{print $NF}' | xargs readlink | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
+        # Fallback if pipeline fails
+        if [ -z "${VULKAN_API_VERSION}" ]; then
+            # version 1.1 or greater allows vulkan-loader to load the driver's dynamic library
+            VULKAN_API_VERSION="1.1.0"
+        fi
+        mkdir -pm755 /etc/vulkan/icd.d/
+        cat > /etc/vulkan/icd.d/nvidia_icd.json << EOF
+{
+    "file_format_version" : "1.0.0",
+    "ICD": {
+        "library_path": "libGLX_nvidia.so.0",
+        "api_version" : "${VULKAN_API_VERSION}"
+    }
+}
+EOF
+    fi
+
+    # find glvnd egl_vendor files
+    EGLS=$(find /usr/share/glvnd/egl_vendor.d /etc/glvnd/egl_vendor.d -name '*nvidia*.json' 2>/dev/null)
+    # if no egl_vendor file found
+    if [ -z "${EGLS}" ]; then
+        echo "**** Setting up EGL vendor file for NVIDIA ****"
+        mkdir -pm755 /etc/glvnd/egl_vendor.d/
+        cat > /etc/glvnd/egl_vendor.d/10_nvidia.json << EOF
+{
+    "file_format_version" : "1.0.0",
+    "ICD": {
+        "library_path": "libEGL_nvidia.so.0"
+    }
+}
+EOF
+    fi
+fi
