@@ -35,10 +35,9 @@ do
 done
 
 # check if nvidia gpu is present
-if which nvidia-smi >/dev/null 2>&1; then
+if which nvidia-smi > /dev/null 2>&1 && ls -A /dev/dri 2>/dev/null; then
     # nvidia-container-toolkit may not place files correctly, so we set them up here
     echo "**** NVIDIA GPU detected ****"
-
     OPENCL_ICDS=$(find /etc/OpenCL/vendors -name '*nvidia*.icd' 2>/dev/null)
     # if no opencl icd found
     if [ -z "${OPENCL_ICDS}" ]; then
@@ -46,7 +45,6 @@ if which nvidia-smi >/dev/null 2>&1; then
         mkdir -pm755 /etc/OpenCL/vendors/
         echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
     fi
-
     # find vulkan icds
     ICDS=$(find /usr/share/vulkan/icd.d /etc/vulkan/icd.d -name '*nvidia*.json' 2>/dev/null)
     # if no icd found
@@ -70,7 +68,6 @@ if which nvidia-smi >/dev/null 2>&1; then
 }
 EOF
     fi
-
     # find glvnd egl_vendor files
     EGLS=$(find /usr/share/glvnd/egl_vendor.d /etc/glvnd/egl_vendor.d -name '*nvidia*.json' 2>/dev/null)
     # if no egl_vendor file found
