@@ -1,9 +1,11 @@
 #!/usr/bin/with-contenv bash
 
 # set sane resolution before starting apps
-s6-setuidgid abc xrandr --newmode "1024x768" 63.50  1024 1072 1176 1328  768 771 775 798 -hsync +vsync
-s6-setuidgid abc xrandr --addmode screen "1024x768"
-s6-setuidgid abc xrandr --output screen --mode "1024x768" --dpi 96
+if ! s6-setuidgid abc xrandr | grep -q "1024x768"; then
+  s6-setuidgid abc xrandr --newmode "1024x768" 63.50  1024 1072 1176 1328  768 771 775 798 -hsync +vsync
+  s6-setuidgid abc xrandr --addmode screen "1024x768"
+  s6-setuidgid abc xrandr --output screen --mode "1024x768" --dpi 96
+fi
 
 # set xresources
 if [ -f "${HOME}/.Xresources" ]; then
