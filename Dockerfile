@@ -4,7 +4,7 @@ FROM ghcr.io/linuxserver/baseimage-alpine:3.22 AS frontend
 
 RUN \
   echo "**** install build packages ****" && \
-  apk add --no-cache \
+  apk add \
     cmake \
     git \
     nodejs \
@@ -16,24 +16,29 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f 89e39cf7d58c8f7c87ac5922b56b84f745ddeeab
+  git checkout -f 29466e687d2dbed57f657e47b69fab217a81ef1f
 
 RUN \
-  echo "**** build frontend ****" && \
-  cd /src && \
-  cd addons/gst-web-core && \
+  echo "**** build shared core library ****" && \
+  cd /src/addons/gst-web-core && \
   npm install && \
   npm run build && \
-  cp dist/selkies-core.js ../selkies-dashboard/src && \
-  cd ../selkies-dashboard && \
-  npm install && \
-  npm run build && \
-  mkdir dist/src dist/nginx && \
-  cp ../universal-touch-gamepad/universalTouchGamepad.js dist/src/ && \
-  cp ../gst-web-core/nginx/* dist/nginx/ && \
-  cp -r ../gst-web-core/dist/jsdb dist/ && \
+  echo "**** build multiple dashboards ****" && \
+  DASHBOARDS="selkies-dashboard selkies-dashboard-zinc selkies-dashboard-wish" && \
   mkdir /buildout && \
-  cp -ar dist/* /buildout/
+  for DASH in $DASHBOARDS; do \
+    cd /src/addons/$DASH && \
+    cp ../gst-web-core/dist/selkies-core.js src/ && \
+    npm install && \
+    npm run build && \
+    mkdir -p dist/src dist/nginx && \
+    cp ../gst-web-core/dist/selkies-core.js dist/src/ && \
+    cp ../universal-touch-gamepad/universalTouchGamepad.js dist/src/ && \
+    cp ../gst-web-core/nginx/* dist/nginx/ && \
+    cp -r ../gst-web-core/dist/jsdb dist/ && \
+    mkdir -p /buildout/$DASH && \
+    cp -ar dist/* /buildout/$DASH/; \
+  done
 
 # Runtime stage
 FROM ghcr.io/linuxserver/baseimage-arch:latest
@@ -173,7 +178,7 @@ RUN \
   echo "**** install selkies ****" && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/89e39cf7d58c8f7c87ac5922b56b84f745ddeeab.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/29466e687d2dbed57f657e47b69fab217a81ef1f.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
@@ -214,6 +219,9 @@ RUN \
     -e 's|</keyboard>|  <keybind key="C-S-d"><action name="ToggleDecorations"/></keybind>\n</keyboard>|' \
     -e 's|<number>4</number>|<number>1</number>|' \
     /etc/xdg/openbox/rc.xml && \
+  sed -i \
+    's/--startup/--replace --startup/g' \
+    /usr/bin/openbox-session && \
   echo "**** proot-apps ****" && \
   mkdir /proot-apps/ && \
   PAPPS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/proot-apps/releases/latest" \
@@ -255,7 +263,7 @@ RUN \
 
 # add local files
 COPY /root /
-COPY --from=frontend /buildout /usr/share/selkies/www
+COPY --from=frontend /buildout /usr/share/selkies
 COPY --from=xvfb / /
 
 # ports and volumes
