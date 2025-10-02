@@ -38,23 +38,51 @@ full_custom_readme: |
   | CUSTOM_USER | HTTP Basic auth username, abc is default. |
   | PASSWORD | HTTP Basic auth password, abc is default. If unset there will be no auth |
   | SUBFOLDER | Subfolder for the application if running a subfolder reverse proxy, need both slashes IE `/subfolder/` |
-  | TITLE | The page title displayed on the web browser, default "Selkies - webrtc". |
+  | TITLE | The page title displayed on the web browser, default "Selkies". |
+  | DASHBOARD | Allows the user to set their dashboard. Options: `selkies-dashboard`, `selkies-dashboard-zinc`, `selkies-dashboard-wish`. |
+  | FILE_MANAGER_PATH | Modifies the default upload/download file path, path must have proper permissions for abc user. |
   | START_DOCKER | If set to false a container with privilege will not automatically start the DinD Docker setup. |
   | DISABLE_IPV6 | If set to true or any value this will disable IPv6 |
   | LC_ALL | Set the Language for the container to run as IE `fr_FR.UTF-8` `ar_AE.UTF-8` |
   | NO_DECOR | If set the application will run without window borders for use as a PWA. (Decor can be enabled and disabled with Ctrl+Shift+d) |
   | NO_FULL | Do not autmatically fullscreen applications when using openbox. |
   | DISABLE_ZINK | Do not set the Zink environment variables if a video card is detected (userspace applications will use CPU rendering) |
+  | MAX_RES | Pass a larger maximum resolution for the container default is 16k `15360x8640` |
   | WATERMARK_PNG | Full path inside the container to a watermark png IE `/usr/share/selkies/www/icon.png` |
   | WATERMARK_LOCATION | Where to paint the image over the stream integer options below |
-  | MAX_RES | Pass a larger maximum resolution for the container default is 16k `15360x8640` |
 
-  * 1 - Top Left
-  * 2 - Top Right
-  * 3 - Bottom Left
-  * 4 - Bottom Right
-  * 5 - Centered
-  * 6 - Animated
+  **`WATERMARK_LOCATION` Options:**
+  - **1**: Top Left
+  - **2**: Top Right
+  - **3**: Bottom Left
+  - **4**: Bottom Right
+  - **5**: Centered
+  - **6**: Animated
+
+  ## Hardening
+
+  These variables can be used to lock down the desktop environment for single-application use cases or to restrict user capabilities.
+
+  ### Meta Variables
+
+  These variables act as presets, enabling multiple hardening options at once. Individual options can still be set to override the preset.
+
+  | Variable | Description |
+  | :----: | --- |
+  | **`HARDEN_DESKTOP`** | Enables `DISABLE_OPEN_TOOLS`, `DISABLE_SUDO`, and `DISABLE_TERMINALS`. Also sets related Selkies UI settings (`SELKIES_FILE_TRANSFERS`, `SELKIES_COMMAND_ENABLED`, `SELKIES_UI_SIDEBAR_SHOW_FILES`, `SELKIES_UI_SIDEBAR_SHOW_APPS`) if they are not explicitly set by the user. |
+  | **`HARDEN_OPENBOX`** | Enables `DISABLE_CLOSE_BUTTON`, `DISABLE_MOUSE_BUTTONS`, and `HARDEN_KEYBINDS`. It also flags `RESTART_APP` if not set by the user, ensuring the primary application is automatically restarted if closed. |
+
+  ### Individual Hardening Variables
+
+  | Variable | Description |
+  | :--- | --- |
+  | **`DISABLE_OPEN_TOOLS`** | If true, disables `xdg-open` and `exo-open` binaries by removing their execute permissions. |
+  | **`DISABLE_SUDO`** | If true, disables the `sudo` command by removing its execute permissions and invalidating the passwordless sudo configuration. |
+  | **`DISABLE_TERMINALS`** | If true, disables common terminal emulators by removing their execute permissions and hiding them from the Openbox right-click menu. |
+  | **`DISABLE_CLOSE_BUTTON`** | If true, removes the close button from window title bars in the Openbox window manager. |
+  | **`DISABLE_MOUSE_BUTTONS`** | If true, disables the right-click and middle-click context menus and actions within the Openbox window manager. |
+  | **`HARDEN_KEYBINDS`** | If true, disables default Openbox keybinds that can bypass other hardening options (e.g., `Alt+F4` to close windows, `Alt+Escape` to show the root menu). |
+  | **`RESTART_APP`** | If true, enables a watchdog service that automatically restarts the main application if it is closed. The user's autostart script is made read-only and root owned to prevent tampering. |
 
   ## Selkies application settings
 
@@ -338,7 +366,7 @@ full_custom_readme: |
             devices:
               - driver: nvidia
                 count: 1
-                capabilities: [compute,video,graphics,utility]
+                capabilities: [gpu]
   ```
   
   # Development
