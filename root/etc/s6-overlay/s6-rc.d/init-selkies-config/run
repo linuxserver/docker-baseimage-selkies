@@ -197,20 +197,24 @@ if [ "$proot_updated" = true ]; then
     [ -f "$HOME/.bashrc" ] && chown abc:abc "$HOME/.bashrc"
 fi
 
-# set env based on vars
-if [[ -z ${NO_GAMEPAD+x} ]]; then
-  printf "/usr/lib/selkies_joystick_interposer.so:/opt/lib/libudev.so.1.0.0-fake" > /run/s6/container_environment/LD_PRELOAD
-fi
-
-# js folder setup
+# js setup
 mkdir -pm1777 /dev/input
 touch /tmp/selkies_js.log
-mknod /dev/input/js0 c 13 0
-mknod /dev/input/js1 c 13 1
-mknod /dev/input/js2 c 13 2
-mknod /dev/input/js3 c 13 3
-mknod /dev/input/event1000 c 13 1064
-mknod /dev/input/event1001 c 13 1065
-mknod /dev/input/event1002 c 13 1066
-mknod /dev/input/event1003 c 13 1067
-chmod 777 /dev/input/js* /dev/input/event* /tmp/selkies*
+chmod 777 /tmp/selkies*
+if [[ -z ${NO_GAMEPAD+x} ]] && mknod /dev/input/js0 c 13 0; then
+  printf "/usr/lib/selkies_joystick_interposer.so:/opt/lib/libudev.so.1.0.0-fake" > /run/s6/container_environment/LD_PRELOAD
+  mknod /dev/input/js1 c 13 1
+  mknod /dev/input/js2 c 13 2
+  mknod /dev/input/js3 c 13 3
+  mknod /dev/input/event1000 c 13 1064
+  mknod /dev/input/event1001 c 13 1065
+  mknod /dev/input/event1002 c 13 1066
+  mknod /dev/input/event1003 c 13 1067
+  chmod 777 /dev/input/js* /dev/input/event*
+else
+  printf "false" > /run/s6/container_environment/SELKIES_UI_SIDEBAR_SHOW_GAMEPADS
+  printf "false" > /run/s6/container_environment/SELKIES_GAMEPAD_ENABLED
+  printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER2
+  printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER3
+  printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER3
+fi
