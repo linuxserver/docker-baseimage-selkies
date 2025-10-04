@@ -665,7 +665,7 @@ polkit                                                                        12
 popt                                                                          1.19-2                                  alpm                           
 procps-ng                                                                     4.0.5-3                                 alpm                           
 prometheus-client                                                             0.23.1                                  python                         
-propcache                                                                     0.3.2                                   python                         
+propcache                                                                     0.4.0                                   python                         
 psmisc                                                                        23.7-1                                  alpm                           
 psutil                                                                        7.1.0                                   python                         
 pulseaudio                                                                    17.0+r43+g3e2bb8a1e-1                   alpm                           
