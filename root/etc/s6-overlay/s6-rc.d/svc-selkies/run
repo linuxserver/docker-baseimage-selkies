@@ -57,8 +57,8 @@ if [ ! -z ${DEV_MODE+x} ]; then
 fi
 
 # Enable vaapi if device detected
-if ! which nvidia-smi && [ -e "/dev/dri/renderD128" ] && [ ! -z ${DRI_NODE+x} ]; then
-  DRI_NODE="/dev/dri/renderD128"
+if ! which nvidia-smi && [ -e "/dev/dri/renderD128" ] && [ -z ${DRI_NODE+x} ]; then
+  export DRI_NODE="/dev/dri/renderD128"
 fi
 
 # Start Selkies
