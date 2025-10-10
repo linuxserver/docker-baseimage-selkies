@@ -58,6 +58,7 @@ ENV DISPLAY=:1 \
     SELKIES_INTERPOSER=/usr/lib/selkies_joystick_interposer.so \
     NVIDIA_DRIVER_CAPABILITIES=all \
     DISABLE_ZINK=false \
+    DISABLE_DRI3=false \
     TITLE=Selkies
 
 RUN \

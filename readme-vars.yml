@@ -32,21 +32,24 @@ full_custom_readme: |
 
   | Variable | Description |
   | :----: | --- |
-  | CUSTOM_PORT | Internal port the container listens on for http if it needs to be swapped from the default 3000. |
-  | CUSTOM_HTTPS_PORT | Internal port the container listens on for https if it needs to be swapped from the default 3001. |
-  | CUSTOM_WS_PORT | Internal port the container listens on for websockets if it needs to be swapped from the default 8082. |
+  | CUSTOM_PORT | Internal port the container listens on for http if it needs to be swapped from the default 3000 |
+  | CUSTOM_HTTPS_PORT | Internal port the container listens on for https if it needs to be swapped from the default 3001 |
+  | CUSTOM_WS_PORT | Internal port the container listens on for websockets if it needs to be swapped from the default 8082 |
   | CUSTOM_USER | HTTP Basic auth username, abc is default. |
+  | DRI_NODE | Enable VAAPI stream encoding and use the specified device IE `/dev/dri/renderD128` |
+  | DRINODE | Specify which GPU to use for DRI3 acceleration IE `/dev/dri/renderD129` |
   | PASSWORD | HTTP Basic auth password, abc is default. If unset there will be no auth |
   | SUBFOLDER | Subfolder for the application if running a subfolder reverse proxy, need both slashes IE `/subfolder/` |
-  | TITLE | The page title displayed on the web browser, default "Selkies". |
-  | DASHBOARD | Allows the user to set their dashboard. Options: `selkies-dashboard`, `selkies-dashboard-zinc`, `selkies-dashboard-wish`. |
-  | FILE_MANAGER_PATH | Modifies the default upload/download file path, path must have proper permissions for abc user. |
-  | START_DOCKER | If set to false a container with privilege will not automatically start the DinD Docker setup. |
+  | TITLE | The page title displayed on the web browser, default "Selkies" |
+  | DASHBOARD | Allows the user to set their dashboard. Options: `selkies-dashboard`, `selkies-dashboard-zinc`, `selkies-dashboard-wish` |
+  | FILE_MANAGER_PATH | Modifies the default upload/download file path, path must have proper permissions for abc user |
+  | START_DOCKER | If set to false a container with privilege will not automatically start the DinD Docker setup |
   | DISABLE_IPV6 | If set to true or any value this will disable IPv6 |
   | LC_ALL | Set the Language for the container to run as IE `fr_FR.UTF-8` `ar_AE.UTF-8` |
   | NO_DECOR | If set the application will run without window borders for use as a PWA. (Decor can be enabled and disabled with Ctrl+Shift+d) |
   | NO_FULL | Do not autmatically fullscreen applications when using openbox. |
   | DISABLE_ZINK | Do not set the Zink environment variables if a video card is detected (userspace applications will use CPU rendering) |
+  | DISABLE_DRI3 | Do not use DRI3 acceleration if a video card is detected (userspace applications will use CPU rendering) |
   | MAX_RES | Pass a larger maximum resolution for the container default is 16k `15360x8640` |
   | WATERMARK_PNG | Full path inside the container to a watermark png IE `/usr/share/selkies/www/icon.png` |
   | WATERMARK_LOCATION | Where to paint the image over the stream integer options below |
