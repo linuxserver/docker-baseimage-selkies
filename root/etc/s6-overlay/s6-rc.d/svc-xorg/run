@@ -8,6 +8,9 @@ fi
 if [ ! -z ${DRINODE+x} ]; then
   VFBCOMMAND="-vfbdevice ${DRINODE}"
 fi
+if [ "${DISABLE_DRI3}" != "false" ]; then
+  VFBCOMMAND=""
+fi
 DEFAULT_RES="15360x8640"
 if [ ! -z ${MAX_RES+x} ]; then
   DEFAULT_RES="${MAX_RES}"
