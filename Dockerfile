@@ -68,7 +68,6 @@ RUN \
     /etc/pacman.conf && \
   echo "**** install deps ****" && \
   pacman -Sy --noconfirm --needed \
-    amdvlk \
     base-devel \
     bash \
     ca-certificates \
