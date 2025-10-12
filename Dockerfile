@@ -57,6 +57,7 @@ ENV DISPLAY=:1 \
     PULSE_RUNTIME_PATH=/defaults \
     SELKIES_INTERPOSER=/usr/lib/selkies_joystick_interposer.so \
     DISABLE_ZINK=false \
+    DISABLE_DRI3=false \
     TITLE=Selkies
 
 RUN \
