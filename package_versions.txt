@@ -85,7 +85,7 @@ dnf5                                                                          5.
 dnf5-plugins                                                                  5.2.16.0-1.fc42                                          rpm                         
 dnspython                                                                     2.8.0                                                    python                      
 docker-cli                                                                    28.4.0-1.fc42                                            rpm                         
-docker-compose                                                                2.39.4-1.fc42                                            rpm                         
+docker-compose                                                                2.40.0-1.fc42                                            rpm                         
 duktape                                                                       2.7.0-9.fc42                                             rpm                         
 dunst                                                                         1.12.2-1.fc42                                            rpm                         
 elfutils-debuginfod-client                                                    0.193-2.fc42                                             rpm                         
@@ -487,7 +487,7 @@ highway                                                                       1.
 hiredis                                                                       1.2.0-6.fc42                                             rpm                         
 hostname                                                                      3.25-2.fc42                                              rpm                         
 hwdata                                                                        0.400-1.fc42                                             rpm                         
-idna                                                                          3.10                                                     python                      
+idna                                                                          3.11                                                     python                      
 ifaddr                                                                        0.2.0                                                    python                      
 ima-evm-utils-libs                                                            1.6.2-4.fc42                                             rpm                         
 imlib2                                                                        1.12.3-2.fc42                                            rpm                         
