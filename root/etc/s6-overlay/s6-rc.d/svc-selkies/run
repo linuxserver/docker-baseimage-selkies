@@ -56,7 +56,6 @@ if [ ! -z ${DEV_MODE+x} ]; then
       --mode="websockets"
 fi
 
-
 # Start Selkies
 exec s6-setuidgid abc \
   selkies \
