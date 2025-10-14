@@ -51,7 +51,8 @@ if [ ! -z ${DEV_MODE+x} ]; then
     nodemon -V --ext py --exec \
       "python3" -m selkies \
       --addr="localhost" \
-      --mode="websockets"
+      --mode="websockets" \
+      --debug="true"
 fi
 
 # Start Selkies
