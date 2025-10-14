@@ -982,7 +982,7 @@ perl-modules-5.38                                                             5.
 pillow                                                                        11.3.0                                  python                      
 pinentry-curses                                                               1.2.1-3ubuntu5                          deb                         
 pip                                                                           24.0                                    python                      
-pixelflux                                                                     1.4.3                                   python                      
+pixelflux                                                                     1.4.4                                   python                      
 platformdirs                                                                  4.2.2                                   python                      
 polkitd                                                                       124-2ubuntu1.24.04.2                    deb                         
 poppler-data                                                                  0.4.12-1                                deb                         
@@ -999,7 +999,7 @@ pycparser                                                                     2.
 pyee                                                                          13.0.0                                  python                      
 pygobject                                                                     3.48.2                                  python                      
 pyjwt                                                                         2.7.0                                   python                      
-pylibsrtp                                                                     0.12.0                                  python                      
+pylibsrtp                                                                     1.0.0                                   python                      
 pynput                                                                        1.8.1                                   python                      
 pyopenssl                                                                     25.3.0                                  python                      
 pyparsing                                                                     3.1.1                                   python                      
