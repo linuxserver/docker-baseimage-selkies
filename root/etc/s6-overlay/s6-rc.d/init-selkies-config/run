@@ -197,6 +197,11 @@ if [ "$proot_updated" = true ]; then
     [ -f "$HOME/.bashrc" ] && chown abc:abc "$HOME/.bashrc"
 fi
 
+# Enable vaapi if device detected
+if ! which nvidia-smi && [ -e "/dev/dri/renderD128" ] && [ ! -e "/dev/dri/renderD129" ] && [ -z ${DRI_NODE+x} ]; then
+  printf "/dev/dri/renderD128" > /run/s6/container_environment/DRI_NODE
+fi
+
 # js setup
 mkdir -pm1777 /dev/input
 touch /tmp/selkies_js.log
