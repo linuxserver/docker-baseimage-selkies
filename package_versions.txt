@@ -525,7 +525,7 @@ gzip                                                                          1.
 hicolor-icon-theme                                                            0.17-2                                  deb                         
 hostname                                                                      3.23+nmu1                               deb                         
 httplib2                                                                      0.20.4                                  python                      
-idna                                                                          3.10                                    python                      
+idna                                                                          3.11                                    python                      
 ifaddr                                                                        0.2.0                                   python                      
 init-system-helpers                                                           1.65.2+deb12u1                          deb                         
 intel-media-va-driver                                                         23.1.1+dfsg1-1                          deb                         
@@ -966,7 +966,7 @@ perl-modules-5.36                                                             5.
 pillow                                                                        11.3.0                                  python                      
 pinentry-curses                                                               1.2.1-1                                 deb                         
 pip                                                                           23.0.1                                  python                      
-pixelflux                                                                     1.4.3                                   python                      
+pixelflux                                                                     1.4.4                                   python                      
 polkitd                                                                       122-3                                   deb                         
 poppler-data                                                                  0.4.12-1                                deb                         
 procps                                                                        2:4.0.2-3                               deb                         
@@ -982,7 +982,7 @@ pycparser                                                                     2.
 pyee                                                                          13.0.0                                  python                      
 pygobject                                                                     3.42.2                                  python                      
 pyjwt                                                                         2.6.0                                   python                      
-pylibsrtp                                                                     0.12.0                                  python                      
+pylibsrtp                                                                     1.0.0                                   python                      
 pynput                                                                        1.8.1                                   python                      
 pyopenssl                                                                     25.3.0                                  python                      
 pyparsing                                                                     3.0.9                                   python                      
