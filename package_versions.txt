@@ -69,7 +69,7 @@ crossbeam-deque                                                               0.
 crossbeam-epoch                                                               0.9.18                                  rust-crate                   
 crossbeam-queue                                                               0.3.11                                  rust-crate                   
 crossbeam-utils                                                               0.8.19                                  rust-crate                   
-cryptography                                                                  46.0.2                                  python                       
+cryptography                                                                  46.0.3                                  python                       
 curl                                                                          8.14.1-r2                               apk                          
 dario.cat/mergo                                                               v1.0.1                                  go-module   (+2 duplicates)  
 dbus                                                                          1.16.2-r1                               apk                          
@@ -710,9 +710,9 @@ pciutils                                                                      3.
 pciutils-libs                                                                 3.13.0-r1                               apk                          
 pcmflux                                                                       1.0.5                                   python                       
 pcre2                                                                         10.43-r1                                apk                          
-pillow                                                                        11.3.0                                  python                       
+pillow                                                                        12.0.0                                  python                       
 pip                                                                           25.0.1                                  python                       
-pixelflux                                                                     1.4.4                                   python                       
+pixelflux                                                                     1.4.5                                   python                       
 pixman                                                                        0.46.4-r0                               apk                          
 pkgconf                                                                       2.4.3-r0                                apk                          
 platformdirs                                                                  4.2.2                                   python                       
