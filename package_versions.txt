@@ -43,7 +43,7 @@ cpp-12                                                                        12
 cron                                                                          3.0pl1-162                              deb                         
 cron-daemon-common                                                            3.0pl1-162                              deb                         
 cryptography                                                                  38.0.4                                  python     (+1 duplicate)   
-cryptography                                                                  46.0.2                                  python                      
+cryptography                                                                  46.0.3                                  python                      
 curl                                                                          7.88.1-10+deb12u14                      deb                         
 dario.cat/mergo                                                               v1.0.0                                  go-module                   
 dario.cat/mergo                                                               v1.0.2                                  go-module                   
@@ -963,10 +963,10 @@ pcmflux                                                                       1.
 perl                                                                          5.36.0-7+deb12u3                        deb                         
 perl-base                                                                     5.36.0-7+deb12u3                        deb                         
 perl-modules-5.36                                                             5.36.0-7+deb12u3                        deb                         
-pillow                                                                        11.3.0                                  python                      
+pillow                                                                        12.0.0                                  python                      
 pinentry-curses                                                               1.2.1-1                                 deb                         
 pip                                                                           23.0.1                                  python                      
-pixelflux                                                                     1.4.4                                   python                      
+pixelflux                                                                     1.4.5                                   python                      
 polkitd                                                                       122-3                                   deb                         
 poppler-data                                                                  0.4.12-1                                deb                         
 procps                                                                        2:4.0.2-3                               deb                         
