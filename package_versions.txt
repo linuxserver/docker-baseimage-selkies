@@ -4,9 +4,9 @@ aiohappyeyeballs                                                              2.
 aiohttp                                                                       3.13.0                                  python                      
 aioice                                                                        0.10.1                                  python                      
 aiosignal                                                                     1.4.0                                   python                      
-apt                                                                           3.1.7+kali1                             deb                         
-apt-transport-https                                                           3.1.7+kali1                             deb                         
-apt-utils                                                                     3.1.7+kali1                             deb                         
+apt                                                                           3.1.8+kali1                             deb                         
+apt-transport-https                                                           3.1.8+kali1                             deb                         
+apt-utils                                                                     3.1.8+kali1                             deb                         
 attrs                                                                         25.4.0                                  python                      
 autocommand                                                                   2.2.2                                   python     (+1 duplicate)   
 av                                                                            14.4.0                                  python                      
@@ -45,7 +45,7 @@ cpp-x86-64-linux-gnu                                                          4:
 cron                                                                          3.0pl1-200                              deb                         
 cron-daemon-common                                                            3.0pl1-200                              deb                         
 cryptography                                                                  44.0.2                                  python                      
-cryptography                                                                  46.0.2                                  python                      
+cryptography                                                                  46.0.3                                  python                      
 curl                                                                          8.15.0-1                                deb                         
 dario.cat/mergo                                                               v1.0.0                                  go-module                   
 dario.cat/mergo                                                               v1.0.2                                  go-module                   
@@ -63,7 +63,7 @@ debianutils                                                                   5.
 diffutils                                                                     1:3.10-4                                deb                         
 dirmngr                                                                       2.4.8-3                                 deb                         
 distro                                                                        1.9.0                                   python                      
-distro-info-data                                                              0.66                                    deb                         
+distro-info-data                                                              0.67                                    deb                         
 dnspython                                                                     2.8.0                                   python                      
 docker-buildx-plugin                                                          0.29.1-1~debian.12~bookworm             deb                         
 docker-ce                                                                     5:28.5.1-1~debian.12~bookworm           deb                         
@@ -561,7 +561,7 @@ libacl1                                                                       2.
 libaom3                                                                       3.13.1-1                                deb                         
 libapparmor1                                                                  4.1.0-1                                 deb                         
 libappstream5                                                                 1.1.0-1                                 deb                         
-libapt-pkg7.0                                                                 3.1.7+kali1                             deb                         
+libapt-pkg7.0                                                                 3.1.8+kali1                             deb                         
 libarchive13t64                                                               3.7.4-4+b1                              deb                         
 libasan8                                                                      15.2.0-4                                deb                         
 libasound2-data                                                               1.2.14-2                                deb                         
@@ -693,7 +693,7 @@ libjbig0                                                                      2.
 libjbig2dec0                                                                  0.20-1+b3                               deb                         
 libjpeg62-turbo                                                               1:2.1.5-4                               deb                         
 libjq1                                                                        1.8.1-4                                 deb                         
-libjs-sphinxdoc                                                               8.2.3-6                                 deb                         
+libjs-sphinxdoc                                                               8.2.3-7                                 deb                         
 libjsoncpp26                                                                  1.9.6-4                                 deb                         
 libjxl0.11                                                                    0.11.1-6                                deb                         
 libk5crypto3                                                                  1.21.3-5                                deb                         
@@ -775,7 +775,7 @@ libpython3.13-dev                                                             3.
 libpython3.13-minimal                                                         3.13.7-1                                deb                         
 libpython3.13-stdlib                                                          3.13.7-1                                deb                         
 libquadmath0                                                                  15.2.0-4                                deb                         
-librav1e0.8                                                                   0.8.1-2                                 deb                         
+librav1e0.8                                                                   0.8.1-5                                 deb                         
 libreadline8t64                                                               8.3-3                                   deb                         
 librhash1                                                                     1.4.6-1                                 deb                         
 librsvg2-2                                                                    2.60.0+dfsg-1+b1                        deb                         
@@ -948,10 +948,10 @@ pcmflux                                                                       1.
 perl                                                                          5.40.1-6                                deb                         
 perl-base                                                                     5.40.1-6                                deb                         
 perl-modules-5.40                                                             5.40.1-6                                deb                         
-pillow                                                                        11.3.0                                  python                      
+pillow                                                                        12.0.0                                  python                      
 pinentry-curses                                                               1.3.2-3                                 deb                         
 pip                                                                           25.2                                    python                      
-pixelflux                                                                     1.4.4                                   python                      
+pixelflux                                                                     1.4.5                                   python                      
 platformdirs                                                                  4.2.2                                   python     (+1 duplicate)   
 polkitd                                                                       126-2+kali1                             deb                         
 poppler-data                                                                  0.4.12-1                                deb                         
