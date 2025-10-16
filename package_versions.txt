@@ -39,7 +39,7 @@ cracklib                                                                      2.
 cracklib-dicts                                                                2.9.6-27.el9                            rpm                          
 crypto-policies                                                               20250128-1.git5269e22.el9               rpm                          
 crypto-policies-scripts                                                       20250128-1.git5269e22.el9               rpm                          
-cryptography                                                                  46.0.2                                  python                       
+cryptography                                                                  46.0.3                                  python                       
 curl                                                                          7.76.1-31.el9_6.1                       rpm                          
 cyrus-sasl-lib                                                                2.1.27-21.el9                           rpm                          
 dario.cat/mergo                                                               v1.0.0                                  go-module  (+1 duplicate)    
@@ -829,7 +829,7 @@ perl-subs                                                                     0:
 perl-vars                                                                     0:1.05-481.1.el9_6                      rpm                          
 pillow                                                                        11.3.0                                  python                       
 pip                                                                           21.3.1                                  python                       
-pixelflux                                                                     1.4.4                                   python                       
+pixelflux                                                                     1.4.5                                   python                       
 pixman                                                                        0.40.0-6.el9_3                          rpm                          
 pkgconf                                                                       1.7.3-10.el9                            rpm                          
 pkgconf-m4                                                                    1.7.3-10.el9                            rpm                          
