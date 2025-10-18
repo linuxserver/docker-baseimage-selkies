@@ -3,7 +3,7 @@ Simple Launcher                                                               1.
 acl-libs                                                                      2.3.2-r1                                apk                          
 agetty                                                                        2.41-r9                                 apk                          
 aiohappyeyeballs                                                              2.6.1                                   python                       
-aiohttp                                                                       3.13.0                                  python                       
+aiohttp                                                                       3.13.1                                  python                       
 aioice                                                                        0.10.1                                  python                       
 aiosignal                                                                     1.4.0                                   python                       
 alpine-baselayout                                                             3.7.0-r0                                apk                          
@@ -712,7 +712,7 @@ pcmflux                                                                       1.
 pcre2                                                                         10.43-r1                                apk                          
 pillow                                                                        12.0.0                                  python                       
 pip                                                                           25.0.1                                  python                       
-pixelflux                                                                     1.4.5                                   python                       
+pixelflux                                                                     1.4.6                                   python                       
 pixman                                                                        0.46.4-r0                               apk                          
 pkgconf                                                                       2.4.3-r0                                apk                          
 platformdirs                                                                  4.2.2                                   python                       
