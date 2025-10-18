@@ -8,7 +8,7 @@ adwaita-cursor-theme                                                          48
 adwaita-icon-theme                                                            48.1-1.fc42                                              rpm                         
 adwaita-icon-theme-legacy                                                     46.2-3.fc42                                              rpm                         
 aiohappyeyeballs                                                              2.6.1                                                    python                      
-aiohttp                                                                       3.13.0                                                   python                      
+aiohttp                                                                       3.13.1                                                   python                      
 aioice                                                                        0.10.1                                                   python                      
 aiosignal                                                                     1.4.0                                                    python                      
 alsa-lib                                                                      1.2.14-3.fc42                                            rpm                         
@@ -58,7 +58,6 @@ cpuinfo                                                                       24
 cracklib                                                                      2.9.11-7.fc42                                            rpm                         
 crypto-policies                                                               20250707-1.gitad370a8.fc42                               rpm                         
 cryptography                                                                  46.0.3                                                   python                      
-cryptsetup-libs                                                               2.8.1-1.fc42                                             rpm                         
 cups-filesystem                                                               1:2.4.14-2.fc42                                          rpm                         
 cups-libs                                                                     1:2.4.14-2.fc42                                          rpm                         
 curl                                                                          8.11.1-6.fc42                                            rpm                         
@@ -75,8 +74,6 @@ dbus-tools                                                                    1:
 dbus-x11                                                                      1:1.16.0-3.fc42                                          rpm                         
 default-fonts-core-sans                                                       4.2-4.fc42                                               rpm                         
 desktop-file-utils                                                            0.28-1.fc42                                              rpm                         
-device-mapper                                                                 1.02.204-3.fc42                                          rpm                         
-device-mapper-libs                                                            1.02.204-3.fc42                                          rpm                         
 diffutils                                                                     3.12-1.fc42                                              rpm                         
 distlib                                                                       0.3.9                                                    python                      
 dnf                                                                           4.23.0                                                   python                      
@@ -563,7 +560,6 @@ libasyncns                                                                    0.
 libattr                                                                       2.5.2-5.fc42                                             rpm                         
 libb2                                                                         0.98.1-13.fc42                                           rpm                         
 libblkid                                                                      2.40.4-7.fc42                                            rpm                         
-libbpf                                                                        2:1.5.0-2.fc42                                           rpm                         
 libbrotli                                                                     1.1.0-6.fc42                                             rpm                         
 libbsd                                                                        0.12.2-5.fc42                                            rpm                         
 libcap                                                                        2.73-2.fc42                                              rpm                         
@@ -744,9 +740,6 @@ pciutils-libs                                                                 3.
 pcmflux                                                                       1.0.5                                                    python                      
 pcre2                                                                         10.45-1.fc42                                             rpm                         
 pcre2-syntax                                                                  10.45-1.fc42                                             rpm                         
-pcsc-lite                                                                     2.3.1-2.fc42                                             rpm                         
-pcsc-lite-ccid                                                                1.6.1-3.fc42                                             rpm                         
-pcsc-lite-libs                                                                2.3.1-2.fc42                                             rpm                         
 perl-AutoLoader                                                               0:5.74-519.fc42                                          rpm                         
 perl-B                                                                        0:1.89-519.fc42                                          rpm                         
 perl-Carp                                                                     1.54-512.fc42                                            rpm                         
@@ -812,7 +805,7 @@ pigz                                                                          2.
 pillow                                                                        12.0.0                                                   python                      
 pinentry                                                                      1.3.1-3.fc42                                             rpm                         
 pip                                                                           24.3.1                                                   python                      
-pixelflux                                                                     1.4.5                                                    python                      
+pixelflux                                                                     1.4.6                                                    python                      
 pixman                                                                        0.46.2-1.fc42                                            rpm                         
 pkgconf                                                                       2.3.0-2.fc42                                             rpm                         
 pkgconf-m4                                                                    2.3.0-2.fc42                                             rpm                         
@@ -821,7 +814,6 @@ platformdirs                                                                  4.
 policycoreutils                                                               3.8-1.fc42                                               rpm                         
 polkit                                                                        126-3.fc42.1                                             rpm                         
 polkit-libs                                                                   126-3.fc42.1                                             rpm                         
-polkit-pkla-compat                                                            0.1-30.fc42                                              rpm                         
 popt                                                                          1.19-8.fc42                                              rpm                         
 procps-ng                                                                     4.0.4-6.fc42.1                                           rpm                         
 prometheus-client                                                             0.23.1                                                   python                      
@@ -858,7 +850,6 @@ python3-rpm                                                                   4.
 python3-unbound                                                               1.23.1-1.fc42                                            rpm                         
 python3-virtualenv                                                            20.29.1-1.fc42                                           rpm                         
 pyxdg                                                                         0.27                                                     python                      
-qrencode-libs                                                                 4.1.1-10.fc42                                            rpm                         
 rav1e-libs                                                                    0.7.1-8.fc42                                             rpm                         
 readline                                                                      8.2-13.fc42                                              rpm                         
 redhat-menus                                                                  12.0.2-29.fc42                                           rpm                         
@@ -870,7 +861,6 @@ rpm                                                                           4.
 rpm-build-libs                                                                4.20.1-1.fc42                                            rpm                         
 rpm-libs                                                                      4.20.1-1.fc42                                            rpm                         
 rpm-plugin-selinux                                                            4.20.1-1.fc42                                            rpm                         
-rpm-plugin-systemd-inhibit                                                    4.20.1-1.fc42                                            rpm                         
 rpm-sequoia                                                                   1.7.0-5.fc42                                             rpm                         
 rpm-sign-libs                                                                 4.20.1-1.fc42                                            rpm                         
 rpmfusion-free-release                                                        42-1                                                     rpm                         
@@ -904,14 +894,11 @@ stdlib                                                                        go
 stdlib                                                                        go1.24.7                                                 go-module                   
 sudo                                                                          1.9.17-2.p1.fc42                                         rpm                         
 svt-av1-libs                                                                  2.3.0-1.fc42                                             rpm                         
-systemd                                                                       257.9-2.fc42                                             rpm                         
-systemd-libs                                                                  257.9-2.fc42                                             rpm                         
-systemd-networkd                                                              257.9-2.fc42                                             rpm                         
-systemd-pam                                                                   257.9-2.fc42                                             rpm                         
-systemd-resolved                                                              257.9-2.fc42                                             rpm                         
-systemd-shared                                                                257.9-2.fc42                                             rpm                         
+systemd                                                                       257.10-1.fc42                                            rpm                         
+systemd-libs                                                                  257.10-1.fc42                                            rpm                         
+systemd-pam                                                                   257.10-1.fc42                                            rpm                         
+systemd-shared                                                                257.10-1.fc42                                            rpm                         
 systemd-standalone-sysusers                                                   257.9-2.fc42                                             rpm                         
-systemd-udev                                                                  257.9-2.fc42                                             rpm                         
 tags.cncf.io/container-device-interface                                       v0.8.0                                                   go-module                   
 tags.cncf.io/container-device-interface                                       v1.0.0                                                   go-module  (+1 duplicate)   
 tags.cncf.io/container-device-interface                                       v1.0.1                                                   go-module                   
