@@ -6,7 +6,7 @@ aiohappyeyeballs                                                              2.
 aiohttp                                                                       3.13.1                                  python                         
 aioice                                                                        0.10.1                                  python                         
 aiosignal                                                                     1.4.0                                   python                         
-alsa-lib                                                                      1.2.14-1                                alpm                           
+alsa-lib                                                                      1.2.14-2                                alpm                           
 alsa-topology-conf                                                            1.2.5.1-4                               alpm                           
 alsa-ucm-conf                                                                 1.2.14-2                                alpm                           
 archlinux-keyring                                                             20251012-1                              alpm                           
@@ -524,7 +524,7 @@ libidn2                                                                       2.
 libinput                                                                      1.29.1-1                                alpm                           
 libisl                                                                        0.27-1                                  alpm                           
 libjpeg-turbo                                                                 3.1.2-1                                 alpm                           
-libjxl                                                                        0.11.1-4                                alpm                           
+libjxl                                                                        0.11.1-5                                alpm                           
 libksba                                                                       1.6.7-2                                 alpm                           
 libldap                                                                       2.6.10-2                                alpm                           
 libmd                                                                         1.1.0-2                                 alpm                           
@@ -550,7 +550,7 @@ libsasl                                                                       2.
 libseccomp                                                                    2.5.6-1                                 alpm                           
 libsecret                                                                     0.21.7-1                                alpm                           
 libsm                                                                         1.2.6-1                                 alpm                           
-libsndfile                                                                    1.2.2-3                                 alpm                           
+libsndfile                                                                    1.2.2-4                                 alpm                           
 libsoxr                                                                       0.1.3-4                                 alpm                           
 libssh2                                                                       1.11.1-1                                alpm                           
 libsysprof-capture                                                            49.0-1                                  alpm                           
@@ -600,7 +600,7 @@ libxv                                                                         1.
 libxvmc                                                                       1.0.14-1                                alpm                           
 libxxf86vm                                                                    1.1.6-1                                 alpm                           
 linux-api-headers                                                             6.16-2                                  alpm                           
-linux-headers                                                                 6.17.2.arch1-1                          alpm                           
+linux-headers                                                                 6.17.3.arch2-1                          alpm                           
 llvm-libs                                                                     20.1.8-1                                alpm                           
 lm_sensors                                                                    1:3.6.2-1                               alpm                           
 lmdb                                                                          0.9.33-1                                alpm                           
@@ -650,12 +650,12 @@ patch                                                                         2.
 pciutils                                                                      3.14.0-1                                alpm                           
 pcmflux                                                                       1.0.5                                   python                         
 pcre2                                                                         10.46-1                                 alpm                           
-pcsclite                                                                      2.3.3-1                                 alpm                           
+pcsclite                                                                      2.4.0-2                                 alpm                           
 perl                                                                          5.42.0-1                                alpm                           
 pillow                                                                        12.0.0                                  python                         
 pinentry                                                                      1.3.2-2                                 alpm                           
 pip                                                                           25.2                                    python                         
-pixelflux                                                                     1.4.5                                   python                         
+pixelflux                                                                     1.4.6                                   python                         
 pixman                                                                        0.46.4-1                                alpm                           
 pkgconf                                                                       2.5.1-1                                 alpm                           
 platformdirs                                                                  4.2.2                                   python                         
@@ -665,7 +665,7 @@ procps-ng                                                                     4.
 prometheus-client                                                             0.23.1                                  python                         
 propcache                                                                     0.4.1                                   python                         
 psmisc                                                                        23.7-1                                  alpm                           
-psutil                                                                        7.1.0                                   python                         
+psutil                                                                        7.1.1                                   python                         
 pulseaudio                                                                    17.0+r88+geee0e8f22-1                   alpm                           
 pulsectl                                                                      24.12.0                                 python                         
 pycparser                                                                     2.23                                    python                         
