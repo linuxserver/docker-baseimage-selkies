@@ -840,7 +840,7 @@ procps-ng                                                                     3.
 prometheus-client                                                             0.23.1                                  python                       
 propcache                                                                     0.4.1                                   python                       
 psmisc                                                                        23.4-3.el9                              rpm                          
-psutil                                                                        7.1.0                                   python                       
+psutil                                                                        7.1.1                                   python                       
 pulseaudio                                                                    15.0-3.el9                              rpm                          
 pulseaudio-libs                                                               15.0-3.el9                              rpm                          
 pulseaudio-utils                                                              15.0-3.el9                              rpm                          
