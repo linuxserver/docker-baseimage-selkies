@@ -65,7 +65,7 @@ dnspython                                                                     2.
 docker-buildx-plugin                                                          0:0.29.1-1.el9                          rpm                          
 docker-ce                                                                     3:28.5.1-1.el9                          rpm                          
 docker-ce-cli                                                                 1:28.5.1-1.el9                          rpm                          
-docker-compose-plugin                                                         0:2.40.1-1.el9                          rpm                          
+docker-compose-plugin                                                         0:2.40.2-1.el9                          rpm                          
 elfutils-default-yama-scope                                                   0.192-6.el9_6                           rpm                          
 elfutils-libelf                                                               0.192-6.el9_6                           rpm                          
 elfutils-libs                                                                 0.192-6.el9_6                           rpm                          
