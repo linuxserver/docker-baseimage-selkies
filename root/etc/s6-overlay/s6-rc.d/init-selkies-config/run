@@ -146,7 +146,7 @@ if [[ ${DISABLE_MOUSE_BUTTONS,,} == "true" ]]; then
 fi
 if [[ ! -z ${NO_DECOR+x} ]]; then
   echo "[ls.io-init] Removing window decorations"
-  sed -i '/<application class="\*">/a \    <decor>no</decor>' "$SYS_RC_XML"
+  sed -i 's/<application class="\*">/&<decor>no<\/decor>/' "$SYS_RC_XML"
 fi
 if [[ ! -z ${NO_FULL+x} ]]; then
   echo "[ls.io-init] Disabling maximization"
