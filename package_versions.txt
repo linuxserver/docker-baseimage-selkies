@@ -724,7 +724,7 @@ profiling                                                                     1.
 profiling-procmacros                                                          1.0.13                                  rust-crate                   
 prometheus-client                                                             0.23.1                                  python                       
 propcache                                                                     0.4.1                                   python                       
-psutil                                                                        7.1.1                                   python                       
+psutil                                                                        7.1.2                                   python                       
 pulseaudio                                                                    17.0-r5                                 apk                          
 pulseaudio-alsa                                                               17.0-r5                                 apk                          
 pulseaudio-lang                                                               17.0-r5                                 apk                          
