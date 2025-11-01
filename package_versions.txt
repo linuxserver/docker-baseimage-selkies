@@ -3,7 +3,7 @@ Simple Launcher                                                               1.
 acl-libs                                                                      2.3.2-r1                                apk                          
 agetty                                                                        2.41-r9                                 apk                          
 aiohappyeyeballs                                                              2.6.1                                   python                       
-aiohttp                                                                       3.13.1                                  python                       
+aiohttp                                                                       3.13.2                                  python                       
 aioice                                                                        0.10.1                                  python                       
 aiosignal                                                                     1.4.0                                   python                       
 alpine-baselayout                                                             3.7.0-r0                                apk                          
