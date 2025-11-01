@@ -1,7 +1,7 @@
 NAME                                                                          VERSION                                 TYPE                        
 acl                                                                           2.3.1-4.el9                             rpm                          
 aiohappyeyeballs                                                              2.6.1                                   python                       
-aiohttp                                                                       3.13.1                                  python                       
+aiohttp                                                                       3.13.2                                  python                       
 aioice                                                                        0.10.1                                  python                       
 aiosignal                                                                     1.4.0                                   python                       
 alsa-lib                                                                      1.2.13-2.el9                            rpm                          
@@ -65,7 +65,7 @@ dnspython                                                                     2.
 docker-buildx-plugin                                                          0:0.29.1-1.el9                          rpm                          
 docker-ce                                                                     3:28.5.1-1.el9                          rpm                          
 docker-ce-cli                                                                 1:28.5.1-1.el9                          rpm                          
-docker-compose-plugin                                                         0:2.40.2-1.el9                          rpm                          
+docker-compose-plugin                                                         0:2.40.3-1.el9                          rpm                          
 elfutils-default-yama-scope                                                   0.192-6.el9_6                           rpm                          
 elfutils-libelf                                                               0.192-6.el9_6                           rpm                          
 elfutils-libs                                                                 0.192-6.el9_6                           rpm                          
@@ -140,7 +140,8 @@ github.com/checkpoint-restore/go-criu/v6                                      v6
 github.com/cilium/ebpf                                                        v0.17.3                                 go-module  (+1 duplicate)    
 github.com/cilium/ebpf                                                        v0.9.1                                  go-module  (+4 duplicates)   
 github.com/cloudflare/cfssl                                                   v1.6.4                                  go-module                    
-github.com/compose-spec/compose-go/v2                                         v2.9.0                                  go-module  (+1 duplicate)    
+github.com/compose-spec/compose-go/v2                                         v2.9.0                                  go-module                    
+github.com/compose-spec/compose-go/v2                                         v2.9.1                                  go-module                    
 github.com/container-storage-interface/spec                                   v1.5.0                                  go-module                    
 github.com/containerd/accelerated-container-image                             v1.3.0                                  go-module                    
 github.com/containerd/aufs                                                    v1.0.0                                  go-module                    
