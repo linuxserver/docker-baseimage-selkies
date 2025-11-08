@@ -549,7 +549,7 @@ k8s.io/kube-openapi                                                           v0
 k8s.io/utils                                                                  v0.0.0-20230220204549-a5ecb0141aa5      go-module                   
 k8s.io/utils                                                                  v0.0.0-20241104100929-3ea5e8cea738      go-module  (+1 duplicate)   
 kali-archive-keyring                                                          2025.1                                  deb                         
-kali-defaults                                                                 2025.4.1                                deb                         
+kali-defaults                                                                 2025.4.2                                deb                         
 kbd                                                                           2.7.1-2                                 deb                         
 keyboard-configuration                                                        1.244                                   deb                         
 lazr-restfulclient                                                            0.14.6                                  python                      
@@ -700,7 +700,6 @@ libkmod2                                                                      34
 libkrb5-3                                                                     1.21.3-5                                deb                         
 libkrb5support0                                                               1.21.3-5                                deb                         
 libksba8                                                                      1.6.7-2+b1                              deb                         
-liblastlog2-2                                                                 2.41.2-4                                deb                         
 liblcms2-2                                                                    2.16-2                                  deb                         
 libldap2                                                                      2.6.10+dfsg-1                           deb                         
 liblerc4                                                                      4.0.0+ds-5                              deb                         
@@ -708,7 +707,7 @@ libllvm19                                                                     1:
 liblocale-gettext-perl                                                        1.07-7+b1                               deb                         
 liblsan0                                                                      15.2.0-4                                deb                         
 libltdl7                                                                      2.5.4-7                                 deb                         
-liblz4-1                                                                      1.10.0-4                                deb                         
+liblz4-1                                                                      1.10.0-6                                deb                         
 liblzma5                                                                      5.8.1-2                                 deb                         
 libmagic-mgc                                                                  1:5.46-5                                deb                         
 libmagic1t64                                                                  1:5.46-5                                deb                         
@@ -769,10 +768,10 @@ libpulse0                                                                     17
 libpulsedsp                                                                   17.0+dfsg1-2+b1                         deb                         
 libpython3-dev                                                                3.13.7-1                                deb                         
 libpython3-stdlib                                                             3.13.7-1                                deb                         
-libpython3.13                                                                 3.13.7-1                                deb                         
-libpython3.13-dev                                                             3.13.7-1                                deb                         
-libpython3.13-minimal                                                         3.13.7-1                                deb                         
-libpython3.13-stdlib                                                          3.13.7-1                                deb                         
+libpython3.13                                                                 3.13.9-1                                deb                         
+libpython3.13-dev                                                             3.13.9-1                                deb                         
+libpython3.13-minimal                                                         3.13.9-1                                deb                         
+libpython3.13-stdlib                                                          3.13.9-1                                deb                         
 libquadmath0                                                                  15.2.0-4                                deb                         
 librav1e0.8                                                                   0.8.1-5                                 deb                         
 libreadline8t64                                                               8.3-3                                   deb                         
@@ -1003,10 +1002,10 @@ python3-typeguard                                                             4.
 python3-typing-extensions                                                     4.15.0-1                                deb                         
 python3-venv                                                                  3.13.7-1                                deb                         
 python3-wadllib                                                               2.0.0-3                                 deb                         
-python3.13                                                                    3.13.7-1                                deb                         
-python3.13-dev                                                                3.13.7-1                                deb                         
-python3.13-minimal                                                            3.13.7-1                                deb                         
-python3.13-venv                                                               3.13.7-1                                deb                         
+python3.13                                                                    3.13.9-1                                deb                         
+python3.13-dev                                                                3.13.9-1                                deb                         
+python3.13-minimal                                                            3.13.9-1                                deb                         
+python3.13-venv                                                               3.13.9-1                                deb                         
 readline-common                                                               8.3-3                                   deb                         
 resenje.org/singleflight                                                      v0.4.3                                  go-module                   
 rpcsvc-proto                                                                  1.4.3-1                                 deb                         
@@ -1073,7 +1072,7 @@ xml-core                                                                      0.
 xsel                                                                          1.2.1-1                                 deb                         
 xserver-common                                                                2:21.1.18-2                             deb                         
 xserver-xorg-core                                                             2:21.1.18-2                             deb                         
-xserver-xorg-video-amdgpu                                                     23.0.0-1                                deb                         
+xserver-xorg-video-amdgpu                                                     25.0.0-1                                deb                         
 xserver-xorg-video-ati                                                        1:22.0.0-1                              deb                         
 xserver-xorg-video-intel                                                      2:2.99.917+git20210115-1                deb                         
 xserver-xorg-video-nouveau                                                    1:1.0.18-1                              deb                         
