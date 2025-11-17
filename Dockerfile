@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM lscr.io/linuxserver/xvfb:fedora42 AS xvfb
+FROM lscr.io/linuxserver/xvfb:fedora43 AS xvfb
 FROM ghcr.io/linuxserver/baseimage-alpine:3.22 AS frontend
 
 RUN \
@@ -41,7 +41,7 @@ RUN \
   done
 
 # Runtime stage
-FROM ghcr.io/linuxserver/baseimage-fedora:42
+FROM ghcr.io/linuxserver/baseimage-fedora:43
 
 # set version label
 ARG BUILD_DATE
@@ -66,9 +66,9 @@ RUN \
   dnf install -y \
     dnf-3 && \
   dnf-3 localinstall -y --nogpgcheck \
-    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-42.noarch.rpm && \
+    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-43.noarch.rpm && \
   dnf-3 localinstall -y --nogpgcheck \
-    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-42.noarch.rpm && \
+    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-43.noarch.rpm && \
   dnf install -y \
     gcc \
     gcc-c++ \
@@ -179,6 +179,7 @@ RUN \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
   sed -i '/cryptography/d' pyproject.toml && \
+  sed -i '/"av>/d' pyproject.toml && \
   python3 \
     -m venv \
     --system-site-packages \
