@@ -545,7 +545,7 @@ lame-libs                                                                     3.
 lang                                                                          0.1-r2                                  apk                          
 lazy_static                                                                   1.4.0                                   rust-crate                   
 libapk2                                                                       2.14.9-r3                               apk                          
-libarchive                                                                    3.8.1-r0                                apk                          
+libarchive                                                                    3.8.3-r0                                apk                          
 libasyncns                                                                    0.8-r4                                  apk                          
 libattr                                                                       2.5.2-r2                                apk                          
 libblkid                                                                      2.41-r9                                 apk                          
@@ -709,11 +709,11 @@ pasimple                                                                      0.
 paste                                                                         1.0.14                                  rust-crate                   
 pciutils                                                                      3.13.0-r1                               apk                          
 pciutils-libs                                                                 3.13.0-r1                               apk                          
-pcmflux                                                                       1.0.5                                   python                       
+pcmflux                                                                       1.0.6                                   python                       
 pcre2                                                                         10.46-r0                                apk                          
 pillow                                                                        12.0.0                                  python                       
 pip                                                                           25.0.1                                  python                       
-pixelflux                                                                     1.4.6                                   python                       
+pixelflux                                                                     1.4.7                                   python                       
 pixman                                                                        0.46.4-r0                               apk                          
 pkgconf                                                                       2.4.3-r0                                apk                          
 platformdirs                                                                  4.2.2                                   python                       
