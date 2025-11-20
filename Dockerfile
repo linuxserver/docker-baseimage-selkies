@@ -113,10 +113,8 @@ RUN \
     libXinerama \
     libxshmfence \
     libXtst \
-    mesa-dri-drivers \
     mesa-libgbm \
     mesa-libGL \
-    mesa-va-drivers \
     mesa-vulkan-drivers \
     nginx \
     nginx-mod-fancyindex \
