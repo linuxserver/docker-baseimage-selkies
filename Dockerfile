@@ -115,7 +115,7 @@ RUN \
     libtasn1-6 \
     libvulkan1 \
     libx11-6 \
-    libx264-164 \
+    libx264-165 \
     libxau6 \
     libxcb1 \
     libxcursor1 \
