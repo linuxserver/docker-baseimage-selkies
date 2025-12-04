@@ -253,6 +253,21 @@ full_custom_readme: |
  
   Clients in this mode must connect with a valid token (`?token=...`) to establish a WebSocket connection.
 
+  ### All GPU Acceleration - use sane resolutions
+
+  When using 3d acceleration via Nvidia DRM or DRI3 it is important to clamp the virtual display to a reasonable max resolution. This can be achieved with the environment setting: 
+
+  * `-e MAX_RESOLUTION=3840x2160`
+
+  This will set the total virtual framebuffer to 4K, you can also set a manual resolution to achieve this.
+  By default the virtual monitor in the session is 16K to support large monitors and dual display configurations. Leaving it this large has no impact on CPU based performance but costs GPU memory usage and memory bandwidth when leveraging one for acceleration. If you have performance issues in an accelerated session, try clamping the resolution to 1080p and work up from there:
+
+  ```
+  -e SELKIES_MANUAL_WIDTH=1920
+  -e SELKIES_MANUAL_HEIGHT=1080
+  -e MAX_RESOLUTION=1920x1080
+  ```
+
   ### DRI3 GPU Acceleration
 
   For accelerated apps or games, render devices can be mounted into the container and leveraged by applications using:
