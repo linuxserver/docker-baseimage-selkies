@@ -8,11 +8,18 @@ while true; do
   sleep .5
 done
 
-# set sane resolution before starting apps
-if ! s6-setuidgid abc xrandr | grep -q "1024x768"; then
-  s6-setuidgid abc xrandr --newmode "1024x768" 63.50  1024 1072 1176 1328  768 771 775 798 -hsync +vsync
-  s6-setuidgid abc xrandr --addmode screen "1024x768"
-  s6-setuidgid abc xrandr --output screen --mode "1024x768" --dpi 96
+# set resolution before starting apps
+RESOLUTION_WIDTH=${SELKIES_MANUAL_WIDTH:-1024}
+RESOLUTION_HEIGHT=${SELKIES_MANUAL_HEIGHT:-768}
+if [ "$RESOLUTION_WIDTH" = "0" ]; then RESOLUTION_WIDTH=1024; fi
+if [ "$RESOLUTION_HEIGHT" = "0" ]; then RESOLUTION_HEIGHT=768; fi
+MODELINE=$(s6-setuidgid abc cvt "${RESOLUTION_WIDTH}" "${RESOLUTION_HEIGHT}" | grep "Modeline" | sed 's/^.*Modeline //')
+MODELINE_ARGS=$(echo "$MODELINE" | tr -d '"')
+MODELINE_NAME=$(echo "$MODELINE_ARGS" | awk '{print $1}')
+if ! s6-setuidgid abc xrandr | grep -q "$MODELINE_NAME"; then
+  s6-setuidgid abc xrandr --newmode $MODELINE_ARGS
+  s6-setuidgid abc xrandr --addmode screen "$MODELINE_NAME"
+  s6-setuidgid abc xrandr --output screen --mode "$MODELINE_NAME" --dpi 96
 fi
 
 # set xresources
