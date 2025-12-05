@@ -374,7 +374,7 @@ inetutils                                                                     2.
 inflect                                                                       7.3.1                                   python                         
 intel-gmmlib                                                                  22.8.2-1                                alpm                           
 intel-media-driver                                                            25.3.4-1                                alpm                           
-iproute2                                                                      6.17.0-1                                alpm                           
+iproute2                                                                      6.18.0-1                                alpm                           
 iptables                                                                      1:1.8.11-2                              alpm                           
 jansson                                                                       2.14.1-1                                alpm                           
 jaraco-collections                                                            5.1.0                                   python                         
@@ -409,7 +409,7 @@ lame                                                                          3.
 lcms2                                                                         2.17-1                                  alpm                           
 leancrypto                                                                    1.6.0-1                                 alpm                           
 less                                                                          1:685-1                                 alpm                           
-libarchive                                                                    3.8.3-1                                 alpm                           
+libarchive                                                                    3.8.4-1                                 alpm                           
 libassuan                                                                     3.0.0-1                                 alpm                           
 libasyncns                                                                    1:0.8+r3+g68cd5af-3                     alpm                           
 libbpf                                                                        1.6.2-1                                 alpm                           
@@ -612,7 +612,7 @@ speexdsp                                                                      1.
 spice                                                                         0.16.0-2                                alpm                           
 spice-protocol                                                                0.14.5-1                                alpm                           
 spirv-tools                                                                   1:1.4.328.1-1                           alpm                           
-sqlite                                                                        3.51.0-1                                alpm                           
+sqlite                                                                        3.51.1-1                                alpm                           
 st                                                                            0.9.3-1                                 alpm                           
 st-debug                                                                      0.9.3-1                                 alpm                           
 startup-notification                                                          0.12-9                                  alpm                           
