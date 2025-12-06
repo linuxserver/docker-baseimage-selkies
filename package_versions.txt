@@ -97,7 +97,7 @@ file-libs                                                                     5.
 filelock                                                                      3.15.4                                             python                      
 filesystem                                                                    3.18-50.fc43                                       rpm                         
 findutils                                                                     1:4.10.0-6.fc43                                    rpm                         
-flac-libs                                                                     1.5.0-4.fc43                                       rpm                         
+flac-libs                                                                     1.5.0-5.fc43                                       rpm                         
 fmt                                                                           11.2.0-3.fc43                                      rpm                         
 fontconfig                                                                    2.17.0-3.fc43                                      rpm                         
 fonts-filesystem                                                              1:2.0.5-23.fc43                                    rpm                         
@@ -459,8 +459,8 @@ graphite2                                                                     1.
 grep                                                                          3.12-2.fc43                                        rpm                         
 groff-base                                                                    1.23.0-10.fc43                                     rpm                         
 gsm                                                                           1.0.23-1.fc43                                      rpm                         
-gstreamer1                                                                    1.26.8-1.fc43                                      rpm                         
-gstreamer1-plugins-base                                                       1.26.8-1.fc43                                      rpm                         
+gstreamer1                                                                    1.26.9-1.fc43                                      rpm                         
+gstreamer1-plugins-base                                                       1.26.9-1.fc43                                      rpm                         
 gui                                                                           UNKNOWN                                            binary                      
 gui-32                                                                        UNKNOWN                                            binary                      
 gui-64                                                                        UNKNOWN                                            binary                      
@@ -470,7 +470,7 @@ harfbuzz                                                                      11
 highway                                                                       1.2.0-5.fc42                                       rpm                         
 hiredis                                                                       1.2.0-7.fc43                                       rpm                         
 hostname                                                                      3.25-3.fc43                                        rpm                         
-hwdata                                                                        0.401-1.fc43                                       rpm                         
+hwdata                                                                        0.402-1.fc43                                       rpm                         
 idna                                                                          3.11                                               python                      
 ifaddr                                                                        0.2.0                                              python                      
 ima-evm-utils-libs                                                            1.6.2-6.fc43                                       rpm                         
