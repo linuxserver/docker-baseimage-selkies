@@ -23,7 +23,7 @@ breeze-cursor-theme                                                           4:
 bsdextrautils                                                                 2.41.2-4                                deb                         
 bsdutils                                                                      1:2.41.2-4                              deb                         
 ca-certificates                                                               20250419                                deb                         
-catatonit                                                                     0.2.1-2+b3                              deb                         
+catatonit                                                                     0.2.1-2+b4                              deb                         
 cffi                                                                          2.0.0                                   python                      
 cli                                                                           UNKNOWN                                 binary                      
 cli-32                                                                        UNKNOWN                                 binary                      
@@ -61,7 +61,7 @@ debconf                                                                       1.
 debian-archive-keyring                                                        2025.1                                  deb                         
 debianutils                                                                   5.23.2                                  deb                         
 diffutils                                                                     1:3.12-1                                deb                         
-dirmngr                                                                       2.4.8-4                                 deb                         
+dirmngr                                                                       2.4.8-4+b1                              deb                         
 distro                                                                        1.9.0                                   python                      
 distro-info-data                                                              0.68                                    deb                         
 dnspython                                                                     2.8.0                                   python                      
@@ -485,10 +485,10 @@ gopkg.in/evanphx/json-patch.v4                                                v4
 gopkg.in/inf.v0                                                               v0.9.1                                  go-module  (+2 duplicates)  
 gopkg.in/ini.v1                                                               v1.67.0                                 go-module                   
 gopkg.in/yaml.v3                                                              v3.0.1                                  go-module  (+4 duplicates)  
-gpg                                                                           2.4.8-4                                 deb                         
-gpg-agent                                                                     2.4.8-4                                 deb                         
-gpgconf                                                                       2.4.8-4                                 deb                         
-gpgsm                                                                         2.4.8-4                                 deb                         
+gpg                                                                           2.4.8-4+b1                              deb                         
+gpg-agent                                                                     2.4.8-4+b1                              deb                         
+gpgconf                                                                       2.4.8-4+b1                              deb                         
+gpgsm                                                                         2.4.8-4+b1                              deb                         
 gputil                                                                        1.4.0                                   python                      
 grep                                                                          3.12-1                                  deb                         
 groff-base                                                                    1.23.0-9                                deb                         
@@ -545,7 +545,7 @@ libasyncns0                                                                   0.
 libatomic1                                                                    15.2.0-9                                deb                         
 libattr1                                                                      1:2.5.2-3                               deb                         
 libaudit-common                                                               1:4.1.2-1                               deb                         
-libaudit1                                                                     1:4.1.2-1                               deb                         
+libaudit1                                                                     1:4.1.2-1+b1                            deb                         
 libavahi-client3                                                              0.8-17                                  deb                         
 libavahi-common-data                                                          0.8-17                                  deb                         
 libavahi-common3                                                              0.8-17                                  deb                         
@@ -553,7 +553,7 @@ libavcodec61                                                                  7:
 libavutil59                                                                   7:7.1.3-1                               deb                         
 libbinutils                                                                   2.45.50.20251125-1                      deb                         
 libblkid1                                                                     2.41.2-4                                deb                         
-libbrotli1                                                                    1.1.0-2+b7                              deb                         
+libbrotli1                                                                    1.1.0-2+b9                              deb                         
 libbsd0                                                                       0.12.2-2                                deb                         
 libbz2-1.0                                                                    1.0.8-6                                 deb                         
 libc-bin                                                                      2.41-12                                 deb                         
@@ -563,13 +563,13 @@ libc6                                                                         2.
 libc6-dev                                                                     2.41-12                                 deb                         
 libcairo-gobject2                                                             1.18.4-1+b1                             deb                         
 libcairo2                                                                     1.18.4-1+b1                             deb                         
-libcap-ng0                                                                    0.8.5-4+b1                              deb                         
-libcap2                                                                       1:2.75-10+b1                            deb                         
+libcap-ng0                                                                    0.8.5-4+b2                              deb                         
+libcap2                                                                       1:2.75-10+b2                            deb                         
 libcap2-bin                                                                   1:2.75-10+b2                            deb                         
 libcbor0.10                                                                   0.10.2-2.1                              deb                         
 libcc1-0                                                                      15.2.0-9                                deb                         
 libcodec2-1.2                                                                 1.2.0-4                                 deb                         
-libcom-err2                                                                   1.47.2-3+b3                             deb                         
+libcom-err2                                                                   1.47.2-3+b4                             deb                         
 libcrypt-dev                                                                  1:4.5.1-1                               deb                         
 libcrypt1                                                                     1:4.5.1-1                               deb                         
 libctf-nobfd0                                                                 2.45.50.20251125-1                      deb                         
@@ -694,7 +694,7 @@ libmp3lame0                                                                   3.
 libmpc3                                                                       1.3.1-2                                 deb                         
 libmpfr6                                                                      4.2.2-2                                 deb                         
 libmpg123-0t64                                                                1.33.3-1                                deb                         
-libncursesw6                                                                  6.5+20250216-2                          deb                         
+libncursesw6                                                                  6.5+20251123-1                          deb                         
 libnetfilter-conntrack3                                                       1.1.0-1                                 deb                         
 libnettle8t64                                                                 3.10.2-1                                deb                         
 libnfnetlink0                                                                 1.0.2-3                                 deb                         
@@ -758,10 +758,10 @@ librtmp1                                                                      2.
 libsamplerate0                                                                0.2.2-4+b2                              deb                         
 libsasl2-2                                                                    2.1.28+dfsg1-10                         deb                         
 libsasl2-modules-db                                                           2.1.28+dfsg1-10                         deb                         
-libseccomp2                                                                   2.6.0-2                                 deb                         
-libselinux1                                                                   3.9-2                                   deb                         
+libseccomp2                                                                   2.6.0-2+b1                              deb                         
+libselinux1                                                                   3.9-4+b1                                deb                         
 libsemanage-common                                                            3.9-1                                   deb                         
-libsemanage2                                                                  3.9-1                                   deb                         
+libsemanage2                                                                  3.9-1+b1                                deb                         
 libsensors-config                                                             1:3.6.2-2                               deb                         
 libsensors5                                                                   1:3.6.2-2                               deb                         
 libsepol2                                                                     3.9-2                                   deb                         
@@ -794,7 +794,7 @@ libthai0                                                                      0.
 libtheoradec2                                                                 1.2.0+dfsg-6                            deb                         
 libtheoraenc2                                                                 1.2.0+dfsg-6                            deb                         
 libtiff6                                                                      4.7.1-1                                 deb                         
-libtinfo6                                                                     6.5+20250216-2                          deb                         
+libtinfo6                                                                     6.5+20251123-1                          deb                         
 libtsan2                                                                      15.2.0-9                                deb                         
 libtwolame0                                                                   0.4.0-2+b2                              deb                         
 libubsan1                                                                     15.2.0-9                                deb                         
@@ -899,9 +899,9 @@ mount                                                                         2.
 msgpack                                                                       1.1.2                                   python                      
 multidict                                                                     6.7.0                                   python                      
 my-test-package                                                               1.0                                     python     (+1 duplicate)   
-ncurses-base                                                                  6.5+20250216-2                          deb                         
-ncurses-bin                                                                   6.5+20250216-2                          deb                         
-ncurses-term                                                                  6.5+20250216-2                          deb                         
+ncurses-base                                                                  6.5+20251123-1                          deb                         
+ncurses-bin                                                                   6.5+20251123-1                          deb                         
+ncurses-term                                                                  6.5+20251123-1                          deb                         
 netbase                                                                       6.5                                     deb                         
 netcat-traditional                                                            1.10-50.1                               deb                         
 nftables                                                                      1.1.5-2                                 deb                         
@@ -997,7 +997,7 @@ sigs.k8s.io/structured-merge-diff/v6                                          v6
 sigs.k8s.io/yaml                                                              v1.6.0                                  go-module  (+3 duplicates)  
 six                                                                           1.17.0                                  python                      
 software-properties-common                                                    0.111-1                                 deb                         
-sqv                                                                           1.3.0-3                                 deb                         
+sqv                                                                           1.3.0-3+b1                              deb                         
 ssl-cert                                                                      1.1.3                                   deb                         
 stdlib                                                                        go1.24.9                                go-module  (+4 duplicates)  
 stdlib                                                                        go1.25.3                                go-module                   
