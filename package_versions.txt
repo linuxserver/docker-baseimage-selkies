@@ -833,7 +833,7 @@ xf86-video-nouveau                                                            1.
 xf86-video-qxl                                                                0.1.6-r3                                apk                          
 xfconf                                                                        4.20.0-r1                               apk                          
 xfconf-lang                                                                   4.20.0-r1                               apk                          
-xkbcomp                                                                       1.4.7-r0                                apk                          
+xkbcomp                                                                       1.5.0-r0                                apk                          
 xkeyboard-config                                                              2.43-r0                                 apk                          
 xkeyboard-config-lang                                                         2.43-r0                                 apk                          
 xorg-server                                                                   21.1.19-r0                              apk                          
