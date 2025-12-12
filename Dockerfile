@@ -153,6 +153,7 @@ RUN \
     xorg-xauth \
     xorg-xrandr \
     xorg-xrdb \
+    xorg-xset \
     xsel \
     xsettingsd \
     xterm \
