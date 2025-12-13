@@ -18,7 +18,7 @@ autocommand                                                                   2.
 avahi-libs                                                                    0.9~rc2-6.fc43                                     rpm                         
 backports-tarfile                                                             1.2.0                                              python                      
 bash                                                                          5.3.0-2.fc43                                       rpm                         
-breeze-cursor-theme                                                           6.5.3-1.fc43                                       rpm                         
+breeze-cursor-theme                                                           6.5.4-1.fc43                                       rpm                         
 bubblewrap                                                                    0.11.0-2.fc43                                      rpm                         
 busybox                                                                       1:1.37.0-3.fc43                                    rpm                         
 bzip2                                                                         1.0.8-21.fc43                                      rpm                         
@@ -50,9 +50,9 @@ cpp                                                                           15
 cracklib                                                                      2.9.11-8.fc43                                      rpm                         
 crypto-policies                                                               20251125-1.git63291f8.fc43                         rpm                         
 cryptography                                                                  46.0.3                                             python                      
-cups-filesystem                                                               1:2.4.14-3.fc43                                    rpm                         
-cups-libs                                                                     1:2.4.14-3.fc43                                    rpm                         
-curl                                                                          8.15.0-3.fc43                                      rpm                         
+cups-filesystem                                                               1:2.4.16-1.fc43                                    rpm                         
+cups-libs                                                                     1:2.4.16-1.fc43                                    rpm                         
+curl                                                                          8.15.0-4.fc43                                      rpm                         
 cvt                                                                           0.1.2-10.fc43                                      rpm                         
 cyrus-sasl-lib                                                                2.1.28-33.fc43                                     rpm                         
 dario.cat/mergo                                                               v1.0.1                                             go-module                   
@@ -355,7 +355,7 @@ github.com/xeipuuv/gojsonschema                                               v1
 github.com/xrash/smetrics                                                     v0.0.0-20240521201337-686a1a2994c1                 go-module  (+2 duplicates)  
 github.com/zmap/zcrypto                                                       v0.0.0-20210511125630-18f1e0152cfc                 go-module                   
 github.com/zmap/zlint/v3                                                      v3.1.0                                             go-module                   
-glib2                                                                         2.86.1-5.fc43                                      rpm                         
+glib2                                                                         2.86.2-1.fc43                                      rpm                         
 glibc                                                                         2.42-4.fc43                                        rpm                         
 glibc-all-langpacks                                                           2.42-4.fc43                                        rpm                         
 glibc-common                                                                  2.42-4.fc43                                        rpm                         
@@ -467,7 +467,7 @@ gui-64                                                                        UN
 gui-arm64                                                                     UNKNOWN                                            binary                      
 gzip                                                                          1.13-4.fc43                                        rpm                         
 harfbuzz                                                                      11.5.1-1.fc43                                      rpm                         
-highway                                                                       1.2.0-5.fc42                                       rpm                         
+highway                                                                       1.3.0-1.fc43                                       rpm                         
 hiredis                                                                       1.2.0-7.fc43                                       rpm                         
 hostname                                                                      3.25-3.fc43                                        rpm                         
 hwdata                                                                        0.402-1.fc43                                       rpm                         
@@ -552,7 +552,7 @@ libcbor                                                                       0.
 libcom_err                                                                    1.47.3-2.fc43                                      rpm                         
 libcomps                                                                      0.1.23                                             python                      
 libcomps                                                                      0.1.23-1.fc43                                      rpm                         
-libcurl                                                                       8.15.0-3.fc43                                      rpm                         
+libcurl                                                                       8.15.0-4.fc43                                      rpm                         
 libdatrie                                                                     0.2.13-12.fc43                                     rpm                         
 libdav1d                                                                      1.5.2-1.fc43                                       rpm                         
 libdnf                                                                        0.75.0                                             python                      
@@ -584,9 +584,9 @@ libgudev                                                                      23
 libheif                                                                       1.20.2-6.fc43                                      rpm                         
 libidn2                                                                       2.3.8-2.fc43                                       rpm                         
 libijs                                                                        0.35-25.fc43                                       rpm                         
-libinput                                                                      1.30.0-1.fc43                                      rpm                         
+libinput                                                                      1.30.1-1.fc43                                      rpm                         
 libjpeg-turbo                                                                 3.1.2-1.fc43                                       rpm                         
-libjxl                                                                        1:0.11.1-6.fc43                                    rpm                         
+libjxl                                                                        1:0.11.1-7.fc43                                    rpm                         
 libksba                                                                       1.6.7-4.fc43                                       rpm                         
 liblastlog2                                                                   2.41.1-17.fc43                                     rpm                         
 liblerc                                                                       4.0.0-9.fc43                                       rpm                         
@@ -611,7 +611,7 @@ libpsl                                                                        0.
 libpwquality                                                                  1.4.5-14.fc43                                      rpm                         
 librepo                                                                       1.20.0-4.fc43                                      rpm                         
 libretls                                                                      3.8.1-6.fc43                                       rpm                         
-librsvg2                                                                      2.61.0-2.fc43                                      rpm                         
+librsvg2                                                                      2.61.0-3.fc43                                      rpm                         
 libseccomp                                                                    2.6.0-2.fc43                                       rpm                         
 libselinux                                                                    3.9-5.fc43                                         rpm                         
 libselinux-utils                                                              3.9-5.fc43                                         rpm                         
@@ -630,7 +630,7 @@ libthai                                                                       0.
 libtheora                                                                     1:1.1.1-40.fc43                                    rpm                         
 libtiff                                                                       4.7.1-1.fc43                                       rpm                         
 libtirpc                                                                      1.3.7-1.fc43                                       rpm                         
-libtool-ltdl                                                                  2.5.4-7.fc43                                       rpm                         
+libtool-ltdl                                                                  2.5.4-8.fc43                                       rpm                         
 libunistring                                                                  1.1-10.fc43                                        rpm                         
 libunwind                                                                     1.8.1-3.fc43                                       rpm                         
 libusb1                                                                       1.0.29-4.fc43                                      rpm                         
@@ -662,7 +662,7 @@ libzstd                                                                       1.
 llvm-filesystem                                                               21.1.6-1.fc43                                      rpm                         
 llvm-libs                                                                     21.1.6-1.fc43                                      rpm                         
 lm_sensors-libs                                                               3.6.0-23.fc43                                      rpm                         
-lua-libs                                                                      5.4.8-3.fc43                                       rpm                         
+lua-libs                                                                      5.4.8-4.fc43                                       rpm                         
 lz4-libs                                                                      1.10.0-3.fc43                                      rpm                         
 lzo                                                                           2.10-15.fc43                                       rpm                         
 make                                                                          1:4.4.1-11.fc43                                    rpm                         
@@ -705,8 +705,8 @@ openbox-libs                                                                  3.
 openh264                                                                      2.6.0-2.fc43                                       rpm                         
 openjpeg                                                                      2.5.4-1.fc43                                       rpm                         
 openldap                                                                      2.6.10-4.fc43                                      rpm                         
-openssh                                                                       10.0p1-5.fc43                                      rpm                         
-openssh-clients                                                               10.0p1-5.fc43                                      rpm                         
+openssh                                                                       10.0p1-6.fc43                                      rpm                         
+openssh-clients                                                               10.0p1-6.fc43                                      rpm                         
 openssl                                                                       1:3.5.4-1.fc43                                     rpm                         
 openssl-libs                                                                  1:3.5.4-1.fc43                                     rpm                         
 opus                                                                          1.5.2-3.fc43                                       rpm                         
@@ -815,16 +815,16 @@ pynput                                                                        1.
 pyopenssl                                                                     25.3.0                                             python                      
 python-pip-wheel                                                              25.1.1-18.fc43                                     rpm                         
 python-setuptools-wheel                                                       78.1.1-15.fc43                                     rpm                         
-python-unversioned-command                                                    3.14.0-2.fc43                                      rpm                         
+python-unversioned-command                                                    3.14.2-1.fc43                                      rpm                         
 python-xlib                                                                   0.33                                               python                      
-python3                                                                       3.14.0-2.fc43                                      rpm                         
+python3                                                                       3.14.2-1.fc43                                      rpm                         
 python3-distlib                                                               0.4.0-2.fc43                                       rpm                         
 python3-dnf                                                                   4.24.0-1.fc43                                      rpm                         
 python3-filelock                                                              3.15.4-10.fc43                                     rpm                         
 python3-hawkey                                                                0.75.0-1.fc43                                      rpm                         
 python3-libcomps                                                              0.1.23-1.fc43                                      rpm                         
 python3-libdnf                                                                0.75.0-1.fc43                                      rpm                         
-python3-libs                                                                  3.14.0-2.fc43                                      rpm                         
+python3-libs                                                                  3.14.2-1.fc43                                      rpm                         
 python3-platformdirs                                                          4.2.2-8.fc43                                       rpm                         
 python3-pyxdg                                                                 0.27-19.fc43                                       rpm                         
 python3-rpm                                                                   6.0.0-1.fc43                                       rpm                         
@@ -850,8 +850,8 @@ rtkit                                                                         0.
 runc                                                                          2:1.3.3-1.fc43                                     rpm                         
 sdbus-cpp                                                                     2.1.0-3.fc43                                       rpm                         
 sed                                                                           4.9-5.fc43                                         rpm                         
-selinux-policy                                                                42.18-1.fc43                                       rpm                         
-selinux-policy-targeted                                                       42.18-1.fc43                                       rpm                         
+selinux-policy                                                                42.19-1.fc43                                       rpm                         
+selinux-policy-targeted                                                       42.19-1.fc43                                       rpm                         
 selkies                                                                       0.0.0                                              python                      
 setup                                                                         2.15.0-26.fc43                                     rpm                         
 setuptools                                                                    80.9.0                                             python                      
@@ -902,9 +902,9 @@ urw-base35-standard-symbols-ps-fonts                                          20
 urw-base35-z003-fonts                                                         20200910-26.fc43                                   rpm                         
 util-linux                                                                    2.41.1-17.fc43                                     rpm                         
 util-linux-core                                                               2.41.1-17.fc43                                     rpm                         
-vim-data                                                                      2:9.1.1914-1.fc43                                  rpm                         
-vim-filesystem                                                                2:9.1.1914-1.fc43                                  rpm                         
-vim-minimal                                                                   2:9.1.1914-1.fc43                                  rpm                         
+vim-data                                                                      2:9.1.1952-1.fc43                                  rpm                         
+vim-filesystem                                                                2:9.1.1952-1.fc43                                  rpm                         
+vim-minimal                                                                   2:9.1.1952-1.fc43                                  rpm                         
 virtualenv                                                                    20.35.4                                            python                      
 vulkan-loader                                                                 1.4.321.0-3.fc43                                   rpm                         
 vulkan-tools                                                                  1.4.321.0-4.fc43                                   rpm                         
@@ -946,5 +946,5 @@ xz-libs                                                                       1:
 yarl                                                                          1.22.0                                             python                      
 zchunk-libs                                                                   1.5.1-3.fc43                                       rpm                         
 zipp                                                                          3.19.2                                             python                      
-zlib-ng-compat                                                                2.2.5-2.fc43                                       rpm                         
+zlib-ng-compat                                                                2.3.2-1.fc43                                       rpm                         
 zstd                                                                          1.5.7-2.fc43                                       rpm                         
