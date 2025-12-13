@@ -68,8 +68,8 @@ distro-info-data                                                              0.
 dmsetup                                                                       2:1.02.185-2                            deb                         
 dnspython                                                                     2.8.0                                   python                      
 docker-buildx-plugin                                                          0.30.1-1~debian.12~bookworm             deb                         
-docker-ce                                                                     5:29.1.2-1~debian.12~bookworm           deb                         
-docker-ce-cli                                                                 5:29.1.2-1~debian.12~bookworm           deb                         
+docker-ce                                                                     5:29.1.3-1~debian.12~bookworm           deb                         
+docker-ce-cli                                                                 5:29.1.3-1~debian.12~bookworm           deb                         
 docker-compose-plugin                                                         5.0.0-1~debian.12~bookworm              deb                         
 dpkg                                                                          1.21.22                                 deb                         
 dunst                                                                         1.9.0-0.1                               deb                         
@@ -187,7 +187,8 @@ github.com/containerd/ttrpc                                                   v1
 github.com/containerd/typeurl/v2                                              v2.2.3                                  go-module  (+5 duplicates)  
 github.com/containerd/zfs/v2                                                  v2.0.0-rc.0                             go-module                   
 github.com/containernetworking/cni                                            v1.3.0                                  go-module  (+2 duplicates)  
-github.com/containernetworking/plugins                                        v1.8.0                                  go-module  (+1 duplicate)   
+github.com/containernetworking/plugins                                        v1.8.0                                  go-module                   
+github.com/containernetworking/plugins                                        v1.9.0                                  go-module                   
 github.com/containers/ocicrypt                                                v1.2.1                                  go-module                   
 github.com/coreos/go-semver                                                   v0.3.1                                  go-module                   
 github.com/coreos/go-systemd/v22                                              v22.5.0                                 go-module                   
@@ -308,7 +309,7 @@ github.com/moby/go-archive                                                    v0
 github.com/moby/ipvs                                                          v1.1.0                                  go-module                   
 github.com/moby/locker                                                        v1.0.1                                  go-module  (+4 duplicates)  
 github.com/moby/moby/api                                                      v1.52.0                                 go-module                   
-github.com/moby/moby/v2                                                       v29.1.2                                 go-module  (+1 duplicate)   
+github.com/moby/moby/v2                                                       v29.1.3                                 go-module  (+1 duplicate)   
 github.com/moby/patternmatcher                                                v0.6.0                                  go-module  (+2 duplicates)  
 github.com/moby/policy-helpers                                                v0.0.0-20251105011237-bcaa71c99f14      go-module                   
 github.com/moby/profiles/apparmor                                             v0.1.0                                  go-module                   
@@ -550,8 +551,8 @@ libaudit1                                                                     1:
 libavahi-client3                                                              0.8-10+deb12u1                          deb                         
 libavahi-common-data                                                          0.8-10+deb12u1                          deb                         
 libavahi-common3                                                              0.8-10+deb12u1                          deb                         
-libavcodec59                                                                  7:5.1.7-0+deb12u1                       deb                         
-libavutil57                                                                   7:5.1.7-0+deb12u1                       deb                         
+libavcodec59                                                                  7:5.1.8-0+deb12u1                       deb                         
+libavutil57                                                                   7:5.1.8-0+deb12u1                       deb                         
 libbinutils                                                                   2.40-2                                  deb                         
 libblkid1                                                                     2.38.1-5+deb12u3                        deb                         
 libbpf1                                                                       1:1.1.2-0+deb12u1                       deb                         
@@ -749,7 +750,7 @@ libpcre2-8-0                                                                  10
 libperl5.36                                                                   5.36.0-7+deb12u3                        deb                         
 libpipeline1                                                                  1.5.7-1                                 deb                         
 libpixman-1-0                                                                 0.42.2-1                                deb                         
-libpng16-16                                                                   1.6.39-2                                deb                         
+libpng16-16                                                                   1.6.39-2+deb12u1                        deb                         
 libpolkit-agent-1-0                                                           122-3                                   deb                         
 libpolkit-gobject-1-0                                                         122-3                                   deb                         
 libproc2-0                                                                    2:4.0.2-3                               deb                         
@@ -794,7 +795,7 @@ libstdc++-12-dev                                                              12
 libstdc++6                                                                    12.2.0-14+deb12u1                       deb                         
 libstemmer0d                                                                  2.2.0-2                                 deb                         
 libsvtav1enc1                                                                 1.4.1+dfsg-1                            deb                         
-libswresample4                                                                7:5.1.7-0+deb12u1                       deb                         
+libswresample4                                                                7:5.1.8-0+deb12u1                       deb                         
 libsystemd-shared                                                             252.39-1~deb12u1                        deb                         
 libsystemd0                                                                   252.39-1~deb12u1                        deb                         
 libtasn1-6                                                                    4.19.0-2+deb12u1                        deb                         
