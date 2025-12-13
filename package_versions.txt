@@ -59,7 +59,7 @@ coreutils-common                                                              9.
 cpp                                                                           15.2.1-4.fc42                          rpm                         
 cpuinfo                                                                       24.09.26-2.git1e83a2f.fc42.1           rpm                         
 cracklib                                                                      2.9.11-7.fc42                          rpm                         
-crypto-policies                                                               20250707-1.gitad370a8.fc42             rpm                         
+crypto-policies                                                               20251125-1.git3839d0e.fc42             rpm                         
 cryptography                                                                  46.0.3                                 python                      
 cryptsetup-libs                                                               2.8.1-1.fc42                           rpm                         
 cups-filesystem                                                               1:2.4.14-3.fc42                        rpm                         
@@ -97,7 +97,7 @@ elfutils-libelf                                                               0.
 elfutils-libs                                                                 0.194-1.fc42                           rpm                         
 emacs-filesystem                                                              1:30.0-4.fc42                          rpm                         
 evdev                                                                         1.9.2                                  python                      
-expat                                                                         2.7.2-1.fc42                           rpm                         
+expat                                                                         2.7.3-1.fc42                           rpm                         
 fedora-gpg-keys                                                               42-1                                   rpm                         
 fedora-logos-httpd                                                            42.0.1-1.fc42                          rpm                         
 fedora-release-common                                                         42-30                                  rpm                         
@@ -496,8 +496,8 @@ graphite2                                                                     1.
 grep                                                                          3.11-10.fc42                           rpm                         
 groff-base                                                                    1.23.0-8.fc42                          rpm                         
 gsm                                                                           1.0.22-8.fc42                          rpm                         
-gstreamer1                                                                    1.26.8-1.fc42                          rpm                         
-gstreamer1-plugins-base                                                       1.26.8-1.fc42                          rpm                         
+gstreamer1                                                                    1.26.9-1.fc42                          rpm                         
+gstreamer1-plugins-base                                                       1.26.9-1.fc42                          rpm                         
 gtk-update-icon-cache                                                         3.24.49-2.fc42                         rpm                         
 gtk3                                                                          3.24.49-2.fc42                         rpm                         
 gui                                                                           UNKNOWN                                binary                      
@@ -510,7 +510,7 @@ hicolor-icon-theme                                                            0.
 highway                                                                       1.2.0-5.fc42                           rpm                         
 hiredis                                                                       1.2.0-6.fc42                           rpm                         
 hostname                                                                      3.25-2.fc42                            rpm                         
-hwdata                                                                        0.401-1.fc42                           rpm                         
+hwdata                                                                        0.402-1.fc42                           rpm                         
 idna                                                                          3.11                                   python                      
 ifaddr                                                                        0.2.0                                  python                      
 ima-evm-utils-libs                                                            1.6.2-4.fc42                           rpm                         
@@ -909,8 +909,8 @@ sdbus-cpp                                                                     1.
 sdl12-compat                                                                  1.2.68-5.fc42                          rpm                         
 sdl2-compat                                                                   2.32.56-1.fc42                         rpm                         
 sed                                                                           4.9-4.fc42                             rpm                         
-selinux-policy                                                                42.17-1.fc42                           rpm                         
-selinux-policy-targeted                                                       42.17-1.fc42                           rpm                         
+selinux-policy                                                                42.18-1.fc42                           rpm                         
+selinux-policy-targeted                                                       42.18-1.fc42                           rpm                         
 selkies                                                                       0.0.0                                  python                      
 setup                                                                         2.15.0-13.fc42                         rpm                         
 setuptools                                                                    80.9.0                                 python                      
@@ -1005,8 +1005,8 @@ xrdb                                                                          1.
 xsel                                                                          1.2.1-8.fc42                           rpm                         
 xsettingsd                                                                    1.0.2-11.fc42                          rpm                         
 xterm                                                                         397-1.fc42                             rpm                         
-xz                                                                            1:5.8.1-2.fc42                         rpm                         
-xz-libs                                                                       1:5.8.1-2.fc42                         rpm                         
+xz                                                                            1:5.8.1-4.fc42                         rpm                         
+xz-libs                                                                       1:5.8.1-4.fc42                         rpm                         
 yarl                                                                          1.22.0                                 python                      
 zchunk-libs                                                                   1.5.1-2.fc42                           rpm                         
 zipp                                                                          3.19.2                                 python                      
