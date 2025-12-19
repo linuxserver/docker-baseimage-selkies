@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f c3cf4cc2a3b6984104e494572b232730883c9aa6
+  git checkout -f 159656dfb3f045bf6e041042140bafaf1bbd9c61
 
 RUN \
   echo "**** build shared core library ****" && \
@@ -77,6 +77,7 @@ RUN \
     docker-compose \
     dunst \
     file \
+    foot \
     freetype2 \
     fuse-overlayfs \
     git \
@@ -85,7 +86,7 @@ RUN \
     inetutils \
     intel-media-driver \
     kbd \
-    libev \
+    labwc \
     libev \
     libfontenc \
     libgcrypt \
@@ -93,7 +94,6 @@ RUN \
     libnotify \
     libtasn1 \
     libva-mesa-driver \
-    libx11 \
     libx11 \
     libxau \
     libxcb \
@@ -105,6 +105,7 @@ RUN \
     libxfixes \
     libxfont2 \
     libxinerama \
+    libxkbcommon \
     libxshmfence \
     libxtst \
     linux-headers \
@@ -132,6 +133,9 @@ RUN \
     vulkan-intel \
     vulkan-radeon \
     vulkan-tools \
+    wayland \
+    wl-clipboard \
+    wtype \
     x264 \
     xclip \
     xcursor-themes \
@@ -179,7 +183,7 @@ RUN \
   echo "**** install selkies ****" && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/c3cf4cc2a3b6984104e494572b232730883c9aa6.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/159656dfb3f045bf6e041042140bafaf1bbd9c61.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \

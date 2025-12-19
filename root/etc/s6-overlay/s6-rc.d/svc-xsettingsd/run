@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 
-# bail early on xfce based systems
-if which xfce4-session > /dev/null 2>&1; then
+# bail early on xfce based systems or wayland
+if which xfce4-session > /dev/null 2>&1 || [[ "${PIXELFLUX_WAYLAND}" == "true" ]]; then
   sleep infinity
 fi
 
