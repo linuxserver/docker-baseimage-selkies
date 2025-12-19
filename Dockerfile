@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f c3cf4cc2a3b6984104e494572b232730883c9aa6
+  git checkout -f 159656dfb3f045bf6e041042140bafaf1bbd9c61
 
 RUN \
   echo "**** build shared core library ****" && \
@@ -91,12 +91,14 @@ RUN \
     fonts-noto-cjk \
     fonts-noto-color-emoji \
     fonts-noto-core \
+    foot \
     fuse-overlayfs \
     g++ \
     gcc \
     git \
     intel-media-va-driver \
     kbd \
+    labwc \
     libatk1.0-0 \
     libatk-bridge2.0-0 \
     libev4 \
@@ -113,11 +115,16 @@ RUN \
     libnginx-mod-http-fancyindex \
     libnotify-bin \
     libnss3 \
+    libnvidia-egl-wayland1 \
     libopus0 \
     libp11-kit0 \
     libpam0g \
     libtasn1-6 \
     libvulkan1 \
+    libwayland-client0 \
+    libwayland-cursor0 \
+    libwayland-egl1 \
+    libwayland-server0 \
     libx11-6 \
     libx264-164 \
     libxau6 \
@@ -133,6 +140,7 @@ RUN \
     libxfixes3 \
     libxfont2 \
     libxinerama1 \
+    libxkbcommon-dev \
     libxkbcommon-x11-0 \
     libxshmfence1 \
     libxtst6 \
@@ -159,6 +167,8 @@ RUN \
     tar \
     util-linux \
     vulkan-tools \
+    wl-clipboard \
+    wtype \
     x11-apps \
     x11-common \
     x11-utils \
@@ -184,13 +194,14 @@ RUN \
     xterm \
     xutils \
     xvfb \
-    zlib1g && \
+    zlib1g \
+    zstd && \
   echo "**** install selkies ****" && \
   SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/latest" \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/c3cf4cc2a3b6984104e494572b232730883c9aa6.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/159656dfb3f045bf6e041042140bafaf1bbd9c61.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
@@ -260,6 +271,19 @@ RUN \
   chmod +x /usr/local/bin/dind && \
   echo 'hosts: files dns' > /etc/nsswitch.conf && \
   usermod -aG docker abc && \
+  echo "**** libva hack ****" && \
+  mkdir /tmp/libva && \
+  curl -o \
+    /tmp/libva/libva.deb -L \
+    "https://launchpad.net/ubuntu/+source/libva/2.22.0-3ubuntu2/+build/30591127/+files/libva2_2.22.0-3ubuntu2_amd64.deb" && \
+  cd /tmp/libva && \
+  ar x libva.deb && \
+  tar xf data.tar.zst && \
+  rm -f \
+    /usr/lib/x86_64-linux-gnu/libva.so.2* && \
+  cp -a \
+    usr/lib/x86_64-linux-gnu/libva.so.2* \
+    /usr/lib/x86_64-linux-gnu/ && \
   echo "**** locales ****" && \
   for LOCALE in $(curl -sL https://raw.githubusercontent.com/thelamer/lang-stash/master/langs); do \
     localedef -i $LOCALE -f UTF-8 $LOCALE.UTF-8; \
