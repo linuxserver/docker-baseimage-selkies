@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f c3cf4cc2a3b6984104e494572b232730883c9aa6
+  git checkout -f 159656dfb3f045bf6e041042140bafaf1bbd9c61
 
 RUN \
   echo "**** build shared core library ****" && \
@@ -64,6 +64,7 @@ RUN \
   echo "**** install build deps ****" && \
   apk add --no-cache --virtual .build-deps \
     alpine-sdk \
+    libxkbcommon-dev \
     linux-headers \
     musl-dev \
     python3-dev && \
@@ -84,6 +85,7 @@ RUN \
     font-noto \
     font-noto-cjk \
     font-noto-emoji \
+    foot \
     freetype \
     fuse-overlayfs \
     git \
@@ -91,6 +93,7 @@ RUN \
     gobject-introspection \
     intel-media-driver \
     kbd \
+    labwc \
     lang \
     libev \
     libfontenc \
@@ -108,6 +111,7 @@ RUN \
     libxfixes \
     libxfont2 \
     libxinerama \
+    libxkbcommon \
     libxshmfence \
     libxtst \
     linux-firmware-none \
@@ -140,6 +144,9 @@ RUN \
     util-linux \
     vulkan-loader \
     vulkan-tools \
+    wayland \
+    wl-clipboard \
+    wtype \
     x264-libs \
     xauth \
     xclip \
@@ -166,7 +173,7 @@ RUN \
   echo "**** install selkies ****" && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/c3cf4cc2a3b6984104e494572b232730883c9aa6.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/159656dfb3f045bf6e041042140bafaf1bbd9c61.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
