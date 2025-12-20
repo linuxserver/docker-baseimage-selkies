@@ -89,7 +89,7 @@ duktape                                                                       2.
 dunst                                                                         1.13.0-1.fc43                                      rpm                         
 egl-gbm                                                                       2:1.1.2.1-2.fc43                                   rpm                         
 egl-wayland                                                                   1.1.21-1.fc43                                      rpm                         
-egl-wayland2                                                                  1.0.1~20251213gitada1c37-1.fc43                    rpm                         
+egl-wayland2                                                                  1.0.1~20251124git3e5b643-1.fc43                    rpm                         
 elfutils-debuginfod-client                                                    0.194-1.fc43                                       rpm                         
 elfutils-default-yama-scope                                                   0.194-1.fc43                                       rpm                         
 elfutils-libelf                                                               0.194-1.fc43                                       rpm                         
