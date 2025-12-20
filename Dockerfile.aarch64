@@ -132,7 +132,7 @@ RUN \
     libxfixes3 \
     libxfont2 \
     libxinerama1 \
-    libxkbcommon-de \
+    libxkbcommon-dev \
     libxkbcommon-x11-0 \
     libxshmfence1 \
     libxtst6 \
