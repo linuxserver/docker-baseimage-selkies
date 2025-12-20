@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f c3cf4cc2a3b6984104e494572b232730883c9aa6
+  git checkout -f 159656dfb3f045bf6e041042140bafaf1bbd9c61
 
 RUN \
   echo "**** build shared core library ****" && \
@@ -133,6 +133,7 @@ RUN \
     libxfixes3 \
     libxfont2 \
     libxinerama1 \
+    libxkbcommon-dev \
     libxkbcommon-x11-0 \
     libxshmfence1 \
     libxtst6 \
@@ -190,7 +191,7 @@ RUN \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/c3cf4cc2a3b6984104e494572b232730883c9aa6.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/159656dfb3f045bf6e041042140bafaf1bbd9c61.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
@@ -199,7 +200,7 @@ RUN \
     --system-site-packages \
     /lsiopy && \
   pip install . && \
-  pip install setuptools && \
+  pip install setuptools pixelflux==1.4.7 && \
   echo "**** install selkies interposer ****" && \
   cd addons/js-interposer && \
   gcc -shared -fPIC -ldl \

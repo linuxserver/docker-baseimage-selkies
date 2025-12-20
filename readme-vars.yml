@@ -32,6 +32,7 @@ full_custom_readme: |
 
   | Variable | Description |
   | :----: | --- |
+  | PIXELFLUX_WAYLAND | **Experimental** If set to true the container will initialize in Wayland mode running [Smithay](https://github.com/Smithay/smithay) and Labwc while enabling zero copy encoding with a GPU |
   | CUSTOM_PORT | Internal port the container listens on for http if it needs to be swapped from the default 3000 |
   | CUSTOM_HTTPS_PORT | Internal port the container listens on for https if it needs to be swapped from the default 3001 |
   | CUSTOM_WS_PORT | Internal port the container listens on for websockets if it needs to be swapped from the default 8082 |
