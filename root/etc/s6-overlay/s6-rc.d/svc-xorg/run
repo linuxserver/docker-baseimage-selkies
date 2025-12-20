@@ -1,5 +1,10 @@
 #!/usr/bin/with-contenv bash
 
+# bail early on wayland
+if [[ "${PIXELFLUX_WAYLAND}" == "true" ]]; then
+  sleep infinity
+fi
+
 # Cleanup
 rm -f /tmp/.X1-lock
 

@@ -56,6 +56,8 @@ if [ ! -z ${DEV_MODE+x} ]; then
 fi
 
 # Start Selkies
+GBM_BACKENDS_PATH=/usr/lib/x86_64-linux-gnu/gbm
+export GBM_BACKEND=nvidia-drm
 exec s6-setuidgid abc \
   selkies \
     --addr="localhost" \

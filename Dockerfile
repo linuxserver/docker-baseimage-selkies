@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f c3cf4cc2a3b6984104e494572b232730883c9aa6
+  git checkout -f 159656dfb3f045bf6e041042140bafaf1bbd9c61
 
 RUN \
   echo "**** build shared core library ****" && \
@@ -87,7 +87,11 @@ RUN \
     docker \
     docker-compose \
     dunst \
+    egl-gbm \
+    egl-wayland \
+    egl-wayland2 \
     file \
+    foot \
     freetype \
     fuse-overlayfs \
     git \
@@ -99,6 +103,7 @@ RUN \
     google-noto-sans-fonts \
     intel-media-driver \
     kbd \
+    labwc \
     libdrm \
     libev \
     libfontenc \
@@ -107,6 +112,7 @@ RUN \
     libnotify \
     libtasn1 \
     libva \
+    libva-nvidia-driver \
     libX11 \
     libXau \
     libxcb \
@@ -117,6 +123,7 @@ RUN \
     libXfixes \
     libXfont2 \
     libXinerama \
+    libxkbcommon-devel \
     libxshmfence \
     libXtst \
     mesa-dri-drivers \
@@ -147,6 +154,8 @@ RUN \
     util-linux \
     vulkan-loader \
     vulkan-tools \
+    wl-clipboard \
+    wtype \
     x264-libs \
     xauth \
     xclip \
@@ -165,16 +174,20 @@ RUN \
     xorg-x11-font-utils \
     xorg-x11-server-Xorg \
     xorg-x11-server-Xvfb \
+    xorg-x11-server-Xwayland \
     xrandr \
     xrdb \
     xsel \
     xsettingsd \
     xterm \
     zlib && \
+  dnf swap -y \
+    mesa-va-drivers \
+    mesa-va-drivers-freeworld && \
   echo "**** install selkies ****" && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/c3cf4cc2a3b6984104e494572b232730883c9aa6.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/159656dfb3f045bf6e041042140bafaf1bbd9c61.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
