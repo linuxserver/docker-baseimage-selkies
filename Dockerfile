@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM lscr.io/linuxserver/xvfb:alpine322 AS xvfb
-FROM ghcr.io/linuxserver/baseimage-alpine:3.22 AS frontend
+FROM ghcr.io/linuxserver/baseimage-alpine:3.23 AS frontend
 
 RUN \
   echo "**** install build packages ****" && \
@@ -41,7 +41,7 @@ RUN \
   done
 
 # Runtime stage
-FROM ghcr.io/linuxserver/baseimage-alpine:3.22
+FROM ghcr.io/linuxserver/baseimage-alpine:3.23
 
 # set version label
 ARG BUILD_DATE
