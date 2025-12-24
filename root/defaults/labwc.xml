@@ -37,6 +37,20 @@
   <windowRules>
     <windowRule identifier="*" serverDecoration="yes" />
     <windowRule identifier="*"><action name="Maximize" /></windowRule>
+    <windowRule identifier="brave" serverDecoration="no" />
+    <windowRule identifier="chrome" serverDecoration="no" />
+    <windowRule identifier="chromium-browser" serverDecoration="no" />
+    <windowRule identifier="chromium" serverDecoration="no" />
+    <windowRule identifier="firefox-esr" serverDecoration="no" />
+    <windowRule identifier="firefox" serverDecoration="no" />
+    <windowRule identifier="google-chrome" serverDecoration="no" />
+    <windowRule identifier="librewolf" serverDecoration="no" />
+    <windowRule identifier="mullvad-browser" serverDecoration="no" />
+    <windowRule identifier="opera-bin" serverDecoration="no" />
+    <windowRule identifier="opera" serverDecoration="no" />
+    <windowRule identifier="vivaldi" serverDecoration="no" />
+    <windowRule identifier="wrapped-chromium" serverDecoration="no" />
+    <windowRule identifier="zen" serverDecoration="no" />
   </windowRules>
 
 </labwc_config>
