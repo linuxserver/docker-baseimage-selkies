@@ -2,6 +2,7 @@ NAME                                                                          VE
 Simple Launcher                                                               1.1.0.14                                binary      (+5 duplicates)  
 acl-libs                                                                      2.3.2-r1                                apk                          
 agetty                                                                        2.41-r9                                 apk                          
+aiofiles                                                                      25.1.0                                  python                       
 aiohappyeyeballs                                                              2.6.1                                   python                       
 aiohttp                                                                       3.13.2                                  python                       
 aioice                                                                        0.10.2                                  python                       
@@ -82,6 +83,7 @@ dbus                                                                          1.
 dbus-daemon-launch-helper                                                     1.16.2-r1                               apk                          
 dbus-libs                                                                     1.16.2-r1                               apk                          
 dbus-x11                                                                      1.16.2-r1                               apk                          
+distro                                                                        1.9.0                                   python                       
 dmesg                                                                         2.41-r9                                 apk                          
 dnspython                                                                     2.8.0                                   python                       
 docker                                                                        28.3.3-r4                               apk                          
@@ -738,7 +740,7 @@ pcmflux                                                                       1.
 pcre2                                                                         10.46-r0                                apk                          
 pillow                                                                        12.0.0                                  python                       
 pip                                                                           25.0.1                                  python                       
-pixelflux                                                                     1.5.1                                   python                       
+pixelflux                                                                     1.5.2                                   python                       
 pixman                                                                        0.46.4-r0                               apk                          
 pkgconf                                                                       2.4.3-r0                                apk                          
 platformdirs                                                                  4.2.2                                   python                       
