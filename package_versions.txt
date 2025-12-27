@@ -581,7 +581,7 @@ imlib2                                                                        1.
 importlib-metadata                                                            8.0.0                                   python                       
 inflect                                                                       7.3.1                                   python                       
 intel-gmmlib                                                                  22.9.0-r0                               apk                          
-intel-media-driver                                                            25.4.5-r1                               apk                          
+intel-media-driver                                                            25.4.6-r0                               apk                          
 interpolate_name                                                              0.2.4                                   rust-crate                   
 iptables                                                                      1.8.11-r1                               apk                          
 itertools                                                                     0.10.5                                  rust-crate                   
