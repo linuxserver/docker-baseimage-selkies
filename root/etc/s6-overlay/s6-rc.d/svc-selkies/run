@@ -1,5 +1,7 @@
 #!/usr/bin/with-contenv bash
 
+export XCURSOR_THEME=breeze
+
 # Default sink setup
 if [ ! -f '/dev/shm/audio.lock' ]; then
   until [ -f /defaults/pid ]; do
