@@ -291,3 +291,8 @@ else
   printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER3
   printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER3
 fi
+
+# set ws port if unset
+if [[ -z ${CUSTOM_WS_PORT+x} ]]; then
+  printf "8082" > /run/s6/container_environment/CUSTOM_WS_PORT
+fi
