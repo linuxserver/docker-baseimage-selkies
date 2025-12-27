@@ -23,7 +23,7 @@ breeze-cursor-theme                                                           4:
 bsdextrautils                                                                 2.41.2-4                                deb                         
 bsdutils                                                                      1:2.41.2-4                              deb                         
 ca-certificates                                                               20250419                                deb                         
-catatonit                                                                     0.2.1-2+b4                              deb                         
+catatonit                                                                     0.2.1-2+b6                              deb                         
 cffi                                                                          2.0.0                                   python                      
 cli                                                                           UNKNOWN                                 binary                      
 cli-32                                                                        UNKNOWN                                 binary                      
@@ -568,12 +568,12 @@ libc6-dev                                                                     2.
 libcairo-gobject2                                                             1.18.4-1+b1                             deb                         
 libcairo2                                                                     1.18.4-1+b1                             deb                         
 libcap-ng0                                                                    0.8.5-4+b2                              deb                         
-libcap2                                                                       1:2.75-10+b2                            deb                         
+libcap2                                                                       1:2.75-10+b5                            deb                         
 libcap2-bin                                                                   1:2.75-10+b5                            deb                         
 libcbor0.10                                                                   0.10.2-2.1                              deb                         
 libcc1-0                                                                      15.2.0-11                               deb                         
 libcodec2-1.2                                                                 1.2.0-4                                 deb                         
-libcom-err2                                                                   1.47.2-3+b4                             deb                         
+libcom-err2                                                                   1.47.2-3+b6                             deb                         
 libcrypt-dev                                                                  1:4.5.1-1                               deb                         
 libcrypt1                                                                     1:4.5.1-1                               deb                         
 libctf-nobfd0                                                                 2.45.50.20251209-1                      deb                         
@@ -643,7 +643,7 @@ libglx0                                                                       1.
 libgmp10                                                                      2:6.3.0+dfsg-5                          deb                         
 libgnutls30t64                                                                3.8.11-3                                deb                         
 libgomp1                                                                      15.2.0-11                               deb                         
-libgpg-error0                                                                 1.56-2                                  deb                         
+libgpg-error0                                                                 1.58-1                                  deb                         
 libgprofng0                                                                   2.45.50.20251209-1                      deb                         
 libgraphite2-3                                                                1.3.14-11                               deb                         
 libgs-common                                                                  10.06.0~dfsg-3                          deb                         
@@ -742,7 +742,7 @@ libpackagekit-glib2-18                                                        1.
 libpam-modules                                                                1.7.0-5                                 deb                         
 libpam-modules-bin                                                            1.7.0-5                                 deb                         
 libpam-runtime                                                                1.7.0-5                                 deb                         
-libpam-systemd                                                                259~rc3-1                               deb                         
+libpam-systemd                                                                259-1                                   deb                         
 libpam0g                                                                      1.7.0-5                                 deb                         
 libpango-1.0-0                                                                1.56.3-2                                deb                         
 libpangocairo-1.0-0                                                           1.56.3-2                                deb                         
@@ -769,7 +769,7 @@ libpython3.13-dev                                                             3.
 libpython3.13-minimal                                                         3.13.11-1+b1                            deb                         
 libpython3.13-stdlib                                                          3.13.11-1+b1                            deb                         
 libquadmath0                                                                  15.2.0-11                               deb                         
-librav1e0.8                                                                   0.8.1-6                                 deb                         
+librav1e0.8                                                                   0.8.1-7                                 deb                         
 libreadline8t64                                                               8.3-3                                   deb                         
 librhash1                                                                     1.4.6-1.1                               deb                         
 librsvg2-2                                                                    2.61.3+dfsg-3                           deb                         
@@ -806,8 +806,8 @@ libstdc++6                                                                    15
 libstemmer0d                                                                  3.0.1-1                                 deb                         
 libsvtav1enc2                                                                 2.3.0+dfsg-1                            deb                         
 libswresample5                                                                7:7.1.3-1                               deb                         
-libsystemd-shared                                                             259~rc3-1                               deb                         
-libsystemd0                                                                   259~rc3-1                               deb                         
+libsystemd-shared                                                             259-1                                   deb                         
+libsystemd0                                                                   259-1                                   deb                         
 libtasn1-6                                                                    4.20.0-2                                deb                         
 libtdb1                                                                       2:1.4.14+samba4.23.4+dfsg-1             deb                         
 libthai-data                                                                  0.1.29-2                                deb                         
@@ -822,7 +822,7 @@ libtsan2                                                                      15
 libtwolame0                                                                   0.4.0-2+b2                              deb                         
 libubsan1                                                                     15.2.0-11                               deb                         
 libuchardet0                                                                  0.0.8-2                                 deb                         
-libudev1                                                                      259~rc3-1                               deb                         
+libudev1                                                                      259-1                                   deb                         
 libunistring5                                                                 1.3-2                                   deb                         
 libunwind8                                                                    1.8.1-0.1                               deb                         
 libutempter0                                                                  1.2.1-4                                 deb                         
@@ -838,7 +838,7 @@ libvorbis0a                                                                   1.
 libvorbisenc2                                                                 1.3.7-3                                 deb                         
 libvpl2                                                                       1:2.15.0-1                              deb                         
 libvpx11                                                                      1.15.2-2                                deb                         
-libvulkan1                                                                    1.4.328.1-1                             deb                         
+libvulkan1                                                                    1.4.335.0-1                             deb                         
 libwacom-common                                                               2.16.1-1                                deb                         
 libwacom9                                                                     2.16.1-1                                deb                         
 libwayland-client0                                                            1.24.0-2+b1                             deb                         
@@ -896,7 +896,7 @@ libxinerama1                                                                  2:
 libxkbcommon-dev                                                              1.12.3-1                                deb                         
 libxkbcommon0                                                                 1.12.3-1                                deb                         
 libxkbfile1                                                                   1:1.1.0-1+b4                            deb                         
-libxml2-16                                                                    2.14.6+dfsg-0.1                         deb                         
+libxml2-16                                                                    2.15.1+dfsg-2+b1                        deb                         
 libxmlb2                                                                      0.3.24-2                                deb                         
 libxmu6                                                                       2:1.1.3-3+b4                            deb                         
 libxmuu1                                                                      2:1.1.3-3+b4                            deb                         
@@ -926,7 +926,7 @@ login.defs                                                                    1:
 lsb-release                                                                   12.1-2                                  deb                         
 make                                                                          4.4.1-3                                 deb                         
 man-db                                                                        2.13.1-1                                deb                         
-mawk                                                                          1.3.4.20250131-1                        deb                         
+mawk                                                                          1.3.4.20250131-2                        deb                         
 media-types                                                                   14.0.0                                  deb                         
 mesa-libgallium                                                               25.2.8-2+b3                             deb                         
 mesa-va-drivers                                                               25.2.8-2+b3                             deb                         
@@ -1014,7 +1014,7 @@ python3-pyparsing                                                             3.
 python3-setuptools-whl                                                        78.1.1-0.1                              deb                         
 python3-software-properties                                                   0.111-1                                 deb                         
 python3-typeguard                                                             4.4.4-1                                 deb                         
-python3-typing-extensions                                                     4.15.0-1                                deb                         
+python3-typing-extensions                                                     4.15.0-2                                deb                         
 python3-venv                                                                  3.13.7-1+b1                             deb                         
 python3-wadllib                                                               2.0.0-3                                 deb                         
 python3.13                                                                    3.13.11-1+b1                            deb                         
@@ -1036,7 +1036,7 @@ sigs.k8s.io/structured-merge-diff/v6                                          v6
 sigs.k8s.io/yaml                                                              v1.6.0                                  go-module  (+3 duplicates)  
 six                                                                           1.17.0                                  python                      
 software-properties-common                                                    0.111-1                                 deb                         
-sqv                                                                           1.3.0-4                                 deb                         
+sqv                                                                           1.3.0-5                                 deb                         
 ssl-cert                                                                      1.1.3                                   deb                         
 stdlib                                                                        go1.24.11                               go-module  (+3 duplicates)  
 stdlib                                                                        go1.24.9                                go-module                   
@@ -1044,8 +1044,8 @@ stdlib                                                                        go
 stdlib                                                                        go1.25.5                                go-module  (+2 duplicates)  
 stterm                                                                        0.9.3-1                                 deb                         
 sudo                                                                          1.9.17p2-1                              deb                         
-systemd                                                                       259~rc3-1                               deb                         
-systemd-sysv                                                                  259~rc3-1                               deb                         
+systemd                                                                       259-1                                   deb                         
+systemd-sysv                                                                  259-1                                   deb                         
 sysvinit-utils                                                                3.15-6                                  deb                         
 tags.cncf.io/container-device-interface                                       v1.0.1                                  go-module  (+1 duplicate)   
 tags.cncf.io/container-device-interface                                       v1.1.0                                  go-module  (+1 duplicate)   
@@ -1057,8 +1057,8 @@ typeguard                                                                     4.
 typeguard                                                                     4.4.4                                   python                      
 typing-extensions                                                             4.12.2                                  python                      
 typing-extensions                                                             4.15.0                                  python                      
-tzdata                                                                        2025c-1                                 deb                         
-udev                                                                          259~rc3-1                               deb                         
+tzdata                                                                        2025c-3                                 deb                         
+udev                                                                          259-1                                   deb                         
 util-linux                                                                    2.41.2-4                                deb                         
 vulkan-tools                                                                  1.4.328.1+dfsg1-1                       deb                         
 wadllib                                                                       2.0.0                                   python                      
