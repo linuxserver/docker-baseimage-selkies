@@ -1,6 +1,7 @@
 NAME                                                                          VERSION                                 TYPE                       
 adduser                                                                       3.137ubuntu1                            deb                         
 adwaita-icon-theme                                                            46.0-1                                  deb                         
+aiofiles                                                                      25.1.0                                  python                      
 aiohappyeyeballs                                                              2.6.1                                   python                      
 aiohttp                                                                       3.13.2                                  python                      
 aioice                                                                        0.10.2                                  python                      
@@ -985,7 +986,7 @@ perl-modules-5.38                                                             5.
 pillow                                                                        12.0.0                                  python                      
 pinentry-curses                                                               1.2.1-3ubuntu5                          deb                         
 pip                                                                           24.0                                    python                      
-pixelflux                                                                     1.5.1                                   python                      
+pixelflux                                                                     1.5.2                                   python                      
 platformdirs                                                                  4.2.2                                   python                      
 polkitd                                                                       124-2ubuntu1.24.04.2                    deb                         
 poppler-data                                                                  0.4.12-1                                deb                         
