@@ -7,6 +7,7 @@ adobe-mappings-pdf                                                            20
 adwaita-cursor-theme                                                          49.0-1.fc43                                        rpm                         
 adwaita-icon-theme                                                            49.0-1.fc43                                        rpm                         
 adwaita-icon-theme-legacy                                                     46.2-4.fc43                                        rpm                         
+aiofiles                                                                      25.1.0                                             python                      
 aiohappyeyeballs                                                              2.6.1                                              python                      
 aiohttp                                                                       3.13.2                                             python                      
 aioice                                                                        0.10.2                                             python                      
@@ -77,6 +78,7 @@ default-fonts-core-sans                                                       4.
 desktop-file-utils                                                            0.28-2.fc43                                        rpm                         
 diffutils                                                                     3.12-3.fc43                                        rpm                         
 distlib                                                                       0.4.0                                              python                      
+distro                                                                        1.9.0                                              python                      
 dnf                                                                           4.24.0                                             python                      
 dnf-data                                                                      4.24.0-1.fc43                                      rpm                         
 dnf5                                                                          5.2.17.0-2.fc43                                    rpm                         
@@ -854,7 +856,7 @@ pigz                                                                          2.
 pillow                                                                        12.0.0                                             python                      
 pip                                                                           25.1.1                                             python                      
 pipewire-libs                                                                 1.4.9-1.fc43                                       rpm                         
-pixelflux                                                                     1.5.1                                              python                      
+pixelflux                                                                     1.5.2                                              python                      
 pixman                                                                        0.46.2-2.fc43                                      rpm                         
 pkgconf                                                                       2.3.0-3.fc43                                       rpm                         
 pkgconf-m4                                                                    2.3.0-3.fc43                                       rpm                         
