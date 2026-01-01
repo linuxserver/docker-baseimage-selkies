@@ -203,7 +203,7 @@ All base images are built for x86_64 and aarch64 platforms.
 
 | Distro | Current Tag |
 | :----: | --- |
-| Alpine | alpine322 |
+| Alpine | alpine323 |
 | Arch | arch |
 | Debian | debianbookworm |
 | Debian | debiantrixie |
