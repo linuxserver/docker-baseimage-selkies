@@ -3,7 +3,7 @@ adduser                                                                       3.
 adwaita-icon-theme                                                            46.0-1                                  deb                         
 aiofiles                                                                      25.1.0                                  python                      
 aiohappyeyeballs                                                              2.6.1                                   python                      
-aiohttp                                                                       3.13.2                                  python                      
+aiohttp                                                                       3.13.3                                  python                      
 aioice                                                                        0.10.2                                  python                      
 aiosignal                                                                     1.4.0                                   python                      
 apt                                                                           2.8.3                                   deb                         
@@ -1091,6 +1091,7 @@ watchdog                                                                      6.
 websockets                                                                    15.0.1                                  python                      
 wheel                                                                         0.45.1                                  python                      
 wl-clipboard                                                                  2.2.1-1build1                           deb                         
+wlr-randr                                                                     0.3.0-1                                 deb                         
 wtype                                                                         0.4-3                                   deb                         
 x11-apps                                                                      7.7+11build3                            deb                         
 x11-common                                                                    1:7.7+23ubuntu3                         deb                         
