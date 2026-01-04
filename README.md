@@ -184,6 +184,7 @@ The server can be forced to use a single, fixed resolution for all connecting cl
 | `SELKIES_WATERMARK_PATH` (or `WATERMARK_PNG`) | `''` | Absolute path to the watermark PNG file. |
 | `SELKIES_WATERMARK_LOCATION` (or `WATERMARK_LOCATION`) | `-1` | Watermark location enum (0-6). |
 | `SELKIES_DEBUG` | `False` | Enable debug logging. |
+| `SELKIES_WAYLAND_SOCKET_INDEX` | `0` | Index for the Wayland command socket (e.g. 0 for wayland-0). |
 | `SELKIES_ENABLE_SHARING` | `True` | Master toggle for all sharing features. |
 | `SELKIES_ENABLE_COLLAB` | `True` | Enable collaborative (read-write) sharing link. |
 | `SELKIES_ENABLE_SHARED` | `True` | Enable view-only sharing links. |
