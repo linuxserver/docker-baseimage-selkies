@@ -4,7 +4,7 @@ acl-libs                                                                      2.
 agetty                                                                        2.41.2-r0                               apk                          
 aiofiles                                                                      25.1.0                                  python                       
 aiohappyeyeballs                                                              2.6.1                                   python                       
-aiohttp                                                                       3.13.2                                  python                       
+aiohttp                                                                       3.13.3                                  python                       
 aioice                                                                        0.10.2                                  python                       
 aiosignal                                                                     1.4.0                                   python                       
 alpine-baselayout                                                             3.7.1-r8                                apk                          
@@ -727,7 +727,7 @@ libxv                                                                         1.
 libxvmc                                                                       1.0.14-r1                               apk                          
 libxxf86vm                                                                    1.1.6-r0                                apk                          
 linux-firmware-none                                                           20251125-r1                             apk                          
-linux-pam                                                                     1.7.1-r1                                apk                          
+linux-pam                                                                     1.7.1-r2                                apk                          
 linux-raw-sys                                                                 0.4.12                                  rust-crate                   
 llvm21-libs                                                                   21.1.2-r1                               apk                          
 log                                                                           0.4.20                                  rust-crate                   
@@ -919,6 +919,7 @@ websockets                                                                    15
 wheel                                                                         0.45.1                                  python                       
 wipefs                                                                        2.41.2-r0                               apk                          
 wl-clipboard                                                                  2.2.1-r1                                apk                          
+wlr-randr                                                                     0.5.0-r1                                apk                          
 wlroots                                                                       0.19.2-r0                               apk                          
 wtype                                                                         0.4-r0                                  apk                          
 wyz                                                                           0.5.1                                   rust-crate                   
