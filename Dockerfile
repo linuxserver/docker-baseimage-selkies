@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f 8f834f259c009fa8a015143fe1751f2c1021ccc4
+  git checkout -f b42683ada8c664fb423651710103cf5afa97f1c0
 
 RUN \
   echo "**** build shared core library ****" && \
@@ -135,6 +135,7 @@ RUN \
     vulkan-tools \
     wayland \
     wl-clipboard \
+    wlr-randr \
     wtype \
     x264 \
     xclip \
@@ -183,7 +184,7 @@ RUN \
   echo "**** install selkies ****" && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/8f834f259c009fa8a015143fe1751f2c1021ccc4.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/b42683ada8c664fb423651710103cf5afa97f1c0.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
