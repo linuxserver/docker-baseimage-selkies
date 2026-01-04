@@ -2,7 +2,7 @@ NAME                                                                          VE
 adduser                                                                       3.134                                   deb                         
 adwaita-icon-theme                                                            43-1                                    deb                         
 aiohappyeyeballs                                                              2.6.1                                   python                      
-aiohttp                                                                       3.13.2                                  python                      
+aiohttp                                                                       3.13.3                                  python                      
 aioice                                                                        0.10.2                                  python                      
 aiosignal                                                                     1.4.0                                   python                      
 apt                                                                           2.6.1                                   deb                         
