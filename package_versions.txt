@@ -4,7 +4,7 @@ acl-libs                                                                      2.
 agetty                                                                        2.41-r9                                 apk                          
 aiofiles                                                                      25.1.0                                  python                       
 aiohappyeyeballs                                                              2.6.1                                   python                       
-aiohttp                                                                       3.13.2                                  python                       
+aiohttp                                                                       3.13.3                                  python                       
 aioice                                                                        0.10.2                                  python                       
 aiosignal                                                                     1.4.0                                   python                       
 alpine-baselayout                                                             3.7.0-r0                                apk                          
@@ -740,7 +740,7 @@ pcmflux                                                                       1.
 pcre2                                                                         10.46-r0                                apk                          
 pillow                                                                        12.1.0                                  python                       
 pip                                                                           25.0.1                                  python                       
-pixelflux                                                                     1.5.3                                   python                       
+pixelflux                                                                     1.5.4                                   python                       
 pixman                                                                        0.46.4-r0                               apk                          
 pkgconf                                                                       2.4.3-r0                                apk                          
 platformdirs                                                                  4.2.2                                   python                       
