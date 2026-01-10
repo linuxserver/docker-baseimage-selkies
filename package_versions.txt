@@ -8,7 +8,7 @@ adwaita-cursor-theme                                                          48
 adwaita-icon-theme                                                            48.1-1.fc42                            rpm                         
 adwaita-icon-theme-legacy                                                     46.2-3.fc42                            rpm                         
 aiohappyeyeballs                                                              2.6.1                                  python                      
-aiohttp                                                                       3.13.2                                 python                      
+aiohttp                                                                       3.13.3                                 python                      
 aioice                                                                        0.10.2                                 python                      
 aiosignal                                                                     1.4.0                                  python                      
 alsa-lib                                                                      1.2.15.1-1.fc42                        rpm                         
@@ -403,8 +403,8 @@ glibc-locale-source                                                           2.
 glibc-minimal-langpack                                                        2.41-12.fc42                           rpm                         
 gmp                                                                           1:6.3.0-4.fc42                         rpm                         
 gnulib-l10n                                                                   20241231-1.fc42                        rpm                         
-gnupg2                                                                        2.4.7-2.fc42                           rpm                         
-gnupg2-smime                                                                  2.4.7-2.fc42                           rpm                         
+gnupg2                                                                        2.4.9-1.fc42                           rpm                         
+gnupg2-smime                                                                  2.4.9-1.fc42                           rpm                         
 gnutls                                                                        3.8.11-2.fc42                          rpm                         
 go.etcd.io/bbolt                                                              v1.3.11                                go-module                   
 go.etcd.io/bbolt                                                              v1.4.3                                 go-module                   
@@ -745,11 +745,11 @@ ncurses-libs                                                                  6.
 netcat                                                                        1.229-2.fc42                           rpm                         
 nettle                                                                        3.10.1-1.fc42                          rpm                         
 nftables                                                                      1:1.1.1-3.fc42                         rpm                         
-nginx                                                                         2:1.28.0-2.fc42                        rpm                         
-nginx-core                                                                    2:1.28.0-2.fc42                        rpm                         
-nginx-filesystem                                                              2:1.28.0-2.fc42                        rpm                         
+nginx                                                                         2:1.28.1-1.fc42                        rpm                         
+nginx-core                                                                    2:1.28.1-1.fc42                        rpm                         
+nginx-filesystem                                                              2:1.28.1-1.fc42                        rpm                         
 nginx-mimetypes                                                               2.1.54-8.fc42                          rpm                         
-nginx-mod-fancyindex                                                          0.5.2-11.fc42                          rpm                         
+nginx-mod-fancyindex                                                          0.5.2-13.fc42                          rpm                         
 npth                                                                          1.8-2.fc42                             rpm                         
 nvidia-cuda-nvrtc                                                             13.1.80                                python                      
 oniguruma                                                                     6.9.10-2.fc42                          rpm                         
@@ -844,7 +844,7 @@ pigz                                                                          2.
 pillow                                                                        12.1.0                                 python                      
 pinentry                                                                      1.3.1-3.fc42                           rpm                         
 pip                                                                           24.3.1                                 python                      
-pixelflux                                                                     1.5.3                                  python                      
+pixelflux                                                                     1.5.4                                  python                      
 pixman                                                                        0.46.2-1.fc42                          rpm                         
 pkgconf                                                                       2.3.0-2.fc42                           rpm                         
 pkgconf-m4                                                                    2.3.0-2.fc42                           rpm                         
