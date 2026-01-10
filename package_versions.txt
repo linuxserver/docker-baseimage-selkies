@@ -12,7 +12,7 @@ aiohappyeyeballs                                                              2.
 aiohttp                                                                       3.13.3                                             python                      
 aioice                                                                        0.10.2                                             python                      
 aiosignal                                                                     1.4.0                                              python                      
-alsa-lib                                                                      1.2.15.1-1.fc43                                    rpm                         
+alsa-lib                                                                      1.2.15.2-1.fc43                                    rpm                         
 alternatives                                                                  1.33-3.fc43                                        rpm                         
 at-spi2-atk                                                                   2.58.2-1.fc43                                      rpm                         
 at-spi2-core                                                                  2.58.2-1.fc43                                      rpm                         
