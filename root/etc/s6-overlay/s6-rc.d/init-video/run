@@ -83,4 +83,31 @@ EOF
 }
 EOF
     fi
+    # fix gbm library linkage
+    if ! ldconfig -p | grep -q "nvidia-drm_gbm.so"; then
+        GBM_PATHS=(
+            "/usr/lib/x86_64-linux-gnu/gbm/nvidia-drm_gbm.so"
+            "/usr/lib/aarch64-linux-gnu/gbm/nvidia-drm_gbm.so"
+            "/usr/lib64/gbm/nvidia-drm_gbm.so"
+            "/usr/lib/gbm/nvidia-drm_gbm.so"
+            "/usr/local/lib/gbm/nvidia-drm_gbm.so"
+            "/usr/local/lib64/gbm/nvidia-drm_gbm.so"
+        )
+        GBM_SRC=""
+        for p in "${GBM_PATHS[@]}"; do
+            if [ -f "${p}" ]; then GBM_SRC="${p}"; break; fi
+        done
+        if [ -n "${GBM_SRC}" ]; then
+            echo "**** Fixing GBM library linkage ****"
+            LIB_PATH=$(ldconfig -p | grep "libc.so.6" | head -n1 | awk -F '=> ' '{print $2}' | xargs dirname)
+            if [ -z "${LIB_PATH}" ]; then LIB_PATH="/usr/lib"; fi
+            if [ -d "${LIB_PATH}/gbm" ]; then
+                GBM_DEST="${LIB_PATH}/gbm"
+            else
+                GBM_DEST="${LIB_PATH}"
+            fi
+            cp "${GBM_SRC}" "${GBM_DEST}/"
+            ldconfig
+        fi
+    fi
 fi

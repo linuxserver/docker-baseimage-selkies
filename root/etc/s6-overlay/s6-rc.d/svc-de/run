@@ -1,5 +1,22 @@
 #!/usr/bin/with-contenv bash
 
+# wayland entrypoint
+if [[ "${PIXELFLUX_WAYLAND}" == "true" ]]; then
+  SOCKET_PATH="${XDG_RUNTIME_DIR}/${WAYLAND_DISPLAY:-wayland-1}"
+  echo "[svc-de] Wayland mode: Waiting for socket at ${SOCKET_PATH}..."
+  while [ ! -e "${SOCKET_PATH}" ]; do
+    sleep 0.5
+  done
+  echo "[svc-de] ${SOCKET_PATH} found launching de"
+  cd $HOME
+  exec s6-setuidgid abc \
+    /bin/bash /defaults/startwm_wayland.sh &
+  PID=$!
+  echo "$PID" > /de-pid
+  wait "$PID"
+  exit 1
+fi
+
 # wait for X to be running
 while true; do
   if xset q &>/dev/null; then
@@ -24,9 +41,12 @@ fi
 
 # set xresources
 if [ -f "${HOME}/.Xresources" ]; then
+  if ! grep -q "breeze_cursors" "${HOME}/.Xresources"; then
+    echo "Xcursor.theme: breeze_cursors" > "${HOME}/.Xresources"
+  fi
   xrdb "${HOME}/.Xresources"
 else
-  echo "Xcursor.theme: breeze" > "${HOME}/.Xresources"
+  echo "Xcursor.theme: breeze_cursors" > "${HOME}/.Xresources"
   xrdb "${HOME}/.Xresources"
 fi
 chown abc:abc "${HOME}/.Xresources"

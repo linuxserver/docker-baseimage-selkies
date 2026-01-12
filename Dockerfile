@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM lscr.io/linuxserver/xvfb:debianbookworm AS xvfb
+FROM lscr.io/linuxserver/xvfb:debiantrixie AS xvfb
 FROM ghcr.io/linuxserver/baseimage-alpine:3.22 AS frontend
 
 RUN \
@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f 159656dfb3f045bf6e041042140bafaf1bbd9c61
+  git checkout -f 3ff61d3cc017e8492630bf0db2449bc556e20f2e
 
 RUN \
   echo "**** build shared core library ****" && \
@@ -41,7 +41,7 @@ RUN \
   done
 
 # Runtime stage
-FROM ghcr.io/linuxserver/baseimage-debian:bookworm
+FROM ghcr.io/linuxserver/baseimage-debian:trixie
 
 # set version label
 ARG BUILD_DATE
@@ -72,7 +72,7 @@ RUN \
     /etc/dpkg/dpkg.cfg.d/docker && \
   echo "**** install deps ****" && \
   curl -fsSL https://download.docker.com/linux/debian/gpg | tee /usr/share/keyrings/docker.asc >/dev/null && \
-  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list && \
+  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/debian trixie stable" > /etc/apt/sources.list.d/docker.list && \
   curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
@@ -93,12 +93,14 @@ RUN \
     fonts-noto-cjk \
     fonts-noto-color-emoji \
     fonts-noto-core \
+    foot \
     fuse-overlayfs \
     g++ \
     gcc \
     git \
     intel-media-va-driver \
     kbd \
+    labwc \
     libatk1.0-0 \
     libatk-bridge2.0-0 \
     libev4 \
@@ -114,11 +116,16 @@ RUN \
     libnginx-mod-http-fancyindex \
     libnotify-bin \
     libnss3 \
+    libnvidia-egl-wayland1 \
     libopus0 \
     libp11-kit0 \
     libpam0g \
     libtasn1-6 \
     libvulkan1 \
+    libwayland-client0 \
+    libwayland-cursor0 \
+    libwayland-egl1 \
+    libwayland-server0 \
     libx11-6 \
     libxau6 \
     libxcb1 \
@@ -139,6 +146,7 @@ RUN \
     libxtst6 \
     locales-all \
     make \
+    mesa-libgallium \
     mesa-va-drivers \
     mesa-vulkan-drivers \
     nginx \
@@ -151,13 +159,15 @@ RUN \
     pulseaudio-utils \
     python3 \
     python3-venv \
-    software-properties-common \
     ssl-cert \
     stterm \
     sudo \
     tar \
     util-linux \
     vulkan-tools \
+    wl-clipboard \
+    wlr-randr \
+    wtype \
     x11-apps \
     x11-common \
     x11-utils \
@@ -184,23 +194,23 @@ RUN \
     xutils \
     xvfb \
     zlib1g && \
-  apt install -t bookworm-backports -y \
-    mesa-libgallium && \
   echo "**** install selkies ****" && \
   SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/latest" \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/159656dfb3f045bf6e041042140bafaf1bbd9c61.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/3ff61d3cc017e8492630bf0db2449bc556e20f2e.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
+  sed -i '/"av>/d' pyproject.toml && \
+  sed -i '/cryptography/d' pyproject.toml && \
   python3 \
     -m venv \
     --system-site-packages \
     /lsiopy && \
   pip install . && \
-  pip install setuptools pixelflux==1.4.7 && \
+  pip install setuptools && \
   echo "**** install selkies interposer ****" && \
   cd addons/js-interposer && \
   gcc -shared -fPIC -ldl \

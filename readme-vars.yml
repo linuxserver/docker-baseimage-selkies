@@ -210,7 +210,6 @@ full_custom_readme: |
   | :----: | --- |
   | Alpine | alpine323 |
   | Arch | arch |
-  | Debian | debianbookworm |
   | Debian | debiantrixie |
   | Enterprise Linux | el9 |
   | Fedora | fedora43 |
