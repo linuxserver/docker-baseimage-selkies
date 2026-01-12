@@ -12,7 +12,7 @@ aiohappyeyeballs                                                              2.
 aiohttp                                                                       3.13.3                                             python                      
 aioice                                                                        0.10.2                                             python                      
 aiosignal                                                                     1.4.0                                              python                      
-alsa-lib                                                                      1.2.15.1-1.fc43                                    rpm                         
+alsa-lib                                                                      1.2.15.2-1.fc43                                    rpm                         
 alternatives                                                                  1.33-3.fc43                                        rpm                         
 at-spi2-atk                                                                   2.58.2-1.fc43                                      rpm                         
 at-spi2-core                                                                  2.58.2-1.fc43                                      rpm                         
@@ -758,9 +758,9 @@ netcat                                                                        1.
 nettle                                                                        3.10.1-2.fc43                                      rpm                         
 nftables                                                                      1:1.1.3-5.fc43                                     rpm                         
 nftables-services                                                             1:1.1.3-5.fc43                                     rpm                         
-nginx                                                                         2:1.28.1-1.fc43                                    rpm                         
-nginx-core                                                                    2:1.28.1-1.fc43                                    rpm                         
-nginx-filesystem                                                              2:1.28.1-1.fc43                                    rpm                         
+nginx                                                                         2:1.28.1-3.fc43                                    rpm                         
+nginx-core                                                                    2:1.28.1-3.fc43                                    rpm                         
+nginx-filesystem                                                              2:1.28.1-3.fc43                                    rpm                         
 nginx-mimetypes                                                               2.1.54-9.fc43                                      rpm                         
 nginx-mod-fancyindex                                                          0.5.2-13.fc43                                      rpm                         
 ngtcp2                                                                        1.18.0-1.fc43                                      rpm                         
@@ -856,7 +856,7 @@ pigz                                                                          2.
 pillow                                                                        12.1.0                                             python                      
 pip                                                                           25.1.1                                             python                      
 pipewire-libs                                                                 1.4.9-1.fc43                                       rpm                         
-pixelflux                                                                     1.5.4                                              python                      
+pixelflux                                                                     1.5.5                                              python                      
 pixman                                                                        0.46.2-2.fc43                                      rpm                         
 pkgconf                                                                       2.3.0-3.fc43                                       rpm                         
 pkgconf-m4                                                                    2.3.0-3.fc43                                       rpm                         
@@ -867,7 +867,7 @@ polkit                                                                        12
 polkit-libs                                                                   126-6.fc43                                         rpm                         
 popt                                                                          1.19-9.fc43                                        rpm                         
 procps-ng                                                                     4.0.4-7.fc43.1                                     rpm                         
-prometheus-client                                                             0.23.1                                             python                      
+prometheus-client                                                             0.24.0                                             python                      
 propcache                                                                     0.4.1                                              python                      
 protobuf-c                                                                    1.5.2-1.fc43                                       rpm                         
 psmisc                                                                        23.7-6.fc43                                        rpm                         
@@ -974,14 +974,14 @@ utf8proc                                                                      2.
 util-linux                                                                    2.41.3-7.fc43                                      rpm                         
 util-linux-core                                                               2.41.3-7.fc43                                      rpm                         
 vim-data                                                                      2:9.1.1972-1.fc43                                  rpm                         
-vim-filesystem                                                                2:9.1.1972-1.fc43                                  rpm                         
+vim-filesystem                                                                2:9.1.2068-1.fc43                                  rpm                         
 vim-minimal                                                                   2:9.1.1972-1.fc43                                  rpm                         
 virtualenv                                                                    20.35.4                                            python                      
 vulkan-loader                                                                 1.4.328.1-1.fc43                                   rpm                         
 vulkan-tools                                                                  1.4.328.1-1.fc43                                   rpm                         
 watchdog                                                                      6.0.0                                              python                      
 webrtc-audio-processing                                                       1.3-9.fc43                                         rpm                         
-websockets                                                                    15.0.1                                             python                      
+websockets                                                                    16.0                                               python                      
 wheel                                                                         0.45.1                                             python                      
 which                                                                         2.23-3.fc43                                        rpm                         
 wl-clipboard                                                                  2.2.1-5.fc43                                       rpm                         
