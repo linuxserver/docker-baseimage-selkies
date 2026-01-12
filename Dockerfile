@@ -206,6 +206,7 @@ RUN \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
+  sed -i '/"av>/d' pyproject.toml && \
   sed -i '/cryptography/d' pyproject.toml && \
   python3 \
     -m venv \
