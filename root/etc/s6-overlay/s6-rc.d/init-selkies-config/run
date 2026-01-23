@@ -6,6 +6,8 @@ if [[ "${PIXELFLUX_WAYLAND}" == "true" ]];then
   DEF_AUTOSTART="/defaults/autostart_wayland"
   DEF_MENU="/defaults/menu_wayland.xml"
   DEF_RC="/defaults/labwc.xml"
+  # disable second screen
+  printf "false" > /run/s6/container_environment/SELKIES_SECOND_SCREEN
 else
   CONF_DIR="$HOME/.config/openbox"
   DEF_AUTOSTART="/defaults/autostart"
