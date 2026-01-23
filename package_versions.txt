@@ -579,8 +579,7 @@ hwdata-pci                                                                    0.
 idna                                                                          3.11                                    python                       
 ifaddr                                                                        0.2.0                                   python                       
 imlib2                                                                        1.12.4-r1                               apk                          
-importlib-metadata                                                            8.0.0                                   python                       
-inflect                                                                       7.3.1                                   python                       
+importlib-metadata                                                            8.7.1                                   python                       
 intel-gmmlib                                                                  22.9.0-r0                               apk                          
 intel-media-driver                                                            25.4.6-r0                               apk                          
 interpolate_name                                                              0.2.4                                   rust-crate                   
@@ -589,10 +588,9 @@ itertools                                                                     0.
 itertools                                                                     0.12.0                                  rust-crate                   
 ivf                                                                           0.1.3                                   rust-crate                   
 jansson                                                                       2.14.1-r0                               apk                          
-jaraco-collections                                                            5.1.0                                   python                       
-jaraco-context                                                                5.3.0                                   python                       
-jaraco-functools                                                              4.0.1                                   python                       
-jaraco-text                                                                   3.12.1                                  python                       
+jaraco-context                                                                6.1.0                                   python                       
+jaraco-functools                                                              4.4.0                                   python                       
+jaraco-text                                                                   4.0.0                                   python                       
 jq                                                                            1.7.1                                   binary                       
 jq                                                                            1.8.1-r0                                apk                          
 k8s.io/api                                                                    v0.32.3                                 go-module                    
@@ -633,7 +631,7 @@ libdav1d                                                                      1.
 libde265                                                                      1.0.16-r0                               apk                          
 libdisplay-info                                                               0.3.0-r0                                apk                          
 libdrm                                                                        2.4.131-r0                              apk                          
-libeconf                                                                      0.8.0-r0                                apk                          
+libeconf                                                                      0.8.3-r0                                apk                          
 libedit                                                                       20251016.3.1-r0                         apk                          
 libelf                                                                        0.194-r0                                apk                          
 libelogind                                                                    255.22-r1                               apk                          
@@ -668,7 +666,7 @@ libnotify                                                                     0.
 libogg                                                                        1.3.6-r0                                apk                          
 libpanelw                                                                     6.5_p20251123-r0                        apk                          
 libpciaccess                                                                  0.18.1-r1                               apk                          
-libpng                                                                        1.6.53-r0                               apk                          
+libpng                                                                        1.6.54-r0                               apk                          
 libproc2                                                                      4.0.5-r0                                apk                          
 libpsl                                                                        0.21.5-r3                               apk                          
 libpulse                                                                      17.0-r5                                 apk                          
@@ -750,7 +748,7 @@ mesa-vulkan-intel                                                             25
 mesa-vulkan-swrast                                                            25.2.7-r1                               apk                          
 minimal-lexical                                                               0.2.1                                   rust-crate                   
 mkfontscale                                                                   1.2.3-r1                                apk                          
-more-itertools                                                                10.3.0                                  python                       
+more-itertools                                                                10.8.0                                  python                       
 mount                                                                         2.41.2-r0                               apk                          
 mpdecimal                                                                     4.0.1-r0                                apk                          
 mpg123-libs                                                                   1.33.3-r0                               apk                          
@@ -792,7 +790,7 @@ openssl                                                                       3.
 opus                                                                          1.5.2-r1                                apk                          
 orc                                                                           0.4.41-r0                               apk                          
 p11-kit                                                                       0.25.5-r2                               apk                          
-packaging                                                                     24.2                                    python                       
+packaging                                                                     25.0                                    python                       
 pango                                                                         1.56.4-r0                               apk                          
 partx                                                                         2.41.2-r0                               apk                          
 pasimple                                                                      0.0.3                                   python                       
@@ -806,7 +804,7 @@ pip                                                                           25
 pixelflux                                                                     1.5.5                                   python                       
 pixman                                                                        0.46.4-r0                               apk                          
 pkgconf                                                                       2.5.1-r0                                apk                          
-platformdirs                                                                  4.2.2                                   python                       
+platformdirs                                                                  4.4.0                                   python                       
 ppv-lite86                                                                    0.2.17                                  rust-crate                   
 proc-macro2                                                                   1.0.76                                  rust-crate                   
 procps-ng                                                                     4.0.5-r0                                apk                          
@@ -822,7 +820,7 @@ pulseaudio-lang                                                               17
 pulseaudio-utils                                                              17.0-r5                                 apk                          
 pulsectl                                                                      24.12.0                                 python                       
 pyc                                                                           3.12.12-r0                              apk                          
-pycparser                                                                     2.23                                    python                       
+pycparser                                                                     3.0                                     python                       
 pyee                                                                          13.0.0                                  python                       
 pylibsrtp                                                                     1.0.0                                   python                       
 pynput                                                                        1.8.1                                   python                       
@@ -850,7 +848,7 @@ scanelf                                                                       1.
 selkies                                                                       0.0.0                                   python                       
 setarch                                                                       2.41.2-r0                               apk                          
 setpriv                                                                       2.41.2-r0                               apk                          
-setuptools                                                                    80.9.0                                  python                       
+setuptools                                                                    80.10.1                                 python                       
 setxkbmap                                                                     1.3.4-r0                                apk                          
 sfdisk                                                                        2.41.2-r0                               apk                          
 shadow                                                                        4.18.0-r0                               apk                          
@@ -889,9 +887,7 @@ thiserror-impl                                                                1.
 tiff                                                                          4.7.1-r0                                apk                          
 tini-static                                                                   0.19.0-r3                               apk                          
 tinyvec                                                                       1.9.0                                   rust-crate                   
-tomli                                                                         2.0.1                                   python                       
-typeguard                                                                     4.3.0                                   python                       
-typing-extensions                                                             4.12.2                                  python                       
+tomli                                                                         2.4.0                                   python                       
 typing-extensions                                                             4.15.0                                  python                       
 tzdata                                                                        2025c-r0                                apk                          
 umount                                                                        2.41.2-r0                               apk                          
@@ -956,6 +952,6 @@ xwayland                                                                      24
 xz-libs                                                                       5.8.2-r0                                apk                          
 y4m                                                                           0.8.0                                   rust-crate                   
 yarl                                                                          1.22.0                                  python                       
-zipp                                                                          3.19.2                                  python                       
+zipp                                                                          3.23.0                                  python                       
 zlib                                                                          1.3.1-r2                                apk                          
 zstd-libs                                                                     1.5.7-r2                                apk                          
