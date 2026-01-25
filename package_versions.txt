@@ -962,7 +962,7 @@ openbox                                                                       3.
 openssh-client                                                                1:10.0p1-7                              deb                         
 openssl                                                                       3.5.4-1~deb13u1                         deb                         
 openssl-provider-legacy                                                       3.5.4-1~deb13u1                         deb                         
-packaging                                                                     25.0                                    python                      
+packaging                                                                     26.0                                    python                      
 pasimple                                                                      0.0.3                                   python                      
 passwd                                                                        1:4.17.4-2                              deb                         
 pci.ids                                                                       0.0~2025.06.09-1                        deb                         
@@ -974,7 +974,7 @@ perl-modules-5.40                                                             5.
 pillow                                                                        12.1.0                                  python                      
 pinentry-curses                                                               1.3.1-2                                 deb                         
 pip                                                                           25.1.1                                  python                      
-pixelflux                                                                     1.5.5                                   python                      
+pixelflux                                                                     1.5.6                                   python                      
 platformdirs                                                                  4.4.0                                   python                      
 poppler-data                                                                  0.4.12-1                                deb                         
 procps                                                                        2:4.0.4-9                               deb                         
@@ -1007,7 +1007,7 @@ seatd                                                                         0.
 sed                                                                           4.9-2                                   deb                         
 selkies                                                                       0.0.0                                   python                      
 sensible-utils                                                                0.0.25                                  deb                         
-setuptools                                                                    80.10.1                                 python                      
+setuptools                                                                    80.10.2                                 python                      
 shared-mime-info                                                              2.4-5+b2                                deb                         
 sigs.k8s.io/json                                                              v0.0.0-20241014173422-cfa47c3a1cc8      go-module  (+2 duplicates)  
 sigs.k8s.io/randfill                                                          v1.0.0                                  go-module  (+1 duplicate)   
@@ -1038,7 +1038,7 @@ util-linux                                                                    2.
 vulkan-tools                                                                  1.4.304.0+dfsg1-1                       deb                         
 watchdog                                                                      6.0.0                                   python                      
 websockets                                                                    16.0                                    python                      
-wheel                                                                         0.45.1                                  python                      
+wheel                                                                         0.46.3                                  python                      
 wl-clipboard                                                                  2.2.1-2                                 deb                         
 wlr-randr                                                                     0.4.1-1                                 deb                         
 wtype                                                                         0.4-3                                   deb                         
