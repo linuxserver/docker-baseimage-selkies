@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Start DE
+ulimit -c 0
 export XCURSOR_THEME=whiteglass
 export XCURSOR_SIZE=24
 export XKB_DEFAULT_LAYOUT=us
