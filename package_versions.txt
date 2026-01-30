@@ -1067,7 +1067,7 @@ perl-modules-5.38                                                             5.
 pillow                                                                        12.1.0                                  python                      
 pinentry-curses                                                               1.2.1-3ubuntu5                          deb                         
 pip                                                                           24.0                                    python                      
-pixelflux                                                                     1.5.8                                   python                      
+pixelflux                                                                     1.5.9                                   python                      
 platformdirs                                                                  4.4.0                                   python                      
 polkitd                                                                       124-2ubuntu1.24.04.2                    deb                         
 poppler-data                                                                  0.4.12-1                                deb                         
