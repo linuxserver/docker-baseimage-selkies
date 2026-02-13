@@ -154,6 +154,8 @@ The server can be forced to use a single, fixed resolution for all connecting cl
 | `SELKIES_MICROPHONE_ENABLED` | `True` | Enable client-to-server microphone forwarding. |
 | `SELKIES_GAMEPAD_ENABLED` | `True` | Enable gamepad support. |
 | `SELKIES_CLIPBOARD_ENABLED` | `True` | Enable clipboard synchronization. |
+| `SELKIES_CLIPBOARD_IN_ENABLED` | `True` | Enable client-to-server clipboard synchronization (ignored if `SELKIES_CLIPBOARD_ENABLED` is false). | 
+| `SELKIES_CLIPBOARD_OUT_ENABLED` | `True` | Enable server-to-client clipboard synchronization (ignored if `SELKIES_CLIPBOARD_ENABLED` is false). |
 | `SELKIES_COMMAND_ENABLED` | `True` | Enable parsing of command websocket messages. |
 | `SELKIES_FILE_TRANSFERS` | `'upload,download'` | Allowed file transfer directions (comma-separated: "upload,download"). Set to "" or "none" to disable. |
 | `SELKIES_ENCODER` | `'x264enc,x264enc-striped,jpeg'` | The default video encoders. |
