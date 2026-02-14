@@ -85,7 +85,7 @@ dnf5                                                                          5.
 dnf5-plugins                                                                  5.2.18.0-1.fc43                                    rpm                         
 dns-root-data                                                                 2026260100-2.fc43                                  rpm                         
 dnspython                                                                     2.8.0                                              python                      
-docker-cli                                                                    29.2.0-1.fc43                                      rpm                         
+docker-cli                                                                    29.2.1-2.fc43                                      rpm                         
 docker-compose                                                                5.0.2-1.fc43                                       rpm                         
 duktape                                                                       2.7.0-10.fc43                                      rpm                         
 dunst                                                                         1.13.0-1.fc43                                      rpm                         
@@ -221,7 +221,7 @@ github.com/digitorus/pkcs7                                                    v0
 github.com/digitorus/timestamp                                                v0.0.0-20231217203849-220c5c2851b7                 go-module                   
 github.com/dimchansky/utfbom                                                  v1.1.1                                             go-module                   
 github.com/distribution/reference                                             v0.6.0                                             go-module  (+4 duplicates)  
-github.com/docker/cli                                                         v29.2.0                                            go-module                   
+github.com/docker/cli                                                         v29.2.1                                            go-module                   
 github.com/docker/cli-docs-tool                                               v0.11.0                                            go-module                   
 github.com/docker/compose/v5/cmd                                              UNKNOWN                                            go-module                   
 github.com/docker/distribution                                                v2.8.3+incompatible                                go-module  (+1 duplicate)   
@@ -322,16 +322,16 @@ github.com/mistifyio/go-zfs/v3                                                v3
 github.com/mitchellh/copystructure                                            v1.2.0                                             go-module                   
 github.com/mitchellh/hashstructure/v2                                         v2.0.2                                             go-module                   
 github.com/mitchellh/reflectwalk                                              v1.0.2                                             go-module                   
-github.com/moby/buildkit                                                      v0.27.0                                            go-module                   
+github.com/moby/buildkit                                                      v0.27.1                                            go-module                   
 github.com/moby/docker-image-spec                                             v1.3.1                                             go-module  (+1 duplicate)   
 github.com/moby/go-archive                                                    v0.2.0                                             go-module  (+1 duplicate)   
 github.com/moby/ipvs                                                          v1.1.0                                             go-module                   
 github.com/moby/locker                                                        v1.0.1                                             go-module  (+3 duplicates)  
 github.com/moby/moby/api                                                      v1.53.0                                            go-module  (+1 duplicate)   
 github.com/moby/moby/client                                                   v0.2.2                                             go-module                   
-github.com/moby/moby/v2                                                       v29.2.0                                            go-module  (+1 duplicate)   
+github.com/moby/moby/v2                                                       v29.2.1                                            go-module  (+1 duplicate)   
 github.com/moby/patternmatcher                                                v0.6.0                                             go-module  (+1 duplicate)   
-github.com/moby/policy-helpers                                                v0.0.0-20251206004813-9fcc1a9ec5c9                 go-module                   
+github.com/moby/policy-helpers                                                v0.0.0-20260127165209-eeebf1a0ab2b                 go-module                   
 github.com/moby/profiles/apparmor                                             v0.1.0                                             go-module                   
 github.com/moby/profiles/seccomp                                              v0.1.0                                             go-module                   
 github.com/moby/pubsub                                                        v1.0.0                                             go-module                   
@@ -385,7 +385,7 @@ github.com/prometheus/procfs                                                  v0
 github.com/rootless-containers/rootlesskit/v2                                 v2.3.6                                             go-module                   
 github.com/sean-/seed                                                         v0.0.0-20170313163322-e2103e2c3529                 go-module                   
 github.com/seccomp/libseccomp-golang                                          v0.11.1                                            go-module                   
-github.com/secure-systems-lab/go-securesystemslib                             v0.9.1                                             go-module                   
+github.com/secure-systems-lab/go-securesystemslib                             v0.10.0                                            go-module                   
 github.com/shibumi/go-pathspec                                                v1.3.0                                             go-module                   
 github.com/sigstore/protobuf-specs                                            v0.5.0                                             go-module                   
 github.com/sigstore/rekor                                                     v1.5.0                                             go-module                   
@@ -404,7 +404,7 @@ github.com/stretchr/testify                                                   v1
 github.com/syndtr/gocapability                                                v0.0.0-20200815063812-42c35b437635                 go-module  (+1 duplicate)   
 github.com/tchap/go-patricia/v2                                               v2.3.2                                             go-module                   
 github.com/tetratelabs/wazero                                                 v1.11.0                                            go-module                   
-github.com/theupdateframework/go-tuf/v2                                       v2.3.0                                             go-module                   
+github.com/theupdateframework/go-tuf/v2                                       v2.4.1                                             go-module                   
 github.com/tinylib/msgp                                                       v1.3.0                                             go-module                   
 github.com/tonistiigi/dchapes-mode                                            v0.0.0-20250318174251-73d941a28323                 go-module                   
 github.com/tonistiigi/fsutil                                                  v0.0.0-20251211185533-a2aa163d723f                 go-module                   
@@ -791,8 +791,8 @@ mesa-libgbm                                                                   25
 mesa-va-drivers-freeworld                                                     25.3.4-1.fc43                                      rpm                         
 mesa-vulkan-drivers                                                           25.3.4-7.fc43                                      rpm                         
 mkfontscale                                                                   1.2.3-3.fc43                                       rpm                         
-moby-engine                                                                   29.2.0-1.fc43                                      rpm                         
-moby-filesystem                                                               29.2.0-1.fc43                                      rpm                         
+moby-engine                                                                   29.2.1-2.fc43                                      rpm                         
+moby-filesystem                                                               29.2.1-2.fc43                                      rpm                         
 more-itertools                                                                10.8.0                                             python                      
 mpdecimal                                                                     4.0.1-2.fc43                                       rpm                         
 mpfr                                                                          4.2.2-2.fc43                                       rpm                         
