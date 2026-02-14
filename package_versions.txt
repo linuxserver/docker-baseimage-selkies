@@ -40,7 +40,7 @@ cracklib                                                                      2.
 cracklib-dicts                                                                2.9.6-27.el9                            rpm                         
 crypto-policies                                                               20250905-1.git377cc42.el9_7             rpm                         
 crypto-policies-scripts                                                       20250905-1.git377cc42.el9_7             rpm                         
-cryptography                                                                  46.0.4                                  python                      
+cryptography                                                                  46.0.5                                  python                      
 curl                                                                          7.76.1-35.el9_7.3                       rpm                         
 cyrus-sasl-lib                                                                2.1.27-22.el9                           rpm                         
 dario.cat/mergo                                                               v1.0.2                                  go-module  (+2 duplicates)  
