@@ -796,7 +796,7 @@ libmpfr6                                                                      4.
 libmpg123-0t64                                                                1.33.3-2                                deb                         
 libmtdev1t64                                                                  1.1.7-1+b1                              deb                         
 libncursesw6                                                                  6.6+20251231-1                          deb                         
-libnetfilter-conntrack3                                                       1.1.0-1+b1                              deb                         
+libnetfilter-conntrack3                                                       1.1.1-1                                 deb                         
 libnettle8t64                                                                 3.10.2-1                                deb                         
 libnfnetlink0                                                                 1.0.2-3+b1                              deb                         
 libnftables1                                                                  1.1.6-1                                 deb                         
@@ -1061,7 +1061,7 @@ pulseaudio                                                                    17
 pulseaudio-utils                                                              17.0+dfsg1-2+b2                         deb                         
 pulsectl                                                                      24.12.0                                 python                      
 pycparser                                                                     3.0                                     python                      
-pyee                                                                          13.0.0                                  python                      
+pyee                                                                          13.0.1                                  python                      
 pygobject                                                                     3.54.5                                  python                      
 pyjwt                                                                         2.10.1                                  python                      
 pylibsrtp                                                                     1.0.0                                   python                      
