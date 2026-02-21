@@ -820,7 +820,7 @@ pulseaudio-utils                                                              17
 pulsectl                                                                      24.12.0                                 python                       
 pyc                                                                           3.12.12-r0                              apk                          
 pycparser                                                                     3.0                                     python                       
-pyee                                                                          13.0.0                                  python                       
+pyee                                                                          13.0.1                                  python                       
 pylibsrtp                                                                     1.0.0                                   python                       
 pynput                                                                        1.8.1                                   python                       
 pyopenssl                                                                     25.3.0                                  python                       
