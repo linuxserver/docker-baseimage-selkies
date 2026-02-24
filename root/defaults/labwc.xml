@@ -6,6 +6,7 @@
   </core>
 
   <theme>
+    <name>Clearlooks</name>
     <titlebar>
       <layout>icon:iconify,max,close</layout>
       <showTitle>yes</showTitle>
@@ -51,6 +52,11 @@
     <windowRule identifier="vivaldi" serverDecoration="no" />
     <windowRule identifier="wrapped-chromium" serverDecoration="no" />
     <windowRule identifier="zen" serverDecoration="no" />
+    <windowRule identifier="pcmanfm-qt" type="desktop" title="pcmanfm-desktop0" serverDecoration="no">
+      <action name="Lower" />
+      <action name="ToggleAlwaysOnBottom"/>
+    </windowRule>
+    <windowRule identifier="lxqt-panel" serverDecoration="no" />
   </windowRules>
 
 </labwc_config>
