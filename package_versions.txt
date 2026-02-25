@@ -428,7 +428,7 @@ github.com/xeipuuv/gojsonschema                                               v1
 github.com/xrash/smetrics                                                     v0.0.0-20240521201337-686a1a2994c1                 go-module  (+2 duplicates)  
 github.com/zmap/zcrypto                                                       v0.0.0-20230310154051-c8b263fd8300                 go-module                   
 github.com/zmap/zlint/v3                                                      v3.5.0                                             go-module                   
-glib2                                                                         2.86.3-1.fc43                                      rpm                         
+glib2                                                                         2.86.4-1.fc43                                      rpm                         
 glibc                                                                         2.42-10.fc43                                       rpm                         
 glibc-all-langpacks                                                           2.42-10.fc43                                       rpm                         
 glibc-common                                                                  2.42-10.fc43                                       rpm                         
@@ -603,7 +603,7 @@ krb5-libs                                                                     1.
 labwc                                                                         0.9.3-1.fc43                                       rpm                         
 lame-libs                                                                     3.100-20.fc43                                      rpm                         
 lcms2                                                                         2.16-6.fc43                                        rpm                         
-less                                                                          679-2.fc43                                         rpm                         
+less                                                                          685-1.fc43                                         rpm                         
 libICE                                                                        1.1.2-3.fc43                                       rpm                         
 libSM                                                                         1.2.5-3.fc43                                       rpm                         
 libX11                                                                        1.8.12-1.fc43                                      rpm                         
@@ -641,7 +641,7 @@ libblkid                                                                      2.
 libbrotli                                                                     1.2.0-1.fc43                                       rpm                         
 libbsd                                                                        0.12.2-6.fc43                                      rpm                         
 libcap                                                                        2.76-3.fc43                                        rpm                         
-libcap-ng                                                                     0.9-7.fc43                                         rpm                         
+libcap-ng                                                                     0.9.1-1.fc43                                       rpm                         
 libcbor                                                                       0.12.0-6.fc43                                      rpm                         
 libcloudproviders                                                             0.3.6-2.fc43                                       rpm                         
 libcom_err                                                                    1.47.3-2.fc43                                      rpm                         
@@ -1024,9 +1024,9 @@ urw-base35-z003-fonts                                                         20
 utf8proc                                                                      2.10.0-2.fc43                                      rpm                         
 util-linux                                                                    2.41.3-7.fc43                                      rpm                         
 util-linux-core                                                               2.41.3-7.fc43                                      rpm                         
-vim-data                                                                      2:9.1.2128-2.fc43                                  rpm                         
+vim-data                                                                      2:9.1.2146-2.fc43                                  rpm                         
 vim-filesystem                                                                2:9.1.2146-2.fc43                                  rpm                         
-vim-minimal                                                                   2:9.1.2128-2.fc43                                  rpm                         
+vim-minimal                                                                   2:9.1.2146-2.fc43                                  rpm                         
 virtualenv                                                                    20.35.4                                            python                      
 vulkan-loader                                                                 1.4.341.0-1.fc43                                   rpm                         
 vulkan-tools                                                                  1.4.341.0-1.fc43                                   rpm                         
