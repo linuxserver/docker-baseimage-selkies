@@ -66,7 +66,7 @@ cmake                                                                         4.
 code.cloudfoundry.org/clock                                                   v1.37.0                                 go-module                    
 colorchoice                                                                   1.0.0                                   rust-crate                   
 console                                                                       0.15.8                                  rust-crate                   
-containerd                                                                    2.2.0-r5                                apk                          
+containerd                                                                    2.2.0-r6                                apk                          
 coreutils                                                                     9.8-r1                                  apk                          
 coreutils-env                                                                 9.8-r1                                  apk                          
 coreutils-fmt                                                                 9.8-r1                                  apk                          
@@ -89,11 +89,11 @@ dbus-x11                                                                      1.
 distro                                                                        1.9.0                                   python                       
 dmesg                                                                         2.41.2-r0                               apk                          
 dnspython                                                                     2.8.0                                   python                       
-docker                                                                        29.1.3-r2                               apk                          
-docker-cli                                                                    29.1.3-r2                               apk                          
-docker-cli-buildx                                                             0.30.1-r3                               apk                          
-docker-cli-compose                                                            2.40.3-r3                               apk                          
-docker-engine                                                                 29.1.3-r2                               apk                          
+docker                                                                        29.1.3-r3                               apk                          
+docker-cli                                                                    29.1.3-r3                               apk                          
+docker-cli-buildx                                                             0.30.1-r4                               apk                          
+docker-cli-compose                                                            2.40.3-r4                               apk                          
+docker-engine                                                                 29.1.3-r3                               apk                          
 dolby_vision                                                                  3.3.1                                   rust-crate                   
 dunst                                                                         1.12.2-r0                               apk                          
 dunstify                                                                      1.12.2-r0                               apk                          
@@ -839,7 +839,7 @@ rayon-core                                                                    1.
 readline                                                                      8.3.1-r0                                apk                          
 resenje.org/singleflight                                                      v0.4.3                                  go-module                    
 rhash-libs                                                                    1.4.6-r0                                apk                          
-runc                                                                          1.4.0-r3                                apk                          
+runc                                                                          1.4.0-r4                                apk                          
 runuser                                                                       2.41.2-r0                               apk                          
 rustix                                                                        0.38.28                                 rust-crate                   
 scan_fmt                                                                      0.2.6                                   rust-crate                   
@@ -847,7 +847,7 @@ scanelf                                                                       1.
 selkies                                                                       0.0.0                                   python                       
 setarch                                                                       2.41.2-r0                               apk                          
 setpriv                                                                       2.41.2-r0                               apk                          
-setuptools                                                                    82.0.0                                  python                       
+setuptools                                                                    82.0.1                                  python                       
 setxkbmap                                                                     1.3.4-r0                                apk                          
 sfdisk                                                                        2.41.2-r0                               apk                          
 shadow                                                                        4.18.0-r0                               apk                          
@@ -872,7 +872,7 @@ sqlite-libs                                                                   3.
 ssl_client                                                                    1.37.0-r30                              apk                          
 st                                                                            0.9.3-r0                                apk                          
 startup-notification                                                          0.12-r8                                 apk                          
-stdlib                                                                        go1.25.7                                go-module   (+7 duplicates)  
+stdlib                                                                        go1.25.8                                go-module   (+7 duplicates)  
 sudo                                                                          1.9.17_p2-r0                            apk                          
 syn                                                                           2.0.48                                  rust-crate                   
 tags.cncf.io/container-device-interface                                       v1.0.1                                  go-module   (+2 duplicates)  
@@ -888,7 +888,7 @@ tini-static                                                                   0.
 tinyvec                                                                       1.9.0                                   rust-crate                   
 tomli                                                                         2.4.0                                   python                       
 typing-extensions                                                             4.15.0                                  python                       
-tzdata                                                                        2025c-r0                                apk                          
+tzdata                                                                        2026a-r0                                apk                          
 umount                                                                        2.41.2-r0                               apk                          
 unicode-ident                                                                 1.0.12                                  rust-crate                   
 unicode-width                                                                 0.1.11                                  rust-crate                   
