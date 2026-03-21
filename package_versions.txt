@@ -23,7 +23,7 @@ bash                                                                          5.
 binutils                                                                      2.46-1                                alpm                           
 bison                                                                         3.8.2-8                               alpm                           
 brotli                                                                        1.2.0-1                               alpm                           
-bubblewrap                                                                    0.11.0-2                              alpm                           
+bubblewrap                                                                    0.11.1-1                              alpm                           
 busybox                                                                       1.36.1-2                              alpm                           
 bzip2                                                                         1.0.8-6                               alpm                           
 ca-certificates                                                               20240618-1                            alpm                           
