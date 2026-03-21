@@ -23,7 +23,7 @@ aom-libs                                                                      3.
 apk-tools                                                                     3.0.5-r0                                apk                          
 arg_enum_proc_macro                                                           0.3.4                                   rust-crate                   
 arrayvec                                                                      0.7.4                                   rust-crate                   
-attrs                                                                         25.4.0                                  python                       
+attrs                                                                         26.1.0                                  python                       
 autocommand                                                                   2.2.2                                   python                       
 av-metrics                                                                    0.9.1                                   rust-crate                   
 av1-grain                                                                     0.2.3                                   rust-crate                   
@@ -35,7 +35,7 @@ bitstream-io                                                                  2.
 bitvec                                                                        1.0.1                                   rust-crate                   
 bitvec_helpers                                                                3.1.6                                   rust-crate                   
 blkid                                                                         2.41.2-r0                               apk                          
-breeze-cursors                                                                6.5.5-r0                                apk                          
+breeze-cursors                                                                6.5.6-r0                                apk                          
 brotli-libs                                                                   1.2.0-r0                                apk                          
 busybox                                                                       1.37.0-r30                              apk                          
 busybox-binsh                                                                 1.37.0-r30                              apk                          
@@ -638,7 +638,7 @@ libelogind                                                                    25
 libepoxy                                                                      1.5.10-r1                               apk                          
 libev                                                                         4.33-r1                                 apk                          
 libevdev                                                                      1.13.6-r0                               apk                          
-libexpat                                                                      2.7.4-r0                                apk                          
+libexpat                                                                      2.7.5-r0                                apk                          
 libfdisk                                                                      2.41.2-r0                               apk                          
 libffi                                                                        3.5.2-r0                                apk                          
 libflac                                                                       1.4.3-r2                                apk                          
@@ -823,7 +823,7 @@ pycparser                                                                     3.
 pyee                                                                          13.0.1                                  python                       
 pylibsrtp                                                                     1.0.0                                   python                       
 pynput                                                                        1.8.1                                   python                       
-pyopenssl                                                                     25.3.0                                  python                       
+pyopenssl                                                                     26.0.0                                  python                       
 python-xlib                                                                   0.33                                    python                       
 python3                                                                       3.12.12-r0                              apk                          
 python3-pyc                                                                   3.12.12-r0                              apk                          
