@@ -14,9 +14,9 @@ aioice                                                                        0.
 aiosignal                                                                     1.4.0                                              python                      
 alsa-lib                                                                      1.2.15.3-1.fc43                                    rpm                         
 alternatives                                                                  1.33-3.fc43                                        rpm                         
-at-spi2-atk                                                                   2.58.3-1.fc43                                      rpm                         
-at-spi2-core                                                                  2.58.3-1.fc43                                      rpm                         
-atk                                                                           2.58.3-1.fc43                                      rpm                         
+at-spi2-atk                                                                   2.58.4-1.fc43                                      rpm                         
+at-spi2-core                                                                  2.58.4-1.fc43                                      rpm                         
+atk                                                                           2.58.4-1.fc43                                      rpm                         
 attrs                                                                         26.1.0                                             python                      
 audit-libs                                                                    4.1.3-1.fc43                                       rpm                         
 authselect                                                                    1.6.2-1.fc43                                       rpm                         
@@ -731,7 +731,7 @@ libsfdo                                                                       0.
 libsmartcols                                                                  2.41.3-7.fc43                                      rpm                         
 libsndfile                                                                    1.2.2-10.fc43                                      rpm                         
 libsolv                                                                       0.7.35-3.fc43                                      rpm                         
-libsoup3                                                                      3.6.6-1.fc43                                       rpm                         
+libsoup3                                                                      3.6.6-2.fc43                                       rpm                         
 libspectre                                                                    0.2.12-10.fc43                                     rpm                         
 libssh                                                                        0.11.4-1.fc43                                      rpm                         
 libssh-config                                                                 0.11.4-1.fc43                                      rpm                         
@@ -905,7 +905,7 @@ perl-vars                                                                     0:
 pigz                                                                          2.8-7.fc43                                         rpm                         
 pillow                                                                        12.1.1                                             python                      
 pip                                                                           25.1.1                                             python                      
-pipewire-libs                                                                 1.4.10-1.fc43                                      rpm                         
+pipewire-libs                                                                 1.4.11-1.fc43                                      rpm                         
 pixelflux                                                                     1.5.9                                              python                      
 pixman                                                                        0.46.2-2.fc43                                      rpm                         
 pkgconf                                                                       2.3.0-3.fc43                                       rpm                         
