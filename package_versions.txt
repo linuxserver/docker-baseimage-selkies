@@ -915,7 +915,6 @@ wipefs                                                                        2.
 wl-clipboard                                                                  2.2.1-r1                                apk                          
 wlr-randr                                                                     0.5.0-r1                                apk                          
 wlroots                                                                       0.19.2-r0                               apk                          
-wtype                                                                         0.4-r0                                  apk                          
 wyz                                                                           0.5.1                                   rust-crate                   
 x264-libs                                                                     0.164.3108-r1                           apk                          
 x265-libs                                                                     4.1-r0                                  apk                          
