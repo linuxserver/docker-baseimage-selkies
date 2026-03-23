@@ -813,8 +813,8 @@ nginx-core                                                                    2:
 nginx-filesystem                                                              2:1.28.2-1.fc43                                    rpm                         
 nginx-mimetypes                                                               2.1.54-9.fc43                                      rpm                         
 nginx-mod-fancyindex                                                          0.6.0-1.fc43                                       rpm                         
-ngtcp2                                                                        1.19.0-1.fc43                                      rpm                         
-ngtcp2-crypto-ossl                                                            1.19.0-1.fc43                                      rpm                         
+ngtcp2                                                                        1.21.0-1.fc43                                      rpm                         
+ngtcp2-crypto-ossl                                                            1.21.0-1.fc43                                      rpm                         
 npth                                                                          1.8-3.fc43                                         rpm                         
 nvidia-cuda-nvrtc                                                             13.2.51                                            python                      
 oniguruma                                                                     6.9.10-3.fc43                                      rpm                         
@@ -1039,7 +1039,6 @@ which                                                                         2.
 wl-clipboard                                                                  2.2.1-5.fc43                                       rpm                         
 wlr-randr                                                                     0.5.0-2.fc43                                       rpm                         
 wlroots                                                                       0.19.2-1.fc43                                      rpm                         
-wtype                                                                         0.4-10.fc43                                        rpm                         
 x264-libs                                                                     0.165-2.20250608gitb35605ac.fc43                   rpm                         
 xcb-util                                                                      0.4.1-8.fc43                                       rpm                         
 xcb-util-errors                                                               1.0.1-6.fc43                                       rpm                         
