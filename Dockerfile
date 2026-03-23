@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f 85989133deb49f1303da8dae613adef4b4fe1afd
+  git checkout -f af1a1c252563d2f136d641b81d6b1dd38a3a0d93
 
 RUN \
   echo "**** build shared core library ****" && \
@@ -39,6 +39,34 @@ RUN \
     mkdir -p /buildout/$DASH && \
     cp -ar dist/* /buildout/$DASH/; \
   done
+
+FROM ghcr.io/linuxserver/baseimage-alpine:3.23 AS wtype
+
+RUN \
+  echo "**** wtype build deps ****" && \
+  apk add \
+    alpine-sdk \
+    cmake \
+    git \
+    wayland-dev \
+    libxkbcommon-dev \
+    meson \
+    ninja-build \
+    pkgconf
+
+RUN \
+  echo "**** build wtype ****" && \
+  cd /tmp && \
+  git clone \
+    -b international-fix \
+    --single-branch \
+    --depth 1 https://github.com/thelamer/wtype.git && \
+  cd wtype && \
+  meson build && \
+  ninja -C build && \
+  mv \
+    build/wtype \
+    /usr/bin/wtype
 
 # Runtime stage
 FROM ghcr.io/linuxserver/baseimage-alpine:3.23
@@ -147,7 +175,6 @@ RUN \
     wayland \
     wl-clipboard \
     wlr-randr \
-    wtype \
     x264-libs \
     xauth \
     xclip \
@@ -174,7 +201,7 @@ RUN \
   echo "**** install selkies ****" && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/85989133deb49f1303da8dae613adef4b4fe1afd.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/af1a1c252563d2f136d641b81d6b1dd38a3a0d93.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
@@ -255,6 +282,7 @@ RUN \
 COPY /root /
 COPY --from=frontend /buildout /usr/share/selkies
 COPY --from=xvfb / /
+COPY --from=wtype /usr/bin/wtype /usr/bin/wtype
 
 # ports and volumes
 EXPOSE 3000 3001
