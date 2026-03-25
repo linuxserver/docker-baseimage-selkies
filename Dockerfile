@@ -69,6 +69,57 @@ RUN \
     build/wtype \
     /usr/bin/wtype
 
+FROM ghcr.io/linuxserver/baseimage-debian:trixie AS wlroots
+
+RUN \
+  echo "**** wlroots build deps ****" && \
+  apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    dpkg-dev \
+    devscripts \
+    quilt && \
+  apt-get build-dep -y \
+    libwlroots-0.18
+
+COPY /pixman-patch/pass.c /pass.c
+
+RUN \
+  echo "**** ingest current source and build deb ****" && \
+  mkdir /debout && \
+  cd /tmp && \
+  apt-get source libwlroots-0.18 && \
+  cd wlroots-0.18* && \
+  cp \
+    /pass.c \
+    render/pixman/pass.c && \
+  DEB_BUILD_OPTIONS='nocheck' dpkg-buildpackage -d -us -uc -b && \
+  cp \
+    ../libwlroots-0.18_*.deb \
+    /debout/wl.deb
+
+FROM ghcr.io/linuxserver/baseimage-debian:trixie AS selkies-desktop
+
+RUN \
+  echo "**** selkies-desktop build deps ****" && \
+  apt-get update && \
+  apt-get install -y \
+    build-essential \
+    git \
+    libcairo2-dev \
+    libwayland-dev \
+    wayland-protocols 
+
+RUN \
+  echo "**** build selkies-desktop ****" && \
+  cd /tmp && \
+  git clone \
+    https://github.com/selkies-project/selkies-desktop.git && \
+  cd selkies-desktop && \
+  make && \
+  mv \
+    selkies-desktop \
+    /usr/bin/selkies-desktop
+
 # Runtime stage
 FROM ghcr.io/linuxserver/baseimage-debian:trixie
 
@@ -89,6 +140,8 @@ ENV DISPLAY=:1 \
     DISABLE_ZINK=false \
     DISABLE_DRI3=false \
     TITLE=Selkies
+
+COPY --from=wlroots /debout/wl.deb /tmp/wl.deb
 
 RUN \
   echo "**** dev deps ****" && \
@@ -139,6 +192,7 @@ RUN \
     libgcrypt20 \
     libgirepository-1.0-1 \
     libgl1-mesa-dri \
+    libglib2.0-bin \
     libglu1-mesa \
     libgnutls30 \
     libgtk-3.0 \
@@ -222,6 +276,9 @@ RUN \
     xutils \
     xvfb \
     zlib1g && \
+  echo "**** patched wlroots ****" && \
+  apt-get --reinstall install --no-install-recommends --allow-downgrades -y \
+    /tmp/wl.deb && \
   echo "**** install selkies ****" && \
   SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/latest" \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
@@ -321,6 +378,7 @@ COPY /root /
 COPY --from=frontend /buildout /usr/share/selkies
 COPY --from=xvfb / /
 COPY --from=wtype /usr/bin/wtype /usr/bin/wtype
+COPY --from=selkies-desktop /usr/bin/selkies-desktop /usr/bin/selkies-desktop
 
 # ports and volumes
 EXPOSE 3000 3001
