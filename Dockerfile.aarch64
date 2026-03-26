@@ -68,6 +68,28 @@ RUN \
     build/wtype \
     /usr/sbin/wtype
 
+FROM ghcr.io/linuxserver/baseimage-arch:arm64v8-latest AS selkies-desktop
+
+RUN \
+  echo "**** selkies-desktop build deps ****" && \
+  pacman -Sy --noconfirm \
+    base-devel \
+    cairo \
+    git \
+    wayland \
+    wayland-protocols
+
+RUN \
+  echo "**** build selkies-desktop ****" && \
+  cd /tmp && \
+  git clone \
+    https://github.com/selkies-project/selkies-desktop.git && \
+  cd selkies-desktop && \
+  make && \
+  mv \
+    selkies-desktop \
+    /usr/bin/selkies-desktop
+
 # Runtime stage
 FROM ghcr.io/linuxserver/baseimage-arch:arm64v8-latest
 
@@ -297,6 +319,7 @@ COPY /root /
 COPY --from=frontend /buildout /usr/share/selkies
 COPY --from=xvfb / /
 COPY --from=wtype /usr/sbin/wtype /usr/sbin/wtype
+COPY --from=selkies-desktop /usr/bin/selkies-desktop /usr/bin/selkies-desktop
 
 # ports and volumes
 EXPOSE 3000 3001
