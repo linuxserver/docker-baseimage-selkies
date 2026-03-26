@@ -48,7 +48,7 @@ cpp-14-x86-64-linux-gnu                                                       14
 cpp-x86-64-linux-gnu                                                          4:14.2.0-1                             deb                         
 cron                                                                          3.0pl1-197                             deb                         
 cron-daemon-common                                                            3.0pl1-197                             deb                         
-cryptography                                                                  46.0.5                                 python                      
+cryptography                                                                  46.0.6                                 python                      
 curl                                                                          8.14.1-2+deb13u2                       deb                         
 dario.cat/mergo                                                               v1.0.2                                 go-module  (+1 duplicate)   
 dash                                                                          0.5.12-12                              deb                         
