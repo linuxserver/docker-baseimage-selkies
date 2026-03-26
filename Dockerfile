@@ -71,6 +71,29 @@ RUN \
     build/wtype \
     /usr/bin/wtype
 
+FROM ghcr.io/linuxserver/baseimage-fedora:43 AS selkies-desktop
+  
+RUN \
+  echo "**** selkies-desktop build deps ****" && \
+  dnf install -y \
+    cairo-devel \
+    gcc \
+    git \
+    make \
+    wayland-devel \
+    wayland-protocols-devel 
+  
+RUN \
+  echo "**** build selkies-desktop ****" && \
+  cd /tmp && \
+  git clone \
+    https://github.com/selkies-project/selkies-desktop.git && \
+  cd selkies-desktop && \
+  make && \
+  mv \
+    selkies-desktop \
+    /usr/bin/selkies-desktop
+
 # Runtime stage
 FROM ghcr.io/linuxserver/baseimage-fedora:43
 
@@ -308,7 +331,9 @@ COPY /root /
 COPY --from=frontend /buildout /usr/share/selkies
 COPY --from=xvfb / /
 COPY --from=wtype /usr/bin/wtype /usr/bin/wtype
+COPY --from=selkies-desktop /usr/bin/selkies-desktop /usr/bin/selkies-desktop
 
 # ports and volumes
 EXPOSE 3000 3001
+COPY --from=selkies-desktop /usr/bin/selkies-desktop /usr/bin/selkies-desktop
 VOLUME /config
