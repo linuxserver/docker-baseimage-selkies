@@ -50,7 +50,7 @@ cpp-x86-64-linux-gnu                                                          4:
 cron                                                                          3.0pl1-184ubuntu2                      deb                         
 cron-daemon-common                                                            3.0pl1-184ubuntu2                      deb                         
 cryptography                                                                  41.0.7                                 python     (+1 duplicate)   
-cryptography                                                                  46.0.5                                 python                      
+cryptography                                                                  46.0.6                                 python                      
 curl                                                                          8.5.0-2ubuntu10.8                      deb                         
 dario.cat/mergo                                                               v1.0.2                                 go-module  (+1 duplicate)   
 dash                                                                          0.5.12-6ubuntu5                        deb                         
