@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM lscr.io/linuxserver/xvfb:fedora43 AS xvfb
-FROM ghcr.io/linuxserver/baseimage-alpine:3.22 AS frontend
+FROM ghcr.io/linuxserver/baseimage-alpine:3.23 AS frontend
 
 RUN \
   echo "**** install build packages ****" && \
@@ -40,7 +40,7 @@ RUN \
     cp -ar dist/* /buildout/$DASH/; \
   done
 
-FROM ghcr.io/linuxserver/baseimage-fedora:43 AS wtype
+FROM ghcr.io/linuxserver/baseimage-fedora:44 AS wtype
 
 RUN \
   echo "**** wtype build deps ****" && \
@@ -71,7 +71,7 @@ RUN \
     build/wtype \
     /usr/bin/wtype
 
-FROM ghcr.io/linuxserver/baseimage-fedora:43 AS selkies-desktop
+FROM ghcr.io/linuxserver/baseimage-fedora:44 AS selkies-desktop
   
 RUN \
   echo "**** selkies-desktop build deps ****" && \
@@ -95,7 +95,7 @@ RUN \
     /usr/bin/selkies-desktop
 
 # Runtime stage
-FROM ghcr.io/linuxserver/baseimage-fedora:43
+FROM ghcr.io/linuxserver/baseimage-fedora:44
 
 # set version label
 ARG BUILD_DATE
@@ -117,12 +117,10 @@ ENV DISPLAY=:1 \
 
 RUN \
   echo "**** install build deps ****" && \
-  dnf install -y \
-    dnf-3 && \
-  dnf-3 localinstall -y --nogpgcheck \
-    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-43.noarch.rpm && \
-  dnf-3 localinstall -y --nogpgcheck \
-    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-43.noarch.rpm && \
+  dnf install -y --nogpgcheck \
+    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-44.noarch.rpm && \
+  dnf install -y --nogpgcheck \
+    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-44.noarch.rpm && \
   dnf install -y \
     gcc \
     gcc-c++ \
@@ -183,7 +181,7 @@ RUN \
     mesa-dri-drivers \
     mesa-libgbm \
     mesa-libGL \
-    mesa-va-drivers \
+    mesa-va-drivers-freeworld \
     mesa-vulkan-drivers \
     nginx \
     nginx-mod-fancyindex \
@@ -235,9 +233,6 @@ RUN \
     xsettingsd \
     xterm \
     zlib && \
-  dnf swap -y \
-    mesa-va-drivers \
-    mesa-va-drivers-freeworld && \
   echo "**** install selkies ****" && \
   curl -o \
     /tmp/selkies.tar.gz -L \
