@@ -591,7 +591,6 @@ jansson                                                                       2.
 jaraco-context                                                                6.1.0                                   python                       
 jaraco-functools                                                              4.4.0                                   python                       
 jaraco-text                                                                   4.0.0                                   python                       
-jq                                                                            1.7.1                                   binary                       
 jq                                                                            1.8.1-r0                                apk                          
 k8s.io/api                                                                    v0.32.3                                 go-module                    
 k8s.io/api                                                                    v0.34.1                                 go-module   (+1 duplicate)   
