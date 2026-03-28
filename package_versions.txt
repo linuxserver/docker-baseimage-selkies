@@ -426,8 +426,8 @@ glibc-all-langpacks                                                           2.
 glibc-common                                                                  2.43-2.fc44                                        rpm                         
 glibc-locale-source                                                           2.43-2.fc44                                        rpm                         
 glibc-minimal-langpack                                                        2.43-2.fc44                                        rpm                         
-glycin-libs                                                                   2.1.0-1.fc44                                       rpm                         
-glycin-loaders                                                                2.1.0-1.fc44                                       rpm                         
+glycin-libs                                                                   2.1.1-1.fc44                                       rpm                         
+glycin-loaders                                                                2.1.1-1.fc44                                       rpm                         
 gmp                                                                           1:6.3.0-5.fc44                                     rpm                         
 gnulib-l10n                                                                   20241231-2.fc44                                    rpm                         
 gnupg2                                                                        2.4.9-5.fc44                                       rpm                         
@@ -567,7 +567,6 @@ jaraco-functools                                                              4.
 jaraco-text                                                                   4.0.0                                              python                      
 jbig2dec-libs                                                                 0.20-8.fc44                                        rpm                         
 jbigkit-libs                                                                  2.1-33.fc44                                        rpm                         
-jq                                                                            1.7.1                                              binary                      
 jq                                                                            1.8.1-2.fc44                                       rpm                         
 json-c                                                                        0.18-8.fc44                                        rpm                         
 json-glib                                                                     1.10.8-5.fc44                                      rpm                         
@@ -819,7 +818,7 @@ pango                                                                         1.
 pasimple                                                                      0.0.3                                              python                      
 pciutils                                                                      3.14.0-3.fc44                                      rpm                         
 pciutils-libs                                                                 3.14.0-3.fc44                                      rpm                         
-pcmflux                                                                       1.0.7                                              python                      
+pcmflux                                                                       1.0.8                                              python                      
 pcre2                                                                         10.47-1.fc44.1                                     rpm                         
 pcre2-syntax                                                                  10.47-1.fc44.1                                     rpm                         
 perl-AutoLoader                                                               0:5.74-523.fc44                                    rpm                         
@@ -916,12 +915,12 @@ pynput                                                                        1.
 pyopenssl                                                                     26.0.0                                             python                      
 python-pip-wheel                                                              26.0.1-2.fc44                                      rpm                         
 python-setuptools-wheel                                                       80.10.2-3.fc44                                     rpm                         
-python-unversioned-command                                                    3.14.3-1.fc44                                      rpm                         
+python-unversioned-command                                                    3.14.3-2.fc44                                      rpm                         
 python-xlib                                                                   0.33                                               python                      
-python3                                                                       3.14.3-1.fc44                                      rpm                         
+python3                                                                       3.14.3-2.fc44                                      rpm                         
 python3-distlib                                                               0.4.0-5.fc44                                       rpm                         
 python3-filelock                                                              3.15.4-11.fc44                                     rpm                         
-python3-libs                                                                  3.14.3-1.fc44                                      rpm                         
+python3-libs                                                                  3.14.3-2.fc44                                      rpm                         
 python3-platformdirs                                                          4.9.1-1.fc44                                       rpm                         
 python3-pyxdg                                                                 0.28-1.fc44                                        rpm                         
 python3-virtualenv                                                            20.35.4-4.fc44                                     rpm                         
