@@ -795,7 +795,7 @@ pasimple                                                                      0.
 paste                                                                         1.0.14                                  rust-crate                   
 pciutils                                                                      3.14.0-r0                               apk                          
 pciutils-libs                                                                 3.14.0-r0                               apk                          
-pcmflux                                                                       1.0.7                                   python                       
+pcmflux                                                                       1.0.8                                   python                       
 pcre2                                                                         10.47-r0                                apk                          
 pillow                                                                        12.1.1                                  python                       
 pip                                                                           25.0.1                                  python                       
