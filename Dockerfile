@@ -16,26 +16,26 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f af1a1c252563d2f136d641b81d6b1dd38a3a0d93
+  git checkout -f 72a11eeb1f0fd3ca4c17152c7b34b26cb6c8af5a
 
 RUN \
   echo "**** build shared core library ****" && \
-  cd /src/addons/gst-web-core && \
+  cd /src/addons/selkies-web-core && \
   npm install && \
   npm run build && \
   echo "**** build multiple dashboards ****" && \
-  DASHBOARDS="selkies-dashboard selkies-dashboard-zinc selkies-dashboard-wish" && \
+  DASHBOARDS="selkies-dashboard selkies-dashboard-wish" && \
   mkdir /buildout && \
   for DASH in $DASHBOARDS; do \
     cd /src/addons/$DASH && \
-    cp ../gst-web-core/dist/selkies-core.js src/ && \
+    cp ../selkies-web-core/dist/selkies-core.js src/ && \
     npm install && \
     npm run build && \
     mkdir -p dist/src dist/nginx && \
-    cp ../gst-web-core/dist/selkies-core.js dist/src/ && \
+    cp ../selkies-web-core/dist/selkies-core.js dist/src/ && \
     cp ../universal-touch-gamepad/universalTouchGamepad.js dist/src/ && \
-    cp ../gst-web-core/nginx/* dist/nginx/ && \
-    cp -r ../gst-web-core/dist/jsdb dist/ && \
+    cp ../selkies-web-core/nginx/* dist/nginx/ && \
+    cp -r ../selkies-web-core/dist/jsdb dist/ && \
     mkdir -p /buildout/$DASH && \
     cp -ar dist/* /buildout/$DASH/; \
   done
@@ -243,7 +243,7 @@ RUN \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/af1a1c252563d2f136d641b81d6b1dd38a3a0d93.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/72a11eeb1f0fd3ca4c17152c7b34b26cb6c8af5a.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
