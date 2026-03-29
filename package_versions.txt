@@ -3,7 +3,7 @@ adduser                                                                       3.
 adwaita-icon-theme                                                            48.1-1                                 deb                         
 aiofiles                                                                      25.1.0                                 python                      
 aiohappyeyeballs                                                              2.6.1                                  python                      
-aiohttp                                                                       3.13.3                                 python                      
+aiohttp                                                                       3.13.4                                 python                      
 aioice                                                                        0.10.2                                 python                      
 aiosignal                                                                     1.4.0                                  python                      
 apt                                                                           3.0.3                                  deb                         
@@ -12,6 +12,7 @@ apt-utils                                                                     3.
 at-spi2-common                                                                2.56.2-1+deb13u1                       deb                         
 attrs                                                                         26.1.0                                 python                      
 autocommand                                                                   2.2.2                                  python                      
+av                                                                            17.0.0                                 python                      
 backports-tarfile                                                             1.2.0                                  python                      
 base-files                                                                    13.8+deb13u4                           deb                         
 base-passwd                                                                   3.6.7                                  deb                         
