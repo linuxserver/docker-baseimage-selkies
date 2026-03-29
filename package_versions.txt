@@ -2,7 +2,7 @@ NAME                                                                          VE
 adduser                                                                       3.154                                  deb                         
 aiofiles                                                                      25.1.0                                 python                      
 aiohappyeyeballs                                                              2.6.1                                  python                      
-aiohttp                                                                       3.13.3                                 python                      
+aiohttp                                                                       3.13.4                                 python                      
 aioice                                                                        0.10.2                                 python                      
 aiosignal                                                                     1.4.0                                  python                      
 apt                                                                           3.1.16+kali1                           deb                         
@@ -10,6 +10,7 @@ apt-transport-https                                                           3.
 apt-utils                                                                     3.1.16+kali1                           deb                         
 attrs                                                                         26.1.0                                 python                      
 autocommand                                                                   2.2.2                                  python     (+1 duplicate)   
+av                                                                            17.0.0                                 python                      
 backports-tarfile                                                             1.2.0                                  python                      
 base-files                                                                    1:2026.1.1                             deb                         
 base-passwd                                                                   3.6.8                                  deb                         
