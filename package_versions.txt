@@ -4,11 +4,11 @@ acl-libs                                                                      2.
 agetty                                                                        2.41.2-r0                               apk                          
 aiofiles                                                                      25.1.0                                  python                       
 aiohappyeyeballs                                                              2.6.1                                   python                       
-aiohttp                                                                       3.13.3                                  python                       
+aiohttp                                                                       3.13.4                                  python                       
 aioice                                                                        0.10.2                                  python                       
 aiosignal                                                                     1.4.0                                   python                       
-alpine-baselayout                                                             3.7.1-r8                                apk                          
-alpine-baselayout-data                                                        3.7.1-r8                                apk                          
+alpine-baselayout                                                             3.7.2-r0                                apk                          
+alpine-baselayout-data                                                        3.7.2-r0                                apk                          
 alpine-keys                                                                   2.6-r0                                  apk                          
 alpine-release                                                                3.23.3-r0                               apk                          
 alsa-lib                                                                      1.2.14-r2                               apk                          
@@ -25,6 +25,7 @@ arg_enum_proc_macro                                                           0.
 arrayvec                                                                      0.7.4                                   rust-crate                   
 attrs                                                                         26.1.0                                  python                       
 autocommand                                                                   2.2.2                                   python                       
+av                                                                            17.0.0                                  python                       
 av-metrics                                                                    0.9.1                                   rust-crate                   
 av1-grain                                                                     0.2.3                                   rust-crate                   
 backports-tarfile                                                             1.2.0                                   python                       
