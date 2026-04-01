@@ -361,7 +361,7 @@ RUN \
   mkdir /tmp/libva && \
   curl -o \
     /tmp/libva/libva.deb -L \
-    "https://launchpad.net/ubuntu/+source/libva/2.22.0-3ubuntu2/+build/30591127/+files/libva2_2.22.0-3ubuntu2_amd64.deb" && \
+    "https://launchpad.net/ubuntu/+source/libva/2.22.0-3ubuntu3/+build/31011293/+files/libva2_2.22.0-3ubuntu3_amd64.deb" && \
   cd /tmp/libva && \
   ar x libva.deb && \
   tar xf data.tar.zst && \
