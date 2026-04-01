@@ -40,6 +40,7 @@ full_custom_readme: |
   | CUSTOM_USER | HTTP Basic auth username, abc is default. |
   | DRI_NODE | Enable VAAPI stream encoding and use the specified device IE `/dev/dri/renderD128` |
   | DRINODE | Specify which GPU to use for DRI3 acceleration IE `/dev/dri/renderD129` |
+  | AUTO_GPU | If set to true and in Wayland mode, we will automatically use the first GPU available for encoding and rendering IE `/dev/dri/renderD128` |
   | PASSWORD | HTTP Basic auth password, abc is default. If unset there will be no auth |
   | SUBFOLDER | Subfolder for the application if running a subfolder reverse proxy, need both slashes IE `/subfolder/` |
   | TITLE | The page title displayed on the web browser, default "Selkies" |
