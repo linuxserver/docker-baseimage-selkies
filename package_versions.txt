@@ -4,7 +4,7 @@ abseil-cpp                                                                    20
 acl                                                                           2.3.2-1                               alpm                           
 aiofiles                                                                      25.1.0                                python                         
 aiohappyeyeballs                                                              2.6.1                                 python                         
-aiohttp                                                                       3.13.4                                python                         
+aiohttp                                                                       3.13.5                                python                         
 aioice                                                                        0.10.2                                python                         
 aiosignal                                                                     1.4.0                                 python                         
 alsa-lib                                                                      1.2.15.3-2                            alpm                           
@@ -68,7 +68,7 @@ expat                                                                         2.
 fakeroot                                                                      1.37.2-1                              alpm                           
 fcft                                                                          3.3.3-1                               alpm                           
 fftw                                                                          3.3.10-8                              alpm                           
-file                                                                          5.47-1                                alpm                           
+file                                                                          5.47-2                                alpm                           
 filesystem                                                                    2025.10.12-1                          alpm                           
 findutils                                                                     4.10.0-3                              alpm                           
 flac                                                                          1.5.0-1                               alpm                           
@@ -557,7 +557,7 @@ perl                                                                          5.
 pillow                                                                        12.1.1                                python                         
 pinentry                                                                      1.3.2-2                               alpm                           
 pip                                                                           25.3                                  python                         
-pixelflux                                                                     1.5.9                                 python                         
+pixelflux                                                                     1.6.0                                 python                         
 pixman                                                                        0.46.4-1                              alpm                           
 pkgconf                                                                       2.5.1-1                               alpm                           
 platformdirs                                                                  4.4.0                                 python                         
