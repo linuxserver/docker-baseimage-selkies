@@ -647,7 +647,7 @@ libaom3                                                                       3.
 libapparmor1                                                                  4.0.1really4.0.1-0ubuntu0.24.04.5      deb                         
 libappstream5                                                                 1.0.2-1build6                          deb                         
 libapt-pkg6.0t64                                                              2.8.3                                  deb                         
-libarchive13t64                                                               3.7.2-2ubuntu0.5                       deb                         
+libarchive13t64                                                               3.7.2-2ubuntu0.6                       deb                         
 libargon2-1                                                                   0~20190702+dfsg-4build1                deb                         
 libasan8                                                                      14.2.0-4ubuntu2~24.04.1                deb                         
 libasound2-data                                                               1.2.11-1ubuntu0.2                      deb                         
@@ -1079,7 +1079,7 @@ pcmflux                                                                       1.
 perl                                                                          5.38.2-3.2ubuntu0.2                    deb                         
 perl-base                                                                     5.38.2-3.2ubuntu0.2                    deb                         
 perl-modules-5.38                                                             5.38.2-3.2ubuntu0.2                    deb                         
-pillow                                                                        12.1.1                                 python                      
+pillow                                                                        12.2.0                                 python                      
 pinentry-curses                                                               1.2.1-3ubuntu5                         deb                         
 pip                                                                           24.0                                   python                      
 pixelflux                                                                     1.6.0                                  python                      
