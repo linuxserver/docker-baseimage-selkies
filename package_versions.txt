@@ -4,7 +4,7 @@ acl-libs                                                                      2.
 agetty                                                                        2.41.2-r0                               apk                          
 aiofiles                                                                      25.1.0                                  python                       
 aiohappyeyeballs                                                              2.6.1                                   python                       
-aiohttp                                                                       3.13.4                                  python                       
+aiohttp                                                                       3.13.5                                  python                       
 aioice                                                                        0.10.2                                  python                       
 aiosignal                                                                     1.4.0                                   python                       
 alpine-baselayout                                                             3.7.2-r0                                apk                          
@@ -651,7 +651,7 @@ libheif                                                                       1.
 libice                                                                        1.1.2-r0                                apk                          
 libid3tag                                                                     0.16.3-r0                               apk                          
 libidn2                                                                       2.3.8-r0                                apk                          
-libinput-libs                                                                 1.30.0-r0                               apk                          
+libinput-libs                                                                 1.30.3-r0                               apk                          
 libintl                                                                       0.24.1-r1                               apk                          
 libjpeg-turbo                                                                 3.1.2-r0                                apk                          
 libliftoff                                                                    0.5.0-r0                                apk                          
@@ -798,9 +798,9 @@ pciutils                                                                      3.
 pciutils-libs                                                                 3.14.0-r0                               apk                          
 pcmflux                                                                       1.0.8                                   python                       
 pcre2                                                                         10.47-r0                                apk                          
-pillow                                                                        12.1.1                                  python                       
+pillow                                                                        12.2.0                                  python                       
 pip                                                                           25.0.1                                  python                       
-pixelflux                                                                     1.5.9                                   python                       
+pixelflux                                                                     1.6.0                                   python                       
 pixman                                                                        0.46.4-r0                               apk                          
 pkgconf                                                                       2.5.1-r0                                apk                          
 platformdirs                                                                  4.4.0                                   python                       
