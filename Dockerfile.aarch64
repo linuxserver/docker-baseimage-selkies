@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM lscr.io/linuxserver/xvfb:arm64v8-ubuntunoble AS xvfb
+FROM lscr.io/linuxserver/xvfb:arm64v8-ubunturesolute AS xvfb
 FROM ghcr.io/linuxserver/baseimage-alpine:arm64v8-3.22 AS frontend
 
 RUN \
@@ -40,7 +40,7 @@ RUN \
     cp -ar dist/* /buildout/$DASH/; \
   done
 
-FROM ghcr.io/linuxserver/baseimage-ubuntu:arm64v8-noble AS wtype
+FROM ghcr.io/linuxserver/baseimage-ubuntu:arm64v8-resolute AS wtype
 
 RUN \
   echo "**** wtype build deps ****" && \
@@ -69,35 +69,7 @@ RUN \
     build/wtype \
     /usr/bin/wtype
 
-FROM ghcr.io/linuxserver/baseimage-ubuntu:arm64v8-noble AS wlroots
-
-RUN \
-  echo "**** wlroots build deps ****" && \
-  apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    dpkg-dev \
-    devscripts \
-    quilt && \
-  apt-get build-dep -y \
-    libwlroots12t64
-
-COPY /pixman-patch/pass.c /pass.c
-
-RUN \
-  echo "**** ingest current source and build deb ****" && \
-  mkdir /debout && \
-  cd /tmp && \
-  apt-get source libwlroots12t64 && \
-  cd wlroots-0.17* && \
-  cp \
-    /pass.c \
-    render/pixman/pass.c && \
-  DEB_BUILD_OPTIONS='nocheck' dpkg-buildpackage -d -us -uc -b && \
-  cp \
-    ../libwlroots12t64_0.17*.deb \
-    /debout/wl.deb
-
-FROM ghcr.io/linuxserver/baseimage-ubuntu:arm64v8-noble AS selkies-desktop
+FROM ghcr.io/linuxserver/baseimage-ubuntu:arm64v8-resolute AS selkies-desktop
 
 RUN \
   echo "**** selkies-desktop build deps ****" && \
@@ -121,7 +93,7 @@ RUN \
     /usr/bin/selkies-desktop
 
 # Runtime stage
-FROM ghcr.io/linuxserver/baseimage-ubuntu:arm64v8-noble
+FROM ghcr.io/linuxserver/baseimage-ubuntu:arm64v8-resolute
 
 # set version label
 ARG BUILD_DATE
@@ -141,8 +113,6 @@ ENV DISPLAY=:1 \
     DISABLE_DRI3=false \
     TITLE=Selkies
 
-COPY --from=wlroots /debout/wl.deb /tmp/wl.deb
-
 RUN \
   echo "**** dev deps ****" && \
   apt-get update && \
@@ -154,7 +124,7 @@ RUN \
     /etc/dpkg/dpkg.cfg.d/excludes && \
   echo "**** install deps ****" && \
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | tee /usr/share/keyrings/docker.asc >/dev/null && \
-  echo "deb [arch=arm64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/ubuntu noble stable" > /etc/apt/sources.list.d/docker.list && \
+  echo "deb [arch=arm64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/ubuntu resolute stable" > /etc/apt/sources.list.d/docker.list && \
   curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
@@ -207,7 +177,7 @@ RUN \
     libwayland-egl1 \
     libwayland-server0 \
     libx11-6 \
-    libx264-164 \
+    libx264-165 \
     libxau6 \
     libxcb1 \
     libxcb-icccm4 \
@@ -275,9 +245,6 @@ RUN \
     xvfb \
     zlib1g \
     zstd && \
-  echo "**** patched wlroots ****" && \
-  apt-get --reinstall install --no-install-recommends --allow-downgrades -y \
-    /tmp/wl.deb && \
   echo "**** install selkies ****" && \
   SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/latest" \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
@@ -354,19 +321,6 @@ RUN \
   chmod +x /usr/local/bin/dind && \
   echo 'hosts: files dns' > /etc/nsswitch.conf && \
   usermod -aG docker abc && \
-  echo "**** libva hack ****" && \
-  mkdir /tmp/libva && \ 
-  curl -o \
-    /tmp/libva/libva.deb -L \
-    "https://launchpad.net/ubuntu/+source/libva/2.22.0-3ubuntu3/+build/31011294/+files/libva2_2.22.0-3ubuntu3_arm64.deb" && \
-  cd /tmp/libva && \
-  ar x libva.deb && \
-  tar xf data.tar.zst && \
-  rm -f \
-    /usr/lib/aarch64-linux-gnu/libva.so.2* && \
-  cp -a \
-    usr/lib/aarch64-linux-gnu/libva.so.2* \
-    /usr/lib/aarch64-linux-gnu/ && \
   echo "**** locales ****" && \
   for LOCALE in $(curl -sL https://raw.githubusercontent.com/thelamer/lang-stash/master/langs); do \
     localedef -i $LOCALE -f UTF-8 $LOCALE.UTF-8; \
