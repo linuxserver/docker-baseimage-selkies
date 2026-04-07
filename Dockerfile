@@ -109,6 +109,7 @@ ENV DISPLAY=:1 \
     NVIDIA_DRIVER_CAPABILITIES=all \
     DISABLE_ZINK=false \
     DISABLE_DRI3=false \
+    LC_ALL=en_US.UTF-8 \
     TITLE=Selkies
 
 RUN \
