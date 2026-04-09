@@ -212,7 +212,7 @@ All base images are built for x86_64 and aarch64 platforms.
 | Arch | arch |
 | Debian | debiantrixie |
 | Enterprise Linux | el9 |
-| Fedora | fedora43 |
+| Fedora | fedora44 |
 | Kali | kali |
 | Ubuntu | ubuntunoble |
 
