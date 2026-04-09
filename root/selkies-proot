@@ -1,0 +1,25 @@
+#!/usr/bin/with-contenv bash
+
+PROOT_APPS_BIN="$HOME/.local/bin/proot-apps"
+TARGET_WAYLAND_SOCKET=""
+
+# Detect wayland socket
+if [ -n "$XDG_RUNTIME_DIR" ]; then
+  for sock in "$XDG_RUNTIME_DIR"/wayland-*; do
+    if [ -S "$sock" ]; then
+      sock_name=$(basename "$sock")
+      if [ "$sock_name" != "wayland-1" ]; then
+        TARGET_WAYLAND_SOCKET="$sock_name"
+        break
+      fi
+    fi
+  done
+fi
+
+# Launch terminal proot action
+if [ -n "$TARGET_WAYLAND_SOCKET" ]; then
+  export WAYLAND_DISPLAY="$TARGET_WAYLAND_SOCKET"
+  exec foot "$PROOT_APPS_BIN" "$@"
+else
+  exec st "$PROOT_APPS_BIN" "$@"
+fi
