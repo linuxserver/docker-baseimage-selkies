@@ -58,14 +58,11 @@ RUN \
   echo "**** build wtype ****" && \
   cd /tmp && \
   git clone \
-    -b international-fix \
-    --single-branch \
-    --depth 1 https://github.com/thelamer/wtype.git && \
-  cd wtype && \
-  meson build && \
-  ninja -C build && \
+    https://github.com/linuxserver/waylandtyper.git && \
+  cd waylandtyper && \ 
+  make && \
   mv \
-    build/wtype \
+    wtype \ 
     /usr/sbin/wtype
 
 FROM ghcr.io/linuxserver/baseimage-arch:latest AS selkies-desktop
