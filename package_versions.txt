@@ -1032,7 +1032,7 @@ nginx-common                                                                  1.
 nvidia-cuda-nvrtc                                                             13.2.51                                python                      
 ocl-icd-libopencl1                                                            2.3.3-1                                deb                         
 openbox                                                                       3.6.1-12+b2                            deb                         
-openssh-client                                                                1:10.0p1-7+deb13u1                     deb                         
+openssh-client                                                                1:10.0p1-7+deb13u2                     deb                         
 openssl                                                                       3.5.5-1~deb13u2                        deb                         
 openssl-provider-legacy                                                       3.5.5-1~deb13u2                        deb                         
 packaging                                                                     26.0                                   python                      
@@ -1051,7 +1051,7 @@ pixelflux                                                                     1.
 platformdirs                                                                  4.4.0                                  python                      
 poppler-data                                                                  0.4.12-1                               deb                         
 procps                                                                        2:4.0.4-9                              deb                         
-prometheus-client                                                             0.24.1                                 python                      
+prometheus-client                                                             0.25.0                                 python                      
 propcache                                                                     0.4.1                                  python                      
 psmisc                                                                        23.7-2                                 deb                         
 psutil                                                                        7.2.2                                  python                      
