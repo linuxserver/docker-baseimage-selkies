@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 
 # check if underlying system supports wayland binaries
-if ! grep -q avx2 /proc/cpuinfo; then
+if ! grep -q avx2 /proc/cpuinfo && [ "$(uname -m)" != "aarch64" ]; then
   echo "[ls.io-init] CPU does not support AVX2. Falling back to X11"
   printf "false" > /run/s6/container_environment/PIXELFLUX_WAYLAND
   PIXELFLUX_WAYLAND="false"
