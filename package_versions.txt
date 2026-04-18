@@ -68,7 +68,7 @@ expat                                                                         2.
 fakeroot                                                                      1.37.2-1                              alpm                           
 fcft                                                                          3.3.3-1                               alpm                           
 fftw                                                                          3.3.10-8                              alpm                           
-file                                                                          5.47-2                                alpm                           
+file                                                                          5.47-3                                alpm                           
 filesystem                                                                    2025.10.12-1                          alpm                           
 findutils                                                                     4.10.0-3                              alpm                           
 flac                                                                          1.5.0-1                               alpm                           
