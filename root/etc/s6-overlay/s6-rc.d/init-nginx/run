@@ -7,6 +7,9 @@ NGINX_CONFIG=/etc/nginx/sites-available/default
 CPORT="${CUSTOM_PORT:-3000}"
 CHPORT="${CUSTOM_HTTPS_PORT:-3001}"
 CWS="${CUSTOM_WS_PORT:-8082}"
+# Port of the selkies dual-mode supervisor API (/switch and /status).
+# Only consulted when SELKIES_ENABLE_DUAL_MODE=true on the selkies side;
+# this value drives nginx routing only, not the selkies bind port.
 SUP="${SELKIES_SUPERVISOR_PORT:-8082}"
 CUSER="${CUSTOM_USER:-abc}"
 SFOLDER="${SUBFOLDER:-/}"
