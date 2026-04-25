@@ -61,7 +61,7 @@ coreutils-common                                                              9.
 cpp                                                                           16.0.1-0.10.fc44                                   rpm                         
 cracklib                                                                      2.9.11-10.fc44                                     rpm                         
 crypto-policies                                                               20251128-3.git19878fe.fc44                         rpm                         
-cryptography                                                                  46.0.7                                             python                      
+cryptography                                                                  47.0.0                                             python                      
 cups-filesystem                                                               1:2.4.16-7.fc44                                    rpm                         
 cups-libs                                                                     1:2.4.16-7.fc44                                    rpm                         
 curl                                                                          8.18.0-4.fc44                                      rpm                         
@@ -911,7 +911,7 @@ pycparser                                                                     3.
 pyee                                                                          13.0.1                                             python                      
 pylibsrtp                                                                     1.0.0                                              python                      
 pynput                                                                        1.8.1                                              python                      
-pyopenssl                                                                     26.0.0                                             python                      
+pyopenssl                                                                     26.1.0                                             python                      
 python-pip-wheel                                                              26.0.1-2.fc44                                      rpm                         
 python-setuptools-wheel                                                       80.10.2-3.fc44                                     rpm                         
 python-unversioned-command                                                    3.14.3-2.fc44                                      rpm                         
@@ -936,8 +936,8 @@ rpm-libs                                                                      6.
 rpm-plugin-selinux                                                            6.0.1-2.fc44                                       rpm                         
 rpm-sequoia                                                                   1.10.1-1.fc44                                      rpm                         
 rpm-sign-libs                                                                 6.0.1-2.fc44                                       rpm                         
-rpmfusion-free-release                                                        44-1                                               rpm                         
-rpmfusion-nonfree-release                                                     44-1                                               rpm                         
+rpmfusion-free-release                                                        44-3                                               rpm                         
+rpmfusion-nonfree-release                                                     44-3                                               rpm                         
 rtkit                                                                         0.11-70.fc44                                       rpm                         
 runc                                                                          2:1.4.1-1.fc44                                     rpm                         
 sdbus-cpp                                                                     2.2.1-2.fc44                                       rpm                         
