@@ -1117,7 +1117,7 @@ pygobject                                                                     3.
 pyjwt                                                                         2.10.1                                 python                      
 pylibsrtp                                                                     1.0.0                                  python                      
 pynput                                                                        1.8.1                                  python                      
-pyopenssl                                                                     26.0.0                                 python                      
+pyopenssl                                                                     26.1.0                                 python                      
 pyparsing                                                                     3.3.2                                  python                      
 python-apt                                                                    3.1.0+ubuntu1                          python                      
 python-apt-common                                                             3.1.0ubuntu1                           deb                         
