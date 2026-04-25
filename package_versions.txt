@@ -49,7 +49,7 @@ cpp-14-x86-64-linux-gnu                                                       14
 cpp-x86-64-linux-gnu                                                          4:14.2.0-1                             deb                         
 cron                                                                          3.0pl1-197                             deb                         
 cron-daemon-common                                                            3.0pl1-197                             deb                         
-cryptography                                                                  46.0.7                                 python                      
+cryptography                                                                  47.0.0                                 python                      
 curl                                                                          8.14.1-2+deb13u2                       deb                         
 dario.cat/mergo                                                               v1.0.2                                 go-module  (+1 duplicate)   
 dash                                                                          0.5.12-12                              deb                         
@@ -1087,7 +1087,7 @@ pycparser                                                                     3.
 pyee                                                                          13.0.1                                 python                      
 pylibsrtp                                                                     1.0.0                                  python                      
 pynput                                                                        1.8.1                                  python                      
-pyopenssl                                                                     26.0.0                                 python                      
+pyopenssl                                                                     26.1.0                                 python                      
 python-xlib                                                                   0.33                                   python                      
 python3                                                                       3.13.5-1                               deb                         
 python3-minimal                                                               3.13.5-1                               deb                         
