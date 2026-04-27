@@ -105,6 +105,7 @@ ENV DISPLAY=:1 \
     SELKIES_INTERPOSER=/usr/lib/selkies_joystick_interposer.so \
     DISABLE_ZINK=false \
     DISABLE_DRI3=false \
+    SELKIES_ENCODER="x264enc,jpeg" \
     TITLE=Selkies
 
 RUN \
