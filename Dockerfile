@@ -107,6 +107,7 @@ ENV DISPLAY=:1 \
     DISABLE_ZINK=false \
     DISABLE_DRI3=false \
     LC_ALL=en_US.UTF-8 \
+    SELKIES_ENCODER="x264enc,jpeg" \
     TITLE=Selkies
 
 RUN \
