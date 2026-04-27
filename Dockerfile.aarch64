@@ -136,6 +136,7 @@ ENV DISPLAY=:1 \
     NVIDIA_DRIVER_CAPABILITIES=all \
     DISABLE_ZINK=false \
     DISABLE_DRI3=false \
+    SELKIES_ENCODER="x264enc,jpeg" \
     TITLE=Selkies
 
 COPY --from=wlroots /debout/wl.deb /tmp/wl.deb
