@@ -813,7 +813,7 @@ libkmod2                                                                      31
 libkrb5-3                                                                     1.20.1-6ubuntu2.6                      deb                         
 libkrb5support0                                                               1.20.1-6ubuntu2.6                      deb                         
 libksba8                                                                      1.6.6-1build1                          deb                         
-liblcms2-2                                                                    2.14-2build1                           deb                         
+liblcms2-2                                                                    2.14-2ubuntu0.1                        deb                         
 libldap-common                                                                2.6.10+dfsg-0ubuntu0.24.04.1           deb                         
 libldap2                                                                      2.6.10+dfsg-0ubuntu0.24.04.1           deb                         
 liblerc4                                                                      4.0.0+ds-4ubuntu2                      deb                         
@@ -1064,8 +1064,8 @@ ncurses-term                                                                  6.
 netbase                                                                       6.4                                    deb                         
 netcat-openbsd                                                                1.226-1ubuntu2                         deb                         
 nftables                                                                      1.0.9-1ubuntu0.1                       deb                         
-nginx                                                                         1.24.0-2ubuntu7.6                      deb                         
-nginx-common                                                                  1.24.0-2ubuntu7.6                      deb                         
+nginx                                                                         1.24.0-2ubuntu7.7                      deb                         
+nginx-common                                                                  1.24.0-2ubuntu7.7                      deb                         
 nvidia-cuda-nvrtc                                                             13.2.78                                python                      
 oauthlib                                                                      3.2.2                                  python                      
 ocl-icd-libopencl1                                                            2.3.2-1build1                          deb                         
