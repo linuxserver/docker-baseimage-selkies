@@ -467,7 +467,7 @@ github.com/zmap/zlint/v3                                                      v3
 glib                                                                          2.86.3-r0                               apk                          
 glib-lang                                                                     2.86.3-r0                               apk                          
 gmp                                                                           6.3.0-r4                                apk                          
-gnutls                                                                        3.8.12-r0                               apk                          
+gnutls                                                                        3.8.13-r0                               apk                          
 go.etcd.io/bbolt                                                              v1.4.3                                  go-module   (+1 duplicate)   
 go.etcd.io/etcd/api/v3                                                        v3.6.5                                  go-module                    
 go.etcd.io/etcd/client/pkg/v3                                                 v3.6.5                                  go-module                    
@@ -613,7 +613,7 @@ labwc-lang                                                                    0.
 lame-libs                                                                     3.100-r5                                apk                          
 lang                                                                          0.1-r2                                  apk                          
 lazy_static                                                                   1.4.0                                   rust-crate                   
-lcms2                                                                         2.17-r0                                 apk                          
+lcms2                                                                         2.19-r0                                 apk                          
 libapk                                                                        3.0.6-r0                                apk                          
 libarchive                                                                    3.8.5-r0                                apk                          
 libasyncns                                                                    0.8-r4                                  apk                          
@@ -947,7 +947,7 @@ xsettingsd                                                                    1.
 xterm                                                                         403-r0                                  apk                          
 xvfb                                                                          21.1.22-r0                              apk                          
 xwayland                                                                      24.1.10-r0                              apk                          
-xz-libs                                                                       5.8.2-r0                                apk                          
+xz-libs                                                                       5.8.3-r0                                apk                          
 y4m                                                                           0.8.0                                   rust-crate                   
 yarl                                                                          1.23.0                                  python                       
 zipp                                                                          3.23.0                                  python                       
