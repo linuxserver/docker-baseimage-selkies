@@ -266,7 +266,7 @@ glycin                                                                        2.
 gmp                                                                           6.3.0-3                               alpm                           
 gnulib-l10n                                                                   20241231-1                            alpm                           
 gnupg                                                                         2.4.9-1                               alpm                           
-gnutls                                                                        3.8.12-2                              alpm                           
+gnutls                                                                        3.8.13-1                              alpm                           
 go.etcd.io/bbolt                                                              v1.4.3                                go-module                      
 go.opentelemetry.io/auto/sdk                                                  v1.2.1                                go-module     (+3 duplicates)  
 go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc   v0.60.0                               go-module                      
@@ -378,7 +378,7 @@ keyutils                                                                      1.
 kmod                                                                          34.2-1                                alpm                           
 krb5                                                                          1.21.3-2                              alpm                           
 l-smash                                                                       2.14.5-4                              alpm                           
-labwc                                                                         0.9.6-1                               alpm                           
+labwc                                                                         0.9.7-1                               alpm                           
 lame                                                                          3.101.r6531-1                         alpm                           
 lcms2                                                                         2.19-1                                alpm                           
 leancrypto                                                                    1.7.2-1                               alpm                           
