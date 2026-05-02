@@ -421,11 +421,11 @@ github.com/xrash/smetrics                                                     v0
 github.com/zmap/zcrypto                                                       v0.0.0-20230310154051-c8b263fd8300                 go-module                   
 github.com/zmap/zlint/v3                                                      v3.5.0                                             go-module                   
 glib2                                                                         2.88.0-1.fc44                                      rpm                         
-glibc                                                                         2.43-3.fc44                                        rpm                         
-glibc-all-langpacks                                                           2.43-3.fc44                                        rpm                         
-glibc-common                                                                  2.43-3.fc44                                        rpm                         
-glibc-locale-source                                                           2.43-3.fc44                                        rpm                         
-glibc-minimal-langpack                                                        2.43-3.fc44                                        rpm                         
+glibc                                                                         2.43-4.fc44                                        rpm                         
+glibc-all-langpacks                                                           2.43-4.fc44                                        rpm                         
+glibc-common                                                                  2.43-4.fc44                                        rpm                         
+glibc-locale-source                                                           2.43-4.fc44                                        rpm                         
+glibc-minimal-langpack                                                        2.43-4.fc44                                        rpm                         
 glycin-libs                                                                   2.1.1-1.fc44                                       rpm                         
 glycin-loaders                                                                2.1.1-1.fc44                                       rpm                         
 gmp                                                                           1:6.3.0-5.fc44                                     rpm                         
@@ -948,7 +948,7 @@ selinux-policy-targeted                                                       44
 selkies                                                                       0.0.0                                              python                      
 setup                                                                         2.15.0-28.fc44                                     rpm                         
 setuptools                                                                    82.0.1                                             python                      
-shadow-utils                                                                  2:4.19.0-6.fc44                                    rpm                         
+shadow-utils                                                                  2:4.19.0-7.fc44                                    rpm                         
 shared-mime-info                                                              2.4-3.fc44                                         rpm                         
 sigs.k8s.io/json                                                              v0.0.0-20241014173422-cfa47c3a1cc8                 go-module  (+1 duplicate)   
 sigs.k8s.io/randfill                                                          v1.0.0                                             go-module                   
