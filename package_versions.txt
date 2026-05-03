@@ -15,9 +15,9 @@ aioice                                                                        0.
 aiosignal                                                                     1.4.0                                              python                      
 alsa-lib                                                                      1.2.15.3-3.fc44                                    rpm                         
 alternatives                                                                  1.33-5.fc44                                        rpm                         
-at-spi2-atk                                                                   2.60.2-1.fc44                                      rpm                         
-at-spi2-core                                                                  2.60.2-1.fc44                                      rpm                         
-atk                                                                           2.60.2-1.fc44                                      rpm                         
+at-spi2-atk                                                                   2.60.3-1.fc44                                      rpm                         
+at-spi2-core                                                                  2.60.3-1.fc44                                      rpm                         
+atk                                                                           2.60.3-1.fc44                                      rpm                         
 attrs                                                                         26.1.0                                             python                      
 audit-libs                                                                    4.1.4-1.fc44                                       rpm                         
 authselect                                                                    1.7.1-1.fc44                                       rpm                         
@@ -636,7 +636,7 @@ libdecor                                                                      0.
 libdisplay-info                                                               0.3.0-1.fc44                                       rpm                         
 libdnf5                                                                       5.4.1.0-1.fc44                                     rpm                         
 libdnf5-cli                                                                   5.4.1.0-1.fc44                                     rpm                         
-libdrm                                                                        2.4.131-1.fc44                                     rpm                         
+libdrm                                                                        2.4.133-1.fc44                                     rpm                         
 libebur128                                                                    1.2.6-15.fc44                                      rpm                         
 libeconf                                                                      0.7.9-3.fc44                                       rpm                         
 libedit                                                                       3.1-58.20251016cvs.fc44                            rpm                         
