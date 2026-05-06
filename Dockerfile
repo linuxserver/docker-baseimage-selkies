@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f a49d310a5f613c4750195bc1fdbe1296afaebc34
+  git checkout -f 96e1abbf9ba0e44a8dabbc425fcb8312792fe303
 
 RUN \
   echo "**** build shared core library ****" && \
@@ -88,6 +88,186 @@ RUN \
   mv \
     selkies-desktop \
     /usr/bin/selkies-desktop
+
+FROM ghcr.io/linuxserver/baseimage-ubuntu:resolute AS labwc-builder
+
+RUN \
+  echo "**** install labwc/wlroots build deps ****" && \
+  apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+    autoconf \
+    automake \
+    autopoint \
+    autotools-dev \
+    build-essential \
+    bzip2 \
+    cmake \
+    debhelper \
+    debugedit \
+    dh-autoreconf \
+    dh-strip-nondeterminism \
+    dpkg-dev \
+    dwz \
+    gettext \
+    gettext-base \
+    gir1.2-freedesktop \
+    gir1.2-freedesktop-dev \
+    gir1.2-gdkpixbuf-2.0 \
+    gir1.2-glib-2.0-dev \
+    gir1.2-gly-2 \
+    gir1.2-gudev-1.0 \
+    gir1.2-harfbuzz-0.0 \
+    gir1.2-pango-1.0 \
+    gir1.2-rsvg-2.0 \
+    girepository-tools \
+    git \
+    hwdata \
+    icu-devtools \
+    intltool-debian \
+    libarchive-zip-perl \
+    libblkid-dev \
+    libbrotli-dev \
+    libbz2-dev \
+    libcairo2-dev \
+    libcairo-script-interpreter2 \
+    libcap-dev \
+    libdatrie-dev \
+    libdebhelper-perl \
+    libdisplay-info-dev \
+    libdpkg-perl \
+    libdrm-dev \
+    libdw1t64 \
+    libegl-dev \
+    libevdev-dev \
+    libexpat1-dev \
+    libffi-dev \
+    libfile-stripnondeterminism-perl \
+    libfontconfig-dev \
+    libfreetype-dev \
+    libfribidi-dev \
+    libgbm-dev \
+    libgdk-pixbuf2.0-bin \
+    libgdk-pixbuf-2.0-dev \
+    libgio-2.0-dev \
+    libgio-2.0-dev-bin \
+    libgl-dev \
+    libgles1 \
+    libgles2-mesa-dev \
+    libgles-dev \
+    libglib2.0-dev \
+    libglib2.0-dev-bin \
+    libglvnd-core-dev \
+    libglvnd-dev \
+    libglx-dev \
+    libglycin-2-dev \
+    libgraphite2-dev \
+    libgudev-1.0-dev \
+    libharfbuzz-cairo0 \
+    libharfbuzz-dev \
+    libharfbuzz-gobject0 \
+    libharfbuzz-icu0 \
+    libharfbuzz-subset0 \
+    libice-dev \
+    libicu78 \
+    libicu-dev \
+    libinput-dev \
+    liblcms2-dev \
+    libliftoff-dev \
+    liblzma-dev \
+    liblzo2-2 \
+    libmount-dev \
+    libmtdev-dev \
+    libopengl-dev \
+    libpango1.0-dev \
+    libpciaccess-dev \
+    libpcre2-16-0 \
+    libpcre2-32-0 \
+    libpcre2-dev \
+    libpcre2-posix3 \
+    libpixman-1-dev \
+    libpkgconf7 \
+    libpng-dev \
+    librsvg2-common \
+    librsvg2-dev \
+    libseat-dev \
+    libseccomp-dev \
+    libselinux-dev \
+    libsepol-dev \
+    libsfdo-dev \
+    libsm-dev \
+    libsysprof-capture-4-dev \
+    libsystemd-dev \
+    libthai-dev \
+    libtool \
+    libudev-dev \
+    libvulkan-dev \
+    libwacom-dev \
+    libwayland-bin \
+    libwayland-dev \
+    libx11-dev \
+    libx11-xcb-dev \
+    libxau-dev \
+    libxcb1-dev \
+    libxcb-composite0-dev \
+    libxcb-dri3-dev \
+    libxcb-errors-dev \
+    libxcb-ewmh-dev \
+    libxcb-icccm4-dev \
+    libxcb-image0-dev \
+    libxcb-present-dev \
+    libxcb-randr0-dev \
+    libxcb-render0-dev \
+    libxcb-render-util0-dev \
+    libxcb-res0-dev \
+    libxcb-shape0-dev \
+    libxcb-shm0-dev \
+    libxcb-sync-dev \
+    libxcb-xfixes0-dev \
+    libxcb-xinput-dev \
+    libxdmcp-dev \
+    libxext-dev \
+    libxft-dev \
+    libxkbcommon-dev \
+    libxml2-dev \
+    libxrender-dev \
+    lto-disabled-list \
+    m4 \
+    meson \
+    native-architecture \
+    ninja-build \
+    pango1.0-tools \
+    patch \
+    pkgconf \
+    pkgconf-bin \
+    po-debconf \
+    python3-packaging \
+    scdoc \
+    uuid-dev \
+    wayland-protocols \
+    x11proto-dev \
+    xorg-sgml-doctools \
+    xtrans-dev \
+    xwayland \
+    xz-utils \
+    zlib1g-dev
+
+RUN \
+  echo "**** build wlroots 0.19.3 ****" && \
+  git clone https://gitlab.freedesktop.org/wlroots/wlroots.git /tmp/wlroots && \
+  cd /tmp/wlroots && \
+  git checkout 0.19.3 && \
+  meson setup build --prefix=/usr --libdir=lib/x86_64-linux-gnu -Dxwayland=enabled && \
+  ninja -C build && \
+  ninja -C build install
+
+RUN \
+  echo "**** build labwc 0.9.7 ****" && \
+  git clone https://github.com/labwc/labwc.git /tmp/labwc && \
+  cd /tmp/labwc && \
+  git checkout 0.9.7 && \
+  meson setup build --prefix=/usr --libdir=lib/x86_64-linux-gnu -Dxwayland=enabled -Dnls=enabled && \
+  ninja -C build && \
+  ninja -C build install
 
 # Runtime stage
 FROM ghcr.io/linuxserver/baseimage-ubuntu:resolute
@@ -243,6 +423,7 @@ RUN \
     xsettingsd \
     xterm \
     xutils \
+    xwayland \
     xvfb \
     zlib1g \
     zstd && \
@@ -251,7 +432,7 @@ RUN \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/a49d310a5f613c4750195bc1fdbe1296afaebc34.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/96e1abbf9ba0e44a8dabbc425fcb8312792fe303.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
@@ -346,6 +527,8 @@ COPY --from=frontend /buildout /usr/share/selkies
 COPY --from=xvfb / /
 COPY --from=wtype /usr/bin/wtype /usr/bin/wtype
 COPY --from=selkies-desktop /usr/bin/selkies-desktop /usr/bin/selkies-desktop
+COPY --from=labwc-builder /usr/bin/labwc /usr/bin/labwc
+COPY --from=labwc-builder /usr/lib/x86_64-linux-gnu/libwlroots-0.19.so* /usr/lib/x86_64-linux-gnu/
 
 # ports and volumes
 EXPOSE 3000 3001
