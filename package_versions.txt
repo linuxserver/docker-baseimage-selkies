@@ -873,7 +873,7 @@ libpcre2-8-0                                                                  10
 libperl5.38t64                                                                5.38.2-3.2ubuntu0.2                    deb                         
 libpipeline1                                                                  1.5.7-2                                deb                         
 libpixman-1-0                                                                 0.42.2-1build1                         deb                         
-libpng16-16t64                                                                1.6.43-5ubuntu0.5                      deb                         
+libpng16-16t64                                                                1.6.43-5ubuntu0.6                      deb                         
 libpolkit-agent-1-0                                                           124-2ubuntu1.24.04.3                   deb                         
 libpolkit-gobject-1-0                                                         124-2ubuntu1.24.04.3                   deb                         
 libproc2-0                                                                    2:4.0.4-4ubuntu3.2                     deb                         
