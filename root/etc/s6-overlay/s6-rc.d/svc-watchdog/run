@@ -5,7 +5,13 @@ if [[ ${RESTART_APP,,} != "true" ]]; then
 fi
 
 # monitor loop for autostart
-AUTOSTART_CMD="sh $HOME/.config/openbox/autostart"
+if [[ "${PIXELFLUX_WAYLAND}" == "true" ]]; then
+  AUTOSTART_CMD="sh $HOME/.config/labwc/autostart"
+  WAYLAND_DISPLAY=wayland-0
+  DISPLAY=:0
+else
+  AUTOSTART_CMD="sh $HOME/.config/openbox/autostart"
+fi
 while true; do
   if pgrep -o -u abc -f "$AUTOSTART_CMD" > /dev/null; then
     echo "SVC Watchdog: Initial process detected. Starting active monitoring."
