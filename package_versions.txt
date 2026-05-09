@@ -1028,7 +1028,7 @@ libz3-4                                                                       4.
 libzstd1                                                                      1.5.7+dfsg-1                           deb                         
 libzvbi-common                                                                0.2.44-1                               deb                         
 libzvbi0t64                                                                   0.2.44-1                               deb                         
-linux-libc-dev                                                                6.12.85-1                              deb                         
+linux-libc-dev                                                                6.12.86-1                              deb                         
 linux-sysctl-defaults                                                         4.12.1                                 deb                         
 locales                                                                       2.41-12+deb13u2                        deb                         
 locales-all                                                                   2.41-12+deb13u2                        deb                         
@@ -1076,7 +1076,7 @@ platformdirs                                                                  4.
 poppler-data                                                                  0.4.12-1                               deb                         
 procps                                                                        2:4.0.4-9                              deb                         
 prometheus-client                                                             0.25.0                                 python                      
-propcache                                                                     0.4.1                                  python                      
+propcache                                                                     0.5.2                                  python                      
 psmisc                                                                        23.7-2                                 deb                         
 psutil                                                                        7.2.2                                  python                      
 publicsuffix                                                                  20250328.1952-0.1                      deb                         
