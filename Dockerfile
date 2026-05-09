@@ -121,6 +121,7 @@ RUN \
     gir1.2-rsvg-2.0 \
     girepository-tools \
     git \
+    glslang-tools \
     hwdata \
     icu-devtools \
     intltool-debian \
