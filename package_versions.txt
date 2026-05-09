@@ -1064,7 +1064,7 @@ perl-modules-5.40                                                             5.
 pillow                                                                        12.2.0                                 python                      
 pinentry-curses                                                               1.3.2-4                                deb                         
 pip                                                                           26.0.1                                 python                      
-pixelflux                                                                     1.6.2                                  python                      
+pixelflux                                                                     1.6.3                                  python                      
 plasma-version                                                                6.6.1                                  deb                         
 platformdirs                                                                  4.2.2                                  python                      
 platformdirs                                                                  4.4.0                                  python                      
