@@ -1072,7 +1072,7 @@ polkitd                                                                       12
 poppler-data                                                                  0.4.12-1                               deb                         
 procps                                                                        2:4.0.4-9+b2                           deb                         
 prometheus-client                                                             0.25.0                                 python                      
-propcache                                                                     0.4.1                                  python                      
+propcache                                                                     0.5.2                                  python                      
 psmisc                                                                        23.7-2                                 deb                         
 psutil                                                                        7.2.2                                  python                      
 pulseaudio                                                                    17.0+dfsg1-2.1+b1                      deb                         
