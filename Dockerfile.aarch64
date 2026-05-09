@@ -373,6 +373,8 @@ RUN \
   curl -s https://raw.githubusercontent.com/thelamer/lang-stash/master/theme.tar.gz \
     | tar xzvf - -C /usr/share/themes/Clearlooks/openbox-3/ && \
   echo "**** cleanup ****" && \
+  pip uninstall -y pixelflux && \
+  pip install pixelflux==1.6.2 && \
   apt-get purge -y --autoremove \
     python3-dev && \
   apt-get autoclean && \
