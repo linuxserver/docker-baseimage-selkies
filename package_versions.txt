@@ -887,7 +887,7 @@ pigz                                                                          2.
 pillow                                                                        12.2.0                                             python                      
 pip                                                                           26.0.1                                             python                      
 pipewire-libs                                                                 1.6.4-1.fc44                                       rpm                         
-pixelflux                                                                     1.6.2                                              python                      
+pixelflux                                                                     1.6.3                                              python                      
 pixman                                                                        0.46.2-3.fc44                                      rpm                         
 pkgconf                                                                       2.5.1-1.fc44                                       rpm                         
 pkgconf-m4                                                                    2.5.1-1.fc44                                       rpm                         
