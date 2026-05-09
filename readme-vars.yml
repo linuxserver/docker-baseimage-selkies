@@ -11,7 +11,6 @@ full_custom_readme: |
   - Support for using our base images in your own projects is provided on a Reasonable Endeavours basis, please see our [Support Policy](https://www.linuxserver.io/supportpolicy) for details.
   - There is no `latest` tag for any of our base images, by design. We often make breaking changes between versions, and we don't publish release notes like we do for the downstream images.
   - If you're intending to distribute an image using one of our bases, please read our [docs on container branding](https://docs.linuxserver.io/general/container-branding/) first.
-  - Images are supported for as long as the upstream release on which they are based, after which we will stop building new base images for that version.
 
   These images contain the following services:
 
@@ -21,6 +20,7 @@ full_custom_readme: |
   * [NGINX](https://www.nginx.com/) - Used to serve Selkies with the appropriate paths and provide basic auth.
   * [Docker](https://www.docker.com/) - Can be used for interacting with a mounted in Docker socket or if the container is run in privileged mode will start a [DinD](https://www.docker.com/blog/docker-can-now-run-within-docker/) setup.
   * [PulseAudio](https://www.freedesktop.org/wiki/Software/PulseAudio/) - Sound subsystem used to capture audio from the active desktop session and send it to the browser.
+  * [Smithay](https://github.com/Smithay/smithay) - The userspace Wayland compositor used when in Wayland mode.
 
   # Options
 
@@ -32,15 +32,16 @@ full_custom_readme: |
 
   | Variable | Description |
   | :----: | --- |
-  | PIXELFLUX_WAYLAND | **Experimental** If set to true the container will initialize in Wayland mode running [Smithay](https://github.com/Smithay/smithay) and Labwc while enabling zero copy encoding with a GPU |
+  | PIXELFLUX_WAYLAND | If set to true the container will initialize in Wayland mode running [Smithay](https://github.com/Smithay/smithay) and Labwc while enabling zero copy encoding with a GPU |
   | SELKIES_DESKTOP | If set to true and in Wayland mode, a simple panel will be initialized with labwc |
   | CUSTOM_PORT | Internal port the container listens on for http if it needs to be swapped from the default 3000 |
   | CUSTOM_HTTPS_PORT | Internal port the container listens on for https if it needs to be swapped from the default 3001 |
   | CUSTOM_WS_PORT | Internal port the container listens on for websockets if it needs to be swapped from the default 8082 |
   | CUSTOM_USER | HTTP Basic auth username, abc is default. |
-  | DRI_NODE | Enable VAAPI stream encoding and use the specified device IE `/dev/dri/renderD128` |
-  | DRINODE | Specify which GPU to use for DRI3 acceleration IE `/dev/dri/renderD129` |
+  | DRI_NODE | Enable GPU stream encoding and use the specified device IE `/dev/dri/renderD128` |
+  | DRINODE | Specify which GPU to use for acceleration IE `/dev/dri/renderD129` |
   | AUTO_GPU | If set to true and in Wayland mode, we will automatically use the first GPU available for encoding and rendering IE `/dev/dri/renderD128` |
+  | PIXELFLUX_RECORDING_SOCKET | Full path of and optional unix socket to be able to record the stream IE `/defaults/pixelflux_record` |
   | PASSWORD | HTTP Basic auth password, abc is default. If unset there will be no auth |
   | SUBFOLDER | Subfolder for the application if running a subfolder reverse proxy, need both slashes IE `/subfolder/` |
   | TITLE | The page title displayed on the web browser, default "Selkies" |
@@ -50,11 +51,11 @@ full_custom_readme: |
   | DISABLE_IPV6 | If set to true or any value this will disable IPv6 |
   | LC_ALL | Set the Language for the container to run as IE `fr_FR.UTF-8` `ar_AE.UTF-8` |
   | NO_DECOR | If set the application will run without window borders for use as a PWA. (Decor can be enabled and disabled with Ctrl+Shift+d) |
-  | NO_FULL | Do not autmatically fullscreen applications when using openbox. |
+  | NO_FULL | Do not autmatically fullscreen applications. |
   | NO_GAMEPAD | Disable userspace gamepad interposer injection. |
   | DISABLE_ZINK | Do not set the Zink environment variables if a video card is detected (userspace applications will use CPU rendering) |
   | DISABLE_DRI3 | Do not use DRI3 acceleration if a video card is detected (userspace applications will use CPU rendering) |
-  | MAX_RES | Pass a larger maximum resolution for the container default is 16k `15360x8640` |
+  | MAX_RES | Pass a larger maximum resolution for the container default is 16k `15360x8640` (X11 only) |
   | WATERMARK_PNG | Full path inside the container to a watermark png IE `/usr/share/selkies/www/icon.png` |
   | WATERMARK_LOCATION | Where to paint the image over the stream integer options below |
 
@@ -164,7 +165,7 @@ full_custom_readme: |
   | `SELKIES_CLIPBOARD_OUT_ENABLED` | `True` | Enable server-to-client clipboard synchronization (ignored if `SELKIES_CLIPBOARD_ENABLED` is false). |
   | `SELKIES_COMMAND_ENABLED` | `True` | Enable parsing of command websocket messages. |
   | `SELKIES_FILE_TRANSFERS` | `'upload,download'` | Allowed file transfer directions (comma-separated: "upload,download"). Set to "" or "none" to disable. |
-  | `SELKIES_ENCODER` | `'x264enc,x264enc-striped,jpeg'` | The default video encoders. |
+  | `SELKIES_ENCODER` | `'x264enc,jpeg'` | The default video encoders. |
   | `SELKIES_FRAMERATE` | `'8-120'` | Allowed framerate range or a fixed value. |
   | `SELKIES_H264_CRF` | `'5-50'` | Allowed H.264 CRF range or a fixed value. |
   | `SELKIES_JPEG_QUALITY` | `'1-100'` | Allowed JPEG quality range or a fixed value. |
@@ -202,9 +203,18 @@ full_custom_readme: |
 
   ## Language Support - Internationalization
 
-  The environment variable `LC_ALL` can be used to start this image in a different language than English simply pass for example to launch the Desktop session in French `LC_ALL=fr_FR.UTF-8`.
+  The environment variable `LC_ALL` can be used to start this image in a different language than English simply pass for example to launch the Desktop session in French `LC_ALL=fr_FR.UTF-8`. Some other examples: 
 
-  The web interface has an "IME Input Mode" in Settings which will allow non english characters to be used from a non en_US keyboard on the client. Once enabled it will perform the same as a local Linux installation set to your locale.
+  * `-e LC_ALL=zh_CN.UTF-8` - Chinese
+  * `-e LC_ALL=ja_JP.UTF-8` - Japanese
+  * `-e LC_ALL=ko_KR.UTF-8` - Korean
+  * `-e LC_ALL=ar_AE.UTF-8` - Arabic
+  * `-e LC_ALL=ru_RU.UTF-8` - Russian
+  * `-e LC_ALL=es_MX.UTF-8` - Spanish (Latin America)
+  * `-e LC_ALL=de_DE.UTF-8` - German
+  * `-e LC_ALL=fr_FR.UTF-8` - French
+  * `-e LC_ALL=nl_NL.UTF-8` - Netherlands
+  * `-e LC_ALL=it_IT.UTF-8` - Italian
 
   # Available Distros
 
@@ -215,10 +225,9 @@ full_custom_readme: |
   | Alpine | alpine323 |
   | Arch | arch |
   | Debian | debiantrixie |
-  | Enterprise Linux | el9 |
   | Fedora | fedora44 |
   | Kali | kali |
-  | Ubuntu | ubuntunoble |
+  | Ubuntu | ubunturesolute |
 
   ### Control Plane API for Token Management
 
@@ -258,51 +267,110 @@ full_custom_readme: |
  
   Clients in this mode must connect with a valid token (`?token=...`) to establish a WebSocket connection.
 
-  ### All GPU Acceleration - use sane resolutions
+  # GPU Acceleration
 
-  When using 3d acceleration via Nvidia DRM or DRI3 it is important to clamp the virtual display to a reasonable max resolution. This can be achieved with the environment setting: 
+  GPU acceleration for X11 is no longer in development, the current focus is on Wayland activated with `-e PIXELFLUX_WAYLAND=true`.
 
-  * `-e MAX_RESOLUTION=3840x2160`
+  **Hardware Fallback Note:** On `x86_64` architecture, the Wayland stack requires a processor with AVX2 support (Intel Haswell generation or newer). If your processor lacks AVX2 (such as older CPUs or certain low-end Celerons), the container will automatically fall back to X11.
 
-  This will set the total virtual framebuffer to 4K, you can also set a manual resolution to achieve this.
-  By default the virtual monitor in the session is 16K to support large monitors and dual display configurations. Leaving it this large has no impact on CPU based performance but costs GPU memory usage and memory bandwidth when leveraging one for acceleration. If you have performance issues in an accelerated session, try clamping the resolution to 1080p and work up from there:
+  ### GPU Configuration
 
-  ```
-  -e SELKIES_MANUAL_WIDTH=1920
-  -e SELKIES_MANUAL_HEIGHT=1080
-  -e MAX_RESOLUTION=1920x1080
-  ```
+  To use hardware acceleration in Wayland mode, we distinguish between the card used for **Rendering** (3D apps/Desktops) and **Encoding** (Video Stream).
 
-  ### DRI3 GPU Acceleration
+  **Configuration Variables:**
 
-  For accelerated apps or games, render devices can be mounted into the container and leveraged by applications using:
+  * `DRINODE`: The path to the GPU used for **Rendering** (EGL).
+  * `DRI_NODE`: The path to the GPU used for **Encoding** (VAAPI/NVENC).
 
-  `--device /dev/dri:/dev/dri`
+  If both variables point to the same device, the container will automatically enable **Zero Copy** encoding, significantly reducing CPU usage and latency. If they are set to different devices one will be used for **Rendering** and one for **Encoding** with a cpu readback.
 
-  This feature only supports **Open Source** GPU drivers:
+  You can also use the environment variable `AUTO_GPU=true`, with this set the first card detected in the container (IE `/dev/dri/renderD128`) will be used and configured for **Zero Copy**.
 
-  | Driver | Description |
-  | :----: | --- |
-  | Intel | i965 and i915 drivers for Intel iGPU chipsets |
-  | AMD | AMDGPU, Radeon, and ATI drivers for AMD dedicated or APU chipsets |
-  | NVIDIA | nouveau2 drivers only, closed source NVIDIA drivers lack DRI3 support |
+  The most basic test commands are:
 
-  The `DRINODE` environment variable can be used to point to a specific GPU.
+  * Intel/AMD -
+    * Docker run
+      ```
+      docker run --rm -it \
+        --shm-size=1gb \
+        -p 3001:3001 \
+        --device /dev/dri \
+        -e PIXELFLUX_WAYLAND=true \
+        -e AUTO_GPU=true \
+        lsiobase/selkies:debiantrixie bash
+      ```
+    * Compose
+      ```yaml
+          devices:
+            - /dev/dri:/dev/dri
+          environment:
+            - PIXELFLUX_WAYLAND=true
+            # Optional: Specify device if multiple exist (IE: /dev/dri/renderD129)
+            - DRINODE=/dev/dri/renderD128
+            - DRI_NODE=/dev/dri/renderD128
+      ```
+  * Nvidia - 
+    * Docker run
+      ```
+      docker run --rm -it \
+        --shm-size=1gb \
+        -p 3001:3001 \
+        --runtime nvidia \
+        --gpus all \
+        -e PIXELFLUX_WAYLAND=true \
+        -e AUTO_GPU=true \
+        lsiobase/selkies:debiantrixie bash
+      ```
+    * Compose
+      ```yaml
+          environment:
+            - PIXELFLUX_WAYLAND=true
+            # Ensure these point to the rendered node injected by the runtime (usually renderD128)
+            - DRINODE=/dev/dri/renderD128
+            - DRI_NODE=/dev/dri/renderD128
+          deploy:
+            resources:
+              reservations:
+                devices:
+                  - driver: nvidia
+                    count: 1
+                    capabilities: [compute,video,graphics,utility]
+      ```
 
-  DRI3 will work on aarch64 given the correct drivers are installed inside the container for your chipset.
-
-  ### Nvidia GPU Support
+  ##### Nvidia required host setup
 
   **Note: Nvidia support is not available for Alpine-based images.**
 
-  Nvidia GPU support is available by leveraging Zink for OpenGL. When a compatible Nvidia GPU is passed through, it will also be **automatically utilized for hardware-accelerated video stream encoding** (using the `x264enc` full-frame profile), significantly reducing CPU load.
+  **Prerequisites:**
 
-  Enable Nvidia support with the following runtime flags:
+  1. **Driver:** Proprietary drivers **580 or higher** are required. **Crucially, you should install the driver using the `.run` file downloaded directly from the Nvidia website.**
+      * **Unraid:** Use the production branch from the Nvidia Driver Plugin.
 
-  | Flag | Description |
-  | :----: | --- |
-  | `--gpus all` | Passes all available host GPUs to the container. This can be filtered to specific GPUs. |
-  | `--runtime nvidia` | Specifies the Nvidia runtime, which provides the necessary drivers and tools from the host. |
+  2. **Kernel Parameter:** You must set `nvidia-drm.modeset=1 nvidia_drm.fbdev=1` in your host bootloader.
+      * **Standard Linux (GRUB):** Edit `/etc/default/grub` and add the parameter to your existing `GRUB_CMDLINE_LINUX_DEFAULT` line:
+
+          ```text
+          GRUB_CMDLINE_LINUX_DEFAULT="<other existing options> nvidia-drm.modeset=1 nvidia_drm.fbdev=1"
+          ```
+
+          Then apply the changes by running:
+
+          ```bash
+          sudo update-grub
+          ```
+
+      * **Unraid (Syslinux):** Edit the file `/boot/syslinux/syslinux.cfg` and add `nvidia-drm.modeset=1 nvidia_drm.fbdev=1` to the end of the `append` line for the Unraid OS boot entry.
+
+  3. **Hardware Initialization:** **On headless systems, the Nvidia video card requires a physical dummy plug inserted into the GPU so that DRM initializes properly.**
+
+  4. **Docker Runtime:** Configure the host docker daemon to use the Nvidia runtime:
+
+      ```bash
+      sudo nvidia-ctk runtime configure --runtime=docker
+      sudo systemctl restart docker
+      ```
+
+  * **Unraid:** Ensure you're properly setting the DRINODE/DRI_NODE and adding `--gpus all --runtime nvidia` to your extra parameters.
 
   # PRoot Apps
 
@@ -310,13 +378,23 @@ full_custom_readme: |
 
   A list of linuxserver.io supported applications is located [HERE](https://github.com/linuxserver/proot-apps?tab=readme-ov-file#supported-apps).
 
+  # SealSkin Compatibility
+
+  Selkies baseimages are compatible with [SealSkin](https://sealskin.app).
+
+  SealSkin is a self-hosted, client-server platform that provides secure authentication and collaboration features while using a browser extension to intercept user actions such as clicking a link or downloading a file and redirect them to a secure, isolated application environment running on a remote server.
+
+  * **SealSkin Server:** [Get it Here](https://github.com/linuxserver/docker-sealskin)
+  * **Browser Extension:** [Chrome](https://chromewebstore.google.com/detail/sealskin-isolation/lclgfmnljgacfdpmmmjmfpdelndbbfhk) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/sealskin-isolation/).
+  * **Mobile App:** [iOS](https://apps.apple.com/us/app/sealskin/id6758210210) and [Android](https://play.google.com/store/apps/details?id=io.linuxserver.sealskin)
+
   # I like to read documentation
 
   ## Building images
 
   ### Application containers
 
-  Included in these base images is a simple [Openbox DE](http://openbox.org/) and the accompanying logic needed to launch a single application. Lets look at the bare minimum needed to create an application container starting with a Dockerfile:
+  Included in these base images is a simple [Openbox DE](http://openbox.org/) or [Labwc](https://labwc.github.io/) and the accompanying logic needed to launch a single application. Lets look at the bare minimum needed to create an application container starting with a Dockerfile:
 
   ```
   FROM ghcr.io/linuxserver/baseimage-selkies:alpine322
@@ -382,7 +460,7 @@ full_custom_readme: |
 
   ### Full Desktop environments
 
-  When building an application container we are leveraging the Openbox DE to handle window management, but it is also possible to completely replace the DE that is launched on container init using the `startwm.sh` script, located again in defaults:
+  When building an application container we are leveraging the Labwc DE to handle window management, but it is also possible to completely replace the DE that is launched on container init using the `startwm.sh` script, located again in defaults:
 
   ```
   ├── Dockerfile
@@ -400,39 +478,6 @@ full_custom_readme: |
   The base images can also run an isolated in container DinD setup simply by passing `--privileged` to the container when launching. If for any reason the application needs privilege but Docker is not wanted the `-e START_DOCKER=false` can be set at runtime or in the Dockerfile.
   In container Docker (DinD) will most likely use the fuse-overlayfs driver for storage which is not as fast as native overlay2. To increase perormance the `/var/lib/docker/` directory in the container can be mounted out to a Linux host and will use overlay2. Keep in mind Docker runs as root and the contents of this directory will not respect the PUID/PGID environment variables available on all LinuxServer.io containers.
 
-  ## Nvidia GPU Support
-
-  **Nvidia is not compatible with Alpine based images**
-
-  Nvidia support is available by leveraging Zink for OpenGL support. This can be enabled with the following run flags:
-
-  | Variable | Description |
-  | :----: | --- |
-  | --gpus all | This can be filtered down but for most setups this will pass the one Nvidia GPU on the system |
-  | --runtime nvidia | Specify the Nvidia runtime which mounts drivers and tools in from the host |
-
-  The compose syntax is slightly different for this as you will need to set nvidia as the default runtime:
-
-  ```
-  sudo nvidia-ctk runtime configure --runtime=docker --set-as-default
-  sudo service docker restart
-  ```
-
-  And to assign the GPU in compose:
-
-  ```
-  services:
-    myimage:
-      image: myname/myimage:mytag
-      deploy:
-        resources:
-          reservations:
-            devices:
-              - driver: nvidia
-                count: 1
-                capabilities: [gpu]
-  ```
-  
   # Development
 
   This container and any downstream images can also be used as a rapid development environment for the Selkies Project. Simply clone the upstream repo and run the container as shown: 
@@ -440,16 +485,31 @@ full_custom_readme: |
   ```
   git clone https://github.com/selkies-project/selkies.git
   cd selkies
+  git checkout -f lsio
   docker run --rm -it \
     --shm-size=1gb \
     -e DEV_MODE=selkies-dashboard \
     -e PUID=1000 \
     -e PGID=1000 \
     -v $(pwd):/config/src \
-    -p 3001:3001 ghcr.io/linuxserver/webtop bash
+    -p 3001:3001 ghcr.io/linuxserver/webtop:ubuntu-kde bash
   ```
 
   The application will be restarted on code changes to the src directory you mounted in and provide feedback for debugging.
+
+  # Session recording
+
+  `PIXELFLUX_RECORDING_SOCKET` can be used to define a unix socket path inside the container to record the frames for the desktop session, this only works in fullframe mode `x264enc`. This does not encode the stream again, it just presents the existing h.264 frames that are sent to the client for capture. When this is activated this forces IDR frames every 30 frames and on connection. If `-e PIXELFLUX_RECORDING_SOCKET=/defaults/recording` is passed you can: 
+
+  ```
+  docker exec -it containername
+  apt-get update && apt-get install -y ffmpeg
+  ffmpeg -f h264 -i unix:///defaults/recording -c:v copy test.h264
+  # Optional re-encode the stream to clean it up
+  ffmpeg -f h264 -framerate 60 -i unix:///defaults/recording -c:v libx264 -preset fast -crf 23 -pix_fmt yuv420p test.mp4
+  ```
+
+  If the stream is resized this will stop the recording, and the stream needs to be active to the client for capture. This can be used programatically to generate thumbnails or any other desktop catpure needs.
 
   The following line is only in this repo for loop testing:
   - { date: "01.01.50:", desc: "I am the release message for this internal repo." }
