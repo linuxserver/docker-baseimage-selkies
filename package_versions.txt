@@ -46,7 +46,7 @@ cpio                                                                          2.
 cppdap                                                                        1.58.0-3                                alpm                           
 cryptography                                                                  48.0.0                                  python                         
 cryptsetup                                                                    2.8.6-1                                 alpm                           
-curl                                                                          8.20.0-5                                alpm                           
+curl                                                                          8.20.0-6                                alpm                           
 dario.cat/mergo                                                               v1.0.2                                  go-module                      
 dav1d                                                                         1.5.3-1                                 alpm                           
 db5.3                                                                         5.3.28-7                                alpm                           
@@ -67,7 +67,7 @@ dunst                                                                         1.
 e2fsprogs                                                                     1.47.4-1                                alpm                           
 elfutils                                                                      0.195-1                                 alpm                           
 evdev                                                                         1.9.3                                   python                         
-expat                                                                         2.8.0-1                                 alpm                           
+expat                                                                         2.8.1-1                                 alpm                           
 fakeroot                                                                      1.37.2-1                                alpm                           
 fcft                                                                          3.3.3-1                                 alpm                           
 fftw                                                                          3.3.11-1                                alpm                           
@@ -426,7 +426,7 @@ libldap                                                                       2.
 libliftoff                                                                    0.5.0-1                                 alpm                           
 liblsan                                                                       16.1.1+r12+g301eb08fa2c5-1              alpm                           
 libmakepkg-dropins                                                            20-1                                    alpm                           
-libmd                                                                         1.1.0-2                                 alpm                           
+libmd                                                                         1.2.0-1                                 alpm                           
 libmnl                                                                        1.0.5-2                                 alpm                           
 libmpc                                                                        1.4.1-1                                 alpm                           
 libnetfilter_conntrack                                                        1.1.1-1                                 alpm                           
@@ -526,7 +526,7 @@ msgpack                                                                       1.
 mtdev                                                                         1.1.7-1                                 alpm                           
 multidict                                                                     6.7.1                                   python                         
 ncurses                                                                       6.6-2                                   alpm                           
-nettle                                                                        3.10.2-1                                alpm                           
+nettle                                                                        4.0-1                                   alpm                           
 nftables                                                                      0.1                                     python                         
 nftables                                                                      1:1.1.6-3                               alpm                           
 nginx                                                                         1.30.0-2                                alpm                           
