@@ -577,7 +577,7 @@ harfbuzz                                                                      12
 heck                                                                          0.4.1                                   rust-crate                   
 hexdump                                                                       2.41.4-r0                               apk                          
 hwdata-pci                                                                    0.401-r0                                apk                          
-idna                                                                          3.13                                    python                       
+idna                                                                          3.14                                    python                       
 ifaddr                                                                        0.2.0                                   python                       
 imlib2                                                                        1.12.4-r1                               apk                          
 importlib-metadata                                                            8.7.1                                   python                       
