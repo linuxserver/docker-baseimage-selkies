@@ -606,7 +606,7 @@ gui-arm64                                                                     UN
 gzip                                                                          1.13-1                                 deb                         
 hicolor-icon-theme                                                            0.18-2                                 deb                         
 hostname                                                                      3.25                                   deb                         
-idna                                                                          3.13                                   python                      
+idna                                                                          3.14                                   python                      
 ifaddr                                                                        0.2.0                                  python                      
 importlib-metadata                                                            8.7.1                                  python                      
 init-system-helpers                                                           1.69~deb13u1                           deb                         
@@ -801,7 +801,7 @@ libkrb5-3                                                                     1.
 libkrb5support0                                                               1.21.3-5                               deb                         
 libksba8                                                                      1.6.7-2+b1                             deb                         
 liblastlog2-2                                                                 2.41-5                                 deb                         
-liblcms2-2                                                                    2.16-2                                 deb                         
+liblcms2-2                                                                    2.16-2+deb13u2                         deb                         
 libldap-common                                                                2.6.10+dfsg-1                          deb                         
 libldap2                                                                      2.6.10+dfsg-1                          deb                         
 liblerc4                                                                      4.0.0+ds-5                             deb                         
@@ -867,7 +867,7 @@ libpcre2-8-0                                                                  10
 libperl5.40                                                                   5.40.1-6                               deb                         
 libpipeline1                                                                  1.5.8-1                                deb                         
 libpixman-1-0                                                                 0.44.0-3                               deb                         
-libpng16-16t64                                                                1.6.48-1+deb13u4                       deb                         
+libpng16-16t64                                                                1.6.48-1+deb13u5                       deb                         
 libproc2-0                                                                    2:4.0.4-9                              deb                         
 libpsl5t64                                                                    0.21.2-1.1+b1                          deb                         
 libpulse0                                                                     17.0+dfsg1-2+b1                        deb                         
