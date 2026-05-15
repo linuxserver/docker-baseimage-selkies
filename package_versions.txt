@@ -96,7 +96,7 @@ elfutils-libelf                                                               0.
 elfutils-libs                                                                 0.195-1.fc44                                       rpm                         
 emacs-filesystem                                                              1:30.2-2.fc44                                      rpm                         
 evdev                                                                         1.9.3                                              python                      
-expat                                                                         2.7.3-2.fc44                                       rpm                         
+expat                                                                         2.8.1-1.fc44                                       rpm                         
 fcft                                                                          3.3.3-2.fc44                                       rpm                         
 fdk-aac                                                                       2.0.3-6.fc44                                       rpm                         
 fedora-gpg-keys                                                               44-1                                               rpm                         
@@ -421,11 +421,11 @@ github.com/xrash/smetrics                                                     v0
 github.com/zmap/zcrypto                                                       v0.0.0-20230310154051-c8b263fd8300                 go-module                   
 github.com/zmap/zlint/v3                                                      v3.5.0                                             go-module                   
 glib2                                                                         2.88.0-1.fc44                                      rpm                         
-glibc                                                                         2.43-4.fc44                                        rpm                         
-glibc-all-langpacks                                                           2.43-4.fc44                                        rpm                         
-glibc-common                                                                  2.43-4.fc44                                        rpm                         
-glibc-locale-source                                                           2.43-4.fc44                                        rpm                         
-glibc-minimal-langpack                                                        2.43-4.fc44                                        rpm                         
+glibc                                                                         2.43-5.fc44                                        rpm                         
+glibc-all-langpacks                                                           2.43-5.fc44                                        rpm                         
+glibc-common                                                                  2.43-5.fc44                                        rpm                         
+glibc-locale-source                                                           2.43-5.fc44                                        rpm                         
+glibc-minimal-langpack                                                        2.43-5.fc44                                        rpm                         
 glycin-libs                                                                   2.1.1-1.fc44                                       rpm                         
 glycin-loaders                                                                2.1.1-1.fc44                                       rpm                         
 gmp                                                                           1:6.3.0-5.fc44                                     rpm                         
@@ -549,7 +549,7 @@ hicolor-icon-theme                                                            0.
 highway                                                                       1.3.0-2.fc44                                       rpm                         
 hostname                                                                      3.25-4.fc44                                        rpm                         
 hwdata                                                                        0.407-1.fc44                                       rpm                         
-idna                                                                          3.14                                               python                      
+idna                                                                          3.15                                               python                      
 ifaddr                                                                        0.2.0                                              python                      
 ima-evm-utils-libs                                                            1.6.2-8.fc44                                       rpm                         
 imlib2                                                                        1.12.5-2.fc44                                      rpm                         
@@ -757,8 +757,8 @@ libxml2-devel                                                                 2.
 libxshmfence                                                                  1.3.2-8.fc44                                       rpm                         
 libyaml                                                                       0.2.5-18.fc44                                      rpm                         
 libzstd                                                                       1.5.7-5.fc44                                       rpm                         
-llvm-filesystem                                                               22.1.4-1.fc44                                      rpm                         
-llvm-libs                                                                     22.1.4-1.fc44                                      rpm                         
+llvm-filesystem                                                               22.1.5-1.fc44                                      rpm                         
+llvm-libs                                                                     22.1.5-1.fc44                                      rpm                         
 lm_sensors-libs                                                               3.6.0-24.fc44                                      rpm                         
 lua-libs                                                                      5.4.8-5.fc44                                       rpm                         
 lz4-libs                                                                      1.10.0-4.fc44                                      rpm                         
@@ -886,7 +886,7 @@ perl-vars                                                                     0:
 pigz                                                                          2.8-8.fc44                                         rpm                         
 pillow                                                                        12.2.0                                             python                      
 pip                                                                           26.0.1                                             python                      
-pipewire-libs                                                                 1.6.4-1.fc44                                       rpm                         
+pipewire-libs                                                                 1.6.5-1.fc44                                       rpm                         
 pixelflux                                                                     1.6.3                                              python                      
 pixman                                                                        0.46.2-3.fc44                                      rpm                         
 pkgconf                                                                       2.5.1-1.fc44                                       rpm                         
@@ -911,7 +911,7 @@ pulsectl                                                                      24
 pycparser                                                                     3.0                                                python                      
 pyee                                                                          13.0.1                                             python                      
 pylibsrtp                                                                     1.0.0                                              python                      
-pynput                                                                        1.8.1                                              python                      
+pynput                                                                        1.8.2                                              python                      
 pyopenssl                                                                     26.2.0                                             python                      
 python-pip-wheel                                                              26.0.1-2.fc44                                      rpm                         
 python-setuptools-wheel                                                       80.10.2-3.fc44                                     rpm                         
@@ -1014,7 +1014,7 @@ xcb-util-errors                                                               1.
 xcb-util-renderutil                                                           0.3.10-9.fc44                                      rpm                         
 xcb-util-wm                                                                   0.4.2-9.fc44                                       rpm                         
 xclip                                                                         0.13-26.git11cba61.fc44                            rpm                         
-xdg-desktop-portal                                                            1.21.1-1.fc44                                      rpm                         
+xdg-desktop-portal                                                            1.21.2-1.fc44                                      rpm                         
 xdg-desktop-portal-wlr                                                        0.8.2-1.fc44                                       rpm                         
 xdg-utils                                                                     1.2.1-5.fc44                                       rpm                         
 xdotool                                                                       1:3.20211022.1-10.fc44                             rpm                         
