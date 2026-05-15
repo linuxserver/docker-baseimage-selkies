@@ -46,7 +46,7 @@ cpio                                                                          2.
 cppdap                                                                        1.58.0-3                                alpm                           
 cryptography                                                                  48.0.0                                  python                         
 cryptsetup                                                                    2.8.6-1                                 alpm                           
-curl                                                                          8.20.0-6                                alpm                           
+curl                                                                          8.20.0-7                                alpm                           
 dario.cat/mergo                                                               v1.0.2                                  go-module                      
 dav1d                                                                         1.5.3-1                                 alpm                           
 db5.3                                                                         5.3.28-7                                alpm                           
@@ -421,7 +421,7 @@ libinput                                                                      1.
 libisl                                                                        0.27-1                                  alpm                           
 libjpeg-turbo                                                                 3.1.4.1-1                               alpm                           
 libjxl                                                                        0.11.2-2                                alpm                           
-libksba                                                                       1.6.8-1                                 alpm                           
+libksba                                                                       1.8.0-1                                 alpm                           
 libldap                                                                       2.6.13-1                                alpm                           
 libliftoff                                                                    0.5.0-1                                 alpm                           
 liblsan                                                                       16.1.1+r12+g301eb08fa2c5-1              alpm                           
@@ -465,7 +465,7 @@ libtirpc                                                                      1.
 libtool                                                                       2.6.0+r23+gb08cb0a0-1                   alpm                           
 libtsan                                                                       16.1.1+r12+g301eb08fa2c5-1              alpm                           
 libubsan                                                                      16.1.1+r12+g301eb08fa2c5-1              alpm                           
-libunistring                                                                  1.4.1-1                                 alpm                           
+libunistring                                                                  1.4.2-1                                 alpm                           
 libunwind                                                                     1.8.2-1                                 alpm                           
 libusb                                                                        1.0.29-1                                alpm                           
 libutempter                                                                   1.2.3-1                                 alpm                           
@@ -507,7 +507,7 @@ libxv                                                                         1.
 libxvmc                                                                       1.0.15-1                                alpm                           
 libxxf86vm                                                                    1.1.7-1                                 alpm                           
 linux-api-headers                                                             6.19-1                                  alpm                           
-linux-headers                                                                 7.0.7.arch1-1                           alpm                           
+linux-headers                                                                 7.0.7.arch2-1                           alpm                           
 llvm-libs                                                                     22.1.5-1                                alpm                           
 lm_sensors                                                                    1:3.6.2-1                               alpm                           
 lmdb                                                                          0.9.35-1                                alpm                           
