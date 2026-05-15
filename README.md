@@ -167,6 +167,7 @@ The server can be forced to use a single, fixed resolution for all connecting cl
 | `SELKIES_JPEG_QUALITY` | `'1-100'` | Allowed JPEG quality range or a fixed value. |
 | `SELKIES_H264_FULLCOLOR` | `False` | Enable H.264 full color range for pixelflux encoders. |
 | `SELKIES_H264_STREAMING_MODE` | `False` | Enable H.264 streaming mode for pixelflux encoders. |
+| `SELKIES_FORCE_ALIGNED_RESOLUTION` | `False` | Forces the display resolution to be a multiple of 16 pixels. |
 | `SELKIES_USE_CPU` | `False` | Force CPU-based encoding for pixelflux. |
 | `SELKIES_USE_PAINT_OVER_QUALITY` | `True` | Enable high-quality paint-over for static scenes. |
 | `SELKIES_PAINT_OVER_JPEG_QUALITY` | `'1-100'` | Allowed JPEG paint-over quality range or a fixed value. |
