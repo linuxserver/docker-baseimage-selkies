@@ -24,37 +24,89 @@ if [ ! -z ${DEV_MODE+x} ]; then
   pacman -Sy --noconfirm nodejs npm
   npm install -g nodemon
   rm -Rf $HOME/.npm
-  # Frontend setup
-  if [[ "${DEV_MODE}" == "core" ]]; then
-    # Core just runs from directory
-    cd $HOME/src/addons/selkies-web-core
-    s6-setuidgid abc npm install
-    s6-setuidgid abc npm run serve &
+  if [[ "${DEV_MODE}" == "pixelflux" ]]; then
+    # Dev deps
+    pacman -Sy --noconfirm \
+      rust \
+      clang \
+      cmake \
+      curl \
+      gcc \
+      git \
+      ffmpeg \
+      libdrm \
+      libev \
+      mesa \
+      libinput \
+      libjpeg-turbo \
+      pixman \
+      systemd-libs \
+      libva \
+      wayland \
+      libx11 \
+      x264 \
+      libxcomposite \
+      libxcursor \
+      libxext \
+      libxfixes \
+      libxkbcommon \
+      libyuv \
+      make \
+      nasm \
+      python \
+      python-pip \
+      python-setuptools \
+      python-setuptools-rust \
+      python-wheel
+    # Run backend watcher
+    chown -R abc:abc /lsiopy
+    cd /config/src
+    s6-setuidgid abc \
+      nodemon \
+      --watch . \
+      --ext py,cpp,h,c,rs,toml \
+      --ignore "pixelflux_wayland/target/" \
+      --ignore "build/" \
+      --ignore "*.egg-info/" \
+      --ignore "__pycache__/" \
+      --exec "pip uninstall -y pixelflux || true && pip install . --break-system-packages && (killall labwc || true) && (killall selkies-desktop || true) && cd /tmp && python3 -m selkies --addr='localhost' --mode='websockets' --debug='true'"
   else
-    # Build core
-    cd $HOME/src/addons/selkies-web-core
-    s6-setuidgid abc npm install
-    s6-setuidgid abc npm run build
-    s6-setuidgid abc cp dist/selkies-core.js ../${DEV_MODE}/src/
-    s6-setuidgid abc nodemon --watch selkies-core.js --exec "npm run build && cp dist/selkies-core.js ../${DEV_MODE}/src/" & 
-    # Copy touch gamepad
-    s6-setuidgid abc cp ../universal-touch-gamepad/universalTouchGamepad.js ../${DEV_MODE}/src/
-    s6-setuidgid abc nodemon --watch ../universal-touch-gamepad/universalTouchGamepad.js --exec "cp ../universal-touch-gamepad/universalTouchGamepad.js ../${DEV_MODE}/src/" &  
-    # Copy themes
-    s6-setuidgid abc cp -a nginx ../${DEV_MODE}/
-    # Run passed frontend
-    cd $HOME/src/addons/${DEV_MODE}
-    s6-setuidgid abc npm install
-    s6-setuidgid abc npm run serve &
+    # Frontend setup
+    if [[ "${DEV_MODE}" == "core" ]]; then
+      # Core just runs from directory
+      cd $HOME/src/addons/selkies-web-core
+      s6-setuidgid abc npm install
+      s6-setuidgid abc npm run serve &
+    else
+      # Build core
+      cd $HOME/src/addons/selkies-web-core
+      s6-setuidgid abc npm install
+      s6-setuidgid abc npm run build
+      s6-setuidgid abc cp dist/selkies-core.js ../${DEV_MODE}/src/
+      s6-setuidgid abc nodemon \
+        --watch . \
+        --ext js,html \
+        --ignore dist/ \
+        --ignore node_modules/ \
+        --exec "npm run build && cp dist/selkies-core.js ../${DEV_MODE}/src/" &
+      # Copy touch gamepad
+      s6-setuidgid abc cp ../universal-touch-gamepad/universalTouchGamepad.js ../${DEV_MODE}/src/
+      s6-setuidgid abc nodemon \
+        --watch ../universal-touch-gamepad/universalTouchGamepad.js \
+        --exec "cp ../universal-touch-gamepad/universalTouchGamepad.js ../${DEV_MODE}/src/" &
+      # Copy themes
+      s6-setuidgid abc cp -a nginx ../${DEV_MODE}/
+      # Run passed frontend
+      cd $HOME/src/addons/${DEV_MODE}
+      s6-setuidgid abc npm install
+      s6-setuidgid abc npm run serve &
+    fi
+    # Run backend
+    cd $HOME/src/src
+    s6-setuidgid abc \
+      nodemon -V --ext py --watch . --exec \
+        "killall labwc || true; killall selkies-desktop || true; python3 -m selkies --addr='localhost' --mode='websockets' --debug='true'"
   fi
-  # Run backend
-  cd $HOME/src/src
-  s6-setuidgid abc \
-    nodemon -V --ext py --exec \
-      "python3" -m selkies \
-      --addr="localhost" \
-      --mode="websockets" \
-      --debug="true"
 fi
 
 # Start Selkies
