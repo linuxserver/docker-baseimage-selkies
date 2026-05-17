@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f 988c15feeb30ea997d720dc832c5b5e621330109
+  git checkout -f 0d134b6e1ffe42a579bc66363b0e7159ab22aacc
 
 RUN \
   echo "**** build shared core library ****" && \
@@ -232,7 +232,7 @@ RUN \
   echo "**** install selkies ****" && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/988c15feeb30ea997d720dc832c5b5e621330109.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/0d134b6e1ffe42a579bc66363b0e7159ab22aacc.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
