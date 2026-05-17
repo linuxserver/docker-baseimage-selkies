@@ -494,6 +494,20 @@ docker run --rm -it \
 
 The application will be restarted on code changes to the src directory you mounted in and provide feedback for debugging.
 
+To run a pixelflux rapid development environment:
+
+```
+git clone https://github.com/linuxserver/pixelflux.git
+cd pixelflux
+docker run --rm -it \
+  --shm-size=1gb \
+  -e DEV_MODE=pixelflux \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -v $(pwd):/config/src \
+  -p 3001:3001 ghcr.io/linuxserver/webtop:ubuntu-kde bash
+```
+
 # Session recording
 
 `PIXELFLUX_RECORDING_SOCKET` can be used to define a unix socket path inside the container to record the frames for the desktop session, this only works in fullframe mode `x264enc`. This does not encode the stream again, it just presents the existing h.264 frames that are sent to the client for capture. When this is activated this forces IDR frames every 30 frames and on connection. If `-e PIXELFLUX_RECORDING_SOCKET=/defaults/recording` is passed you can: 

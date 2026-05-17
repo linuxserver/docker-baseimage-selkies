@@ -26,37 +26,95 @@ if [ ! -z ${DEV_MODE+x} ]; then
     nodejs
   npm install -g nodemon
   rm -Rf $HOME/.npm
-  # Frontend setup
-  if [[ "${DEV_MODE}" == "core" ]]; then
-    # Core just runs from directory
-    cd $HOME/src/addons/selkies-web-core
-    s6-setuidgid abc npm install
-    s6-setuidgid abc npm run serve &
+  if [[ "${DEV_MODE}" == "pixelflux" ]]; then
+    # Dev deps
+    apt-get install -y \
+      cargo \
+      clang \
+      cmake \
+      curl \
+      g++ \
+      gcc \
+      git \
+      libavcodec-dev \
+      libavdevice-dev \
+      libavformat-dev \
+      libavformat-dev \
+      libavutil-dev \
+      libdrm-dev \
+      libev-dev \
+      libgbm-dev \
+      libinput-dev \
+      libjpeg-dev \
+      libpixman-1-dev \
+      libsystemd-dev \
+      libva-dev \
+      libwayland-dev \
+      libx11-dev \
+      libx264-dev \
+      libxcomposite-dev \
+      libxcursor-dev \
+      libxext-dev \
+      libxfixes-dev \
+      libxkbcommon-dev \
+      libyuv-dev \
+      make \
+      nasm \
+      python3-dev \
+      python3-pip \
+      python3-setuptools \
+      python3-setuptools-rust \
+      python3-wheel \
+      rustc
+    # Run backend watcher
+    chown -R abc:abc /lsiopy
+    cd /config/src
+    s6-setuidgid abc \
+      nodemon -V \
+      --watch . \
+      --ext py,cpp,h,c,rs,toml \
+      --ignore "pixelflux_wayland/target/" \
+      --ignore "build/" \
+      --ignore "*.egg-info/" \
+      --ignore "__pycache__/" \
+      --exec "pip uninstall -y pixelflux || true && pip install . --break-system-packages && (killall labwc || true) && (killall selkies-desktop || true) && cd /tmp && python3 -m selkies --addr='localhost' --mode='websockets' --debug='true'"
   else
-    # Build core
-    cd $HOME/src/addons/selkies-web-core
-    s6-setuidgid abc npm install
-    s6-setuidgid abc npm run build
-    s6-setuidgid abc cp dist/selkies-core.js ../${DEV_MODE}/src/
-    s6-setuidgid abc nodemon --watch selkies-core.js --exec "npm run build && cp dist/selkies-core.js ../${DEV_MODE}/src/" & 
-    # Copy touch gamepad
-    s6-setuidgid abc cp ../universal-touch-gamepad/universalTouchGamepad.js ../${DEV_MODE}/src/
-    s6-setuidgid abc nodemon --watch ../universal-touch-gamepad/universalTouchGamepad.js --exec "cp ../universal-touch-gamepad/universalTouchGamepad.js ../${DEV_MODE}/src/" &  
-    # Copy themes
-    s6-setuidgid abc cp -a nginx ../${DEV_MODE}/
-    # Run passed frontend
-    cd $HOME/src/addons/${DEV_MODE}
-    s6-setuidgid abc npm install
-    s6-setuidgid abc npm run serve &
+    # Frontend setup
+    if [[ "${DEV_MODE}" == "core" ]]; then
+      # Core just runs from directory
+      cd $HOME/src/addons/selkies-web-core
+      s6-setuidgid abc npm install
+      s6-setuidgid abc npm run serve &
+    else
+      # Build core
+      cd $HOME/src/addons/selkies-web-core
+      s6-setuidgid abc npm install
+      s6-setuidgid abc npm run build
+      s6-setuidgid abc cp dist/selkies-core.js ../${DEV_MODE}/src/
+      s6-setuidgid abc nodemon \
+        --watch . \
+        --ext js,html \
+        --ignore dist/ \
+        --ignore node_modules/ \
+        --exec "npm run build && cp dist/selkies-core.js ../${DEV_MODE}/src/" &
+      # Copy touch gamepad
+      s6-setuidgid abc cp ../universal-touch-gamepad/universalTouchGamepad.js ../${DEV_MODE}/src/
+      s6-setuidgid abc nodemon \
+        --watch ../universal-touch-gamepad/universalTouchGamepad.js \
+        --exec "cp ../universal-touch-gamepad/universalTouchGamepad.js ../${DEV_MODE}/src/" &
+      # Copy themes
+      s6-setuidgid abc cp -a nginx ../${DEV_MODE}/
+      # Run passed frontend
+      cd $HOME/src/addons/${DEV_MODE}
+      s6-setuidgid abc npm install
+      s6-setuidgid abc npm run serve &
+    fi
+    # Run backend
+    cd $HOME/src/src
+    s6-setuidgid abc \
+      nodemon -V --ext py --watch . --exec \
+        "killall labwc || true; killall selkies-desktop || true; python3 -m selkies --addr='localhost' --mode='websockets' --debug='true'"
   fi
-  # Run backend
-  cd $HOME/src/src
-  s6-setuidgid abc \
-    nodemon -V --ext py --exec \
-      "python3" -m selkies \
-      --addr="localhost" \
-      --mode="websockets" \
-      --debug="true"
 fi
 
 # Start Selkies
