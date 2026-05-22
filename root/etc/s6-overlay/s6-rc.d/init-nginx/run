@@ -80,5 +80,5 @@ echo "{
       \"sizes\": \"180x180\"
     }
   ],
-  \"start_url\": \"/\"
+  \"start_url\": \"${SFOLDER}\"
 }" > /usr/share/selkies/web/manifest.json
