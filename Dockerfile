@@ -87,6 +87,63 @@ RUN \
     selkies-desktop \
     /usr/bin/selkies-desktop
 
+FROM ghcr.io/linuxserver/baseimage-arch:latest AS labwc-builder
+
+RUN \
+  echo "**** install labwc/wlroots build deps ****" && \
+  pacman -Sy --noconfirm \
+    base-devel \
+    cairo \
+    git \
+    glib2 \
+    glslang \
+    hwdata \
+    libdisplay-info \
+    libdrm \
+    libinput \
+    libliftoff \
+    librsvg \
+    libsfdo \
+    libx11 \
+    libxcb \
+    libxkbcommon \
+    libxml2 \
+    mesa \
+    meson \
+    ninja \
+    pango \
+    pixman \
+    pkgconf \
+    scdoc \
+    seatd \
+    systemd-libs \
+    vulkan-headers \
+    vulkan-icd-loader \
+    wayland \
+    wayland-protocols \
+    xcb-util-errors \
+    xcb-util-renderutil \
+    xcb-util-wm \
+    xorg-xwayland
+
+RUN \
+  echo "**** build wlroots 0.19.3 ****" && \
+  git clone https://gitlab.freedesktop.org/wlroots/wlroots.git /tmp/wlroots && \
+  cd /tmp/wlroots && \
+  git checkout 0.19.3 && \
+  meson setup build --prefix=/usr --libdir=lib -Dxwayland=enabled && \
+  ninja -C build && \
+  ninja -C build install
+
+RUN \
+  echo "**** build labwc 0.9.7 ****" && \
+  git clone https://github.com/labwc/labwc.git /tmp/labwc && \
+  cd /tmp/labwc && \
+  git checkout 0.9.7 && \
+  meson setup build --prefix=/usr --libdir=lib -Dxwayland=enabled -Dnls=enabled && \
+  ninja -C build && \
+  ninja -C build install
+
 # Runtime stage
 FROM ghcr.io/linuxserver/baseimage-arch:latest
 
@@ -203,6 +260,7 @@ RUN \
     xorg-font-util \
     xorg-server \
     xorg-server-xvfb \
+    xorg-xwayland \
     xorg-xauth \
     xorg-xrandr \
     xorg-xrdb \
@@ -322,6 +380,8 @@ COPY --from=frontend /buildout /usr/share/selkies
 COPY --from=xvfb / /
 COPY --from=wtype /usr/sbin/wtype /usr/sbin/wtype
 COPY --from=selkies-desktop /usr/bin/selkies-desktop /usr/bin/selkies-desktop
+COPY --from=labwc-builder /usr/bin/labwc /usr/bin/labwc
+COPY --from=labwc-builder /usr/lib/libwlroots-0.19.so* /usr/lib/
 
 # ports and volumes
 EXPOSE 3000 3001
