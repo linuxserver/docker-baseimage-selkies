@@ -3,7 +3,7 @@ adduser                                                                       3.
 adwaita-icon-theme                                                            46.0-1                                 deb                         
 aiofiles                                                                      25.1.0                                 python                      
 aiohappyeyeballs                                                              2.6.2                                  python                      
-aiohttp                                                                       3.13.5                                 python                      
+aiohttp                                                                       3.14.0                                 python                      
 aioice                                                                        0.10.2                                 python                      
 aiosignal                                                                     1.4.0                                  python                      
 apt                                                                           2.8.3                                  deb                         
@@ -620,7 +620,7 @@ lazr-restfulclient                                                            0.
 lazr-uri                                                                      1.0.6                                  python                      
 libacl1                                                                       2.3.2-1build1.1                        deb                         
 libaom3                                                                       3.8.2-2ubuntu0.1                       deb                         
-libapparmor1                                                                  4.0.1really4.0.1-0ubuntu0.24.04.6      deb                         
+libapparmor1                                                                  4.0.1really4.0.1-0ubuntu0.24.04.7      deb                         
 libappstream5                                                                 1.0.2-1build6                          deb                         
 libapt-pkg6.0t64                                                              2.8.3                                  deb                         
 libarchive13t64                                                               3.7.2-2ubuntu0.7                       deb                         
@@ -1035,8 +1035,8 @@ ncurses-term                                                                  6.
 netbase                                                                       6.4                                    deb                         
 netcat-openbsd                                                                1.226-1ubuntu2                         deb                         
 nftables                                                                      1.0.9-1ubuntu0.1                       deb                         
-nginx                                                                         1.24.0-2ubuntu7.8                      deb                         
-nginx-common                                                                  1.24.0-2ubuntu7.8                      deb                         
+nginx                                                                         1.24.0-2ubuntu7.9                      deb                         
+nginx-common                                                                  1.24.0-2ubuntu7.9                      deb                         
 nvidia-cuda-nvrtc                                                             13.3.33                                python                      
 oauthlib                                                                      3.2.2                                  python                      
 ocl-icd-libopencl1                                                            2.3.2-1build1                          deb                         
