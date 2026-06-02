@@ -3,7 +3,7 @@ adduser                                                                       3.
 adwaita-icon-theme                                                            50.0-1                                 deb                         
 aiofiles                                                                      25.1.0                                 python                      
 aiohappyeyeballs                                                              2.6.2                                  python                      
-aiohttp                                                                       3.13.5                                 python                      
+aiohttp                                                                       3.14.0                                 python                      
 aioice                                                                        0.10.2                                 python                      
 aiosignal                                                                     1.4.0                                  python                      
 apt                                                                           3.2.0                                  deb                         
@@ -1049,8 +1049,8 @@ ncurses-term                                                                  6.
 netbase                                                                       6.5build1                              deb                         
 netcat-openbsd                                                                1.234-1                                deb                         
 nftables                                                                      1.1.6-1                                deb                         
-nginx                                                                         1.28.3-2ubuntu1.1                      deb                         
-nginx-common                                                                  1.28.3-2ubuntu1.1                      deb                         
+nginx                                                                         1.28.3-2ubuntu1.2                      deb                         
+nginx-common                                                                  1.28.3-2ubuntu1.2                      deb                         
 nvidia-cuda-nvrtc                                                             13.3.33                                python                      
 oauthlib                                                                      3.3.1                                  python                      
 ocl-icd-libopencl1                                                            2.3.4-1                                deb                         
@@ -1071,7 +1071,7 @@ perl-modules-5.40                                                             5.
 pillow                                                                        12.2.0                                 python                      
 pinentry-curses                                                               1.3.2-3ubuntu1                         deb                         
 pip                                                                           25.1.1                                 python                      
-pixelflux                                                                     1.6.3                                  python                      
+pixelflux                                                                     1.6.4                                  python                      
 platformdirs                                                                  4.2.2                                  python                      
 polkitd                                                                       127-2ubuntu1                           deb                         
 poppler-data                                                                  0.4.12-1build1                         deb                         
