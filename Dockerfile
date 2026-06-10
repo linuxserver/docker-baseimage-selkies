@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM lscr.io/linuxserver/xvfb:alpine322 AS xvfb
-FROM ghcr.io/linuxserver/baseimage-alpine:3.23 AS frontend
+FROM ghcr.io/linuxserver/baseimage-alpine:3.24 AS frontend
 
 RUN \
   echo "**** install build packages ****" && \
@@ -40,7 +40,7 @@ RUN \
     cp -ar dist/* /buildout/$DASH/; \
   done
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.23 AS wtype
+FROM ghcr.io/linuxserver/baseimage-alpine:3.24 AS wtype
 
 RUN \
   echo "**** wtype build deps ****" && \
@@ -65,7 +65,7 @@ RUN \
     wtype \
     /usr/bin/wtype
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.23 AS selkies-desktop
+FROM ghcr.io/linuxserver/baseimage-alpine:3.24 AS selkies-desktop
   
 RUN \
   echo "**** selkies-desktop build deps ****" && \
@@ -87,8 +87,58 @@ RUN \
     selkies-desktop \
     /usr/bin/selkies-desktop
 
+FROM ghcr.io/linuxserver/baseimage-alpine:3.24 AS labwc-builder
+
+RUN \
+  echo "**** install labwc/wlroots build deps ****" && \
+  apk add --no-cache \
+    build-base \
+    cairo-dev \
+    eudev-dev \
+    gettext-dev \
+    git \
+    glib-dev \
+    glslang-dev \
+    hwdata-dev \
+    libdisplay-info-dev \
+    libdrm-dev \
+    libinput-dev \
+    libliftoff-dev \
+    librsvg-dev \
+    libsfdo-dev \
+    libx11-dev \
+    libxcb-dev \
+    libxkbcommon-dev \
+    libxml2-dev \
+    mesa-dev \
+    meson \
+    ninja \
+    pango-dev \
+    pixman-dev \
+    pkgconf \
+    scdoc \
+    seatd \
+    vulkan-headers \
+    vulkan-loader-dev \
+    wayland-dev \
+    wayland-protocols \
+    wlroots0.19-dev \
+    xcb-util-errors-dev \
+    xcb-util-renderutil-dev \
+    xcb-util-wm-dev \
+    xwayland-dev
+
+RUN \
+  echo "**** build labwc 0.9.7 ****" && \
+  git clone https://github.com/labwc/labwc.git /tmp/labwc && \
+  cd /tmp/labwc && \
+  git checkout 0.9.7 && \
+  meson setup build --prefix=/usr --libdir=lib -Dxwayland=enabled -Dnls=enabled && \
+  ninja -C build && \
+  ninja -C build install
+
 # Runtime stage
-FROM ghcr.io/linuxserver/baseimage-alpine:3.23
+FROM ghcr.io/linuxserver/baseimage-alpine:3.24
 
 # set version label
 ARG BUILD_DATE
@@ -195,6 +245,7 @@ RUN \
     wayland \
     wl-clipboard \
     wlr-randr \
+    wlroots0.19 \
     x264-libs \
     xauth \
     xclip \
@@ -304,6 +355,7 @@ COPY --from=frontend /buildout /usr/share/selkies
 COPY --from=xvfb / /
 COPY --from=wtype /usr/bin/wtype /usr/bin/wtype
 COPY --from=selkies-desktop /usr/bin/selkies-desktop /usr/bin/selkies-desktop
+COPY --from=labwc-builder /usr/bin/labwc /usr/bin/labwc
 
 # ports and volumes
 EXPOSE 3000 3001
