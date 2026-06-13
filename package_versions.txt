@@ -80,7 +80,7 @@ crossbeam-deque                                                               0.
 crossbeam-epoch                                                               0.9.18                                  rust-crate                   
 crossbeam-queue                                                               0.3.11                                  rust-crate                   
 crossbeam-utils                                                               0.8.19                                  rust-crate                   
-cryptography                                                                  48.0.1                                  python                       
+cryptography                                                                  49.0.0                                  python                       
 curl                                                                          8.20.0-r1                               apk                          
 dario.cat/mergo                                                               v1.0.2                                  go-module   (+1 duplicate)   
 dbus                                                                          1.16.2-r2                               apk                          
@@ -772,7 +772,7 @@ more-itertools                                                                10
 mount                                                                         2.42-r0                                 apk                          
 mpdecimal                                                                     4.0.1-r0                                apk                          
 mpg123-libs                                                                   1.33.5-r0                               apk                          
-msgpack                                                                       1.1.2                                   python                       
+msgpack                                                                       1.2.0                                   python                       
 mtdev                                                                         1.1.7-r0                                apk                          
 multidict                                                                     6.7.1                                   python                       
 musl                                                                          1.2.6-r2                                apk                          
@@ -841,7 +841,7 @@ pycparser                                                                     3.
 pyee                                                                          13.0.1                                  python                       
 pylibsrtp                                                                     1.0.0                                   python                       
 pynput                                                                        1.8.2                                   python                       
-pyopenssl                                                                     26.2.0                                  python                       
+pyopenssl                                                                     26.3.0                                  python                       
 python-xlib                                                                   0.33                                    python                       
 python3                                                                       3.14.5-r0                               apk                          
 python3-pyc                                                                   3.14.5-r0                               apk                          
