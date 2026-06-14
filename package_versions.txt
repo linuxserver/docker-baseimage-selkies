@@ -1,6 +1,6 @@
 NAME                                                                          VERSION                                 TYPE                          
 Simple Launcher                                                               1.1.0.14                                binary        (+5 duplicates)  
-abseil-cpp                                                                    20260107.1-1                            alpm                           
+abseil-cpp                                                                    20260526.0-2                            alpm                           
 acl                                                                           2.3.2-2                                 alpm                           
 aiofiles                                                                      25.1.0                                  python                         
 aiohappyeyeballs                                                              2.6.2                                   python                         
@@ -10,7 +10,7 @@ aiosignal                                                                     1.
 alsa-lib                                                                      1.2.16-1                                alpm                           
 alsa-topology-conf                                                            1.2.5.1-4                               alpm                           
 alsa-ucm-conf                                                                 1.2.16-2                                alpm                           
-archlinux-keyring                                                             20260420-1                              alpm                           
+archlinux-keyring                                                             20260612-1                              alpm                           
 attr                                                                          2.5.2-2                                 alpm                           
 attrs                                                                         26.1.0                                  python                         
 audit                                                                         4.1.4-2                                 alpm                           
@@ -44,7 +44,7 @@ containerd                                                                    2.
 coreutils                                                                     9.11-1                                  alpm                           
 cpio                                                                          2.15-3                                  alpm                           
 cppdap                                                                        1.58.0-3                                alpm                           
-cryptography                                                                  48.0.1                                  python                         
+cryptography                                                                  49.0.0                                  python                         
 cryptsetup                                                                    2.8.6-1                                 alpm                           
 curl                                                                          8.20.0-7                                alpm                           
 dario.cat/mergo                                                               v1.0.2                                  go-module                      
@@ -504,7 +504,7 @@ libxv                                                                         1.
 libxvmc                                                                       1.0.15-1                                alpm                           
 libxxf86vm                                                                    1.1.7-1                                 alpm                           
 linux-api-headers                                                             7.0-1                                   alpm                           
-linux-headers                                                                 7.0.11.arch1-1                          alpm                           
+linux-headers                                                                 7.0.12.arch1-1                          alpm                           
 llvm-libs                                                                     22.1.6-1                                alpm                           
 lm_sensors                                                                    1:3.6.2-1                               alpm                           
 lmdb                                                                          0.9.35-1                                alpm                           
@@ -578,13 +578,13 @@ pycparser                                                                     3.
 pyee                                                                          13.0.1                                  python                         
 pylibsrtp                                                                     1.0.0                                   python                         
 pynput                                                                        1.8.2                                   python                         
-pyopenssl                                                                     26.2.0                                  python                         
+pyopenssl                                                                     26.3.0                                  python                         
 python                                                                        3.14.5-1                                alpm                           
 python-xlib                                                                   0.33                                    python                         
 readline                                                                      8.3.003-1                               alpm                           
 rhash                                                                         1.4.6-1                                 alpm                           
 rtkit                                                                         0.14-1                                  alpm                           
-runc                                                                          1.4.2-1                                 alpm                           
+runc                                                                          1.4.3-1                                 alpm                           
 seatd                                                                         0.9.3-1                                 alpm                           
 sed                                                                           4.10-1                                  alpm                           
 selkies                                                                       0.0.0                                   python                         
@@ -603,8 +603,9 @@ sqlite                                                                        3.
 st                                                                            0.9.3-1                                 alpm                           
 st-debug                                                                      0.9.3-1                                 alpm                           
 startup-notification                                                          0.12-9                                  alpm                           
-stdlib                                                                        go1.26.1-X:nodwarf5                     go-module     (+1 duplicate)   
+stdlib                                                                        go1.26.1-X:nodwarf5                     go-module                      
 stdlib                                                                        go1.26.3-X:nodwarf5                     go-module     (+7 duplicates)  
+stdlib                                                                        go1.26.4-X:nodwarf5                     go-module                      
 sudo                                                                          1.9.17.p2-2                             alpm                           
 systemd                                                                       260.2-2                                 alpm                           
 systemd-libs                                                                  260.2-2                                 alpm                           
