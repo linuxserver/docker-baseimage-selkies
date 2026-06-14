@@ -534,7 +534,7 @@ noto-fonts-cjk                                                                20
 noto-fonts-emoji                                                              1:2.051-1                               alpm                           
 npth                                                                          1.8-1                                   alpm                           
 nspr                                                                          4.39-1                                  alpm                           
-nss                                                                           3.124-1                                 alpm                           
+nss                                                                           3.125-1                                 alpm                           
 nvidia-cuda-nvrtc                                                             13.3.33                                 python                         
 oniguruma                                                                     6.9.10-1                                alpm                           
 openbox                                                                       3.6.1-14                                alpm                           
