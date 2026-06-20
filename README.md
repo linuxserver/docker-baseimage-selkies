@@ -219,7 +219,7 @@ All base images are built for x86_64 and aarch64 platforms.
 
 | Distro | Current Tag |
 | :----: | --- |
-| Alpine | alpine323 |
+| Alpine | alpine324 |
 | Arch | arch |
 | Debian | debiantrixie |
 | Fedora | fedora44 |
