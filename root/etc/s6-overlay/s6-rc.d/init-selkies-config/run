@@ -298,7 +298,7 @@ else
   printf "false" > /run/s6/container_environment/SELKIES_GAMEPAD_ENABLED
   printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER2
   printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER3
-  printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER3
+  printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER4
 fi
 
 # set ws port if unset
