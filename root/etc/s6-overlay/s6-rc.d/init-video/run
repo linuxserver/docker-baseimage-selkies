@@ -34,6 +34,16 @@ do
     fi
 done
 
+# set auto gpu if gpu is mounted in and the user has not specifically set it
+if [ "$(uname -m)" = "x86_64" ] \
+  && ls /dev/dri/renderD* 1>/dev/null 2>&1 \
+  && [ -z ${AUTO_GPU+x} ] \
+  && [ -z ${DRI_NODE+x} ] \
+  && [ -z ${DRINODE+x} ]; then
+  printf "true" > /run/s6/container_environment/AUTO_GPU
+  AUTO_GPU=true
+fi
+
 # check if nvidia gpu is present
 if which nvidia-smi > /dev/null 2>&1 && ls -A /dev/dri 2>/dev/null; then
     # nvidia-container-toolkit may not place files correctly, so we set them up here

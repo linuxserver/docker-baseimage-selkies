@@ -5,7 +5,7 @@ if [[ ${RESTART_APP,,} != "true" ]]; then
 fi
 
 # monitor loop for autostart
-if [[ "${PIXELFLUX_WAYLAND}" == "true" ]]; then
+if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]]; then
   AUTOSTART_CMD="sh $HOME/.config/labwc/autostart"
   WAYLAND_DISPLAY=wayland-0
   DISPLAY=:0
