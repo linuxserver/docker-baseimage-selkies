@@ -32,7 +32,7 @@ full_custom_readme: |
 
   | Variable | Description |
   | :----: | --- |
-  | PIXELFLUX_WAYLAND | If set to true the container will initialize in Wayland mode running [Smithay](https://github.com/Smithay/smithay) and Labwc while enabling zero copy encoding with a GPU |
+  | PIXELFLUX_WAYLAND | If set to true the container will initialize in Wayland mode running [Smithay](https://github.com/Smithay/smithay) and Labwc |
   | SELKIES_DESKTOP | If set to true and in Wayland mode, a simple panel will be initialized with labwc |
   | CUSTOM_PORT | Internal port the container listens on for http if it needs to be swapped from the default 3000 |
   | CUSTOM_HTTPS_PORT | Internal port the container listens on for https if it needs to be swapped from the default 3001 |
@@ -40,8 +40,9 @@ full_custom_readme: |
   | CUSTOM_USER | HTTP Basic auth username, abc is default. |
   | DRI_NODE | Enable GPU stream encoding and use the specified device IE `/dev/dri/renderD128` |
   | DRINODE | Specify which GPU to use for acceleration IE `/dev/dri/renderD129` |
-  | AUTO_GPU | If set to true and in Wayland mode, we will automatically use the first GPU available for encoding and rendering IE `/dev/dri/renderD128` |
+  | AUTO_GPU | When a GPU is detected this is automatically enabled and the first available GPU will be used for encoding and rendering IE `/dev/dri/renderD128`. Set to `false` to disable this behavior if you want to mount in a GPU but not use it for encoding or rendering. |
   | PIXELFLUX_RECORDING_SOCKET | Full path of and optional unix socket to be able to record the stream IE `/defaults/pixelflux_record` |
+  | PIXELFLUX_CU | Port to enable the Computer Use API server for AI agent control of the desktop (Wayland mode only). See the [Computer Use](#computer-use) section for details. |
   | PASSWORD | HTTP Basic auth password, abc is default. If unset there will be no auth |
   | SUBFOLDER | Subfolder for the application if running a subfolder reverse proxy, need both slashes IE `/subfolder/` |
   | TITLE | The page title displayed on the web browser, default "Selkies" |
@@ -53,8 +54,8 @@ full_custom_readme: |
   | NO_DECOR | If set the application will run without window borders for use as a PWA. (Decor can be enabled and disabled with Ctrl+Shift+d) |
   | NO_FULL | Do not autmatically fullscreen applications. |
   | NO_GAMEPAD | Disable userspace gamepad interposer injection. |
-  | DISABLE_ZINK | Do not set the Zink environment variables if a video card is detected (userspace applications will use CPU rendering) |
-  | DISABLE_DRI3 | Do not use DRI3 acceleration if a video card is detected (userspace applications will use CPU rendering) |
+  | DISABLE_ZINK | Set to `false` to disable Zink (Mesa OpenGL-on-Vulkan) acceleration for NVIDIA GPUs in X11 mode. Enabled by default when an NVIDIA GPU is detected. |
+  | DISABLE_DRI3 | Set to `false` to disable DRI3 GPU passthrough in X11 mode. Enabled by default when a GPU is detected. |
   | MAX_RES | Pass a larger maximum resolution for the container default is 16k `15360x8640` (X11 only) |
   | WATERMARK_PNG | Full path inside the container to a watermark png IE `/usr/share/selkies/www/icon.png` |
   | WATERMARK_LOCATION | Where to paint the image over the stream integer options below |
@@ -285,7 +286,9 @@ full_custom_readme: |
 
   If both variables point to the same device, the container will automatically enable **Zero Copy** encoding, significantly reducing CPU usage and latency. If they are set to different devices one will be used for **Rendering** and one for **Encoding** with a cpu readback.
 
-  You can also use the environment variable `AUTO_GPU=true`, with this set the first card detected in the container (IE `/dev/dri/renderD128`) will be used and configured for **Zero Copy**.
+  **Auto GPU Detection:** When a GPU is detected and neither `AUTO_GPU`, `DRI_NODE`, nor `DRINODE` are set, the container will automatically enable `AUTO_GPU` and use the first available GPU for both rendering and encoding with **Zero Copy**. To disable this behavior (for example if you want to mount in a GPU but not use it), set `AUTO_GPU=false`.
+
+  **Multi-GPU:** If your system has multiple GPUs, auto-detection will pick the first one (`/dev/dri/renderD128`). To target a specific GPU, set `DRI_NODE` and `DRINODE` to the desired device path IE `/dev/dri/renderD129`.
 
   The most basic test commands are:
 
@@ -297,7 +300,6 @@ full_custom_readme: |
         -p 3001:3001 \
         --device /dev/dri \
         -e PIXELFLUX_WAYLAND=true \
-        -e AUTO_GPU=true \
         lsiobase/selkies:debiantrixie bash
       ```
     * Compose
@@ -306,9 +308,6 @@ full_custom_readme: |
             - /dev/dri:/dev/dri
           environment:
             - PIXELFLUX_WAYLAND=true
-            # Optional: Specify device if multiple exist (IE: /dev/dri/renderD129)
-            - DRINODE=/dev/dri/renderD128
-            - DRI_NODE=/dev/dri/renderD128
       ```
   * Nvidia - 
     * Docker run
@@ -319,16 +318,12 @@ full_custom_readme: |
         --runtime nvidia \
         --gpus all \
         -e PIXELFLUX_WAYLAND=true \
-        -e AUTO_GPU=true \
         lsiobase/selkies:debiantrixie bash
       ```
     * Compose
       ```yaml
           environment:
             - PIXELFLUX_WAYLAND=true
-            # Ensure these point to the rendered node injected by the runtime (usually renderD128)
-            - DRINODE=/dev/dri/renderD128
-            - DRI_NODE=/dev/dri/renderD128
           deploy:
             resources:
               reservations:
@@ -525,6 +520,22 @@ full_custom_readme: |
   ```
 
   If the stream is resized this will stop the recording, and the stream needs to be active to the client for capture. This can be used programatically to generate thumbnails or any other desktop catpure needs.
+
+  # Computer Use
+
+  `PIXELFLUX_CU` enables the Computer Use API server, providing an HTTP interface for AI agents to control the desktop (Wayland mode only). Set this to the port the server should listen on.
+
+  When using Computer Use, the screenshot path forces a single-frame CPU readback when the GPU is in zero-copy mode. The API accepts `POST` requests to `/computer-use` with a JSON body.
+
+  To take a screenshot:
+
+  ```
+  curl -s -X POST http://localhost:5000/computer-use \
+    -H 'Content-Type: application/json' \
+    -d '{"action":"screenshot"}' | jq -r '.data' | base64 -d > screen.png
+  ```
+
+  Other available actions include `mouse_move`, `left_click`, `right_click`, `double_click`, `type`, `key`, `scroll`, `zoom`, and `cursor_position`. Coordinates are specified in absolute framebuffer pixels.
 
   The following line is only in this repo for loop testing:
   - { date: "01.01.50:", desc: "I am the release message for this internal repo." }
