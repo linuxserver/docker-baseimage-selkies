@@ -16,7 +16,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f 0d134b6e1ffe42a579bc66363b0e7159ab22aacc
+  git checkout -f a4aadef97ba4f74f5a89b510bad18df8c2ca8370
 
 RUN \
   echo "**** build shared core library ****" && \
@@ -123,6 +123,7 @@ RUN \
     git \
     glslang-tools \
     hwdata \
+    i965-va-driver-shaders \
     icu-devtools \
     intltool-debian \
     libarchive-zip-perl \
@@ -244,6 +245,7 @@ RUN \
     python3-packaging \
     scdoc \
     uuid-dev \
+    vainfo \
     wayland-protocols \
     x11proto-dev \
     xorg-sgml-doctools \
@@ -433,7 +435,7 @@ RUN \
     | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/0d134b6e1ffe42a579bc66363b0e7159ab22aacc.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/a4aadef97ba4f74f5a89b510bad18df8c2ca8370.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
