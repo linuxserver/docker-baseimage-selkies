@@ -40,7 +40,7 @@ brotli-libs                                                                   1.
 bubblewrap                                                                    0.11.2-r0                               apk                          
 busybox                                                                       1.37.0-r31                              apk                          
 busybox-binsh                                                                 1.37.0-r31                              apk                          
-c-ares                                                                        1.34.6-r0                               apk                          
+c-ares                                                                        1.34.8-r0                               apk                          
 ca-certificates                                                               20260611-r0                             apk                          
 ca-certificates-bundle                                                        20260611-r0                             apk                          
 cairo                                                                         1.18.4-r1                               apk                          
@@ -815,11 +815,11 @@ pasimple                                                                      0.
 paste                                                                         1.0.14                                  rust-crate                   
 pciutils                                                                      3.15.0-r0                               apk                          
 pciutils-libs                                                                 3.15.0-r0                               apk                          
-pcmflux                                                                       1.0.8                                   python                       
+pcmflux                                                                       2.0.0                                   python                       
 pcre2                                                                         10.47-r1                                apk                          
 pillow                                                                        12.3.0                                  python                       
 pip                                                                           26.1.1                                  python                       
-pixelflux                                                                     1.6.4                                   python                       
+pixelflux                                                                     2.0.0                                   python                       
 pixman                                                                        0.46.4-r0                               apk                          
 pkgconf                                                                       2.5.1-r0                                apk                          
 platformdirs                                                                  4.4.0                                   python                       
@@ -904,7 +904,7 @@ tini-static                                                                   0.
 tinyvec                                                                       1.9.0                                   rust-crate                   
 tomli                                                                         2.4.0                                   python                       
 typing-extensions                                                             4.16.0                                  python                       
-tzdata                                                                        2026b-r0                                apk                          
+tzdata                                                                        2026c-r0                                apk                          
 umount                                                                        2.42.1-r0                               apk                          
 unicode-ident                                                                 1.0.12                                  rust-crate                   
 unicode-width                                                                 0.1.11                                  rust-crate                   
