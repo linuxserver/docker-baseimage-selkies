@@ -1,14 +1,7 @@
 #!/usr/bin/with-contenv bash
 
-# check if underlying system supports wayland binaries
-if ! grep -q avx2 /proc/cpuinfo && [ "$(uname -m)" != "aarch64" ]; then
-  echo "[ls.io-init] CPU does not support AVX2. Falling back to X11"
-  printf "false" > /run/s6/container_environment/PIXELFLUX_WAYLAND
-  PIXELFLUX_WAYLAND="false"
-fi
-
 # set paths for wayland or xorg
-if [[ "${PIXELFLUX_WAYLAND}" == "true" ]];then
+if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]];then
   CONF_DIR="$HOME/.config/labwc"
   DEF_AUTOSTART="/defaults/autostart_wayland"
   DEF_MENU="/defaults/menu_wayland.xml"
@@ -151,7 +144,7 @@ if [ -f "$AUTOSTART_SCRIPT" ]; then
 fi
 
 # wm tweaks
-if [[ "${PIXELFLUX_WAYLAND}" == "true" ]];then
+if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]];then
   # labwc tweaks
   USER_RC_XML="$CONF_DIR/rc.xml"
   if [[ -f "$DEF_RC" ]]; then
@@ -272,7 +265,7 @@ fi
 if ! which nvidia-smi && [ -e "/dev/dri/renderD128" ] && [ ! -e "/dev/dri/renderD129" ] && [ -z ${DRI_NODE+x} ]; then
   printf "/dev/dri/renderD128" > /run/s6/container_environment/DRI_NODE
 fi
-if [[ "${PIXELFLUX_WAYLAND}" == "true" ]] && [ -e "/dev/dri/renderD128" ] && [ ! -e "/dev/dri/renderD129" ] && [ -z ${DRI_NODE+x} ]; then
+if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]] && [ -e "/dev/dri/renderD128" ] && [ ! -e "/dev/dri/renderD129" ] && [ -z ${DRI_NODE+x} ]; then
   printf "/dev/dri/renderD128" > /run/s6/container_environment/DRI_NODE
   if [ -z ${DRINODE+x} ]; then
     printf "/dev/dri/renderD128" > /run/s6/container_environment/DRINODE
@@ -298,7 +291,7 @@ else
   printf "false" > /run/s6/container_environment/SELKIES_GAMEPAD_ENABLED
   printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER2
   printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER3
-  printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER3
+  printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER4
 fi
 
 # set ws port if unset

@@ -3,7 +3,7 @@
 
 # Make sure this is a priv container
 if [ -e /dev/cpu_dma_latency ]; then
-  if [ "${START_DOCKER}" == "true" ]; then
+  if [ "${START_DOCKER,,}" == "true" ]; then
     mount -t tmpfs none /tmp
     exec /usr/local/bin/dockerd-entrypoint.sh -l error
   else
