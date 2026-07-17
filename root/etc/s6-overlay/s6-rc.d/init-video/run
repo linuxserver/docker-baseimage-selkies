@@ -109,6 +109,21 @@ EOF
 }
 EOF
     fi
+    # find nvidia gbm egl_external_platform files
+    GBM_EGLS=$(find /usr/share/egl/egl_external_platform.d /etc/egl/egl_external_platform.d -name '*nvidia*gbm*.json' 2>/dev/null)
+    # if no gbm egl_external_platform file found
+    if [ -z "${GBM_EGLS}" ]; then
+        echo "**** Setting up EGL GBM external platform file for NVIDIA ****"
+        mkdir -pm755 /etc/egl/egl_external_platform.d/
+        cat > /etc/egl/egl_external_platform.d/15_nvidia_gbm.json << EOF
+{
+    "file_format_version": "1.0.0",
+    "ICD": {
+        "library_path": "libnvidia-egl-gbm.so.1"
+    }
+}
+EOF
+    fi
     # fix gbm library linkage
     if ! ldconfig -p | grep -q "nvidia-drm_gbm.so"; then
         GBM_PATHS=(
