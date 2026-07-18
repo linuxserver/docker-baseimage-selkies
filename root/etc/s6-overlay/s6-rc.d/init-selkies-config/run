@@ -35,6 +35,9 @@ if [ ! -d "$HOME/.XDG" ]; then
   mkdir -p "$HOME/.XDG"
   chown abc:abc "$HOME/.XDG"
 fi
+# clean out stale runtime state left behind by unclean shutdowns
+find "$HOME/.XDG" -mindepth 1 -delete
+rm -f /defaults/pid /defaults/native
 printf "$HOME/.XDG" > /run/s6/container_environment/XDG_RUNTIME_DIR
 
 # locale Support
