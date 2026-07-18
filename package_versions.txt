@@ -1161,7 +1161,7 @@ util-linux                                                                    2.
 vulkan-tools                                                                  1.4.341.0+dfsg1-1                      deb                         
 wadllib                                                                       2.0.0                                  python                      
 watchdog                                                                      6.0.0                                  python                      
-websockets                                                                    16.1                                   python                      
+websockets                                                                    16.1.1                                 python                      
 wheel                                                                         0.45.1                                 python                      
 wl-clipboard                                                                  2.2.1-2build1                          deb                         
 wlr-randr                                                                     0.4.1-1build1                          deb                         
