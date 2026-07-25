@@ -128,11 +128,15 @@ RUN \
     xcb-util-wm-dev \
     xwayland-dev
 
+COPY /labwc-ipc.patch /labwc-ipc.patch
+
 RUN \
   echo "**** build labwc 0.9.7 ****" && \
   git clone https://github.com/labwc/labwc.git /tmp/labwc && \
   cd /tmp/labwc && \
   git checkout 0.9.7 && \
+  cp /labwc-ipc.patch labwc-ipc.patch && \
+  git apply labwc-ipc.patch && \
   meson setup build --prefix=/usr --libdir=lib -Dxwayland=enabled -Dnls=enabled && \
   ninja -C build && \
   ninja -C build install
@@ -162,15 +166,20 @@ RUN \
   echo "**** install build deps ****" && \
   apk add --no-cache --virtual .build-deps \
     alpine-sdk \
+    cairo-dev \
+    g++ \
+    gcc \
     libxkbcommon-dev \
     linux-headers \
     musl-dev \
     python3-dev && \
   echo "**** install runtime deps ****" && \
   apk add --no-cache \
+    at-spi2-core \
     bash \
     breeze-cursors \
     ca-certificates \
+    cairo \
     cmake \
     dbus-x11 \
     docker \
@@ -283,6 +292,17 @@ RUN \
     /lsiopy && \
   pip install . && \
   pip install setuptools && \
+  echo "**** install pelorus ****" && \
+  mkdir -p /tmp/pelorus && \
+  PELORUS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/pelorus/releases/latest" \
+    | awk '/tag_name/{print $4;exit}' FS='[""]') && \
+  curl -o \
+    /tmp/pelorus.tar.gz -L \
+    "https://github.com/linuxserver/pelorus/archive/${PELORUS_RELEASE}.tar.gz" && \
+  tar xf \
+    /tmp/pelorus.tar.gz -C \
+    /tmp/pelorus/ --strip-components=1 && \
+  pip install /tmp/pelorus && \
   echo "**** install selkies interposer ****" && \
   cd addons/js-interposer && \
   gcc -shared -fPIC -ldl \
