@@ -123,7 +123,6 @@ RUN \
     git \
     glslang-tools \
     hwdata \
-    i965-va-driver-shaders \
     icu-devtools \
     intltool-debian \
     libarchive-zip-perl \
@@ -262,11 +261,15 @@ RUN \
   ninja -C build && \
   ninja -C build install
 
+COPY /labwc-ipc.patch /labwc-ipc.patch
+
 RUN \
   echo "**** build labwc 0.9.7 ****" && \
   git clone https://github.com/labwc/labwc.git /tmp/labwc && \
   cd /tmp/labwc && \
   git checkout 0.9.7 && \
+  cp /labwc-ipc.patch labwc-ipc.patch && \
+  git apply labwc-ipc.patch && \
   meson setup build --prefix=/usr --libdir=lib/x86_64-linux-gnu -Dxwayland=enabled -Dnls=enabled && \
   ninja -C build && \
   ninja -C build install
@@ -297,6 +300,8 @@ RUN \
   echo "**** dev deps ****" && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+    libcairo2-dev \
+    libgirepository-2.0-dev \
     python3-dev && \
   echo "**** enable locales ****" && \
   rm -f \
@@ -307,6 +312,7 @@ RUN \
   curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+    at-spi2-core \
     breeze-cursor-theme \
     ca-certificates \
     cmake \
@@ -328,8 +334,11 @@ RUN \
     fuse-overlayfs \
     g++ \
     gcc \
+    gir1.2-atspi-2.0 \
     git \
+    i965-va-driver-shaders \
     intel-media-va-driver \
+    iproute2 \
     kbd \
     libev4 \
     libfontenc1 \
@@ -394,6 +403,7 @@ RUN \
     pulseaudio-utils \
     python3 \
     python3-venv \
+    python3-gi \
     software-properties-common \
     ssl-cert \
     stterm \
@@ -446,6 +456,17 @@ RUN \
     /lsiopy && \
   pip install . && \
   pip install setuptools && \
+  echo "**** install pelorus ****" && \
+  mkdir -p /tmp/pelorus && \
+  PELORUS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/pelorus/releases/latest" \
+    | awk '/tag_name/{print $4;exit}' FS='[""]') && \
+  curl -o \
+    /tmp/pelorus.tar.gz -L \
+    "https://github.com/linuxserver/pelorus/archive/${PELORUS_RELEASE}.tar.gz" && \
+  tar xf \
+    /tmp/pelorus.tar.gz -C \
+    /tmp/pelorus/ --strip-components=1 && \
+  pip install /tmp/pelorus && \
   echo "**** install selkies interposer ****" && \
   cd addons/js-interposer && \
   gcc -shared -fPIC -ldl \
@@ -514,6 +535,8 @@ RUN \
     | tar xzvf - -C /usr/share/themes/Clearlooks/openbox-3/ && \
   echo "**** cleanup ****" && \
   apt-get -y remove \
+    libcairo2-dev \
+    libgirepository-2.0-dev \
     python3-dev && \
   apt-get autoclean && \
   rm -rf \
