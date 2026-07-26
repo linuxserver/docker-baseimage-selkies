@@ -135,11 +135,15 @@ RUN \
   ninja -C build && \
   ninja -C build install
 
+COPY /labwc-ipc.patch /labwc-ipc.patch
+
 RUN \
   echo "**** build labwc 0.9.7 ****" && \
   git clone https://github.com/labwc/labwc.git /tmp/labwc && \
   cd /tmp/labwc && \
   git checkout 0.9.7 && \
+  cp /labwc-ipc.patch labwc-ipc.patch && \
+  git apply labwc-ipc.patch && \
   meson setup build --prefix=/usr --libdir=lib -Dxwayland=enabled -Dnls=enabled && \
   ninja -C build && \
   ninja -C build install
@@ -174,6 +178,7 @@ RUN \
     /etc/pacman.conf && \
   echo "**** install deps ****" && \
   pacman -Sy --noconfirm --needed \
+    at-spi2-core \
     base-devel \
     bash \
     ca-certificates \
@@ -189,6 +194,7 @@ RUN \
     git \
     glibc \
     gnutls \
+    gobject-introspection \
     inetutils \
     kbd \
     labwc \
@@ -230,6 +236,7 @@ RUN \
     psmisc \
     pulseaudio \
     python \
+    python-gobject \
     shadow \
     sudo \
     tar \
@@ -298,6 +305,17 @@ RUN \
     /lsiopy && \
   pip install . && \
   pip install setuptools && \
+  echo "**** install pelorus ****" && \
+  mkdir -p /tmp/pelorus && \
+  PELORUS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/pelorus/releases/latest" \
+    | awk '/tag_name/{print $4;exit}' FS='[""]') && \
+  curl -o \
+    /tmp/pelorus.tar.gz -L \
+    "https://github.com/linuxserver/pelorus/archive/${PELORUS_RELEASE}.tar.gz" && \
+  tar xf \
+    /tmp/pelorus.tar.gz -C \
+    /tmp/pelorus/ --strip-components=1 && \
+  pip install /tmp/pelorus && \
   echo "**** install selkies interposer ****" && \
   cd addons/js-interposer && \
   gcc -shared -fPIC -ldl \
