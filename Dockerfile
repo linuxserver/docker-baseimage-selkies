@@ -55,7 +55,7 @@ RUN \
     meson \
     ninja-build \
     pkgconf-pkg-config \
-    wayland-devel 
+    wayland-devel
 
 RUN \
   echo "**** build wtype ****" && \
@@ -69,7 +69,7 @@ RUN \
     /usr/bin/wtype
 
 FROM ghcr.io/linuxserver/baseimage-fedora:44 AS selkies-desktop
-  
+
 RUN \
   echo "**** selkies-desktop build deps ****" && \
   dnf install -y \
@@ -78,7 +78,7 @@ RUN \
     git \
     make \
     wayland-devel \
-    wayland-protocols-devel 
+    wayland-protocols-devel
   
 RUN \
   echo "**** build selkies-desktop ****" && \
@@ -90,6 +90,63 @@ RUN \
   mv \
     selkies-desktop \
     /usr/bin/selkies-desktop
+
+FROM ghcr.io/linuxserver/baseimage-fedora:44 AS labwc-builder
+
+RUN \
+  echo "**** install labwc/wlroots build deps ****" && \
+  dnf install -y \
+    gcc \
+    gcc-c++ \
+    make \
+    cairo-devel \
+    systemd-devel \
+    gettext-devel \
+    git \
+    glib2-devel \
+    glslang-devel \
+    hwdata \
+    libdisplay-info-devel \
+    libdrm-devel \
+    libinput-devel \
+    libliftoff-devel \
+    librsvg2-devel \
+    libX11-devel \
+    libxcb-devel \
+    libxkbcommon-devel \
+    libxml2-devel \
+    mesa-libGL-devel \
+    mesa-libEGL-devel \
+    mesa-libgbm-devel \
+    meson \
+    ninja-build \
+    pango-devel \
+    pixman-devel \
+    pkgconf \
+    scdoc \
+    seatd \
+    vulkan-headers \
+    vulkan-loader-devel \
+    wayland-devel \
+    wayland-protocols-devel \
+    wlroots0.19-devel \
+    xcb-util-errors-devel \
+    xcb-util-renderutil-devel \
+    xcb-util-wm-devel \
+    xorg-x11-server-Xwayland-devel
+
+COPY /labwc-ipc.patch /labwc-ipc.patch
+
+RUN \
+  echo "**** build labwc 0.9.7 ****" && \
+  git clone https://github.com/labwc/labwc.git /tmp/labwc && \
+  cd /tmp/labwc && \
+  git checkout 0.9.7 && \
+  cp /labwc-ipc.patch labwc-ipc.patch && \
+  git apply labwc-ipc.patch && \
+  meson setup build --prefix=/usr --libdir=lib -Dxwayland=enabled -Dnls=enabled && \
+  ninja -C build && \
+  ninja -C build install
 
 # Runtime stage
 FROM ghcr.io/linuxserver/baseimage-fedora:44
@@ -121,14 +178,17 @@ RUN \
   dnf install -y --nogpgcheck \
     https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-44.noarch.rpm && \
   dnf install -y \
+    cairo-devel \
     gcc \
     gcc-c++ \
     glibc-devel \
+    gobject-introspection-devel \
     kernel-headers \
     make \
     python3-devel && \
   echo "**** install runtime deps ****" && \
   dnf install -y --setopt=install_weak_deps=False --best \
+    at-spi2-core \
     bash \
     breeze-cursor-theme \
     ca-certificates \
@@ -149,10 +209,12 @@ RUN \
     glibc-all-langpacks \
     glibc-locale-source \
     gnutls \
+    gobject-introspection \
     google-noto-cjk-fonts \
     google-noto-emoji-fonts \
     google-noto-sans-fonts \
     intel-media-driver \
+    iproute \
     kbd \
     labwc \
     libdrm \
@@ -197,6 +259,7 @@ RUN \
     pulseaudio-libs \
     pulseaudio-utils \
     python3 \
+    python3-gobject \
     python3-virtualenv \
     shadow-utils \
     st \
@@ -247,6 +310,17 @@ RUN \
     /lsiopy && \
   pip install . && \
   pip install setuptools && \
+  echo "**** install pelorus ****" && \
+  mkdir -p /tmp/pelorus && \
+  PELORUS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/pelorus/releases/latest" \
+    | awk '/tag_name/{print $4;exit}' FS='[""]') && \
+  curl -o \
+    /tmp/pelorus.tar.gz -L \
+    "https://github.com/linuxserver/pelorus/archive/${PELORUS_RELEASE}.tar.gz" && \
+  tar xf \
+    /tmp/pelorus.tar.gz -C \
+    /tmp/pelorus/ --strip-components=1 && \
+  pip install /tmp/pelorus && \
   echo "**** install selkies interposer ****" && \
   cd addons/js-interposer && \
   gcc -shared -fPIC -ldl \
@@ -311,11 +385,6 @@ RUN \
   curl -s https://raw.githubusercontent.com/thelamer/lang-stash/master/theme.tar.gz \
     | tar xzvf - -C /usr/share/themes/Clearlooks/openbox-3/ && \
   echo "**** cleanup ****" && \
-  dnf remove -y \
-    glibc-devel \
-    kernel-headers \
-    python3-devel && \
-  dnf autoremove -y && \
   dnf clean all && \
   rm -rf \
     /tmp/*
@@ -326,8 +395,8 @@ COPY --from=frontend /buildout /usr/share/selkies
 COPY --from=xvfb / /
 COPY --from=wtype /usr/bin/wtype /usr/bin/wtype
 COPY --from=selkies-desktop /usr/bin/selkies-desktop /usr/bin/selkies-desktop
+COPY --from=labwc-builder /usr/bin/labwc /usr/bin/labwc
 
 # ports and volumes
 EXPOSE 3000 3001
-COPY --from=selkies-desktop /usr/bin/selkies-desktop /usr/bin/selkies-desktop
 VOLUME /config
