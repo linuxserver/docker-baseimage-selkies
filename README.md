@@ -30,6 +30,7 @@ All application settings are passed via environment variables:
 | :----: | --- |
 | PIXELFLUX_WAYLAND | If set to true the container will initialize in Wayland mode running [Smithay](https://github.com/Smithay/smithay) and Labwc |
 | SELKIES_DESKTOP | If set to true and in Wayland mode, a simple panel will be initialized with labwc |
+| PELORUS | If set to true and in Wayland mode enable /pelorus agentic web interface and [text based api control plane](https://github.com/linuxserver/pelorus/blob/master/API.md) |
 | CUSTOM_PORT | Internal port the container listens on for http if it needs to be swapped from the default 3000 |
 | CUSTOM_HTTPS_PORT | Internal port the container listens on for https if it needs to be swapped from the default 3001 |
 | CUSTOM_WS_PORT | Internal port the container listens on for websockets if it needs to be swapped from the default 8082 |
