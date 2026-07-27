@@ -9,6 +9,7 @@ annotated-doc                                                                 0.
 annotated-types                                                               0.8.0                                  python                      
 anyio                                                                         4.14.2                                 python                      
 apt                                                                           3.2.0+kali1                            deb                         
+apt-transport-https                                                           3.2.0+kali1                            deb                         
 apt-utils                                                                     3.2.0+kali1                            deb                         
 at-spi2-common                                                                2.61.0-1                               deb                         
 at-spi2-core                                                                  2.61.0-1                               deb                         
