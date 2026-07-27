@@ -10,6 +10,7 @@ annotated-doc                                                                 0.
 annotated-types                                                               0.8.0                                  python                      
 anyio                                                                         4.14.2                                 python                      
 apt                                                                           3.0.3                                  deb                         
+apt-transport-https                                                           3.0.3                                  deb                         
 apt-utils                                                                     3.0.3                                  deb                         
 at-spi2-common                                                                2.56.2-1+deb13u1                       deb                         
 at-spi2-core                                                                  2.56.2-1+deb13u1                       deb                         
