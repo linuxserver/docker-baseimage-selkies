@@ -16,7 +16,7 @@ fi
 if [ ! -z ${DRINODE+x} ]; then
   VFBCOMMAND="-vfbdevice ${DRINODE}"
 fi
-if [ "${DISABLE_DRI3}" != "false" ]; then
+if [ "${DISABLE_DRI3,,}" != "false" ]; then
   VFBCOMMAND=""
 fi
 

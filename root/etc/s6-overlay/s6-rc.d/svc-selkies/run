@@ -7,15 +7,16 @@ if [ ! -f '/dev/shm/audio.lock' ]; then
   until [ -f /defaults/pid ]; do
     sleep .5
   done
-  s6-setuidgid abc with-contenv pactl \
+  if s6-setuidgid abc with-contenv pactl \
     load-module module-null-sink \
     sink_name="output" \
-    sink_properties=device.description="output"
-  s6-setuidgid abc with-contenv pactl \
-    load-module module-null-sink \
-    sink_name="input" \
-    sink_properties=device.description="input"
-  touch /dev/shm/audio.lock
+    sink_properties=device.description="output" && \
+    s6-setuidgid abc with-contenv pactl \
+      load-module module-null-sink \
+      sink_name="input" \
+      sink_properties=device.description="input"; then
+    touch /dev/shm/audio.lock
+  fi
 fi
 
 # Setup dev mode if defined
