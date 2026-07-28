@@ -13,7 +13,7 @@ alpine-keys                                                                   2.
 alpine-release                                                                3.24.1-r0                               apk                          
 alsa-lib                                                                      1.2.15.3-r0                             apk                          
 alsa-plugins-pulse                                                            1.2.12-r2                               apk                          
-annotated-doc                                                                 0.0.4                                   python                       
+annotated-doc                                                                 0.0.5                                   python                       
 annotated-types                                                               0.8.0                                   python                       
 anstream                                                                      0.6.8                                   rust-crate                   
 anstyle                                                                       1.0.4                                   rust-crate                   
@@ -111,7 +111,7 @@ encodings                                                                     1.
 errno                                                                         0.3.8                                   rust-crate                   
 eudev-libs                                                                    3.2.14-r6                               apk                          
 evdev                                                                         1.9.3                                   python                       
-fastapi                                                                       0.140.7                                 python                       
+fastapi                                                                       0.140.13                                python                       
 fcft                                                                          3.3.3-r0                                apk                          
 fern                                                                          0.6.2                                   rust-crate                   
 fftw-single-libs                                                              3.3.11-r0                               apk                          
@@ -831,7 +831,7 @@ pciutils                                                                      3.
 pciutils-libs                                                                 3.15.0-r0                               apk                          
 pcmflux                                                                       2.0.0                                   python                       
 pcre2                                                                         10.47-r1                                apk                          
-pelorus                                                                       0.2.2                                   python                       
+pelorus                                                                       0.2.3                                   python                       
 pillow                                                                        12.3.0                                  python                       
 pip                                                                           26.1.1                                  python                       
 pixelflux                                                                     2.0.0                                   python                       
