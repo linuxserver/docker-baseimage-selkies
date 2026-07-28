@@ -51,8 +51,8 @@ All application settings are passed via environment variables:
 | NO_DECOR | If set the application will run without window borders for use as a PWA. (Decor can be enabled and disabled with Ctrl+Shift+d) |
 | NO_FULL | Do not autmatically fullscreen applications. |
 | NO_GAMEPAD | Disable userspace gamepad interposer injection. |
-| DISABLE_ZINK | Set to `false` to disable Zink (Mesa OpenGL-on-Vulkan) acceleration for NVIDIA GPUs in X11 mode. Enabled by default when an NVIDIA GPU is detected. |
-| DISABLE_DRI3 | Set to `false` to disable DRI3 GPU passthrough in X11 mode. Enabled by default when a GPU is detected. |
+| DISABLE_ZINK | Set to `true` to disable Zink (Mesa OpenGL-on-Vulkan) acceleration for NVIDIA GPUs in X11 mode. Enabled by default when an NVIDIA GPU is detected. |
+| DISABLE_DRI3 | Set to `true` to disable DRI3 GPU passthrough in X11 mode. Enabled by default when a GPU is detected. |
 | MAX_RES | Pass a larger maximum resolution for the container default is 16k `15360x8640` (X11 only) |
 | WATERMARK_PNG | Full path inside the container to a watermark png IE `/usr/share/selkies/www/icon.png` |
 | WATERMARK_LOCATION | Where to paint the image over the stream integer options below |

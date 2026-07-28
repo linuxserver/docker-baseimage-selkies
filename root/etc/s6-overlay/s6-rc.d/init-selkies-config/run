@@ -35,11 +35,13 @@ if [[ ! -f "$CONF_DIR/menu.xml" ]]; then
 fi
 
 # XDG Home
-if [ ! -d "$HOME/.XDG" ]; then
-  mkdir -p "$HOME/.XDG"
-  chown abc:abc "$HOME/.XDG"
-fi
+rm -Rf "$HOME/.XDG"
+mkdir -p "$HOME/.XDG"
+chown abc:abc "$HOME/.XDG"
 printf "$HOME/.XDG" > /run/s6/container_environment/XDG_RUNTIME_DIR
+
+# Clean out pulseaudio locks
+rm -f /defaults/pid /defaults/native
 
 # locale Support
 if [ ! -z ${LC_ALL+x} ]; then
