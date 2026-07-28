@@ -15,7 +15,7 @@ aioice                                                                        0.
 aiosignal                                                                     1.4.0                                              python                      
 alsa-lib                                                                      1.2.16.1-1.fc44                                    rpm                         
 alternatives                                                                  1.33-5.fc44                                        rpm                         
-annotated-doc                                                                 0.0.4                                              python                      
+annotated-doc                                                                 0.0.5                                              python                      
 annotated-types                                                               0.8.0                                              python                      
 anyio                                                                         4.14.2                                             python                      
 at-spi2-atk                                                                   2.60.5-1.fc44                                      rpm                         
@@ -109,7 +109,7 @@ elfutils-libs                                                                 0.
 emacs-filesystem                                                              1:30.2-2.fc44                                      rpm                         
 evdev                                                                         1.9.3                                              python                      
 expat                                                                         2.8.1-1.fc44                                       rpm                         
-fastapi                                                                       0.140.7                                            python                      
+fastapi                                                                       0.140.13                                           python                      
 fcft                                                                          3.3.3-2.fc44                                       rpm                         
 fdk-aac                                                                       2.0.3-6.fc44                                       rpm                         
 fedora-gpg-keys                                                               44-1                                               rpm                         
@@ -874,7 +874,7 @@ pcre2-devel                                                                   10
 pcre2-syntax                                                                  10.47-1.fc44.1                                     rpm                         
 pcre2-utf16                                                                   10.47-1.fc44.1                                     rpm                         
 pcre2-utf32                                                                   10.47-1.fc44.1                                     rpm                         
-pelorus                                                                       0.2.2                                              python                      
+pelorus                                                                       0.2.3                                              python                      
 perl-AutoLoader                                                               0:5.74-524.fc44                                    rpm                         
 perl-B                                                                        0:1.89-524.fc44                                    rpm                         
 perl-Carp                                                                     1.54-521.fc44                                      rpm                         
