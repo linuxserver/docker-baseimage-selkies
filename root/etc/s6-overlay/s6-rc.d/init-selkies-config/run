@@ -292,6 +292,19 @@ if [[ -z ${NO_GAMEPAD+x} ]] && mknod /dev/input/js0 c 13 0; then
   mknod /dev/input/event1002 c 13 1066
   mknod /dev/input/event1003 c 13 1067
   chmod 777 /dev/input/js* /dev/input/event*
+elif [[ -z ${NO_GAMEPAD+x} ]] && touch /dev/input/js0; then
+  # Rootless runtimes have no CAP_MKNOD, and the kernel refuses device nodes
+  # inside a userns regardless. The interposer matches on the path name and
+  # never opens the real node, so empty files are enough.
+  printf "/usr/lib/selkies_joystick_interposer.so:/opt/lib/libudev.so.1.0.0-fake" > /run/s6/container_environment/LD_PRELOAD
+  touch /dev/input/js1
+  touch /dev/input/js2
+  touch /dev/input/js3
+  touch /dev/input/event1000
+  touch /dev/input/event1001
+  touch /dev/input/event1002
+  touch /dev/input/event1003
+  chmod 777 /dev/input/js* /dev/input/event*
 else
   printf "false" > /run/s6/container_environment/SELKIES_UI_SIDEBAR_SHOW_GAMEPADS
   printf "false" > /run/s6/container_environment/SELKIES_GAMEPAD_ENABLED
