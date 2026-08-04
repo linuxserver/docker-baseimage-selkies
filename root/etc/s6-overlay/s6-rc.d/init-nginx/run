@@ -40,7 +40,7 @@ fi
 if [ ! -z ${DISABLE_IPV6+x} ]; then
   sed -i '/listen \[::\]/d' ${NGINX_CONFIG}
 fi
-if [ ! -z ${PASSWORD+x} ]; then
+if [ -n "${PASSWORD}" ]; then
   printf "${CUSER}:$(openssl passwd -apr1 ${PASSWORD})\n" > /etc/nginx/.htpasswd
   sed -i 's/#//g' ${NGINX_CONFIG}
 fi
