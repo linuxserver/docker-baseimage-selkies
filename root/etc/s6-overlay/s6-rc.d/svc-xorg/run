@@ -13,7 +13,7 @@ VFBCOMMAND=""
 if ! which nvidia-smi && [ -e "/dev/dri/renderD128" ]; then
   VFBCOMMAND="-vfbdevice /dev/dri/renderD128"
 fi
-if [ ! -z ${DRINODE+x} ]; then
+if [ -n "${DRINODE}" ]; then
   VFBCOMMAND="-vfbdevice ${DRINODE}"
 fi
 if [ "${DISABLE_DRI3,,}" != "false" ]; then
@@ -22,7 +22,7 @@ fi
 
 # Clamp virtual screen max size based on env
 DEFAULT_RES="15360x8640"
-if [ ! -z ${MAX_RES+x} ]; then
+if [ -n "${MAX_RES}" ]; then
   DEFAULT_RES="${MAX_RES}"
 fi
 if [ -n "${SELKIES_MANUAL_HEIGHT}" ] || [ -n "${SELKIES_MANUAL_WIDTH}" ]; then
