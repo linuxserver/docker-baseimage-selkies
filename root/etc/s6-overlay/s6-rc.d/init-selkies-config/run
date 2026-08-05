@@ -158,7 +158,7 @@ if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]];then
     cp "$DEF_RC" "$USER_RC_XML"
     chown abc:abc "$USER_RC_XML"
     
-    if [[ -n "${DISABLE_CLOSE_BUTTON}" ]]; then
+    if [[ "${DISABLE_CLOSE_BUTTON,,}" == "true" ]]; then
       echo "[ls.io-init] Disabling close button"
       sed -i 's/close//' "$USER_RC_XML"
     fi
@@ -204,7 +204,7 @@ else
     cp "$SYS_RC_XML" "$SYS_RC_BAK"
   fi
   cp "$SYS_RC_BAK" "$SYS_RC_XML"
-  if [[ -n "${DISABLE_CLOSE_BUTTON}" ]]; then
+  if [[ "${DISABLE_CLOSE_BUTTON,,}" == "true" ]]; then
     echo "[ls.io-init] Disabling close button"
     sed -i '/<titleLayout>/s/C//' "$SYS_RC_XML"
   fi
