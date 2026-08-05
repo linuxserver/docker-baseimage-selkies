@@ -41,7 +41,7 @@ if [ ! -z ${DISABLE_IPV6+x} ]; then
   sed -i '/listen \[::\]/d' ${NGINX_CONFIG}
 fi
 if [ -n "${PASSWORD}" ]; then
-  printf "${CUSER}:$(openssl passwd -apr1 ${PASSWORD})\n" > /etc/nginx/.htpasswd
+  printf '%s:%s\n' "${CUSER}" "$(openssl passwd -apr1 "${PASSWORD}")" > /etc/nginx/.htpasswd
   sed -i 's/#//g' ${NGINX_CONFIG}
 fi
 if [ ! -z ${DEV_MODE+x} ] && [[ "${DEV_MODE}" != "pixelflux" ]]; then
