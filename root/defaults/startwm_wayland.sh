@@ -8,6 +8,10 @@ export XKB_DEFAULT_LAYOUT=us
 export XKB_DEFAULT_RULES=evdev
 export WAYLAND_DISPLAY=wayland-1
 
+# Session output is discarded by default; SELKIES_DEBUG surfaces the labwc
+# session in the container log, matching startwm.sh.
+if [ "${SELKIES_DEBUG,,}" = "true" ]; then LOGDEST=/dev/stdout; else LOGDEST=/dev/null; fi
+
 if [ "${PELORUS,,}" == "true" ]; then
   export QT_ACCESSIBILITY=1
   export QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
@@ -38,11 +42,11 @@ if [ "${PELORUS,,}" == "true" ]; then
       labwc -i
       kill $ATSPI_PID
       kill $PELORUS_PID
-    ' > /dev/null 2>&1
+    ' > "${LOGDEST}" 2>&1
   fi
 else
   if [ "${SELKIES_DESKTOP,,}" == "true" ]; then
-    labwc > /dev/null 2>&1 &
+    labwc > "${LOGDEST}" 2>&1 &
     LABWC_PID=$!
     sleep 1
     export WAYLAND_DISPLAY=wayland-0
@@ -50,6 +54,6 @@ else
     selkies-desktop
     kill $LABWC_PID
   else
-    labwc > /dev/null 2>&1
+    labwc > "${LOGDEST}" 2>&1
   fi
 fi

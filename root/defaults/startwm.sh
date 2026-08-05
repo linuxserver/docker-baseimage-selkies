@@ -7,5 +7,8 @@ if which nvidia-smi > /dev/null 2>&1 && ls -A /dev/dri 2>/dev/null && [ "${DISAB
   export GALLIUM_DRIVER=zink
 fi
 
-# Start DE
-exec dbus-launch --exit-with-session /usr/bin/openbox-session > /dev/null 2>&1
+# Start DE. Output is discarded by default; SELKIES_DEBUG surfaces the openbox
+# session and everything it launches (autostart, app launchers, ready banners)
+# in the container log.
+if [ "${SELKIES_DEBUG,,}" = "true" ]; then LOGDEST=/dev/stdout; else LOGDEST=/dev/null; fi
+exec dbus-launch --exit-with-session /usr/bin/openbox-session > "${LOGDEST}" 2>&1
