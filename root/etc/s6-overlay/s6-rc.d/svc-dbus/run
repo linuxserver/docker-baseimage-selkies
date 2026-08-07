@@ -10,4 +10,4 @@ exec s6-setuidgid abc \
   dbus-daemon \
     --system \
     --nofork \
-    --nosyslog 
+    --nosyslog > /dev/null 2>&1
