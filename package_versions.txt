@@ -415,7 +415,7 @@ highway                                                                       1.
 httpcore                                                                      1.0.9                                   python                         
 httptools                                                                     0.8.0                                   python                         
 httpx                                                                         0.28.1                                  python                         
-hwdata                                                                        0.409-1                                 alpm                           
+hwdata                                                                        0.410-1                                 alpm                           
 iana-etc                                                                      20260530-1                              alpm                           
 icu                                                                           78.3-1                                  alpm                           
 idna                                                                          3.18                                    python                         
@@ -532,7 +532,7 @@ libsfdo                                                                       0.
 libsm                                                                         1.2.6-1                                 alpm                           
 libsndfile                                                                    1.2.2-4                                 alpm                           
 libsoxr                                                                       0.1.3-5                                 alpm                           
-libssh2                                                                       1.11.1-6                                alpm                           
+libssh2                                                                       1.11.1-7                                alpm                           
 libstdc++                                                                     16.1.1+r595+g171d15ac6959-1             alpm                           
 libsysprof-capture                                                            50.0-4                                  alpm                           
 libtasn1                                                                      4.21.0-1                                alpm                           
