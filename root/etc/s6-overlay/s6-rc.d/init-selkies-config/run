@@ -157,8 +157,8 @@ if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]];then
     echo "[ls.io-init] Generating labwc rc.xml from template"
     cp "$DEF_RC" "$USER_RC_XML"
     chown abc:abc "$USER_RC_XML"
-    
-    if [[ -n "${DISABLE_CLOSE_BUTTON}" ]]; then
+
+    if [[ "${DISABLE_CLOSE_BUTTON,,}" == "true" ]]; then 
       echo "[ls.io-init] Disabling close button"
       sed -i 's/close//' "$USER_RC_XML"
     fi
@@ -187,7 +187,7 @@ if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]];then
             sed -i "/<keybind key=\"${key}\"/I,/<\/keybind>/{s/^/    <!-- /;s/$/ -->/}" "$USER_RC_XML"
         done
     fi
-    
+
     # lock file if hardened
     if [[ ${DISABLE_MOUSE_BUTTONS,,} == "true" || ${HARDEN_KEYBINDS,,} == "true" ]]; then
       echo "[ls.io-init] Locking labwc rc.xml to prevent security overrides"
@@ -204,7 +204,7 @@ else
     cp "$SYS_RC_XML" "$SYS_RC_BAK"
   fi
   cp "$SYS_RC_BAK" "$SYS_RC_XML"
-  if [[ -n "${DISABLE_CLOSE_BUTTON}" ]]; then
+  if [[ "${DISABLE_CLOSE_BUTTON,,}" == "true" ]]; then
     echo "[ls.io-init] Disabling close button"
     sed -i '/<titleLayout>/s/C//' "$SYS_RC_XML"
   fi
@@ -291,6 +291,16 @@ if [[ -z ${NO_GAMEPAD+x} ]] && mknod /dev/input/js0 c 13 0; then
   mknod /dev/input/event1001 c 13 1065
   mknod /dev/input/event1002 c 13 1066
   mknod /dev/input/event1003 c 13 1067
+  chmod 777 /dev/input/js* /dev/input/event*
+elif [[ -z ${NO_GAMEPAD+x} ]] && touch /dev/input/js0; then
+  printf "/usr/lib/selkies_joystick_interposer.so:/opt/lib/libudev.so.1.0.0-fake" > /run/s6/container_environment/LD_PRELOAD
+  touch /dev/input/js1
+  touch /dev/input/js2
+  touch /dev/input/js3
+  touch /dev/input/event1000
+  touch /dev/input/event1001
+  touch /dev/input/event1002
+  touch /dev/input/event1003
   chmod 777 /dev/input/js* /dev/input/event*
 else
   printf "false" > /run/s6/container_environment/SELKIES_UI_SIDEBAR_SHOW_GAMEPADS

@@ -27,7 +27,7 @@ if [ "${PELORUS,,}" == "true" ]; then
       kill $ATSPI_PID
       kill $LABWC_PID
       kill $PELORUS_PID
-    ' #> /dev/null 2>&1 &
+    ' > /dev/null 2>&1
   else
     dbus-run-session bash -c '
       /usr/libexec/at-spi2-registryd &
