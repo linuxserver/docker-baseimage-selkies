@@ -726,9 +726,9 @@ libgtk-3-0t64                                                                 3.
 libgtk-3-common                                                               3.24.49-3                               deb                         
 libgudev-1.0-0                                                                238-6                                   deb                         
 libharfbuzz0b                                                                 10.2.0-1+deb13u1                        deb                         
-libheif-plugin-dav1d                                                          1.19.8-1                                deb                         
-libheif-plugin-libde265                                                       1.19.8-1                                deb                         
-libheif1                                                                      1.19.8-1                                deb                         
+libheif-plugin-dav1d                                                          1.19.8-1+deb13u1                        deb                         
+libheif-plugin-libde265                                                       1.19.8-1+deb13u1                        deb                         
+libheif1                                                                      1.19.8-1+deb13u1                        deb                         
 libhogweed6t64                                                                3.10.1-1                                deb                         
 libhwasan0                                                                    14.2.0-19                               deb                         
 libhwy1t64                                                                    1.2.0-2+b2                              deb                         
