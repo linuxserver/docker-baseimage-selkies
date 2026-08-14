@@ -68,6 +68,11 @@ if [[ ${HARDEN_DESKTOP,,} == "true" ]]; then
     printf "false" > /run/s6/container_environment/SELKIES_UI_SIDEBAR_SHOW_APPS
   fi
 fi
+# upstream selkies now defaults command websocket messages to off, the
+# dashboard apps/launcher section depends on them so enable when not hardened
+if [[ ${HARDEN_DESKTOP,,} != "true" ]] && [ -z ${SELKIES_COMMAND_ENABLED+x} ]; then
+  printf "true" > /run/s6/container_environment/SELKIES_COMMAND_ENABLED
+fi
 if [[ ${HARDEN_OPENBOX,,} == "true" ]]; then
   export DISABLE_CLOSE_BUTTON="true"
   export DISABLE_MOUSE_BUTTONS="true"
@@ -313,4 +318,46 @@ fi
 # set ws port if unset
 if [[ -z ${CUSTOM_WS_PORT+x} ]]; then
   printf "8082" > /run/s6/container_environment/CUSTOM_WS_PORT
+fi
+
+# do not show webrtc unless user is configuring it and default to it if so
+WEBRTC_ENV_VARS=(
+  SELKIES_RTC_CONFIG_JSON
+  SELKIES_TURN_REST_URI
+  SELKIES_TURN_REST_API_KEY
+  SELKIES_TURN_REST_USERNAME
+  SELKIES_TURN_HOST
+  SELKIES_TURN_PORT
+  SELKIES_TURN_PROTOCOL
+  SELKIES_TURN_TLS
+  SELKIES_TURN_SHARED_SECRET
+  SELKIES_TURN_USERNAME
+  SELKIES_TURN_PASSWORD
+  SELKIES_STUN_HOST
+  SELKIES_STUN_PORT
+  SELKIES_WEBRTC_PUBLIC_IP
+  SELKIES_ENABLE_CLOUDFLARE_TURN
+  SELKIES_CLOUDFLARE_TURN_TOKEN_ID
+  SELKIES_CLOUDFLARE_TURN_API_TOKEN
+)
+WEBRTC_CONFIGURED="false"
+for webrtc_var in "${WEBRTC_ENV_VARS[@]}"; do
+  if [[ -n "${!webrtc_var}" ]]; then
+    echo "[ls.io-init] ${webrtc_var} is set, enabling WebRTC in the dashboard"
+    WEBRTC_CONFIGURED="true"
+    break
+  fi
+done
+if [[ "${SELKIES_MODE,,}" == "webrtc" ]]; then
+  WEBRTC_CONFIGURED="true"
+fi
+if [[ "${WEBRTC_CONFIGURED}" == "true" ]]; then
+  if [[ -z ${SELKIES_MODE+x} ]]; then
+    printf "webrtc" > /run/s6/container_environment/SELKIES_MODE
+  fi
+  if [[ -z ${SELKIES_ENABLE_DUAL_MODE+x} ]]; then
+    printf "true" > /run/s6/container_environment/SELKIES_ENABLE_DUAL_MODE
+  fi
+elif [[ -z ${SELKIES_ENABLE_DUAL_MODE+x} ]]; then
+  printf "false" > /run/s6/container_environment/SELKIES_ENABLE_DUAL_MODE
 fi

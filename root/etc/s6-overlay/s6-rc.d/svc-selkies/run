@@ -78,7 +78,7 @@ if [ ! -z ${DEV_MODE+x} ]; then
       --ignore "build/" \
       --ignore "*.egg-info/" \
       --ignore "__pycache__/" \
-      --exec "pip uninstall -y pixelflux || true && pip install . --break-system-packages && (killall labwc || true) && (killall selkies-desktop || true) && cd /tmp && python3 -m selkies --addr='localhost' --mode='websockets' --debug='true'"
+      --exec "pip uninstall -y pixelflux || true && pip install . --break-system-packages && (killall labwc || true) && (killall selkies-desktop || true) && cd /tmp && python3 -m selkies --addr='localhost' --debug='true'"
   else
     # Frontend setup
     if [[ "${DEV_MODE}" == "core" ]]; then
@@ -114,12 +114,11 @@ if [ ! -z ${DEV_MODE+x} ]; then
     cd $HOME/src/src
     s6-setuidgid abc \
       nodemon -V --ext py --watch . --exec \
-        "killall labwc || true; killall selkies-desktop || true; python3 -m selkies --addr='localhost' --mode='websockets' --debug='true'"
+        "killall labwc || true; killall selkies-desktop || true; python3 -m selkies --addr='localhost' --debug='true'"
   fi
 fi
 
 # Start Selkies
 exec s6-setuidgid abc \
   selkies \
-    --addr="localhost" \
-    --mode="websockets"
+    --addr="localhost"

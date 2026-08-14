@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM lscr.io/linuxserver/xvfb:ubunturesolute AS xvfb
-FROM ghcr.io/linuxserver/baseimage-alpine:3.22 AS frontend
+FROM ghcr.io/linuxserver/baseimage-alpine:3.24 AS frontend
 
 RUN \
   echo "**** install build packages ****" && \
@@ -12,11 +12,13 @@ RUN \
 
 RUN \
   echo "**** ingest code ****" && \
+  SELKIES_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/commits/main" \
+    | jq -r '.sha') && \
   git clone \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f 348bc4f61da66198573e7e57db9a266aca1991d5
+  git checkout -f ${SELKIES_COMMIT}
 
 RUN \
   echo "**** build shared core library ****" && \
@@ -28,14 +30,11 @@ RUN \
   mkdir /buildout && \
   for DASH in $DASHBOARDS; do \
     cd /src/addons/$DASH && \
-    cp ../selkies-web-core/dist/selkies-core.js src/ && \
     npm install && \
     npm run build && \
-    mkdir -p dist/src dist/nginx && \
+    mkdir -p dist/src && \
     cp ../selkies-web-core/dist/selkies-core.js dist/src/ && \
     cp ../universal-touch-gamepad/universalTouchGamepad.js dist/src/ && \
-    cp ../selkies-web-core/nginx/* dist/nginx/ && \
-    cp -r ../selkies-web-core/dist/jsdb dist/ && \
     mkdir -p /buildout/$DASH && \
     cp -ar dist/* /buildout/$DASH/; \
   done
@@ -294,7 +293,8 @@ ENV DISPLAY=:1 \
     NVIDIA_DRIVER_CAPABILITIES=all \
     DISABLE_ZINK=false \
     DISABLE_DRI3=false \
-    SELKIES_ENCODER="x264enc,jpeg" \
+    SELKIES_ENCODER="h264enc,jpeg" \
+    SELKIES_ENABLE_BASIC_AUTH=false \
     TITLE=Selkies
 
 RUN \
@@ -441,26 +441,36 @@ RUN \
     zlib1g \
     zstd && \
   echo "**** install selkies ****" && \
-  SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/latest" \
-    | awk '/tag_name/{print $4;exit}' FS='[""]') && \
+  SELKIES_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/commits/main" \
+    | jq -r '.sha') && \
   curl -o \
     /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/348bc4f61da66198573e7e57db9a266aca1991d5.tar.gz" && \
+    "https://github.com/selkies-project/selkies/archive/${SELKIES_COMMIT}.tar.gz" && \
   cd /tmp && \
   tar xf selkies.tar.gz && \
   cd selkies-* && \
-  sed -i '/"av>/d' pyproject.toml && \
-  sed -i '/cryptography/d' pyproject.toml && \
   python3 \
     -m venv \
     --system-site-packages \
     /lsiopy && \
+  echo "**** install pixelflux and pcmflux wheels ****" && \
+  PIXELFLUX_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/pixelflux/commits/main" \
+    | jq -r '.sha' | cut -c1-7) && \
+  PCMFLUX_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/pcmflux/commits/main" \
+    | jq -r '.sha' | cut -c1-7) && \
+  PIXELFLUX_VERSION=$(curl -s "https://raw.githubusercontent.com/selkies-project/pixelflux/${PIXELFLUX_COMMIT}/setup.py" \
+    | awk '/version=/{print $2;exit}' FS='[""]') && \
+  PCMFLUX_VERSION=$(curl -s "https://raw.githubusercontent.com/selkies-project/pcmflux/${PCMFLUX_COMMIT}/setup.py" \
+    | awk '/version=/{print $2;exit}' FS='[""]') && \
+  pip install \
+    https://github.com/selkies-project/pixelflux/releases/download/${PIXELFLUX_COMMIT}/pixelflux-${PIXELFLUX_VERSION}-cp314-cp314-manylinux_2_28_x86_64.whl \
+    https://github.com/selkies-project/pcmflux/releases/download/${PCMFLUX_COMMIT}/pcmflux-${PCMFLUX_VERSION}-cp314-cp314-manylinux_2_28_x86_64.whl && \
   pip install . && \
   pip install setuptools && \
   echo "**** install pelorus ****" && \
   mkdir -p /tmp/pelorus && \
   PELORUS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/pelorus/releases/latest" \
-    | awk '/tag_name/{print $4;exit}' FS='[""]') && \
+    | jq -r '.tag_name') && \
   curl -o \
     /tmp/pelorus.tar.gz -L \
     "https://github.com/linuxserver/pelorus/archive/${PELORUS_RELEASE}.tar.gz" && \
@@ -512,7 +522,7 @@ RUN \
   echo "**** proot-apps ****" && \
   mkdir /proot-apps/ && \
   PAPPS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/proot-apps/releases/latest" \
-    | awk '/tag_name/{print $4;exit}' FS='[""]') && \
+    | jq -r '.tag_name') && \
   curl -L https://github.com/linuxserver/proot-apps/releases/download/${PAPPS_RELEASE}/proot-apps-x86_64.tar.gz \
     | tar -xzf - -C /proot-apps/ && \
   echo "${PAPPS_RELEASE}" > /proot-apps/pversion && \
