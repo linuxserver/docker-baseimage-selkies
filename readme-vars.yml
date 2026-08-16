@@ -232,6 +232,8 @@ full_custom_readme: |
   | Kali | kali |
   | Ubuntu | ubunturesolute |
 
+  **A `dev` tag is also available based on the latest Ubuntu and the head Selkies codebase for integration testing.**
+
   ### Control Plane API for Token Management
 
   When secure mode is enabled (`SELKIES_MASTER_TOKEN` is set), the server runs a control plane API on the `control_port` (default: 8083). This API is used to dynamically set and update the access tokens that clients can use to connect. This control plane port is meant for integrators that want to wrap the baseimage in their own platforms and handle authentication, this port should never be exposed publically.
