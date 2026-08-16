@@ -1080,7 +1080,7 @@ pyopenssl                                                                     26
 pyparsing                                                                     3.3.2                                   python                      
 python-apt                                                                    3.1.0+ubuntu1                           python                      
 python-apt-common                                                             3.1.0ubuntu1                            deb                         
-python-dotenv                                                                 1.2.2                                   python                      
+python-dotenv                                                                 1.2.3                                   python                      
 python-xlib                                                                   0.33                                    python                      
 python3                                                                       3.14.3-0ubuntu2                         deb                         
 python3-apt                                                                   3.1.0ubuntu1                            deb                         
