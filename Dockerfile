@@ -441,7 +441,7 @@ RUN \
     zlib1g && \
   echo "**** install selkies ****" && \
   SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/latest" \
-    | awk '/tag_name/{print $4;exit}' FS='[""]') && \
+    | jq -r '.tag_name') && \
   curl -o \
     /tmp/selkies.tar.gz -L \
     "https://github.com/selkies-project/selkies/archive/348bc4f61da66198573e7e57db9a266aca1991d5.tar.gz" && \
@@ -459,7 +459,7 @@ RUN \
   echo "**** install pelorus ****" && \
   mkdir -p /tmp/pelorus && \
   PELORUS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/pelorus/releases/latest" \
-    | awk '/tag_name/{print $4;exit}' FS='[""]') && \
+    | jq -r '.tag_name') && \
   curl -o \
     /tmp/pelorus.tar.gz -L \
     "https://github.com/linuxserver/pelorus/archive/${PELORUS_RELEASE}.tar.gz" && \
@@ -511,7 +511,7 @@ RUN \
   echo "**** proot-apps ****" && \
   mkdir /proot-apps/ && \
   PAPPS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/proot-apps/releases/latest" \
-    | awk '/tag_name/{print $4;exit}' FS='[""]') && \
+    | jq -r '.tag_name') && \
   curl -L https://github.com/linuxserver/proot-apps/releases/download/${PAPPS_RELEASE}/proot-apps-x86_64.tar.gz \
     | tar -xzf - -C /proot-apps/ && \
   echo "${PAPPS_RELEASE}" > /proot-apps/pversion && \
