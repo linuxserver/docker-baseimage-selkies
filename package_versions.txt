@@ -42,7 +42,7 @@ cffi                                                                          2.
 click                                                                         8.4.2                                   python                         
 cmake                                                                         4.4.2-1                                 alpm                           
 command-line-arguments                                                        UNKNOWN                                 go-module                      
-containerd                                                                    2.3.3-1                                 alpm                           
+containerd                                                                    2.3.4-1                                 alpm                           
 coreutils                                                                     9.11-2                                  alpm                           
 cpio                                                                          2.15-3                                  alpm                           
 cppdap                                                                        1.58.0-3                                alpm                           
@@ -125,7 +125,7 @@ github.com/containerd/cgroups/v3                                              v3
 github.com/containerd/console                                                 v1.0.5                                  go-module     (+4 duplicates)  
 github.com/containerd/containerd/api                                          v1.11.1                                 go-module     (+4 duplicates)  
 github.com/containerd/containerd/v2                                           v2.3.3                                  go-module                      
-github.com/containerd/containerd/v2                                           v2.3.3+dirty                            go-module     (+3 duplicates)  
+github.com/containerd/containerd/v2                                           v2.3.4+dirty                            go-module     (+3 duplicates)  
 github.com/containerd/continuity                                              v0.5.0                                  go-module     (+4 duplicates)  
 github.com/containerd/errdefs                                                 v1.0.0                                  go-module     (+4 duplicates)  
 github.com/containerd/errdefs/pkg                                             v0.3.0                                  go-module     (+4 duplicates)  
@@ -409,7 +409,7 @@ gtest                                                                         1.
 guile                                                                         3.0.11-1                                alpm                           
 gzip                                                                          1.14-2                                  alpm                           
 h11                                                                           0.16.0                                  python                         
-harfbuzz                                                                      14.3.0-1                                alpm                           
+harfbuzz                                                                      14.3.1-1                                alpm                           
 hicolor-icon-theme                                                            0.18-1                                  alpm                           
 highway                                                                       1.4.0-1                                 alpm                           
 httpcore                                                                      1.0.9                                   python                         
@@ -437,14 +437,14 @@ jq                                                                            1.
 jq                                                                            1.8.2-1                                 alpm                           
 json-c                                                                        0.19-1                                  alpm                           
 jsoncpp                                                                       1.9.6-3                                 alpm                           
-k8s.io/apimachinery                                                           v0.36.0                                 go-module     (+2 duplicates)  
-k8s.io/client-go                                                              v0.36.0                                 go-module                      
-k8s.io/component-base                                                         v0.36.0                                 go-module                      
-k8s.io/cri-api                                                                v0.36.0                                 go-module     (+1 duplicate)   
-k8s.io/cri-client                                                             v0.36.0                                 go-module                      
-k8s.io/cri-streaming                                                          v0.36.0                                 go-module                      
+k8s.io/apimachinery                                                           v0.36.3                                 go-module     (+2 duplicates)  
+k8s.io/client-go                                                              v0.36.3                                 go-module                      
+k8s.io/component-base                                                         v0.36.3                                 go-module                      
+k8s.io/cri-api                                                                v0.36.3                                 go-module     (+1 duplicate)   
+k8s.io/cri-client                                                             v0.36.3                                 go-module                      
+k8s.io/cri-streaming                                                          v0.36.3                                 go-module                      
 k8s.io/klog/v2                                                                v2.140.0                                go-module     (+2 duplicates)  
-k8s.io/streaming                                                              v0.36.0                                 go-module                      
+k8s.io/streaming                                                              v0.36.3                                 go-module                      
 k8s.io/utils                                                                  v0.0.0-20260319190234-28399d86e0b5      go-module     (+1 duplicate)   
 kbd                                                                           2.10.0-1                                alpm                           
 kernel.org/pub/linux/libs/security/libcap/cap                                 v1.2.78                                 go-module                      
@@ -616,7 +616,7 @@ noto-fonts-cjk                                                                20
 noto-fonts-emoji                                                              1:2.051-1                               alpm                           
 npth                                                                          1.8-1                                   alpm                           
 nspr                                                                          4.40-1                                  alpm                           
-nss                                                                           3.126-1                                 alpm                           
+nss                                                                           3.127-1                                 alpm                           
 oniguruma                                                                     6.9.10-1                                alpm                           
 openbox                                                                       3.6.1-14                                alpm                           
 openbsd-netcat                                                                1.238_1-1                               alpm                           
