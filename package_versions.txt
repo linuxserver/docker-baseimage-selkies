@@ -712,7 +712,7 @@ systemd                                                                       26
 systemd-libs                                                                  261.2-1                                 alpm                           
 tags.cncf.io/container-device-interface                                       v1.1.0                                  go-module     (+2 duplicates)  
 tags.cncf.io/container-device-interface/specs-go                              v1.1.0                                  go-module     (+1 duplicate)   
-tar                                                                           1.35-3                                  alpm                           
+tar                                                                           1.35-5                                  alpm                           
 tdb                                                                           1.4.15-1                                alpm                           
 texinfo                                                                       7.3-1                                   alpm                           
 tpm2-tss                                                                      4.2.0-2                                 alpm                           
