@@ -1,0 +1,8 @@
+#!/bin/bash
+
+PTERM=st
+if [ -e "${HOME}/.XDG/wayland-1" ]; then
+  PTERM=foot
+fi
+
+"$PTERM" -e "${HOME}/.local/bin/proot-apps" "$@"
