@@ -290,6 +290,7 @@ ENV DISPLAY=:1 \
     START_DOCKER=true \
     PULSE_RUNTIME_PATH=/defaults \
     SELKIES_INTERPOSER=/usr/lib/selkies_joystick_interposer.so \
+    SELKIES_WEBCAM_INTERPOSER=/usr/lib/selkies_v4l2_interposer.so \
     NVIDIA_DRIVER_CAPABILITIES=all \
     DISABLE_ZINK=false \
     DISABLE_DRI3=false \
@@ -335,6 +336,7 @@ RUN \
     g++ \
     gcc \
     gir1.2-atspi-2.0 \
+    gir1.2-gtk-3.0 \
     git \
     i965-va-driver-shaders \
     intel-media-va-driver \
@@ -486,6 +488,14 @@ RUN \
   mv \
     selkies_joystick_interposer.so \
     /usr/lib/selkies_joystick_interposer.so && \
+  echo "**** install selkies webcam interposer ****" && \
+  cd ../v4l2-interposer && \
+  gcc -shared -fPIC -ldl -pthread \
+    -o selkies_v4l2_interposer.so \
+    v4l2_interposer.c && \
+  mv \
+    selkies_v4l2_interposer.so \
+    /usr/lib/selkies_v4l2_interposer.so && \
   echo "**** install selkies fake udev ****" && \
   cd ../fake-udev && \
   make && \

@@ -315,6 +315,18 @@ else
   printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER4
 fi
 
+# webcam setup
+if [[ -z ${NO_WEBCAM+x} ]] && [[ ! -e /dev/video0 ]] && { mknod /dev/video0 c 81 0 2>/dev/null || touch /dev/video0 2>/dev/null; }; then
+  chmod 777 /dev/video0
+  printf "true" > /run/s6/container_environment/SELKIES_WEBCAM_ENABLED
+  printf "true" > /run/s6/container_environment/SELKIES_UI_SIDEBAR_SHOW_WEBCAM
+  if [[ -s /run/s6/container_environment/LD_PRELOAD ]]; then
+    printf "%s:/usr/lib/selkies_v4l2_interposer.so" "$(cat /run/s6/container_environment/LD_PRELOAD)" > /run/s6/container_environment/LD_PRELOAD
+  else
+    printf "/usr/lib/selkies_v4l2_interposer.so" > /run/s6/container_environment/LD_PRELOAD
+  fi
+fi
+
 # set ws port if unset
 if [[ -z ${CUSTOM_WS_PORT+x} ]]; then
   printf "8082" > /run/s6/container_environment/CUSTOM_WS_PORT
