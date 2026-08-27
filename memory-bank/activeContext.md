@@ -1,6 +1,6 @@
 # Active Context
 
-**Last Updated**: 2026-08-27 | **State Machine**: `COMPLETE` (phase 1 done: approved → `bd46cdb` → docs `23964ff`; working tree clean; phase 1.5 = separate work item when user schedules it)
+**Last Updated**: 2026-08-27 | **State Machine**: `PLAN` (task 2: RHEL9 GNOME desktop — PLAN v1 presented, awaiting user approval. Phase 1 COMPLETE: `bd46cdb` → `23964ff` → `24e1575`, tree clean)
 
 ## Git Reality (changed 2026-08-27)
 - `origin` = **user's fork** `git@github.com:dGilli/docker-baseimage-selkies.git` (commits/pushes allowed)
@@ -126,7 +126,7 @@ dunst | xorg-x11-drv-{intel,amdgpu,nouveau,qxl} + mesa-va-drivers (NOT in real R
 
 **Image**: `dgilli/baseimage-selkies:rhel9-p1` = `10bbd70e1502` (cycle 5, +`xorg-x11-server-Xorg` for cvt/gtf — F41; x86_64; base pin ubi9@`03b3d228` amd64 manifest).
 
-**New files**: `Dockerfile.rhel9` (3 stages: base/frontend/runtime, 15 steps), `root-base/` (vendored baseimage-el s6 tree, 68 files, Oracle repo+GPG excluded), `package_versions_rhel9.txt` (213 ubi9-base / 204 rhel9 / 24 epel + 41 python), `readme-vars.yml` +RHEL row.
+**New files**: `Dockerfile.rhel9` (3 stages: base/frontend/runtime, 15 steps), `root-base/` (vendored baseimage-el s6 tree, 68 files, Oracle repo+GPG excluded), `package_versions_rhel9.txt` (final: 213 ubi9-base / 211 rhel9 / 24 epel + 41 python), `readme-vars.yml` +RHEL row.
 
 **Shared-tree edits (4, all no-ops on Debian)**: `init-nginx/run` (conf.d branch), `svc-selkies/run` (DEV_MODE non-Debian gate), `init-selkies-config/run` (`[ -d /proot-apps ]` guard), `svc-docker/run` (dockerd guard).
 
@@ -144,9 +144,31 @@ dunst | xorg-x11-drv-{intel,amdgpu,nouveau,qxl} + mesa-va-drivers (NOT in real R
 
 **Needs MANUAL (user)**: browser → dashboard → connect → desktop renders + window drag + keyboard + audio. (Everything up to the browser handshake is verified autonomously.)
 
+## Task 2: GNOME desktop as RHEL9 default X11 DE — PLAN v1 (presented 2026-08-27, AWAITING user approval)
+**User ask**: "get a GUI desktop working locally, not just a shell" → refined to "the standard GNOME WM RHEL ships with".
+
+**Goal**: RHEL9 image's streamed X11 desktop boots **standard RHEL GNOME (gnome-shell 40.10)** instead of openbox+st-only. openbox stays as fallback (`DESKTOP=openbox` knob); LSIO autostart/`RESTART_APP` mechanism preserved.
+
+**Key decision (NRP-proven pattern, F44)**: `startwm.sh` gnome branch runs `dbus-run-session -- /usr/bin/gnome-shell --x11 --sm-disable` — **direct gnome-shell launch, NOT gnome-session**. Bypasses: gnome-initial-setup welcome screen (not even in gnome-shell's dep tree — F43), keyring prompts, logind dependency, blanking/lock (no gnome-settings-daemon = ideal for a stream). Matches NRP's production UBI9 recipe.
+
+**Packages (all verified live RHEL9 AppStream 2026-08-27, F42/F43)**: add to runtime dnf: `gnome-shell nautilus gnome-terminal gedit gnome-calculator gnome-screenshot firefox xorg-x11-server-utils glx-utils`. (`xorg-x11-server-utils` carries `xsetroot` on RHEL9 — no `xorg-x11-apps`; `glx-utils` carries `glxinfo` for the GLX-ready wait. fonts: liberation already there.)
+
+**Changes**:
+1. Revert tag `pre-gnome-desktop` → `24e1575` (create at BUILD start)
+2. `Dockerfile.rhel9` runtime dnf list += gnome set — **dnf dry-run resolution first** (F31 lesson)
+3. `root/defaults/startwm.sh` — **5th distro-aware no-op branch** (Debian path untouched): if `gnome-shell` present && `DESKTOP != openbox` → export F44 env (`XDG_SESSION_TYPE=x11 XDG_SESSION_ID=<display#> XDG_CURRENT_DESKTOP=GNOME DESKTOP_SESSION=gnome`), `xsetroot -solid #2d2d2d`, `dbus-run-session -- gnome-shell --x11 --sm-disable &`, wait for ready, then `sh $HOME/.config/openbox/autostart` (**exact string** → `svc-watchdog` `RESTART_APP` works UNCHANGED), `wait` on gnome-shell PID; else existing openbox exec
+4. `svc-xorg/run` — **no change** (F45: COMPOSITE/DAMAGE/GLX/RANDR/XFIXES/XTEST +iglx already enabled = gnome-shell X11 requirement set)
+
+**Tests**: autonomous = services 10/10 stable, `pgrep -u abc gnome-shell`, `glxinfo` renderer=llvmpipe, **`gnome-screenshot -f` → read PNG to visually confirm GNOME top bar**, launch gnome-calculator (window visible via xprop). Edge = `DESKTOP=openbox` (old behavior intact) · `SELKIES_MANUAL_WIDTH/HEIGHT=1280x720` · `RESTART_APP=true` watchdog under GNOME · existing hardening trio. **Manual (user)** = browser → GNOME desktop (Activities, app grid, firefox, nautilus, terminal, drag, clipboard).
+
+**Risks**: gnome-shell-on-Xvfb (NRP proved on Xorg; extension set matches + GNOME CI precedent → low; **Plan B** = Xorg-in-gnome-mode in svc-xorg, NRP verbatim, one cycle) · +1.5–2 GB image (gnome+firefox) · no gnome-settings-daemon → Settings app inert (we don't install it; NRP same).
+
+**Budget**: 3 build cycles | **State**: awaiting approval ("approved"/"proceed" to start cycle 1).
+
 ## Working Context
-- Branch: `rhel9`; last MB commit `7b3af8b` (tagged `pre-rhel9-build`); **uncommitted**: Dockerfile.rhel9, root-base/, package_versions_rhel9.txt, readme-vars.yml, 4 shared-tree scripts, findings/activeContext/progress updates — commit pending APPROVAL
-- Live container `selkies-rhel9-p1` (ports 3000/3001/8082) ready for manual browser test; matrix containers m-dri/m-res/m-harden/m-locale/m-devmode removed after checks
-- Host: RHEL 9.8 (Plow), subscribed; /dev/dri/renderD128 present (used for D5 test); podman 5.8.2 rootless
-- Vetting evidence + defect log: `tasks/2026-08/270827_rhel9-vetting-plan-v4.md`; BUILD findings: `findings.md` F31-F40
+- Branch `rhel9`; **working tree clean**; commits `bd46cdb` (phase-1 build) → `23964ff` (docs) → `24e1575` (close); revert tags: `pre-rhel9-build` → `7b3af8b`, next `pre-gnome-desktop` → `24e1575`
+- Live container `selkies-rhel9-p1` (ports 3000/3001/8082, creds abc/baseimage123) = phase-1 image, still openbox default
+- Host: RHEL 9.8 (Plow), subscribed; /dev/dri/renderD128 present; podman 5.8.2 rootless
+- Evidence: vetting `tasks/2026-08/270827_rhel9-vetting-plan-v4.md` · build `tasks/2026-08/270827_rhel9-build.md` · findings `findings.md` F01–F45
+- NRP recipe source: `/home/its_admin/projects/slu-nrp-k8s-vm/{Dockerfile.ubi9-selkies,selkies-rhel9-entrypoint.sh,supervisord-rhel9.conf}`
 - Scratch: /tmp/opencode/ref/{f44,el9}.Dockerfile, prov_attr.sh, ubi_base.txt, gl_probe.c, baseimage-el clone (disposable)

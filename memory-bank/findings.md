@@ -197,6 +197,26 @@ selkies 348bc4f's `gst_app_resize` path: when a client connects and reports its 
 **Status**: ✅ resolved 2026-08-27 (BUILD cycle 5) — `xorg-x11-server-Xorg` installed (carries cvt+gtf on RHEL9; F08 corrected). Rebuilt image 10bbd70e1502. **User re-test #2 PASS: desktop renders ("I got a shell!")** — manual QA complete.
 **Evidence**: selkies-rhel9-p1 logs 2026-08-27 ~19:20 (user manual test #1).
 
+### F42 — RHEL9 X11-utility packaging: no `xorg-x11-apps`, no `mesa-tools`, no `dejavu-fonts`
+Fedora names don't all exist on RHEL9: `dnf provides /usr/bin/xsetroot` → **`xorg-x11-server-utils`** (7.7-44.el9, AppStream); `glxinfo` → **`glx-utils`** (8.4.0, AppStream); `xterm` = separate AppStream pkg (already in phase 1); standard UI fonts = **`liberation-fonts`** (2.1.3, AppStream). `xorg-x11-apps`/`mesa-tools`/`dejavu-fonts` return no repo match on a 9.8 subscribed host.
+**Status**: ✅ verified 2026-08-27 (GNOME task research).
+**Evidence**: dnf provides/repoquery on RHEL 9.8 host.
+
+### F43 — RHEL9 standard GNOME = gnome-shell 40.10 (GNOME 40 generation), AppStream; app set verified
+Verified present in AppStream (2026-08-27): gnome-shell 40.10, gnome-session 40.1.1, gnome-settings-daemon 40.0.1, nautilus 40.2, gnome-terminal 3.40.3, gedit 40, gnome-calculator 40.1, gnome-screenshot 40, gnome-initial-setup 40.4, firefox (102/115/128/140 ESR generations; 140 latest). **`gnome-shell`'s resolved dep tree contains NO gnome-initial-setup/gdm/fonts** (repoquery --deps grep) → launching gnome-shell directly (F44 pattern) avoids the first-boot welcome screen. XFCE 4.18 is **EPEL-only** (xfce4-session 4.18.3, xfwm4 4.18.0, thunar 4.18.6, xfce4-panel 4.18.4, gucharmap 13.0.8, file-roller 3.40) → GNOME is the better-supported choice; user directed GNOME ("the standard Gnome WM rhel ships with").
+**Status**: ✅ verified 2026-08-27.
+**Evidence**: dnf repoquery on RHEL 9.8 host.
+
+### F44 — NRP's proven GNOME launch recipe (UBI9, v4-llvmpipe, in production)
+`slu-nrp-k8s-vm/selkies-rhel9-entrypoint.sh:233-234`: **`dbus-run-session -- /usr/bin/gnome-shell --x11 --sm-disable &`** — direct gnome-shell launch (NOT gnome-session), `--sm-disable` = no lock/resume. Env (their Dockerfile:27-36): `XDG_SESSION_TYPE=x11`, `XDG_SESSION_ID=<display#>`, `XDG_CURRENT_DESKTOP=GNOME`, `DESKTOP_SESSION=gnome` + llvmpipe trio. Cosmetic: `xsetroot -solid "#2d2d2d"` before compositor draws (line 221); GLX-ready wait via glxinfo (224-231); nautilus auto-start after delay (supervisord). **Delta vs us**: NRP runs Xorg-on-vt7; we plan gnome-shell on our Xvfb (F45: extension set matches; GNOME CI runs gnome-shell on Xvfb).
+**Status**: ✅ extracted as PLAN v1 reference 2026-08-27.
+**Evidence**: `selkies-rhel9-entrypoint.sh`, `Dockerfile.ubi9-selkies`, `supervisord-rhel9.conf`.
+
+### F45 — Our Xvfb already enables every extension gnome-shell's X11 backend needs
+`svc-xorg/run:42-50`: `+COMPOSITE +DAMAGE +GLX +RANDR +RENDER +MIT-SHM +XFIXES +XTEST +iglx +render` = exactly mutter/gnome-shell's X11 requirement set; GL under Xvfb+llvmpipe verified (F36: GL 4.5). No svc-xorg change needed for GNOME phase.
+**Status**: ✅ verified 2026-08-27 (code review + F36).
+**Evidence**: `root/etc/s6-overlay/s6-rc.d/svc-xorg/run:36-56`.
+
 ## 5. Upstream Observations
 
 ### F25 — Upstream OS variants = one git branch per OS
