@@ -26,6 +26,7 @@
 | Path | Purpose |
 |------|---------|
 | [tasks/2026-08/README.md](./tasks/2026-08/README.md) | Monthly summary |
+| [tasks/2026-08/270827_rhel9-vetting-plan-v4.md](./tasks/2026-08/270827_rhel9-vetting-plan-v4.md) | PLAN v3 vetting evidence + defect log (D1–D6) + PLAN v4 delta |
 
 ## Operational
 | Path | Purpose |

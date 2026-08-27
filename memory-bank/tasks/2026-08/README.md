@@ -8,11 +8,11 @@
 
 ## Active
 ### [IN-PROGRESS] Add RHEL9 to supported images
-- **State: `PLAN` (v2, fedora-based) — presented to user, awaiting approval**
-- v1 (Debian port) superseded after user provided upstream fedora42-44 branches + `origin/el9` analysis
-- Key references: upstream `fedora44` (current RPM-family pattern), upstream `el9` (deprecated, proves baseimage-el:9), CS9/EPEL9/RPMFusion package audit (live, 2026-08-27)
-- See: `memory-bank/activeContext.md`, `memory-bank/systemPatterns.md#7-8`, `memory-bank/techContext.md`
-- Plan doc: pending (created after approval, as `270827_rhel9-support.md`)
+- **State: `PLAN v4` — vetted + approved 2026-08-27; docs/MB updated; build ON HOLD per user**
+- History: v1 (Debian port) → v2/v3 (fedora44-modeled, baseimage-el:9) → **vetting** found baseimage-el deprecated + Oracle-repo-based + 6 defects → **v4** (SLU-owned UBI9 base + entitled RHEL repos, D1–D6 fixes)
+- **Vetting/defect log: `270827_rhel9-vetting-plan-v4.md`** (evidence for every finding)
+- Key references: upstream `fedora44` (current RPM-family pattern), upstream `el9` (deprecated; proved the stack, and its svc-xorg/-vfbdevice deletion = D5 evidence), entitled RHEL 9.8 host repoquery (authoritative package audit)
+- See: `memory-bank/activeContext.md#PLAN-v4`, `memory-bank/decisions.md` (2 new ADRs), `memory-bank/techContext.md`
 
 ## Completed
 (none yet)

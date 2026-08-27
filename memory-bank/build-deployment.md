@@ -8,9 +8,13 @@
 
 ## SLU-local build (current path until CI is sorted)
 ```bash
-docker build -f Dockerfile.rhel9 -t <registry>/baseimage-selkies:<tag-rhel9> .
-docker push <registry>/baseimage-selkies:<tag-rhel9>
+# PREFLIGHT (required once per host): entitlement passthrough must work
+podman run --rm registry.access.redhat.com/ubi9/ubi dnf repolist   # expect rhel-9-for-x86_64-*
+
+podman build -f Dockerfile.rhel9 -t <registry>/baseimage-selkies:<tag-rhel9> .
+podman push <registry>/baseimage-selkies:<tag-rhel9>
 ```
+- **Entitled-host build constraint (PLAN v4)**: the rhel9 variant's vendored base stage (`FROM registry.access.redhat.com/ubi9/ubi`) resolves RHEL packages via podman's automatic entitlement passthrough — builds only succeed on **subscription-registered RHEL hosts**. Runtime needs no entitlement; NRP just pulls the image. (Rationale: `decisions.md` 2026-08-27 SLU-owned base ADR.)
 - Registry/tag naming for SLU: **TBD** (open question in `activeContext.md`).
 - No `latest` tag, by upstream convention.
 

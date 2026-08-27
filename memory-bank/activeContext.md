@@ -1,6 +1,6 @@
 # Active Context
 
-**Last Updated**: 2026-08-27 | **State Machine**: `PLAN` (RHEL9 v2 — fedora-based; presented, awaiting approval)
+**Last Updated**: 2026-08-27 | **State Machine**: `PLAN` (RHEL9 **v4** — vetted + approved; docs committed, **build not started** per user instruction)
 
 ## Git Reality (changed 2026-08-27)
 - `origin` = **user's fork** `git@github.com:dGilli/docker-baseimage-selkies.git` (commits/pushes allowed)
@@ -11,31 +11,93 @@
 
 ## Task: Add RHEL 9 to the supported images
 ### User Decisions (recorded)
-UBI9 base (via `lscr.io/linuxserver/baseimage-el:9`) | x86_64 first | `Dockerfile.rhel9` in-repo | local podman (5.8.2) | scope: **desktop + streaming first** (defer: DinD, GPU/Zink, proot-apps, pelorus, Wayland)
+~~UBI9 base via `lscr.io/linuxserver/baseimage-el:9`~~ → **SLU-owned UBI9 base + entitled RHEL repos** (2026-08-27 vetting decision; baseimage-el deprecated + Oracle-repo-based, see vetting doc §2) | x86_64 first | `Dockerfile.rhel9` in-repo | local podman (5.8.2) | scope: **desktop + streaming first** (defer: DinD, GPU/Zink, proot-apps, pelorus, Wayland) | **NRP = production environment** (SLU k8s researcher desktops) | **phase-1 CPU must test locally** on this RHEL 9.8 host | fold NRP learnings into this repo's image
 
-### PLAN v2 (fedora-based) — key re-architecture vs v1
-**Model**: `Dockerfile.rhel9` = **fedora44's Dockerfile** with EL9 substitutions, NOT a Debian port.
-- `FROM lscr.io/linuxserver/baseimage-el:9` (UBI9 + s6-overlay 3.2.0.2 + rpmfusion enabled + abc + /lsiopy + docker-mods) — proven by upstream's own (deprecated) `origin/el9` branch which used this exact base
-- **No `COPY --from=xvfb / /`** — direct `dnf install xorg-x11-server-Xvfb` (el9 did same)
-- Keep `frontend` stage verbatim (alpine, selkies 348bc4f)
-- **Drop** wtype/selkies-desktop/labwc-builder stages + wayland pkgs + pelorus + proot-apps + docker/dind (phase 2)
-- **Shared `root/` tree: nearly untouched** — fedora44 already showed the EL-family adaptations; v2 needs only:
-  1. `init-nginx/run`: conf path branch (sites-available → conf.d when absent) [fedora44 did the one-line swap; we branch to stay debian-compatible]
-  2. `svc-selkies/run`: adopt fedora44's dnf-based DEV_MODE (verified: rust 1.94.1 + cargo in CS9 AppStream; ffmpeg-devel + x264-devel in rpmfusion-free; nodejs 16 in AppStream = fine for nodemon)
-  3. `init-selkies-config/run`: guard proot block `[ -d /proot-apps ]`
-  4. `svc-docker/run`: `command -v dockerd || sleep infinity` guard
-- **nginx**: `nginx` (AppStream) + `nginx-mod-fancyindex` (**EPEL9!**) → shared `default.conf` works **unmodified** (v1 planned to strip /files — no longer needed)
-- **locales**: same `localedef` loop as fedora44/el9 — `glibc-all-langpacks` + `glibc-locale-source` verified in CS9 ✅
-- **openbox**: EPEL9 3.6.1 = same as debian; fedora44/el9 sed set applies (no `/debian-menu/d` line); Clearlooks theme present in EPEL openbox ✅
-- **st**: EPEL9 st (alternatives → /usr/bin/st) + `tic -i /usr/share/doc/st/st.info` terminfo fix (ncurses pkg); xterm (AppStream) as second terminal
-- **python**: `python3.11` + `python3.11-pip` (AppStream) — pixelflux/pcmflux 2.0.0 cp311 manylinux_2_28 wheels exist on PyPI ✅ (no rust needed at runtime)
-- **X tools**: `xorg-x11-server-utils` provides xrandr/xrdb/xset/xkill/xhost (verified in rpm); `xorg-x11-utils` provides xprop/xdpyinfo (openbox-session needs xprop); xorg-x11-xauth
-- **sudoers**: append `%wheel ALL=(ALL) NOPASSWD: ALL` directly to `/etc/sudoers` (NOT only sudoers.d) so shared hardening sed (`sed /etc/sudoers NOPASSWD`) works on EL
-- **legacy-cont-init stub** (EL-only, in Dockerfile, not shared tree): baseimage-el user bundle lacks it; master's PR #184 makes svc-de depend on it
-- **mesa-dri-drivers**: KEEP (v1 was unsure). Upstream el9 dropped it only for the DRI3/GPU `-vfbdevice` conflict (out of our scope); CPU llvmpipe GLX needs it for browser/desktop GL apps
+### PLAN v4 (final — vetted, SLU-owned base) — APPROVED 2026-08-27
+Supersedes PLAN v3. Full vetting evidence: `tasks/2026-08/270827_rhel9-vetting-plan-v4.md`. Key v3→v4 deltas: **vendored SLU-owned base** (baseimage-el is deprecated + Oracle-repo-based), defect fixes D1–D6, expanded test matrix, provenance artifact.
+
+**Model**: `Dockerfile.rhel9` = **fedora44's Dockerfile with EL9 substitutions** (NOT a Debian port), on an **SLU-owned UBI9 base stage with entitled RHEL repos**. Shared `root/` tree stays one codebase across debian/fedora/rhel9 variants. NRP production realities (llvmpipe, repos, k8s) folded in.
+
+**A0. Base stage (NEW in v4 — replaces baseimage-el:9)**
+Vendor the ~100-line deprecated `docker-baseimage-el` Dockerfile as stage `base`:
+- `FROM registry.access.redhat.com/ubi9/ubi` (digest-pinned phase 1)
+- **No Oracle repo file, no RPMFusion** (breeze-cursor-theme is EPEL; RPMFusion only needed for deferred phase-2 DEV_MODE ffmpeg)
+- RHEL content via **entitlement passthrough** (podman on this registered 9.8 host auto-mounts entitlements). Preflight: `podman run --rm registry.access.redhat.com/ubi9/ubi dnf repolist` must show `rhel-9-for-x86_64-*`
+- EPEL9: `dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm` (NRP-proven on UBI9)
+- s6-overlay 3.2.0.2 tarballs (noarch + x86_64 + symlinks), base tools (`catatonit jq busybox…` — busybox is EPEL), `abc` (uid 911, /config, /bin/false), `mkdir /app /config /defaults /lsiopy`, docker-mods scripts, ENV (`S6_*`, `VIRTUAL_ENV=/lsiopy`, `PATH=/lsiopy/bin:$PATH`)
+- **Build constraint**: image builds only on entitled RHEL hosts; runtime needs no entitlement (NRP just pulls)
+
+**A. Dockerfile.rhel9 — runtime stages & steps**
+1. Stage `frontend`: copy master's frontend stage verbatim (alpine 3.22, npm, selkies pin `348bc4f`, dashboards `selkies-dashboard selkies-dashboard-wish`)
+2. Runtime: `FROM base` (stage A0)
+3. ENV: LSIO set (`DISPLAY=:1 HOME=/config START_DOCKER=true PULSE_RUNTIME_PATH=/defaults SELKIES_INTERPOSER=/usr/lib/selkies_joystick_interposer.so NVIDIA_DRIVER_CAPABILITIES=all DISABLE_ZINK=false` **`DISABLE_DRI3=true`** `SELKIES_ENCODER="x264enc,jpeg" TITLE=Selkies`) **+ NRP llvmpipe trio** (`LIBGL_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER=llvmpipe MESA_GL_VERSION_OVERRIDE=4.5`). **DISABLE_DRI3=true is a deliberate rhel9 divergence (defect D5)**: stock EL9 Xvfb has no LSIO `-vfbdevice` patch — the env gate at `svc-xorg/run:19` prevents a crash-loop on any host/node exposing `/dev/dri` (NRP GPU nodes!)
+4. (EPEL already in base — no repo step needed here)
+5. RUN dnf install (verified against entitled RHEL 9.8 repos; provenance recorded at build end):
+   - build: `gcc gcc-c++ make glibc-devel kernel-headers ncurses` (ncurses = `tic` for st terminfo)
+   - X: `xorg-x11-server-Xvfb xorg-x11-server-utils xorg-x11-utils xorg-x11-xauth xorg-x11-xkb-utils xkeyboard-config xorg-x11-fonts-{75dpi,100dpi,misc}` (**+xkb-utils = xkbcomp for Xvfb keymaps, D6b**)
+   - GL/mesa: `mesa-libGL mesa-libEGL mesa-libgbm mesa-dri-drivers mesa-vulkan-drivers libva` (KEEP mesa-dri-drivers — llvmpipe GLX)
+   - desktop: `openbox xsettingsd st xdotool xclip xsel exo breeze-cursor-theme` (all EPEL9, verified) + `xterm xdg-utils` (AppStream; **xdg-utils IS available — D6**)
+   - audio/web: `pulseaudio pulseaudio-utils nginx nginx-mod-fancyindex` (pulseaudio = AppStream 15.0 verified; fancyindex = EPEL9 → shared `default.conf` UNMODIFIED)
+   - python: `python3.11 python3.11-pip python3.11-libs`
+   - fonts/locales: `dejavu-sans-fonts google-noto-sans-fonts` **`google-noto-sans-cjk-ttc-fonts`** `google-noto-cjk-fonts-common google-noto-emoji-fonts glibc-all-langpacks glibc-locale-source` (**EL9 CJK pkg name — D3**; same `localedef` loop as fedora44/el9/master)
+   - dbus/misc: `dbus dbus-daemon` **`dbus-x11`** `file procps-ng psmisc iproute kbd which tar curl openssl sudo shadow-utils util-linux` (**dbus-x11 = dbus-launch for shared startwm.sh — D2**)
+6. RUN openbox tweaks (fedora44/el9-proven sed set — no `/debian-menu/d` line on EL): NLIMC→NLMC, maximized+position application, C-S-d ToggleDecorations keybind, desktops number 4→1, `/usr/bin/openbox-session` `--replace`
+7. RUN st terminfo fix: `tic -i /usr/share/doc/st/st.info` (EPEL gap; verified file location)
+8. RUN selkies: `python3.11 -m venv --system-site-packages /lsiopy`; fetch selkies `348bc4f` tarball; seds (`/"av>/d`, `/cryptography/d` — master parity); `pip install . && pip install setuptools` (pixelflux/pcmflux cp311 manylinux_2_28 wheels verified on PyPI; NO rust needed). Fallback if pip stumbles: `pip install -U pip` first
+9. RUN interposer (`gcc -shared -fPIC -ldl` → `/usr/lib/selkies_joystick_interposer.so`) + fake-udev (`make` → `/opt/lib/libudev.so.1.0.0-fake`)
+10. RUN icons (selkies-logo/favicon from docker-templates, master parity)
+11. RUN user: `chpasswd abc:abc`; `usermod -s /bin/bash abc`; **`groupadd sudo` (D4 — group doesn't exist on EL9)**; `usermod -aG sudo abc`; append `%sudo ALL=(ALL:ALL) NOPASSWD: ALL` to `/etc/sudoers` (main file, not sudoers.d — shared hardening sed `s/NOPASSWD/CORRUPT_FILE/` targets `/etc/sudoers`)
+12. ~~legacy-cont-init stub~~ **DELETED (D1)**: s6-overlay 3.2.0.2 ships `legacy-cont-init` builtin (base bundle, verified in tarball) — a user-level stub would be a duplicate definition and **break s6-rc-compile at boot**. Same reason Debian master needs no stub for svc-de's dep
+13. RUN theme (Clearlooks openbox theme from lang-stash, master parity — EPEL openbox ships the theme dir)
+14. `COPY /root /` + `COPY --from=frontend /buildout /usr/share/selkies`
+15. RUN provenance + cleanup: `dnf repoquery --installed --qf '%{name}|%{version}|%{reponame}'` → basis for `package_versions_rhel9.txt` (RHEL-vs-EPEL evidence for the "supported" claim); `dnf clean all`, `rm -rf /tmp/* /var/cache/dnf/*`
+16. `EXPOSE 3000 3001` + `VOLUME /config` (master parity; ws port 8082 runtime-dynamic like other variants)
+
+**B. Shared `root/` tree — 4 distro-aware edits (each a no-op on Debian/Fedora)**
+1. `init-nginx/run`: branch `NGINX_CONFIG` — `sites-available` if present (debian), else `mkdir -p /etc/nginx/conf.d && NGINX_CONFIG=/etc/nginx/conf.d/default.conf` (EL) [fedora44 did the hard swap; we branch to keep one tree]
+2. `svc-selkies/run` DEV_MODE: **phase-1 = gate off on non-Debian** (`. /etc/os-release; [[ $ID == debian ]] || { echo "DEV_MODE not supported on $ID (phase 1)"; }` skip). Documented upgrade path = fedora44's dnf DEV_MODE (rust/cargo/nodejs verified in CS9) if dev parity is wanted later. *(micro-decision for user at approval)*
+3. `init-selkies-config/run`: proot-apps block guarded by `[ -d /proot-apps ]` (absent in phase 1)
+4. `svc-docker/run`: `command -v dockerd >/dev/null 2>&1 || { echo "docker not installed on this variant"; sleep infinity; }` (DinD = phase 2)
+
+**C. Artifacts**
+- `package_versions_rhel9.txt` (same NAME/VERSION/TYPE format; rpm -qa + pip freeze **+ per-package repo provenance** `%{name}|%{version}|%{reponame}` — RHEL-vs-EPEL evidence)
+- `readme-vars.yml`: add rhel9 image row (source of truth; README.md stays builder-generated)
+
+**D. Local phase-1 CPU test procedure (this RHEL 9.8 host, podman 5.8.2)**
+0. **Preflight (v4)**: `podman run --rm registry.access.redhat.com/ubi9/ubi dnf repolist` shows `rhel-9-for-x86_64-*` (entitlement passthrough works)
+1. `podman build -f Dockerfile.rhel9 -t dgilli/baseimage-selkies:rhel9-p1 .`
+2. `podman run -d --name selkies-rhel9-p1 -p 3000:3000 -p 3001:3001 -p 8082:8082 -e TZ=America/Chicago -e PASSWORD=baseimage123 dgilli/baseimage-selkies:rhel9-p1`
+   - rootless caveats: cgroupv2 ✅ on RHEL9; `mknod` gamepad nodes will fail → code's `touch` fallback handles it; if s6 cgroup issues appear, re-test with `sudo podman run` / `--privileged` (documented)
+3. Verify: s6 chain reaches `init-selkies-end` (no flapping via `s6-rcstatus`); procs = Xvfb, openbox, `st` (autostart), selkies, nginx, pulseaudio; `curl -sI :3000` (200/301), `curl -skI :3001`, basic-auth with abc/baseimage123; 8082 listening; `pactl list sinks` shows output+input null sinks; GL sanity via browser; **dbus-daemon up as abc** (svc-dbus watch item)
+4. Manual: browser → dashboard → connect → desktop renders, window + keyboard + audio work
+5. Regression: `bash -n` on the 4 edited shared scripts; optional `podman build -f Dockerfile .` (debian) to prove no-ops
+6. **Negative/edge matrix (v4)**: `--device /dev/dri/renderD128` run → Xvfb stays up (proves D5 fix) | `--privileged` → svc-docker guard message, no flapping | `-e HARDEN_DESKTOP=true` → sudoers sed round-trip + xdg-open/exo-open chmod 0000 | `-e PIXELFLUX_WAYLAND=true` → documented wait-forever behavior (no labwc phase 1) | `-e LC_ALL=de_DE.UTF-8` boot | `-e DEV_MODE=pixelflux` → gate message, default boot unaffected
+
+**E. NRP production path (phase 1.5 — AFTER local approval, separate work item)**
+- Push `dgilli/baseimage-selkies:rhel9-*` to the SLU registry NRP pulls from
+- Update `slu-nrp-k8s-vm/selkies-rhel9.yaml.template` env mapping: `PASSWD→PASSWORD`, drop `BASIC_AUTH_*` (nginx does basic auth), `DISPLAY_SIZEW/H → SELKIES_MANUAL_WIDTH/HEIGHT`, ports 3000/3001 (+8082 ws) instead of 8080
+- **Open production question for user**: NRP's current image runs non-root (`USER rheluser`); our LSIO-parity image is **rootful** (s6 `/init`, services drop to `abc`). NRP Deployment must permit root (no `runAsNonRoot: true`) — same as every LSIO image in a k8s desktop
+- Audio divergence documented: NRP image uses PipeWire; LSIO stack uses PulseAudio (pcmflux/selkies capture via pulse null sinks) — keep PulseAudio for parity
+
+**Risks**
+| Risk | Mitigation |
+|------|-----------|
+| rootless podman + s6 quirks | graceful mknod fallback in code; sudo-podman/`--privileged` test fallback |
+| entitled-host build constraint (v4) | documented in build-deployment.md; SLU builds on registered RHEL hosts; runtime/NRP unaffected |
+| ubi9/ubi tag float | digest-pin phase 1 |
+| pip vs selkies build backend | optional in-venv pip upgrade fallback |
+| EPEL openbox rc.xml sed targets | proven on el9+fedora44 (openbox 3.6.x); smoke test catches openbox boot |
+| EPEL openbox auto-deps (redhat-menus, python3-pyxdg) | dnf resolves; build surfaces conflicts |
+| `cvt` absent on EL9 | svc-de modeline step no-ops (Xvfb screen size still honored) — documented degradation; verified graceful (empty MODELINE_NAME → grep matches all → block skipped) |
+| svc-dbus `--system` as abc on EL9 | `<user>dbus</user>` directive ignored non-root (Debian-identical behavior expected); explicit smoke test |
+| `PIXELFLUX_WAYLAND=true` waits forever (no labwc phase 1) | documented limitation; optional guard echo |
+| EL nginx default `:80` server block remains | harmless (port unexposed); optional cleanliness sed |
+| NRP rootful requirement | flagged to user (phase 1.5 gate) |
+
+**Budget**: 4 cycles | ~90 min (base stage adds one layer; preflight adds 5 min)
 
 ### Verified EL9 gaps (accepted degradations, phase-2 candidates)
-`cvt` binary (svc-de modeline step no-ops — F44 has standalone cvt pkg, EL9 doesn't) | breeze-cursor-theme (default cursor fallback) | xorg-x11-drv-{intel,amdgpu,nouveau,qxl} (not in CS9 — real RHEL9 repos phase 2, GPU work) | dunst | xdg-utils | mesa-va-drivers (VA-API GPU only)
+`cvt` binary (svc-de modeline step no-ops — F44 has standalone cvt pkg, EL9 doesn't) | dunst | xorg-x11-drv-{intel,amdgpu,nouveau,qxl} + mesa-va-drivers (NOT in real RHEL9 either — verified on 9.8 host; GPU phase 2) | *(REMOVED from gaps by vetting: xdg-utils — IS in AppStream 1.1.3 (D6); breeze-cursor-theme — IS in EPEL9, RPMFusion not needed)*
 
 ### Upstream lessons (from `origin/el9`, deprecated 2026-05)
 - el9 worked for months (bot builds) → deprecated after DRI3/mesa conflicts + `project_deprecation_status: true` in readme-vars
@@ -50,14 +112,16 @@ UBI9 base (via `lscr.io/linuxserver/baseimage-el:9`) | x86_64 first | `Dockerfil
 - **Phase-2 GPU conclusion**: only RHEL-supported path is real **Xorg + modesetting + DRI3** (not Xvfb-vfbdevice). Intel encode via libva-intel-hybrid-driver; NVIDIA needs out-of-repo driver.
 - Core (CPU) scope unaffected: Xvfb without render node + llvmpipe GLX works. NRP project proved the force-llvmpipe env trick on EL9 (`LIBGL_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER=llvmpipe MESA_GL_VERSION_OVERRIDE=4.5`) — **adopt as ENV in Dockerfile.rhel9** (GL fallback guarantee).
 
-## Discovered: two parallel RHEL9 efforts (user to confirm separation)
-1. **This repo, `rhel9` branch (PLAN v2)**: LSIO baseimage fork — baseimage-el:9 + s6-overlay + `abc` + openbox/Xvfb, full parity with debian variant.
-2. **`slu-nrp-k8s-vm/Dockerfile.ubi9-selkies`** (user's v2/v3/v4-llvmpipe podman images): standalone UBI9 + **supervisord** + `rheluser` (uid 1000) + **GNOME-on-Xorg** + EPEL/rpmfusion, k8s-oriented (yaml templates, turnserver). Different service model & user — NOT the baseimage fork.
+## NRP relationship (clarified 2026-08-27 by user)
+1. **This repo, `rhel9` branch (PLAN v3)**: the image we build — LSIO baseimage fork (baseimage-el:9 + s6 + `abc` + openbox/Xvfb, parity with debian).
+2. **NRP (`slu-nrp-k8s-vm/`)** = **the production environment** (SLU k8s researcher desktops; `nrp-workspace up --type desktop --variant rhel9`; yaml templates, coTURN, GPU node scheduling). Its current ad-hoc image (`Dockerfile.ubi9-selkies`, v2/v3/v4-llvmpipe) = UBI9 + supervisord + `rheluser` + GNOME-on-Xorg.
+3. Direction: **this repo's image is the phase-1 CPU deliverable, tested locally, then deployed to NRP** (phase 1.5 = registry push + NRP template env mapping). NRP *learnings* folded into PLAN v3 (llvmpipe ENV, EPEL-on-UBI9 repo line, xorg container flags as phase-2 Xorg input); NRP's supervisord/GNOME architecture NOT adopted (LSIO parity kept).
 
 ## Guest image note
 `registry.redhat.io/rhel9/rhel-guest-image:latest` = **qcow2 VM disk delivery vehicle** (rhel-guest-image-9.8-20260428.2, KubeVirt env), 12 files total — not executable, not a container base, empty content-sets. Version info: RHEL **9.8**. If a true RHEL9 *container* base is wanted later: `registry.redhat.io/rhel9/rhel-core:9` (subscription; this host can pull it) vs UBI9 (free, current plan).
 
 ## Working Context
-- Branch: `rhel9` (from upstream master 69f4fc9) | tree = master + untracked memory-bank (commit pending)
-- Scratch audit data: /tmp/cs9_*.html, epel_*.html, rff/rfn primary, audit_cs9.txt (disposable)
-- Podman 5.8.2 on host (user confirmed)
+- Branch: `rhel9` (from upstream master `69f4fc9`); MB commits: `38a52d4` (PLAN v2), `1e9a494` (GPU facts), next = vetting + PLAN v4 (docs only — **no build yet**, per user)
+- Host: RHEL 9.8 (Plow), subscribed (real cdn.redhat.com repos — authoritative for RHEL9 package questions), podman 5.8.2, EPEL/CRB/VSCode/Chrome repos enabled
+- Vetting evidence + defect log: `tasks/2026-08/270827_rhel9-vetting-plan-v4.md`
+- Scratch audit data: /tmp/cs9_*.html, epel_*.html, audit_cs9.txt, /tmp/opencode/{el9,f44}.Dockerfile (disposable)

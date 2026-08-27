@@ -23,8 +23,21 @@
 **Consequences**: No GPU in v1; documented escalation path for phase 2.
 **References**: `activeContext.md#RHEL9-GPU-Facts`
 
+### 2026-08-27: NRP is production; phase-1 CPU tested locally; fold NRP learnings in
+**Status**: Approved (user: "NRP will be our production environment but ideally we get to test phase-1 cpu locally")
+**Context**: Two parallel RHEL9 efforts existed: this repo's LSIO-parity image (PLAN v2) and `slu-nrp-k8s-vm/Dockerfile.ubi9-selkies` (supervisord + GNOME + rheluser, v2/v3/v4-llvmpipe builds).
+**Decision**: Keep LSIO-parity architecture (s6 + abc + openbox + Xvfb) as the image we build here; NRP (SLU k8s, `nrp-workspace`) is where it runs in production. NRP *learnings* adopted into PLAN v3: force-llvmpipe ENV trio, EPEL-on-UBI9 repo line, xorg container flags (phase-2 input). NRP's supervisord/GNOME architecture NOT adopted. Local podman on this RHEL 9.8 host is the phase-1 test rig; NRP template env-mapping + registry push = phase 1.5 (after local approval).
+**Open production gate**: our image is rootful (s6); NRP's current image is non-root — NRP Deployment must permit root (same as all LSIO images).
+**References**: `activeContext.md#NRP-relationship`
+
+### 2026-08-27: PLAN v3 (final, NRP-integrated) supersedes PLAN v2
+**Status**: Superseded by PLAN v4 (vetting found 1 strategic misalignment + 6 defects — see ADRs below and `tasks/2026-08/270827_rhel9-vetting-plan-v4.md`)
+**Context**: PLAN v2 (fedora44-modeled) + NRP production clarification + RHEL 9.8 repo verification + user's llvmpipe instruction.
+**Decision (proposed)**: Full plan in `activeContext.md#PLAN-v3-final--NRP-integrated--awaiting-user-approval`. Deltas vs v2: base pinned to `9-version-f81d91cc`; +llvmpipe ENV trio; +breeze-cursor-theme (rpmfusion, was mis-listed as gap); DEV_MODE phase-1 = gated off on non-Debian (dnf port deferred, micro-decision); 4 shared-tree edits unchanged; local podman test procedure + NRP phase-1.5 path added.
+**References**: `activeContext.md#PLAN-v3`
+
 ### 2026-08-27: Adopt force-llvmpipe ENV in Dockerfile.rhel9
-**Status**: Proposed (from NRP project evidence; include in BUILD)
+**Status**: Approved (user: "Yes take NRP learnings into account") — part of PLAN v3
 **Context**: `slu-nrp-k8s-vm` RHEL9 builds (v2/v3/v4-llvmpipe) set `LIBGL_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER=llvmpipe MESA_GL_VERSION_OVERRIDE=4.5` to make GL compositing work without a GPU.
 **Decision**: Add same ENV block to `Dockerfile.rhel9` runtime stage as the guaranteed CPU GL path (harmless when a GPU is present in phase 2 — revisit then).
 **References**: `activeContext.md#RHEL9-GPU-Facts`
@@ -54,3 +67,22 @@
 **Context**: Repo re-initialized as full upstream clone; old local baseline commits lost (superseded by real upstream history).
 **Decision**: `origin` = user's fork `dGilli/docker-baseimage-selkies` (commits + pushes OK); `upstream` = `linuxserver/docker-baseimage-selkies` (**push disabled, NEVER push**). Work branch `rhel9` cut from `master` (upstream tip `69f4fc9`, incl. PR #184).
 **References**: `activeContext.md#Git-Reality`
+
+### 2026-08-27: SLU-owned UBI9 base with entitled RHEL repos (supersedes baseimage-el:9 pin) — PLAN v4
+**Status**: Approved (user selected during vetting Q&A)
+**Context**: Vetting of PLAN v3 revealed: (1) `lscr.io/linuxserver/baseimage-el:9` is UBI9 with **Oracle Linux 9 repos** substituted (`oracle-linux-ol9.repo` → yum.oracle.com; subscription-manager plugin disabled) — the image would contain Oracle packages, not registered RHEL content; (2) `docker-baseimage-el` is **deprecated and frozen** (GitHub: "will not be updated") — no future CVE updates; (3) v3's package audit (CS9/EPEL/host) didn't match the actual resolution source (Oracle mirrors), and podman entitlement passthrough on registered hosts makes local vs remote builds silently diverge; (4) the desktop layer (`openbox st xsettingsd nginx-mod-fancyindex xdotool xclip xsel exo breeze-cursor-theme`) is EPEL-only — verified — so 100% Red Hat-supported content is impossible for this stack.
+**Decision**: Vendor the ~100-line baseimage-el Dockerfile into `Dockerfile.rhel9` as an SLU-owned `base` stage `FROM registry.access.redhat.com/ubi9/ubi` (digest-pinned). Drop the Oracle repo file and RPMFusion. RHEL content resolves via entitlement passthrough from the registered build host; EPEL9 added for the desktop delta. Per-package repo provenance recorded in `package_versions_rhel9.txt` as the "supported" evidence.
+**Alternatives**: keep baseimage-el (deprecated, Oracle content — rejected); registry.redhat.io base + subscription-manager in-image (credential coupling, redistribution constraints — rejected).
+**Consequences**: Builds require an entitled RHEL host (documented in `build-deployment.md`); runtime/NRP unaffected. SLU owns base maintenance (s6-overlay version bumps etc.).
+**References**: `tasks/2026-08/270827_rhel9-vetting-plan-v4.md#2`, `activeContext.md#A0`
+
+### 2026-08-27: PLAN v3 defect corrections D1–D6 (folded into PLAN v4)
+**Status**: Approved (evidence-based vetting; user approved v4)
+**Context/Decision** (full evidence in `tasks/2026-08/270827_rhel9-vetting-plan-v4.md#3`):
+- **D1**: DROP the `legacy-cont-init` stub — s6-overlay 3.2.0.2 ships it builtin (verified in tarball: `sources/base/contents.d/legacy-cont-init`); a user-level duplicate would break s6-rc-compile at boot. v3's claim that baseimage-el lacks it was wrong.
+- **D2**: ADD `dbus-x11` — shared `startwm.sh` execs `dbus-launch`, which lives in dbus-x11 on EL9 (upstream el9 + fedora44 both install it); omission = svc-de crash-loop.
+- **D3**: RENAME `google-noto-cjk-ttc-fonts` (Fedora name) → `google-noto-sans-cjk-ttc-fonts` (EL9 name, verified); dnf strict mode would abort the build.
+- **D4**: `groupadd sudo` before `usermod -aG sudo abc` — group doesn't exist on EL9. Keep `%sudo … NOPASSWD` in `/etc/sudoers` main file (harden sed compatibility rationale stands).
+- **D5**: Ship `ENV DISABLE_DRI3=true` — shared `svc-xorg/run` passes `-vfbdevice` (LSIO-patched-Xvfb-only flag); stock EL9 Xvfb rejects it → crash-loop whenever `/dev/dri` is visible (NRP GPU nodes!). Likely the true root cause of upstream el9's "DRI3 is not supported on el9" death. Env gate avoids any shared-tree edit.
+- **D6**: ADD `xdg-utils` (wrongly listed as an EL9 gap — verified in AppStream 1.1.3) and `xorg-x11-xkb-utils` (xkbcomp for Xvfb keymaps, don't rely on dep-pull).
+**References**: `tasks/2026-08/270827_rhel9-vetting-plan-v4.md#3`, `activeContext.md#PLAN-v4`
