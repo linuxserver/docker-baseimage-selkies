@@ -1,0 +1,33 @@
+# Memory Bank — Table of Contents
+
+**Project**: `slu-docker-rhel-selkies` (SLU fork of linuxserver/docker-baseimage-selkies)
+**MB Version**: 2026-08 | **Last Updated**: 2026-08-27
+
+## Core Files
+| File | Purpose | Load When |
+|------|---------|-----------|
+| [projectbrief.md](./projectbrief.md) | Vision, goals, fork lineage | Complex tasks, orientation |
+| [productContext.md](./productContext.md) | User goals, support scope, upstream | Complex tasks |
+| [systemPatterns.md](./systemPatterns.md) | Architecture: build stages, s6 services, dual DE mode | Before arch changes |
+| [techContext.md](./techContext.md) | Stack: base images, services, pinned versions | Session start |
+| [activeContext.md](./activeContext.md) | Current sprint: RHEL9 support | Every session |
+| [progress.md](./progress.md) | Status, blockers, priorities | Session start |
+
+## Reference Files
+| File | Purpose | Load When |
+|------|---------|-----------|
+| [projectRules.md](./projectRules.md) | Coding standards, generated-file rules | When uncertain |
+| [decisions.md](./decisions.md) | ADRs | Arch decisions |
+| [quick-start.md](./quick-start.md) | Common commands, build/run/test | Fast track |
+| [build-deployment.md](./build-deployment.md) | Build/deploy/Jenkins flow | Build work |
+| [testing-patterns.md](./testing-patterns.md) | QA strategy, CI env vars | Test work |
+
+## Tasks
+| Path | Purpose |
+|------|---------|
+| [tasks/2026-08/README.md](./tasks/2026-08/README.md) | Monthly summary |
+
+## Operational
+| Path | Purpose |
+|------|---------|
+| [ops-log.jsonl](./ops-log.jsonl) | Append-only session/state JSONL log |
