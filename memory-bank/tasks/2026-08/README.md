@@ -8,11 +8,18 @@
 
 ## Active
 ### [IN-PROGRESS] Add RHEL9 to supported images
-- **State: `PLAN v4` — vetted + approved 2026-08-27; docs/MB updated; build ON HOLD per user**
-- History: v1 (Debian port) → v2/v3 (fedora44-modeled, baseimage-el:9) → **vetting** found baseimage-el deprecated + Oracle-repo-based + 6 defects → **v4** (SLU-owned UBI9 base + entitled RHEL repos, D1–D6 fixes)
-- **Vetting/defect log: `270827_rhel9-vetting-plan-v4.md`** (evidence for every finding)
+- **Phase 1 (CPU desktop + streaming): DONE 2026-08-27** — built, tested (autonomous matrix + user manual x2), committed `bd46cdb`
+- Phase 1.5 (SLU registry push + NRP template env mapping): pending — F28 rootful gate + F30 tag naming open
+- Phase 2 (GPU/Zink, Wayland, DinD, proot-apps, pelorus, DEV_MODE dnf port): deferred
+- History: v1 (Debian port) → v2/v3 (fedora44-modeled, baseimage-el:9) → **vetting** found baseimage-el deprecated + Oracle-repo-based + 6 defects → **v4** (SLU-owned UBI9 base + entitled RHEL repos, D1–D6 fixes) → **build** (5 cycles, F31–F35/F41 RHEL9 deltas)
+- **Vetting/defect log: `270827_rhel9-vetting-plan-v4.md`** · **Build log: `270827_rhel9-build.md`**
 - Key references: upstream `fedora44` (current RPM-family pattern), upstream `el9` (deprecated; proved the stack, and its svc-xorg/-vfbdevice deletion = D5 evidence), entitled RHEL 9.8 host repoquery (authoritative package audit)
-- See: `memory-bank/activeContext.md#PLAN-v4`, `memory-bank/decisions.md` (2 new ADRs), `memory-bank/techContext.md`
+- See: `memory-bank/activeContext.md#BUILD-executed-2026-08-27-user-released-the-hold`, `memory-bank/decisions.md` (4 ADRs), `memory-bank/findings.md` (F01–F41), `memory-bank/techContext.md`
 
 ## Completed
-(none yet)
+### 2026-08-27: RHEL9 phase-1 image built + tested + committed
+- `Dockerfile.rhel9` (SLU-owned UBI9 base, digest-pinned) + `root-base/` vendored s6 tree + 4 shared-tree no-op edits
+- Final image `dgilli/baseimage-selkies:rhel9-p1` = `10bbd70e1502`; 5 build cycles (F31–F35, F41)
+- Full v4 negative matrix PASS + user manual test #2 PASS ("I got a shell!")
+- Commit `bd46cdb` on `rhel9`; revert tag `pre-rhel9-build` → `7b3af8b`
+- See: [270827_rhel9-build.md](./270827_rhel9-build.md)

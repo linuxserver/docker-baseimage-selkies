@@ -18,6 +18,7 @@
 |------|---------|-----------|
 | [projectRules.md](./projectRules.md) | Coding standards, generated-file rules | When uncertain |
 | [decisions.md](./decisions.md) | ADRs | Arch decisions |
+| [findings.md](./findings.md) | Cross-cutting findings registry (F01–F41, evidence-linked) | RHEL9 work, debugging |
 | [quick-start.md](./quick-start.md) | Common commands, build/run/test | Fast track |
 | [build-deployment.md](./build-deployment.md) | Build/deploy/Jenkins flow | Build work |
 | [testing-patterns.md](./testing-patterns.md) | QA strategy, CI env vars | Test work |
@@ -27,6 +28,7 @@
 |------|---------|
 | [tasks/2026-08/README.md](./tasks/2026-08/README.md) | Monthly summary |
 | [tasks/2026-08/270827_rhel9-vetting-plan-v4.md](./tasks/2026-08/270827_rhel9-vetting-plan-v4.md) | PLAN v3 vetting evidence + defect log (D1–D6) + PLAN v4 delta |
+| [tasks/2026-08/270827_rhel9-build.md](./tasks/2026-08/270827_rhel9-build.md) | Phase-1 build log: 5 cycles (F31–F35/F41), test evidence, artifacts |
 
 ## Operational
 | Path | Purpose |

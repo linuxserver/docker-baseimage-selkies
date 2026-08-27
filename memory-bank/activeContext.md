@@ -1,6 +1,6 @@
 # Active Context
 
-**Last Updated**: 2026-08-27 | **State Machine**: `APPROVAL` (QA complete: autonomous matrix + user manual test #2 PASS; awaiting explicit commit approval)
+**Last Updated**: 2026-08-27 | **State Machine**: `DOCS` (phase 1 COMPLETE: approved → committed `bd46cdb` → task doc written; branch ready for phase 1.5 when user schedules it)
 
 ## Git Reality (changed 2026-08-27)
 - `origin` = **user's fork** `git@github.com:dGilli/docker-baseimage-selkies.git` (commits/pushes allowed)
