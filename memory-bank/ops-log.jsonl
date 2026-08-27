@@ -17,3 +17,4 @@
 {"ts":"2026-08-27T16:30:00Z","session_id":"slu-selkies-2026-08-27a","event":"discovery","detail":"rhel-guest-image = qcow2 delivery vehicle (RHEL 9.8 disk), not usable as container base; user's v2/v3/v4-llvmpipe images belong to slu-nrp-k8s-vm project (ub9+supervisord+GNOME+rheluser), separate from PLAN v2"}
 {"ts":"2026-08-27T13:00:00Z","session_id":"slu-selkies-2026-08-27b","mode":"standard","mb_v":"2026-08"}
 {"ts":"2026-08-27T17:47:00Z","session_id":"slu-selkies-2026-08-27b","event":"retro_log","detail":"Catch-up (not logged in session a): PLAN v3 drafted (NRP-integrated); rigorous vetting found baseimage-el:9 deprecated+frozen+Oracle-repo-based + 6 defects D1-D6 (2 boot-breaking); PLAN v4 (SLU-owned UBI9 base + entitled RHEL repos) approved by user; build ON HOLD per user"}
+{"ts":"2026-08-27T17:48:00Z","session_id":"slu-selkies-2026-08-27b","event":"commit","detail":"68e7006 PLAN v4 docs committed (vetting evidence + ADRs + MB updates); build still on hold"}

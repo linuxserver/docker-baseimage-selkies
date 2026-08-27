@@ -56,7 +56,7 @@
 **References**: `systemPatterns.md#7-os-variants--git-branches-upstream-pattern`, `activeContext.md#Finding`
 
 ### 2026-08-27: PLAN v2 — RHEL9 variant modeled on fedora44 (supersedes v1 Debian-port)
-**Status**: Proposed — awaiting user approval
+**Status**: Superseded by PLAN v3 (2026-08-27), itself superseded by PLAN v4 (vetting ADRs below)
 **Context**: User made upstream `fedora42-44` branches available ("base our rhel9 image on fedora much more closely than debian"). Investigation showed upstream has (a) a deprecated `el9` branch proving `baseimage-el:9` works for this stack, and (b) current `fedora44` with the same selkies pin (348bc4f) and the full set of EL-family adaptations.
 **Decision (proposed)**: `Dockerfile.rhel9` = fedora44 structure with `FROM lscr.io/linuxserver/baseimage-el:9`; drop wayland stages (wtype/selkies-desktop/labwc-builder), pelorus, proot-apps, docker/dind (phase 2); keep frontend stage verbatim; shared `root/` tree gets only 4 minimal distro-aware edits (init-nginx conf-path branch, svc-selkies DEV_MODE→dnf port from fedora44, proot guard, dockerd guard). All EL9 package availability verified against live CS9/EPEL9/RPMFusion repodata (see `activeContext.md`).
 **Alternatives**: v1 (Debian port — more package gaps, hand-rolled locale/sudoers handling); tracking upstream `el9` (deprecated, older selkies pin, python3.9).

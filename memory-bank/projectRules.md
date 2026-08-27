@@ -14,7 +14,7 @@
 - Cleanup at the end of the runtime stage (purge build deps, clear package cache, `/tmp`) — follow `Dockerfile:559-570`.
 
 ## Runtime / s6 Conventions
-- App user is `abc` (uid 1000), `HOME=/config`; drop privileges with `s6-setuidgid abc`.
+- App user is `abc` (uid 1000 on Debian; uid 911 on the EL/UBI9 base — PLAN v4 base stage), `HOME=/config`; drop privileges with `s6-setuidgid abc`.
 - Scripts under `root/etc/s6-overlay/s6-rc.d/*/run` use `#!/usr/bin/with-contenv bash`.
 - Service naming: `init-*` = one-shot (declare `type: oneshot`), `svc-*` = long-running; ordering via `dependencies.d/` markers, membership via `user/contents.d/`.
 - User-facing config goes through env vars with `${VAR:-default}`; document new vars in `readme-vars.yml`.

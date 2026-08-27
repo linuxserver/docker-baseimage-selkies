@@ -19,6 +19,7 @@
 - Replacing the s6-overlay service model.
 
 ## Open Product Questions (for RHEL9)
-1. Target tag name: `rhel9`? Also an aarch64 variant?
-2. RHEL9 base: `registry.access.redhat.com/ubi9` (U9/UBI) vs full RHEL repo access? (license/registry availability)
-3. Parity level: full feature parity with Debian image, or a reduced core set first?
+All resolved 2026-08-27 (see `decisions.md` 2026-08-27 ADRs + `activeContext.md#PLAN-v4`):
+1. ~~Target tag name~~ → `rhel9`; x86_64 first, aarch64 later (user decision).
+2. ~~RHEL9 base: ubi9 vs full RHEL repos~~ → SLU-owned `base` stage: `registry.access.redhat.com/ubi9/ubi` (digest-pinned) + entitled RHEL repos via host entitlement passthrough + EPEL9 delta (v4 ADR; baseimage-el:9 rejected — deprecated + Oracle-repo-based).
+3. ~~Parity level~~ → reduced core set first (desktop + streaming); phase-2 deferrals: DinD, GPU/Zink, proot-apps, pelorus, Wayland.

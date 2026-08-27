@@ -8,10 +8,13 @@ docker build -t baseimage-selkies:dev .
 # aarch64 (Debian variant)
 docker build -f Dockerfile.aarch64 --platform linux/arm64 -t baseimage-selkies:dev-arm64 .
 ```
-RHEL9 variant (once `Dockerfile.rhel9` exists):
+RHEL9 variant (PLAN v4 — **builds only on a subscription-registered RHEL host**):
 ```bash
-docker build -f Dockerfile.rhel9 -t baseimage-selkies:dev-rhel9 .
+# preflight (once per host): entitlement passthrough must work
+podman run --rm registry.access.redhat.com/ubi9/ubi dnf repolist   # expect rhel-9-for-x86_64-*
+podman build -f Dockerfile.rhel9 -t dgilli/baseimage-selkies:rhel9-p1 .
 ```
+Full phase-1 test procedure (run, smoke checks, v4 negative matrix): `activeContext.md#PLAN-v4` section D.
 
 ## Run / smoke test
 ```bash
