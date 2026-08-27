@@ -15,6 +15,20 @@
 **Consequences**: MB files are committed to the repo (tracked in git) so they persist and are revertible with code.
 **References**: `toc.md`
 
+### 2026-08-27: GPU support on RHEL9 deferred — modesetting-only reality
+**Status**: Approved (evidence-based, user inquiry)
+**Context**: Upstream el9 was killed partly by the GPU gap ("DRI3 is not supported on el9", commit 4b42cad). Verified on a subscribed RHEL 9.8 host against real RHEL9 repos: RHEL9 ships no Xorg DDX drivers (intel/amdgpu/nouveau/qxl) and no mesa-va-drivers; rendering is modesetting+mesa-dri only; Intel VA-API exists via libva-intel-hybrid-driver; no NVIDIA driver packages in enabled repos.
+**Decision**: Phase 1 (core) stays CPU-only (Xvfb, no render node, llvmpipe GL via forced env). Phase-2 GPU work will use real Xorg + modesetting + DRI3 (the only RHEL-supported path), not the Xvfb `-vfbdevice` trick that failed upstream. NVIDIA would require out-of-repo driver provisioning (separate work item).
+**Alternatives**: Track UBI9+RPMFusion for a DRI3 Xvfb path (upstream proved it unstable on EL9); use rhel-core:9 base (subscription coupling — rejected for a distributable image).
+**Consequences**: No GPU in v1; documented escalation path for phase 2.
+**References**: `activeContext.md#RHEL9-GPU-Facts`
+
+### 2026-08-27: Adopt force-llvmpipe ENV in Dockerfile.rhel9
+**Status**: Proposed (from NRP project evidence; include in BUILD)
+**Context**: `slu-nrp-k8s-vm` RHEL9 builds (v2/v3/v4-llvmpipe) set `LIBGL_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER=llvmpipe MESA_GL_VERSION_OVERRIDE=4.5` to make GL compositing work without a GPU.
+**Decision**: Add same ENV block to `Dockerfile.rhel9` runtime stage as the guaranteed CPU GL path (harmless when a GPU is present in phase 2 — revisit then).
+**References**: `activeContext.md#RHEL9-GPU-Facts`
+
 ### 2026-08-27: RHEL9 support approach (proposed, not yet approved)
 **Status**: Proposed — pending answers to open questions in `activeContext.md`
 **Context**: Upstream image is Debian-trixie only; SLU needs a RHEL9-based variant.

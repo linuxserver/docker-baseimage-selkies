@@ -42,6 +42,21 @@ UBI9 base (via `lscr.io/linuxserver/baseimage-el:9`) | x86_64 first | `Dockerfil
 - Their selkies pin was older (159656df) and they pinned `pixelflux==1.4.7` manually — we stay on 348bc4f (master parity) with auto-resolved pixelflux (cp311 wheel verified)
 - They used `python3` (3.9!) venv without --system-site-packages — we use 3.11 + --system-site-packages (master parity)
 
+## RHEL9 GPU Facts (verified 2026-08-27 on subscribed RHEL 9.8 host — real cdn.redhat.com repos)
+- **No DDX drivers in RHEL9**: AppStream has only xorg-x11-drv-{dummy,evdev,fbdev,v4l,vmware,wacom}; NO intel/amdgpu/nouveau/qxl. Xorg rendering = modesetting driver only (kernel KMS + mesa DRI).
+- **No `mesa-va-drivers`, no `intel-media-driver`** in RHEL9. Intel VA-API encode = `libva-intel-hybrid-driver` (iHD, present ✅). `libva-nvidia-driver` (library only) present ✅; **no nvidia driver packages/module in enabled repos**.
+- `mesa-dri-drivers` (all DRI incl. llvmpipe/swrast) present ✅; xorg-x11-server-{Xorg,Xvfb,Xwayland,Xephyr} present ✅.
+- Upstream el9's death ("DRI3 is not supported on el9", 4b42cad 2025-11-20) = the **Xvfb `-vfbdevice /dev/dri/renderD` DRI3 render-node path** (our svc-xorg GPU flow) failed on EL9; they stripped mesa-dri+mesa-va → GPU nonfunctional → deprecated 2026-05 (PR #159 + cstate #310). No commit records the deeper root cause.
+- **Phase-2 GPU conclusion**: only RHEL-supported path is real **Xorg + modesetting + DRI3** (not Xvfb-vfbdevice). Intel encode via libva-intel-hybrid-driver; NVIDIA needs out-of-repo driver.
+- Core (CPU) scope unaffected: Xvfb without render node + llvmpipe GLX works. NRP project proved the force-llvmpipe env trick on EL9 (`LIBGL_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER=llvmpipe MESA_GL_VERSION_OVERRIDE=4.5`) — **adopt as ENV in Dockerfile.rhel9** (GL fallback guarantee).
+
+## Discovered: two parallel RHEL9 efforts (user to confirm separation)
+1. **This repo, `rhel9` branch (PLAN v2)**: LSIO baseimage fork — baseimage-el:9 + s6-overlay + `abc` + openbox/Xvfb, full parity with debian variant.
+2. **`slu-nrp-k8s-vm/Dockerfile.ubi9-selkies`** (user's v2/v3/v4-llvmpipe podman images): standalone UBI9 + **supervisord** + `rheluser` (uid 1000) + **GNOME-on-Xorg** + EPEL/rpmfusion, k8s-oriented (yaml templates, turnserver). Different service model & user — NOT the baseimage fork.
+
+## Guest image note
+`registry.redhat.io/rhel9/rhel-guest-image:latest` = **qcow2 VM disk delivery vehicle** (rhel-guest-image-9.8-20260428.2, KubeVirt env), 12 files total — not executable, not a container base, empty content-sets. Version info: RHEL **9.8**. If a true RHEL9 *container* base is wanted later: `registry.redhat.io/rhel9/rhel-core:9` (subscription; this host can pull it) vs UBI9 (free, current plan).
+
 ## Working Context
 - Branch: `rhel9` (from upstream master 69f4fc9) | tree = master + untracked memory-bank (commit pending)
 - Scratch audit data: /tmp/cs9_*.html, epel_*.html, rff/rfn primary, audit_cs9.txt (disposable)
