@@ -31,3 +31,5 @@
 {"ts":"2026-08-27T21:05:00Z","session_id":"slu-selkies-2026-08-27c","event":"state_transition","from":"APPROVAL","to":"APPLY","detail":"user: approved"}
 {"ts":"2026-08-27T21:08:00Z","session_id":"slu-selkies-2026-08-27c","event":"commit","detail":"bd46cdb rhel9: Dockerfile.rhel9 + root-base/ + shared-tree edits + package_versions_rhel9.txt + readme-vars + findings.md + MB state (79 files, +1411/-18); exec bits verified on 7 vendored run scripts"}
 {"ts":"2026-08-27T21:12:00Z","session_id":"slu-selkies-2026-08-27c","event":"state_transition","from":"APPLY","to":"DOCS","detail":"apply verified (git status clean post-commit, container running final image)"}
+{"ts":"2026-08-27T21:30:00Z","session_id":"slu-selkies-2026-08-27c","event":"user_request","detail":"git commit our changes and update the memory bank — verified tree already clean (bd46cdb + 23964ff); closed state to COMPLETE"}
+{"ts":"2026-08-27T21:31:00Z","session_id":"slu-selkies-2026-08-27c","event":"state_transition","from":"DOCS","to":"COMPLETE","detail":"phase 1 done; next: phase 1.5 (registry push + NRP mapping, F28/F30 open)"}
