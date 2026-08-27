@@ -1,6 +1,6 @@
 # Active Context
 
-**Last Updated**: 2026-08-27 | **State Machine**: `PLAN` (RHEL9 **v4** — vetted + approved; docs committed, **build not started** per user instruction)
+**Last Updated**: 2026-08-27 | **State Machine**: `APPROVAL` (QA complete: autonomous matrix + user manual test #2 PASS; awaiting explicit commit approval)
 
 ## Git Reality (changed 2026-08-27)
 - `origin` = **user's fork** `git@github.com:dGilli/docker-baseimage-selkies.git` (commits/pushes allowed)
@@ -97,7 +97,7 @@ Vendor the ~100-line deprecated `docker-baseimage-el` Dockerfile as stage `base`
 **Budget**: 4 cycles | ~90 min (base stage adds one layer; preflight adds 5 min)
 
 ### Verified EL9 gaps (accepted degradations, phase-2 candidates)
-`cvt` binary (svc-de modeline step no-ops — F44 has standalone cvt pkg, EL9 doesn't) | dunst | xorg-x11-drv-{intel,amdgpu,nouveau,qxl} + mesa-va-drivers (NOT in real RHEL9 either — verified on 9.8 host; GPU phase 2) | *(REMOVED from gaps by vetting: xdg-utils — IS in AppStream 1.1.3 (D6); breeze-cursor-theme — IS in EPEL9, RPMFusion not needed)*
+dunst | xorg-x11-drv-{intel,amdgpu,nouveau,qxl} + mesa-va-drivers (NOT in real RHEL9 either — verified on 9.8 host; GPU phase 2) | *(REMOVED from gaps by vetting: xdg-utils — IS in AppStream 1.1.3 (D6); breeze-cursor-theme — IS in EPEL9, RPMFusion not needed; cvt/gtf — IN xorg-x11-server-Xorg, installed, F08 corrected + F41)*
 
 ### Upstream lessons (from `origin/el9`, deprecated 2026-05)
 - el9 worked for months (bot builds) → deprecated after DRI3/mesa conflicts + `project_deprecation_status: true` in readme-vars
@@ -120,8 +120,33 @@ Vendor the ~100-line deprecated `docker-baseimage-el` Dockerfile as stage `base`
 ## Guest image note
 `registry.redhat.io/rhel9/rhel-guest-image:latest` = **qcow2 VM disk delivery vehicle** (rhel-guest-image-9.8-20260428.2, KubeVirt env), 12 files total — not executable, not a container base, empty content-sets. Version info: RHEL **9.8**. If a true RHEL9 *container* base is wanted later: `registry.redhat.io/rhel9/rhel-core:9` (subscription; this host can pull it) vs UBI9 (free, current plan).
 
+## BUILD executed 2026-08-27 (user released the hold)
+
+**Revert tag**: `pre-rhel9-build` (annotated, → `7b3af8b`) — everything built is after this tag.
+
+**Image**: `dgilli/baseimage-selkies:rhel9-p1` = `10bbd70e1502` (cycle 5, +`xorg-x11-server-Xorg` for cvt/gtf — F41; x86_64; base pin ubi9@`03b3d228` amd64 manifest).
+
+**New files**: `Dockerfile.rhel9` (3 stages: base/frontend/runtime, 15 steps), `root-base/` (vendored baseimage-el s6 tree, 68 files, Oracle repo+GPG excluded), `package_versions_rhel9.txt` (213 ubi9-base / 204 rhel9 / 24 epel + 41 python), `readme-vars.yml` +RHEL row.
+
+**Shared-tree edits (4, all no-ops on Debian)**: `init-nginx/run` (conf.d branch), `svc-selkies/run` (DEV_MODE non-Debian gate), `init-selkies-config/run` (`[ -d /proot-apps ]` guard), `svc-docker/run` (dockerd guard).
+
+**Build cycles (5)**: c1 `xorg-x11-{xkb,font}-utils` don't exist on RHEL9 → `xkbcomp`+`mkfontscale` (F31) | c2 evdev missing Python.h → `python3.11-devel` (F32) | c3 xkbcommon cffi vs libxkbcommon 1.4 → `xkbcommon<1.5` pin + `libxkbcommon-devel` (F34) | c4 `tic -i` unsupported on ncurses 6.2 → plain `tic` (F35) | c5 **user manual test #1**: dashboard OK but "Waiting for stream..." → selkies runtime resize needs `cvt`/`gtf` (F41) → added `xorg-x11-server-Xorg` (F08 corrected). Full resolution dry-run (`--downloadonly`) added to catch name errors pre-build.
+
+**Autonomous QA (ALL PASS)**:
+- Boot: 10/10 user-bundle services up & stable (s6-svstat), init chain complete, no flapping
+- Desktop: Xvfb `:1` (xdpyinfo OK), openbox `--replace` via dbus-launch (F19/D2 ✅), `st` from autostart (F22/F35 ✅), X socket abc-owned
+- Web: 3000/3001 nginx + basic auth (401→200 w/ abc:baseimage123), dashboard HTML served, 8082 selkies ws listening, gamepad interposers up
+- Audio: output+input null sinks (pactl)
+- GL: llvmpipe probe — `llvmpipe (LLVM 21.1.7)` / GL 4.5 (F36)
+- sudo: NOPASSWD as abc (F33/D4) | locale: de_DE.utf8 boots (LC_ALL matrix)
+- Matrix: `--device /dev/dri/renderD128` → Xvfb no `-vfbdevice`, stable (D5/F16 ✅) | `SELKIES_MANUAL_WIDTH/HEIGHT=1280x720` → Xvfb `-screen 0 1280x720x24` ✅ | harden (`DISABLE_SUDO`+`DISABLE_OPEN_TOOLS`+`HARDEN_DESKTOP`) → CORRUPT_FILE sed + xdg-open/exo-open mode 0000 + nginx files block removed ✅ | `DEV_MODE=pixelflux` → gate msg "not supported on rhel", default boot ✅ (F39) | dockerd guard (simulated privileged via /dev/cpu_dma_latency + s6-svc -t) → "docker not installed… service idle", stable (F38)
+- cvt fatal line in boot log = expected (F08 verified live; modeline skipped, size via Xvfb env)
+
+**Needs MANUAL (user)**: browser → dashboard → connect → desktop renders + window drag + keyboard + audio. (Everything up to the browser handshake is verified autonomously.)
+
 ## Working Context
-- Branch: `rhel9` (from upstream master `69f4fc9`); MB commits: `38a52d4` (PLAN v2), `1e9a494` (GPU facts), next = vetting + PLAN v4 (docs only — **no build yet**, per user)
-- Host: RHEL 9.8 (Plow), subscribed (real cdn.redhat.com repos — authoritative for RHEL9 package questions), podman 5.8.2, EPEL/CRB/VSCode/Chrome repos enabled
-- Vetting evidence + defect log: `tasks/2026-08/270827_rhel9-vetting-plan-v4.md`
-- Scratch audit data: /tmp/cs9_*.html, epel_*.html, audit_cs9.txt, /tmp/opencode/{el9,f44}.Dockerfile (disposable)
+- Branch: `rhel9`; last MB commit `7b3af8b` (tagged `pre-rhel9-build`); **uncommitted**: Dockerfile.rhel9, root-base/, package_versions_rhel9.txt, readme-vars.yml, 4 shared-tree scripts, findings/activeContext/progress updates — commit pending APPROVAL
+- Live container `selkies-rhel9-p1` (ports 3000/3001/8082) ready for manual browser test; matrix containers m-dri/m-res/m-harden/m-locale/m-devmode removed after checks
+- Host: RHEL 9.8 (Plow), subscribed; /dev/dri/renderD128 present (used for D5 test); podman 5.8.2 rootless
+- Vetting evidence + defect log: `tasks/2026-08/270827_rhel9-vetting-plan-v4.md`; BUILD findings: `findings.md` F31-F40
+- Scratch: /tmp/opencode/ref/{f44,el9}.Dockerfile, prov_attr.sh, ubi_base.txt, gl_probe.c, baseimage-el clone (disposable)

@@ -21,6 +21,11 @@ fi
 
 # Setup dev mode if defined
 if [ ! -z ${DEV_MODE+x} ]; then
+  # phase 1: DEV_MODE is Debian-only (apt-based); continue default boot elsewhere
+  . /etc/os-release
+  if [ "${ID}" != "debian" ]; then
+    echo "[ls.io-init] DEV_MODE not supported on ${ID} (phase 1) - continuing default boot"
+  else
   # Dev deps
   apt-get update
   apt-get install -y \
@@ -115,6 +120,7 @@ if [ ! -z ${DEV_MODE+x} ]; then
     s6-setuidgid abc \
       nodemon -V --ext py --watch . --exec \
         "killall labwc || true; killall selkies-desktop || true; python3 -m selkies --addr='localhost' --mode='websockets' --debug='true'"
+  fi
   fi
 fi
 

@@ -1,7 +1,12 @@
 #!/usr/bin/with-contenv bash
 
-# nginx Path
-NGINX_CONFIG=/etc/nginx/sites-available/default
+# nginx Path (distro-aware: Debian ships sites-available, EL ships conf.d)
+if [ -d /etc/nginx/sites-available ]; then
+  NGINX_CONFIG=/etc/nginx/sites-available/default
+else
+  mkdir -p /etc/nginx/conf.d
+  NGINX_CONFIG=/etc/nginx/conf.d/default.conf
+fi
 
 # user passed env vars
 CPORT="${CUSTOM_PORT:-3000}"

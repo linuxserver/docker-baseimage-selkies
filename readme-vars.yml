@@ -230,6 +230,7 @@ full_custom_readme: |
   | Debian | debiantrixie |
   | Fedora | fedora44 |
   | Kali | kali |
+  | RHEL | rhel9 |
   | Ubuntu | ubunturesolute |
 
   **A `dev` tag is also available based on the latest Ubuntu and the head Selkies codebase for integration testing.**

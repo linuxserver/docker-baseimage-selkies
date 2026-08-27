@@ -251,8 +251,9 @@ else
   fi
 fi
 
-# add proot-apps
+# add proot-apps (variant guard: /proot-apps not shipped in all variants)
 proot_updated=false
+if [ -d /proot-apps ]; then
 if [ ! -f "$HOME/.local/bin/proot-apps" ]; then
   mkdir -p "$HOME/.local/bin/"
   cp /proot-apps/* "$HOME/.local/bin/"
@@ -261,6 +262,7 @@ if [ ! -f "$HOME/.local/bin/proot-apps" ]; then
 elif ! diff -q /proot-apps/pversion "$HOME/.local/bin/pversion" > /dev/null; then
   cp /proot-apps/* "$HOME/.local/bin/"
   proot_updated=true
+fi
 fi
 if [ "$proot_updated" = true ]; then
     chown -R abc:abc "$HOME/.local"

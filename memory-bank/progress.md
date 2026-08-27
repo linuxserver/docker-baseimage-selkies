@@ -12,13 +12,12 @@
 - [x] 2026-08-27 — **PLAN v4 approved** (user chose SLU-owned UBI9 base + entitled RHEL repos); MB/docs updated — **no build performed yet, per user**
 
 ## In Progress
-- [ ] **RHEL9 image (PLAN v4, SLU-owned base)** — approved; docs committed; awaiting go for build
-  - Blockers: none technical — user hold on build
+- [ ] **RHEL9 image (PLAN v4, SLU-owned base)** — **BUILT + ALL TESTS PASS 2026-08-27** (autonomous matrix + user manual test #2 "I got a shell!"); **awaiting explicit commit approval**
+  - Final image `dgilli/baseimage-selkies:rhel9-p1` (`10bbd70e1502`); live container `selkies-rhel9-p1` on :3000/:3001/:8082
+  - Revert tag `pre-rhel9-build` → `7b3af8b`
+  - Build required 5 RHEL9-delta fixes beyond vetting: F31 (xkbcomp/mkfontscale names), F32 (python3.11-devel + libxkbcommon-devel), F34 (xkbcommon<1.5 pin), F35 (tic without -i), F41 (xorg-x11-server-Xorg for cvt/gtf — caught by user manual test #1)
+  - All v4 negative/edge matrix items passed (D5 dri, manual-res, hardening, locale, DEV_MODE gate, dockerd guard)
 
-## Next Priorities (when user releases build hold)
-1. Preflight: entitlement passthrough check (`ubi9/ubi dnf repolist` shows `rhel-9-for-x86_64-*`)
-2. BUILD `Dockerfile.rhel9` (v4: vendored base stage + frontend + runtime w/ D1–D6 fixes)
-3. 4 small shared-tree edits (init-nginx branch, svc-selkies DEV_MODE gate, proot guard, dockerd guard)
-4. `podman build` + smoke test incl. v4 negative matrix (`--device /dev/dri`, `--privileged`, HARDEN_DESKTOP, LC_ALL, DEV_MODE gate)
-5. `package_versions_rhel9.txt` (with repo provenance) + readme-vars.yml row
-6. Commit to `rhel9` (origin push only if user asks)
+## Next
+1. On approval: commit `Dockerfile.rhel9` + `root-base/` + shared-tree edits + `package_versions_rhel9.txt` + `readme-vars.yml` + `findings.md` + MB updates to `rhel9` (origin push only if user asks)
+2. Phase 1.5 (separate work item): registry push + NRP template env mapping (F28 rootful gate, F30 tag naming still open)
