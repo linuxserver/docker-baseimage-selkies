@@ -272,19 +272,19 @@ Same selkies pin `348bc4f` as master; root-tree deltas vs master = only 15 files
 ## 6. Production (NRP) Gates
 
 ### F28 — NRP's current image is non-root; LSIO-parity image is rootful
-NRP runs `USER rheluser`; our image runs s6 `/init` as root with services dropping to `abc`. NRP Deployment must **permit root** (no `runAsNonRoot: true`) — same as every LSIO image in a k8s desktop.
-**Status**: 🔓 open production question — phase 1.5 gate (flagged to user, not yet answered).
-**Evidence**: `memory-bank/decisions.md#NRP`; `memory-bank/activeContext.md#E`
+NRP runs `USER rheluser`; our image runs s6 `/init` as root with services dropping to `abc`. **Resolved per user direction (2026-08-28) — verified in NRP's own artifacts**: `runAsNonRoot`/`securityContext` is NOT an NRP deployment limitation. NRP's `selkies-rhel9.yaml.template` + `selkies-glx/egl.yaml.template` + `rhel9-vm.yaml.template` contain **no** securityContext, no runAsNonRoot, no PSA annotations; their non-root posture is an *image design choice* of their supervisord image (README-rhel9.md "Non-Root Execution": "runs as `rheluser` (UID 1000) by default, following the principle of least privilege"), and their push pipeline (build-rhel9-selkies.sh → ghcr.io/slu-nrp via GHCR_TOKEN) has no root restrictions. A rootful image drops into the existing template as-is.
+**Status**: ✅ resolved 2026-08-28 (evidence above; no template change required). **Residual risk**: cluster-namespace-level Pod Security Admission (`pod-security.kubernetes.io/enforce=restricted`) cannot be inspected from this host — check the NRP namespace labels at first deploy; if enforced, options = baseline profile (still blocks root… actually restricted forbids root entirely) → would need `runAsUser` + our s6 chain to support non-root init (s6-overlay runs fine as non-root if the tree is owned — phase-2 candidate, NOT needed per templates today).
+**Evidence**: NRP repo templates (grep securityContext/runAsNonRoot/allowPrivilegeEscalation/podSecurity = 0 hits), README-rhel9.md:284, RHEL9-SELKIES-IMPLEMENTATION-COMPLETE.md:113, build-rhel9-selkies.sh:16/148; nrp-accounting MCP exposes no deployment docs (accounting queries only — user suggested, checked)
 
 ### F29 — Phase-2 GPU: only RHEL-supported path is real Xorg + modesetting + DRI3
 Not the Xvfb `-vfbdevice` trick that failed upstream (F16). Intel encode via `libva-intel-hybrid-driver`; NVIDIA needs out-of-repo driver.
 **Status**: 🔓 open (phase 2, separate work item).
 **Evidence**: `memory-bank/activeContext.md#RHEL9-GPU-Facts`; `memory-bank/decisions.md`
 
-### F30 — SLU registry/tag naming for the rhel9 image: TBD
-Open question; no `latest` tag by upstream convention.
-**Status**: 🔓 open.
-**Evidence**: `memory-bank/build-deployment.md`
+### F30 — SLU registry/tag naming for the rhel9 image
+**User decision 2026-08-28 (dev phase)**: registry = user's own development registry, repo **`dgilli/selkies-rhel9`** (host assumed `ghcr.io` — NRP's production pattern is ghcr.io/slu-nrp per build-rhel9-selkies.sh:16; host to be confirmed at push). Tags: **deliberately deferred until production-ready** — dev pushes use `latest` (upstream "no latest" convention applies to the public LSIO lineage, not the SLU dev namespace). Production tag scheme = open until phase-2/production decision.
+**Status**: 🔓 partially resolved — dev: `ghcr.io/dgilli/selkies-rhel9:latest` (pending host confirmation + rootless podman login on this host); production naming: still open.
+**Evidence**: user directive 2026-08-28; `memory-bank/build-deployment.md`; NRP build-rhel9-selkies.sh:16
 
 ### F39 — UBI9 os-release has `ID=rhel`
 DEV_MODE gate message renders "not supported on rhel"; the non-Debian gate works (M5 matrix test). Relevant for any future ID-based logic.
