@@ -1,6 +1,6 @@
 # Active Context
 
-**Last Updated**: 2026-08-28 | **State Machine**: `COMPLETE` (R1 steps 1–2: proot-apps shipped c8 `cc2c2b7` + pushed. Phase 1.5 DEV SCOPE: pushed + verified `docker.io/dgilli/selkies-rhel9:latest` + NRP mapping `deploy/nrp-selkies-rhel9.yaml`; F28/F30/F55 closed. Task 2: `11a8afd` + `06bc207`. Phase 1: `bd46cdb` → `23964ff` → `24e1575`. Next work items when scheduled: R1 step 3 (SLU catalog), NRP production merge, phase 2 candidates)
+**Last Updated**: 2026-08-28 | **State Machine**: `COMPLETE` (Phase 1.5 PRODUCTION ARTIFACT: `v4-llvmpipe` pin (private) + drop-in NRP template `deploy/nrp/selkies-rhel9.yaml.template` (F57, render-verified); cluster-side E2E awaits NRP kube access. R1 steps 1–2: proot-apps shipped c8 `cc2c2b7`. Phase 1.5 dev: `docker.io/dgilli/selkies-rhel9:latest` + dev manifest; F28/F30/F55 closed. Task 2: `11a8afd` + `06bc207`. Phase 1: `bd46cdb` → `23964ff` → `24e1575`. Next when scheduled: cluster-side E2E, R1 step 3 (SLU catalog), phase 2)
 
 ## Git Reality (changed 2026-08-27)
 - `origin` = **user's fork** `git@github.com:dGilli/docker-baseimage-selkies.git` (commits/pushes allowed)
@@ -205,11 +205,11 @@ fi
 
 ## Working Context
 - Branch `rhel9`; **working tree clean**; commits: `bd46cdb` (phase-1 build) → `23964ff` (docs) → `24e1575` (close) → …MB… → `11a8afd` (task-2 GNOME build) → `a6cd73a` (task-2 docs) → `06bc207` (SLU wallpaper) → `710f7e9` (MB: proot-apps intel F53–F55 + roadmap R1, user session) → `b97a611`/`89f567a` (phase-1.5 push + NRP mapping) → `cc2c2b7` (R1 code) → `153290d` (artifact); revert tags: `pre-rhel9-build` → `7b3af8b`, `pre-gnome-desktop` → `b4c199f`, `pre-r1-proot-apps` → `89f567a`
-- **Pushed image**: `docker.io/dgilli/selkies-rhel9:latest` (manifest `sha256:b70d42e30c7bef93ca7f0a4bd6a46540d4dfd2eabff1eafadd1d82fbdec5d059`, OCI; config = local c8 `5c835fb6a147`); prior c7 push = manifest `sha256:46246466…`. **NRP mapping**: `deploy/nrp-selkies-rhel9.yaml` (dev manifest; its header's image digest note predates the c8 re-push)
+- **Pushed image (PRIVATE)**: `docker.io/dgilli/selkies-rhel9` — production pin **`v4-llvmpipe`** = c8 `5c835fb6a147` (manifest `sha256:b70d42e30c7bef93ca7f0a4bd6a46540d4dfd2eabff1eafadd1d82fbdec5d059`); `:latest` = same c8 (dev). First c7 push = manifest `sha256:46246466…`. **NRP artifacts**: `deploy/nrp/selkies-rhel9.yaml.template` (PRODUCTION drop-in, F57) + `deploy/nrp-selkies-rhel9.yaml` (standalone dev manifest)
 - Live containers: `selkies-rhel9-p1-gnome` (:3000/:3001/:8082, abc/baseimage123, c7 image — filezilla proot-app on its volume) + `selkies-r1-verify` (:3200/:3201/:3282, **c8 image**, FileZilla installed + running). Phase-1 container `selkies-rhel9-p1` exited (137); phase-1 image `10bbd70e1502` available for A/B
 - Host: RHEL 9.8 (Plow), subscribed; /dev/dri/renderD128 present; podman 5.8.2 rootless
 - Evidence: vetting `tasks/2026-08/270827_rhel9-vetting-plan-v4.md` · build `tasks/2026-08/270827_rhel9-build.md` · GNOME `tasks/2026-08/280828_rhel9-gnome-desktop.md` · phase-1.5 `tasks/2026-08/280828_phase1-5-nrp-dev-push.md` · R1 `tasks/2026-08/280828_r1-proot-apps.md` · findings `findings.md` F01–F56
-- NRP recipe source: `/home/its_admin/projects/slu-nrp-k8s-vm/{Dockerfile.ubi9-selkies,selkies-rhel9-entrypoint.sh,supervisord-rhel9.conf}`
+- NRP reference repo (**earlier attempt — user-confirmed REFERENCE ONLY, not the current system**): `/home/its_admin/projects/slu-nrp-k8s-vm/{Dockerfile.ubi9-selkies,selkies-rhel9-entrypoint.sh,supervisord-rhel9.conf,nrp-workspace,workspace-config.conf,selkies-rhel9.yaml.template}` — source of the GNOME launch recipe (F44), the placeholder/sed template contract (F57), and config values (ingress domain, QoS, secrets, DNS). Production artifact for the current NRP system = OUR `deploy/nrp/selkies-rhel9.yaml.template`
 - Scratch: /tmp/opencode/ref/{f44,el9}.Dockerfile, prov_attr.sh, ubi_base.txt, gl_probe.c, baseimage-el clone (disposable)
 
 ## Roadmap (deferred — user decision 2026-08-28: "do later down the line")

@@ -18,7 +18,7 @@
 |------|---------|-----------|
 | [projectRules.md](./projectRules.md) | Coding standards, generated-file rules | When uncertain |
 | [decisions.md](./decisions.md) | ADRs | Arch decisions |
-| [findings.md](./findings.md) | Cross-cutting findings registry (F01–F56, evidence-linked) | RHEL9 work, debugging |
+| [findings.md](./findings.md) | Cross-cutting findings registry (F01–F57, evidence-linked) | RHEL9 work, debugging |
 | [quick-start.md](./quick-start.md) | Common commands, build/run/test | Fast track |
 | [build-deployment.md](./build-deployment.md) | Build/deploy/Jenkins flow | Build work |
 | [testing-patterns.md](./testing-patterns.md) | QA strategy, CI env vars | Test work |
@@ -32,6 +32,7 @@
 | [tasks/2026-08/280828_rhel9-gnome-desktop.md](./tasks/2026-08/280828_rhel9-gnome-desktop.md) | Task-2 build log: GNOME desktop (gnome-shell 40.10), 7 cycles (F42–F52, incl. SLU wallpaper), edge 4/4, artifacts |
 | [tasks/2026-08/280828_phase1-5-nrp-dev-push.md](./tasks/2026-08/280828_phase1-5-nrp-dev-push.md) | Phase-1.5 dev: Docker Hub push (dgilli/selkies-rhel9:latest), pull-by-digest verify, NRP k8s mapping (deploy/), F28/F30/F55 closures |
 | [tasks/2026-08/280828_r1-proot-apps.md](./tasks/2026-08/280828_r1-proot-apps.md) | R1 (steps 1–2): proot-apps 0.3.2 in image + bwrap stub guard — dashboard install/run verified (FileZilla 3.68.1), F53/F56 |
+| [tasks/2026-08/280828_phase1-5-production-nrp.md](./tasks/2026-08/280828_phase1-5-production-nrp.md) | Phase-1.5 production artifact: v4-llvmpipe pin (private), drop-in NRP template deploy/nrp/ (F57 mismatches fixed, render verified), NRP-side E2E checklist |
 
 ## Operational
 | Path | Purpose |
