@@ -30,8 +30,8 @@ if [ -x /usr/bin/gnome-shell ] && [ "${DESKTOP}" != "openbox" ]; then
   done
   # session bus on a deterministic socket: dbus-run-session honors neither
   # XDG_RUNTIME_DIR nor a fixed path on EL9 (falls back to a random /tmp
-  # socket from the default session.conf), which apps we launch from here
-  # (nautilus, autostart) cannot discover
+  # socket from the default session.conf), which gnome-shell and
+  # user-launched apps cannot discover
   dbus-daemon --session --nofork --address="unix:path=$XDG_RUNTIME_DIR/bus" &
   DBUS_PID=$!
   export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
@@ -39,6 +39,14 @@ if [ -x /usr/bin/gnome-shell ] && [ "${DESKTOP}" != "openbox" ]; then
     [ -S "$XDG_RUNTIME_DIR/bus" ] && break
     sleep 0.2
   done
+  # SLU wallpaper (user-provided, 2026-08-28): point GNOME's background schema
+  # at the bundled image. gnome-shell's background actor reads these keys;
+  # gsettings writes land in the dconf user DB under /config and are
+  # re-applied idempotently on every boot.
+  gsettings set org.gnome.desktop.background picture-uri "file:///usr/share/backgrounds/slu-rhel.jpg" 2>/dev/null || true
+  gsettings set org.gnome.desktop.background picture-uri-dark "file:///usr/share/backgrounds/slu-rhel.jpg" 2>/dev/null || true
+  # NOTE: RHEL9/GNOME40 enum values differ from Fedora naming (spanned, not span)
+  gsettings set org.gnome.desktop.background picture-options "spanned" 2>/dev/null || true
   /usr/bin/gnome-shell --x11 --sm-disable &
   GNOME_PID=$!
   # No auto-apps under GNOME (user decision 2026-08-28): clean desktop,
