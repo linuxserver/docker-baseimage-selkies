@@ -1,7 +1,8 @@
 # package_versions_rhel9.txt - RHEL9 variant (SLU) - generated 2026-08-28
-# Image: dgilli/baseimage-selkies:rhel9-p1-gnome (f54738a5b9d4)
+# Image: dgilli/baseimage-selkies:rhel9-p1-gnome (5c835fb6a147, c8)
 # REPO key: ubi9-base = vanilla UBI9 layer | rhel9 = RH-signed, installed from entitled rhel-9-for-x86_64-* repos (subscription-manager container mode)
 #           epel = EPEL9 (desktop delta) | python = /lsiopy venv (selkies 348bc4f + deps)
+#           proot = static release tarball /proot-apps (linuxserver/proot-apps, no dnf packages)
 #
 redhat-release                                                         9.8-1.0.el9.x86_64                       rpm      ubi9-base
 redhat-release                                                         9.8-1.0.el9.x86_64                       rpm      ubi9-base
@@ -695,7 +696,7 @@ pylibsrtp                                                              1.0.0    
 pynput                                                                 1.8.2                                    python   -
 pyOpenSSL                                                              26.4.0                                   python   -
 python-xlib                                                            0.33                                     python   -
-selkies                                                                @ file:///tmp/selkies-348bc4f61da66198573e7e57db9a266aca1991d5python   -
+selkies                                                                (local 348bc4f)                             python   -
 six                                                                    1.17.0                                   python   -
 typing_extensions                                                      4.16.0                                   python   -
 watchdog                                                               6.0.0                                    python   -
@@ -706,12 +707,17 @@ yarl                                                                   1.24.5   
 
 ## Provenance summary
 
+proot                                                                  0.3.2 (static, stripped)               bundle   proot
+ncat                                                                   0.3.2 (static, stripped)               bundle   proot
+jq                                                                     0.3.2 (static, stripped)               bundle   proot
+proot-apps                                                             0.3.2 (bash script + pversion)        bundle   proot
 | REPO | packages |
 |------|----------|
 | epel | 24 |
 | rhel9 | 414 |
 | ubi9-base | 220 |
 | python | 40 |
+| proot | 4 (one 0.3.2 release tarball) |
 
 Method: baseline diff vs vanilla ubi9/ubi (188 pkgs) + GPG signature key per
 package (EPEL9 key suffix 3228467c vs Red Hat keys). dnf INSTALLFROM headers
