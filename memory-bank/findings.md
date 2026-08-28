@@ -217,6 +217,21 @@ Verified present in AppStream (2026-08-27): gnome-shell 40.10, gnome-session 40.
 **Status**: ✅ verified 2026-08-27 (code review + F36).
 **Evidence**: `root/etc/s6-overlay/s6-rc.d/svc-xorg/run:36-56`.
 
+### F46 — GNOME prerequisites already in phase-1 image (live audit 2026-08-28)
+Disposable run from `10bbd70e1502` (`podman run --rm --entrypoint` — live container `selkies-rhel9-p1` exited 137, SIGKILL): `/usr/bin/dbus-run-session` present — on EL9 it ships in **dbus-daemon** 1.12.20-8.el9 (not dbus-tools), already installed via dbus-x11 (D2) | `/usr/bin/xsetroot` present — xorg-x11-server-utils 7.7-44.el9, pulled by cycle-5's `xorg-x11-server-Xorg` (F41) | `glxinfo` **absent** → `glx-utils` is the only missing utility pkg | `rpm -qf` confirmed both providers.
+**Status**: ✅ verified 2026-08-28.
+**Evidence**: disposable-run probes against phase-1 image.
+
+### F47 — Finalized GNOME package delta (12 pkgs, mirrors NRP's exact set)
+`gnome-session gnome-session-xsession gnome-shell gnome-settings-daemon mutter nautilus gnome-terminal gedit gnome-calculator gnome-screenshot firefox glx-utils` — mirrors NRP `Dockerfile.ubi9-selkies:57-68,100` verbatim minus NRP-specific scope (libreoffice, pipewire*, coturn, dev toolchain, vulkan-tools — out of LSIO scope / already present / NRP-only). `mutter` = gnome-shell's hard compositor dep (explicit per NRP); `gnome-settings-daemon` kept for NRP parity (no logind in container → its power/idle plugins inert, acceptable); `gnome-session-xsession` harmless few-MB add. Resolution dry-run remains build step 1 (F31 lesson).
+**Status**: ✅ finalized 2026-08-28.
+**Evidence**: NRP Dockerfile.ubi9-selkies:57-68,99; phase-1 image audit (F46).
+
+### F48 — XDG_RUNTIME_DIR must be fresh+ephemeral for the gnome dbus session
+`init-selkies-config/run:41` sets `XDG_RUNTIME_DIR=/config/.XDG` — but `/config` is the **persistent VOLUME**: a stale `$XDG_RUNTIME_DIR/bus` socket from a previous container boot would make the new dbus-daemon fail to bind → broken gnome-shell session. NRP sidesteps this with per-boot `XDG_RUNTIME_DIR=/tmp/runtime-<user>` (their Dockerfile:40). **Decision**: startwm gnome branch exports `XDG_RUNTIME_DIR=/tmp/runtime-abc` + `mkdir -p && chmod 0700`, scoped to the gnome process tree only (rest of stack keeps `/config/.XDG` untouched).
+**Status**: ✅ design decision 2026-08-28.
+**Evidence**: `init-selkies-config/run:37-41` (VOLUME at `Dockerfile.rhel9` `VOLUME /config`), NRP Dockerfile.ubi9-selkies:40.
+
 ## 5. Upstream Observations
 
 ### F25 — Upstream OS variants = one git branch per OS

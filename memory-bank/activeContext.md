@@ -144,30 +144,61 @@ dunst | xorg-x11-drv-{intel,amdgpu,nouveau,qxl} + mesa-va-drivers (NOT in real R
 
 **Needs MANUAL (user)**: browser → dashboard → connect → desktop renders + window drag + keyboard + audio. (Everything up to the browser handshake is verified autonomously.)
 
-## Task 2: GNOME desktop as RHEL9 default X11 DE — PLAN v1 (presented 2026-08-27, AWAITING user approval)
-**User ask**: "get a GUI desktop working locally, not just a shell" → refined to "the standard GNOME WM RHEL ships with".
+## Task 2: GNOME desktop as RHEL9 default X11 DE — **PLAN v2 FINALIZED** (2026-08-28, AWAITING user approval)
+**User ask**: "get a GUI desktop working locally, not just a shell" → "the standard GNOME WM RHEL ships with" → "finalize your plan to get gnome-shell running as our window manager".
 
 **Goal**: RHEL9 image's streamed X11 desktop boots **standard RHEL GNOME (gnome-shell 40.10)** instead of openbox+st-only. openbox stays as fallback (`DESKTOP=openbox` knob); LSIO autostart/`RESTART_APP` mechanism preserved.
 
-**Key decision (NRP-proven pattern, F44)**: `startwm.sh` gnome branch runs `dbus-run-session -- /usr/bin/gnome-shell --x11 --sm-disable` — **direct gnome-shell launch, NOT gnome-session**. Bypasses: gnome-initial-setup welcome screen (not even in gnome-shell's dep tree — F43), keyring prompts, logind dependency, blanking/lock (no gnome-settings-daemon = ideal for a stream). Matches NRP's production UBI9 recipe.
+**Key decision (NRP-proven pattern, F44)**: `startwm.sh` gnome branch runs `dbus-run-session -- /usr/bin/gnome-shell --x11 --sm-disable` — **direct gnome-shell launch, NOT gnome-session**. Bypasses: gnome-initial-setup welcome screen (not in gnome-shell's dep tree — F43), keyring prompts, logind dependency, blanking/lock. Matches NRP's production UBI9 recipe.
 
-**Packages (all verified live RHEL9 AppStream 2026-08-27, F42/F43)**: add to runtime dnf: `gnome-shell nautilus gnome-terminal gedit gnome-calculator gnome-screenshot firefox xorg-x11-server-utils glx-utils`. (`xorg-x11-server-utils` carries `xsetroot` on RHEL9 — no `xorg-x11-apps`; `glx-utils` carries `glxinfo` for the GLX-ready wait. fonts: liberation already there.)
+**Packages (FINAL — F46/F47)**: dnf list += `gnome-session gnome-session-xsession gnome-shell gnome-settings-daemon mutter nautilus gnome-terminal gedit gnome-calculator gnome-screenshot firefox glx-utils` (12). NOT needed: `xorg-x11-server-utils` (xsetroot already in image via F41's Xorg pkg) / `dbus-tools` (dbus-run-session ships in dbus-daemon on EL9, present).
 
-**Changes**:
+**Changes (FINAL)**:
 1. Revert tag `pre-gnome-desktop` → `24e1575` (create at BUILD start)
-2. `Dockerfile.rhel9` runtime dnf list += gnome set — **dnf dry-run resolution first** (F31 lesson)
-3. `root/defaults/startwm.sh` — **5th distro-aware no-op branch** (Debian path untouched): if `gnome-shell` present && `DESKTOP != openbox` → export F44 env (`XDG_SESSION_TYPE=x11 XDG_SESSION_ID=<display#> XDG_CURRENT_DESKTOP=GNOME DESKTOP_SESSION=gnome`), `xsetroot -solid #2d2d2d`, `dbus-run-session -- gnome-shell --x11 --sm-disable &`, wait for ready, then `sh $HOME/.config/openbox/autostart` (**exact string** → `svc-watchdog` `RESTART_APP` works UNCHANGED), `wait` on gnome-shell PID; else existing openbox exec
-4. `svc-xorg/run` — **no change** (F45: COMPOSITE/DAMAGE/GLX/RANDR/XFIXES/XTEST +iglx already enabled = gnome-shell X11 requirement set)
+2. `Dockerfile.rhel9` runtime dnf list += the 12 pkgs — **dnf dry-run resolution first** (F31 lesson)
+3. `root/defaults/startwm.sh` — **5th distro-aware no-op branch** (Debian path untouched; exact final code):
+```bash
+# Start DE
+if [ -x /usr/bin/gnome-shell ] && [ "${DESKTOP}" != "openbox" ]; then
+  # RHEL9 standard GNOME (gnome-shell 40.x): direct launch, NRP-proven pattern (F44/F47)
+  export XDG_SESSION_TYPE=x11
+  export XDG_SESSION_ID="${DISPLAY#:}"
+  export XDG_CURRENT_DESKTOP=GNOME
+  export DESKTOP_SESSION=gnome
+  # fresh per-boot runtime dir: /config/.XDG is on the persistent volume and would
+  # keep a stale dbus socket across container restarts (F48); NRP uses same pattern
+  export XDG_RUNTIME_DIR=/tmp/runtime-abc
+  mkdir -p "$XDG_RUNTIME_DIR" && chmod 0700 "$XDG_RUNTIME_DIR"
+  xsetroot -solid "#2d2d2d" 2>/dev/null || true
+  # wait for GLX readiness (mutter composites via software GL)
+  for i in $(seq 1 30); do
+    glxinfo 2>/dev/null | grep -q "OpenGL renderer string" && break
+    sleep 1
+  done
+  dbus-run-session -- /usr/bin/gnome-shell --x11 --sm-disable &
+  GNOME_PID=$!
+  sleep 10
+  nautilus -d 2>/dev/null || true
+  # autostart app — exact command string svc-watchdog pgreps for RESTART_APP (F22)
+  sh "$HOME/.config/openbox/autostart" &
+  wait "$GNOME_PID"
+else
+  exec dbus-launch --exit-with-session /usr/bin/openbox-session > /dev/null 2>&1
+fi
+```
+   Watchdog match proof: `HOME=/config` is container ENV → `sh "$HOME/.config/openbox/autostart"` cmdline = `sh /config/.config/openbox/autostart` = svc-watchdog `AUTOSTART_CMD` verbatim (`svc-watchdog/run:13`) → `RESTART_APP` works UNCHANGED. `wait $GNOME_PID` keeps svc-de alive; s6 kills the whole process group on service stop (clean gnome teardown).
+4. `svc-xorg/run` — **no change** (F45)
+5. `init-selkies-config/run` — **no change** (its `TERMINAL_NAMES` already lists `gnome-terminal` → `DISABLE_TERMINALS` hardening covers it, line 108)
 
-**Tests**: autonomous = services 10/10 stable, `pgrep -u abc gnome-shell`, `glxinfo` renderer=llvmpipe, **`gnome-screenshot -f` → read PNG to visually confirm GNOME top bar**, launch gnome-calculator (window visible via xprop). Edge = `DESKTOP=openbox` (old behavior intact) · `SELKIES_MANUAL_WIDTH/HEIGHT=1280x720` · `RESTART_APP=true` watchdog under GNOME · existing hardening trio. **Manual (user)** = browser → GNOME desktop (Activities, app grid, firefox, nautilus, terminal, drag, clipboard).
+**Tests**: autonomous = services 10/10 stable, `pgrep -u abc gnome-shell` (+nautilus), `glxinfo` renderer=llvmpipe, **`gnome-screenshot -f` → read PNG to visually confirm GNOME top bar**, launch gnome-calculator (window via xprop), autostart cmdline matches watchdog string. Edge = `DESKTOP=openbox` (old behavior intact) · `SELKIES_MANUAL_WIDTH/HEIGHT=1280x720` · `RESTART_APP=true` watchdog under GNOME (kill `sh /config/.config/openbox/autostart` → respawns) · existing hardening trio. **Manual (user)** = browser → GNOME desktop (Activities, app grid, firefox, nautilus, terminal, drag, clipboard).
 
-**Risks**: gnome-shell-on-Xvfb (NRP proved on Xorg; extension set matches + GNOME CI precedent → low; **Plan B** = Xorg-in-gnome-mode in svc-xorg, NRP verbatim, one cycle) · +1.5–2 GB image (gnome+firefox) · no gnome-settings-daemon → Settings app inert (we don't install it; NRP same).
+**Risks**: gnome-shell-on-Xvfb (NRP proved on Xorg; extension set matches + GNOME CI precedent → low; **Plan B** = Xorg-in-gnome-mode in svc-xorg, NRP verbatim, one cycle) · +1.5–2 GB image (gnome+firefox) · gsd installed but logind-less → gsd power/idle inert, Settings app NOT installed (user configures via gsettings if ever needed).
 
 **Budget**: 3 build cycles | **State**: awaiting approval ("approved"/"proceed" to start cycle 1).
 
 ## Working Context
 - Branch `rhel9`; **working tree clean**; commits `bd46cdb` (phase-1 build) → `23964ff` (docs) → `24e1575` (close); revert tags: `pre-rhel9-build` → `7b3af8b`, next `pre-gnome-desktop` → `24e1575`
-- Live container `selkies-rhel9-p1` (ports 3000/3001/8082, creds abc/baseimage123) = phase-1 image, still openbox default
+- Live container `selkies-rhel9-p1` (ports 3000/3001/8082, creds abc/baseimage123) = phase-1 image, still openbox default — **exited (137) 2026-08-28**; audit work done via disposable `podman run --rm --entrypoint` (F46); replaced by the GNOME build anyway
 - Host: RHEL 9.8 (Plow), subscribed; /dev/dri/renderD128 present; podman 5.8.2 rootless
 - Evidence: vetting `tasks/2026-08/270827_rhel9-vetting-plan-v4.md` · build `tasks/2026-08/270827_rhel9-build.md` · findings `findings.md` F01–F45
 - NRP recipe source: `/home/its_admin/projects/slu-nrp-k8s-vm/{Dockerfile.ubi9-selkies,selkies-rhel9-entrypoint.sh,supervisord-rhel9.conf}`
