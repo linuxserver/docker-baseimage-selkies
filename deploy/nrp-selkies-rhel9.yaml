@@ -2,8 +2,9 @@
 # NRP dev deployment — SLU RHEL9 selkies desktop (phase 1.5, 2026-08-28)
 #
 # Image: docker.io/dgilli/selkies-rhel9:latest
-#        pushed digest sha256:462464663a88e8126a96764edccc878c78ef765008a3ccab9ad65300905117e5
-#        (config digest sha256:99da8c1475f5... = local c7 build, verified pull-by-digest)
+#        pushed digest sha256:b70d42e30c7bef93ca7f0a4bd6a46540d4dfd2eabff1eafadd1d82fbdec5d059
+#        (config digest sha256:5c835fb6a147... = local c8 build incl. R1 proot-apps;
+#         first push was c7 99da8c1475f5 = manifest 46246466..., verified pull-by-digest)
 #
 # Shape follows NRP's selkies-rhel9.yaml.template (Deployment+Service+Ingress,
 # nrp-workspace-* labels, haproxy ingress) adapted to the LSIO-parity image
