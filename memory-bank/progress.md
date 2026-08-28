@@ -21,6 +21,6 @@
 - (none — phase 1.5 dev scope closed 2026-08-28; production merge + R1 await scheduling)
 
 ## Next
-1. **Phase 1.5 production — cluster side (needs NRP kube access, user/NRP ops)**: create `dockerhub-dgilli` imagePullSecret (+ ensure `selkies-password`) · namespace PSA label check (F28 residual — must not be `restricted`) · install `deploy/nrp/selkies-rhel9.yaml.template` as the rhel9 desktop template · E2E: workspace up → browser `abc` + secret → desktop + SLU wallpaper + H.264 + FileZilla install (R1). Full checklist: `tasks/2026-08/280828_phase1-5-production-nrp.md`
+1. **Phase 1.5 production — MANUAL E2E (user; pod left running)**: `https://slu-rhel9-e2e.nrp-nautilus.io` login `abc` + `Password123` (temp) → GNOME desktop + SLU wallpaper + H.264 stream + dashboard Install → FileZilla (R1). Then teardown `kubectl -n slu-researchtechnologies-dgilli delete -l app=slu-rhel9-e2e` (+ optionally the temp `selkies-password` secret). Deploy was one-shot `deploy/nrp/apply-nrp-e2e.sh` (`7d7f2ea`) — pod Running 0 restarts, ingress live, 401/200 auth verified
 2. **R1 step 3 (separate decision, pending)**: SLU catalog — frontend `REPO_BASE_URL` patch → SLU metadata.yml/icons (offline-capable via own nginx), `disabled:` pruning, SLU apps as full OCI refs
 3. Candidates: GPU/Zink phase 2 (Xorg path, F06/F07/F29) · libreoffice/extra apps on the GNOME desktop · Wayland
