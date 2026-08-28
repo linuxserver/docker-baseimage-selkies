@@ -40,6 +40,12 @@ mkdir -p "$HOME/.XDG"
 chown abc:abc "$HOME/.XDG"
 printf "$HOME/.XDG" > /run/s6/container_environment/XDG_RUNTIME_DIR
 
+# cache dir: base init hooks (e.g. init-mods-package-install) run as root with
+# HOME=/config and can leave a root-owned $HOME/.cache behind; user apps
+# (GNOME) must own it to write (F49)
+mkdir -p "$HOME/.cache"
+chown -R abc:abc "$HOME/.cache"
+
 # Clean out pulseaudio locks
 rm -f /defaults/pid /defaults/native
 
