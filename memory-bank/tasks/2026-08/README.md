@@ -11,6 +11,7 @@
 - **Phase 1 (CPU desktop + streaming): DONE 2026-08-27** — built, tested (autonomous matrix + user manual x2), committed `bd46cdb`
 - Phase 1.5 (SLU registry push + NRP template env mapping): pending — F28 rootful gate + F30 tag naming open
 - Phase 2 (GPU/Zink, Wayland, DinD, proot-apps, pelorus, DEV_MODE dnf port): deferred
+- **Roadmap R1 (intel done 2026-08-28, deferred by user)**: proot-apps — dashboard app install/update (F53–F55; fix verified incl. FileZilla window; plan in `activeContext.md#Roadmap`)
 - History: v1 (Debian port) → v2/v3 (fedora44-modeled, baseimage-el:9) → **vetting** found baseimage-el deprecated + Oracle-repo-based + 6 defects → **v4** (SLU-owned UBI9 base + entitled RHEL repos, D1–D6 fixes) → **build** (5 cycles, F31–F35/F41 RHEL9 deltas)
 - **Vetting/defect log: `270827_rhel9-vetting-plan-v4.md`** · **Build log: `270827_rhel9-build.md`**
 - Key references: upstream `fedora44` (current RPM-family pattern), upstream `el9` (deprecated; proved the stack, and its svc-xorg/-vfbdevice deletion = D5 evidence), entitled RHEL 9.8 host repoquery (authoritative package audit)

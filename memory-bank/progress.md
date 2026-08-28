@@ -18,5 +18,6 @@
 - (none — task 2 closed 2026-08-28; phase 1.5 awaits scheduling)
 
 ## Next
-1. Phase 1.5 (separate work item, when user schedules): registry push + NRP template env mapping (F28 rootful gate, F30 tag naming still open)
-2. Candidates: GPU/Zink phase 2 (Xorg path, F06/F07/F29) · libreoffice/extra apps on the GNOME desktop · Wayland
+1. Phase 1.5 (separate work item, when user schedules): registry push + NRP template env mapping (F28 rootful gate, F30 tag naming still open; F55 ptrace/unshare seccomp verification folds in here)
+2. **Roadmap (deferred by user 2026-08-28, intel complete + fix verified — F53–F55)**: R1 proot-apps (dashboard app install/update actually working: ship `/proot-apps`, bwrap stub for glycin apps, optional SLU catalog) — full plan in `activeContext.md#Roadmap`
+3. Candidates: GPU/Zink phase 2 (Xorg path, F06/F07/F29) · libreoffice/extra apps on the GNOME desktop · Wayland
