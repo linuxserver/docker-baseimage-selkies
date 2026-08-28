@@ -56,6 +56,6 @@ Make **standard RHEL GNOME (gnome-shell 40.10)** — "the standard GNOME WM RHEL
 
 ## Artifacts
 - Commits: `11a8afd` (desktop) + `06bc207` (wallpaper) on `rhel9`; revert tag: `pre-gnome-desktop` → `b4c199f`
-- Image: `dgilli/baseimage-selkies:rhel9-p1-gnome` (`99da8c1475f5` c7, current)
+- Image: `dgilli/baseimage-selkies:rhel9-p1-gnome` (`99da8c1475f5` c7 = task-2 final; same-day R1 follow-up → c8 `5c835fb6a147`, see `280828_r1-proot-apps.md`)
 - Live container: `selkies-rhel9-p1-gnome` :3000/:3001/:8082 (abc/baseimage123)
 - Evidence screenshots: /tmp/opencode/gnome-boot.png (w/ auto-apps), gnome-clean.png (c5), wall-c7.png (final, SLU wallpaper)

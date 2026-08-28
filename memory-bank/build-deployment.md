@@ -23,7 +23,7 @@ curl -sH "Authorization: Bearer $TOKEN" -H 'Accept: application/vnd.oci.image.ma
   https://registry-1.docker.io/v2/dgilli/selkies-rhel9/manifests/latest | sha256sum
 ```
 - **Entitled-host build constraint (PLAN v4)**: the rhel9 variant's vendored base stage (`FROM registry.access.redhat.com/ubi9/ubi`) resolves RHEL packages via podman's automatic entitlement passthrough — builds only succeed on **subscription-registered RHEL hosts**. Runtime needs no entitlement; NRP just pulls the image. (Rationale: `decisions.md` 2026-08-27 SLU-owned base ADR.)
-- **Dev registry (F30, resolved 2026-08-28)**: Docker Hub `dgilli/selkies-rhel9:latest` (first push: manifest `sha256:46246466…`, config = local c7 `99da8c1475f5`). Production registry + tag scheme: open (SLU registry + NRP template merge). Upstream "no latest" convention applies to the public LSIO lineage, not the SLU dev namespace.
+- **Dev registry (F30, resolved 2026-08-28)**: Docker Hub `dgilli/selkies-rhel9:latest` — currently = c8 `5c835fb6a147` (manifest `sha256:b70d42e3…`; first push was c7 = manifest `sha256:46246466…`). Production registry + tag scheme: open (SLU registry + NRP template merge). Upstream "no latest" convention applies to the public LSIO lineage, not the SLU dev namespace.
 - podman → Docker Hub pushes **OCI** manifests: the local store's docker-format digest ≠ registry manifest digest — always pin/verify by registry digest.
 - NRP k8s mapping for this image: `deploy/nrp-selkies-rhel9.yaml` (single port 3000; ws same-origin via nginx `/websocket`; no securityContext — F28).
 
