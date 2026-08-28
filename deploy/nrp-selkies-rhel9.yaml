@@ -1,5 +1,7 @@
 # =============================================================================
-# NRP dev deployment — SLU RHEL9 selkies desktop (phase 1.5, 2026-08-28)
+# NRP DEV deployment — SLU RHEL9 selkies desktop (phase 1.5, 2026-08-28)
+# STANDALONE dev manifest for ad-hoc cluster testing. The PRODUCTION artifact
+# (NRP template-contract drop-in) is deploy/nrp/selkies-rhel9.yaml.template.
 #
 # Image: docker.io/dgilli/selkies-rhel9:latest
 #        pushed digest sha256:b70d42e30c7bef93ca7f0a4bd6a46540d4dfd2eabff1eafadd1d82fbdec5d059

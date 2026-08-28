@@ -1,0 +1,162 @@
+# =============================================================================
+# NRP PRODUCTION template — SLU RHEL9 selkies desktop (GNOME + SLU wallpaper +
+# proot-apps), branch rhel9, image c8.
+#
+# Conventions modeled on the NRP desktop-workspace pattern (reference: the
+# earlier slu-nrp-k8s-vm attempt — selkies-rhel9.yaml.template + nrp-workspace
+# renderer + workspace-config.conf). The earlier attempt is REFERENCE ONLY;
+# this file is the production artifact for the current NRP system. It uses
+# only the standard NRP double-at placeholder set, so the renderer fills it
+# unchanged; it also applies manually (sed the values, kubectl apply).
+#
+# IMAGE
+#   docker.io/dgilli/selkies-rhel9 — PRIVATE repo. Production pin:
+#     v4-llvmpipe (manifest sha256:b70d42e30c7bef93ca7f0a4bd6a46540d4dfd2eabff1eafadd1d82fbdec5d059,
+#     config sha256:5c835fb6a147… = local c8 build). :latest tracks dev.
+#   NRP namespace needs:
+#     kubectl -n <ns> create secret docker-registry dockerhub-dgilli \
+#       --docker-server=https://index.docker.io/v1/ \
+#       --docker-username=dgilli --docker-password=<token>
+#   (secret name `dockerhub-dgilli` is hardcoded below — keep in sync)
+#
+# CONTRACT (differs from the earlier attempt's image — do not port their env
+# list over):
+#   ports:     web UI on 3000 (http); the selkies stream is SAME-ORIGIN —
+#              nginx location /websocket proxies to internal :8082. Only
+#              3000 needs exposure (3001 = https self-signed alternate).
+#   auth:      nginx basic auth via USERNAME + PASSWORD (secretRef below).
+#              With no PASSWORD env the UI has NO auth — always set it.
+#              (Their PASSWD/BASIC_AUTH_* vars belong to their image; ignored
+#              here.)
+#   encoder:   deliberately NOT templated (no encoder placeholder) — our
+#              selkies build (348bc4f) only
+#              accepts x264enc|jpeg and streams H.264 via the pixelflux wheel
+#              (no system gstreamer x264enc needed; the reference config's
+#              vp8enc is rejected with a warning + fallback). Their
+#              SELKIES_FRAMERATE/VIDEO_BITRATE/AUDIO_BITRATE envs are ignored
+#              by our build (rate/framerate are client-side settings).
+#   volumes:   /config (emptyDir per user decision 2026-08-28 — ephemeral
+#              desktop: SSL certs auto-gen at boot, SLU wallpaper re-applies
+#              via gsettings at boot, proot apps reinstall on demand) +
+#              /dev/shm. (Their /cache + /home/rheluser mounts are unused by
+#              our image.)
+#   root:      NO securityContext — the NRP pattern carries none (F28,
+#              verified in the reference templates). Cluster check: namespace
+#              Pod Security Admission must not be `restricted` (that forbids
+#              root): kubectl -n <ns> get ns <ns> \
+#              -o jsonpath='{.metadata.labels.pod-security\.kubernetes\.io/enforce}'
+#   seccomp:   stock docker default allows ptrace on kernel >= 4.8 — proot-apps
+#              (R1) needs no seccomp override (F55).
+#   resources: limits == requests (Guaranteed QoS per NRP policy). Reference
+#              defaults: 2 CPU / 4Gi; NRP interactive cap 16 CPU / 32Gi.
+#   GPU:       @@GPU_*@@ placeholders kept for phase 2 (real Xorg path, F29) —
+#              leave as no --gpu equivalent (empty) until then.
+# =============================================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: @@NAME@@
+  labels:
+    app: @@NAME@@
+    nrp-workspace-type: desktop
+    nrp-workspace-variant: rhel9
+    nrp-workspace-os: rhel9
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: @@NAME@@
+  template:
+    metadata:
+      labels:
+        app: @@NAME@@
+        nrp-workspace-type: desktop
+        nrp-workspace-variant: rhel9
+        nrp-workspace-os: rhel9
+    spec:
+      hostname: @@NAME@@
+      imagePullSecrets:
+      - name: dockerhub-dgilli
+      containers:
+      - name: desktop
+        image: @@IMAGE@@
+        env:
+        - name: TZ
+          value: "UTC"
+        - name: USERNAME
+          value: "abc"
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: @@PASSWORD_SECRET@@
+              key: @@PASSWORD_KEY@@
+        stdin: true
+        tty: true
+        ports:
+        - name: http
+          containerPort: 3000
+          protocol: TCP
+        resources:
+          limits:
+            memory: @@MEMORY@@
+            cpu: "@@CPU@@"
+@@GPU_LIMITS@@
+          requests:
+            memory: @@MEMORY@@
+            cpu: "@@CPU@@"
+@@GPU_REQUESTS@@
+        volumeMounts:
+        - mountPath: /dev/shm
+          name: dshm
+        - mountPath: /config
+          name: config
+      dnsPolicy: None
+      dnsConfig:
+        nameservers:
+        - @@DNS_PRIMARY@@
+        - @@DNS_SECONDARY@@
+      volumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
+      - name: config
+        emptyDir: {}
+@@AFFINITY@@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: @@NAME@@
+  labels:
+    app: @@NAME@@
+spec:
+  selector:
+    app: @@NAME@@
+  ports:
+  - name: http
+    protocol: TCP
+    port: 8080
+    targetPort: 3000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: @@NAME@@
+  labels:
+    app: @@NAME@@
+spec:
+  ingressClassName: haproxy
+  rules:
+  - host: @@NAME@@.@@INGRESS_DOMAIN@@
+    http:
+      paths:
+      - backend:
+          service:
+            name: @@NAME@@
+            port:
+              name: http
+        path: /
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - @@NAME@@.@@INGRESS_DOMAIN@@
