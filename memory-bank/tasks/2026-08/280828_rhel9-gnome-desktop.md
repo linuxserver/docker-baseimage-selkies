@@ -4,7 +4,7 @@
 Make **standard RHEL GNOME (gnome-shell 40.10)** — "the standard GNOME WM RHEL ships with" — the default X11 desktop streamed by the RHEL9 image (user: "get a GUI desktop working locally, not just a shell"). openbox remains available as fallback (`DESKTOP=openbox`) with the full LSIO autostart/`RESTART_APP` contract intact. No auto-launched apps on the GNOME desktop (user decision at approval: remove st + nautilus from autostart).
 
 ## Outcome
-- ✅ Build: `dgilli/baseimage-selkies:rhel9-p1-gnome` = `f54738a5b9d4` (5 cycles; c4/c5 were small cached rebuilds, extensions flagged)
+- ✅ Build: `dgilli/baseimage-selkies:rhel9-p1-gnome` = `99da8c1475f5` (7 cycles; c4/c5 + c6/c7 were small cached rebuilds, extensions flagged — see Build Cycle Log)
 - ✅ Autonomous smoke: services 13/13 up · gnome-shell + deterministic session bus (`/tmp/runtime-abc/bus`) · GLX `llvmpipe (LLVM 21.1.7)` GL 4.5 · web 200 w/ abc:baseimage123 on :3000/:3001 · selkies ws :8082 · **screenshot-verified GNOME desktop** (top bar Activities/clock/indicators, app grid; clean desktop after auto-app removal)
 - ✅ Edge matrix 4/4: `DESKTOP=openbox` (openbox+st boot, no gnome-shell, dbus-launch path) · `SELKIES_MANUAL_WIDTH/HEIGHT=1280x720` (Xvfb `-screen 0 1280x720x24`, gnome up) · `RESTART_APP=true` (watchdog idles silently — no autostart target under GNOME, no log spam, service up) · `HARDEN_DESKTOP=true` (sudo/xdg-open/**gnome-terminal** → 0000, CORRUPT_FILE sudoers, gnome-shell still up)
 - ✅ User approval 2026-08-28 (desktop verified; auto-apps removed per request)
@@ -14,8 +14,10 @@ Make **standard RHEL GNOME (gnome-shell 40.10)** — "the standard GNOME WM RHEL
 - `Dockerfile.rhel9` — +12 GNOME packages (all AppStream): gnome-shell 40.10, mutter, gnome-session, gnome-session-xsession, gnome-settings-daemon, nautilus 40.2, gnome-terminal, gedit, gnome-calculator, gnome-screenshot, firefox 140 ESR, glx-utils (F42/F43/F46/F47)
 - `root/defaults/startwm.sh` — 5th distro-aware no-op branch: direct gnome-shell launch (F44 pattern), explicit session bus (F51), per-boot XDG_RUNTIME_DIR (F48), no auto-apps
 - `root/etc/s6-overlay/s6-rc.d/init-selkies-config/run` — +6 lines: normalize `/config/.cache` ownership (F49)
-- `package_versions_rhel9.txt` — regenerated from final image
-- `memory-bank/` — findings F42–F51, ADR, this doc
+- `package_versions_rhel9.txt` — regenerated from final image (unchanged by wallpaper follow-up — no new packages)
+- `root/defaults/startwm.sh` — wallpaper gsettings lines (follow-up commit `06bc207`)
+- `root/usr/share/backgrounds/slu-rhel.jpg` — user-provided SLU/RHEL wallpaper (follow-up)
+- `memory-bank/` — findings F42–F52, ADR, this doc
 
 ## Patterns Applied
 - **Distro-aware shared-tree no-op branching** (phase-1 pattern, 5th instance) — Debian/Fedora path untouched; branch gated on `[ -x /usr/bin/gnome-shell ] && [ "$DESKTOP" != "openbox" ]`
@@ -42,7 +44,9 @@ Make **standard RHEL GNOME (gnome-shell 40.10)** — "the standard GNOME WM RHEL
 | 2 | `5394646a` | F49 cache chown + dbus export attempt (still dbus-run-session) |
 | 3 | `a1ac52a0` | +`nautilus` pkg; explicit `dbus-daemon --address` (F51) |
 | 4 | `15f963f8` | `nautilus --no-desktop` (F50; 1-line cached rebuild, extension flagged) |
-| 5 | `f54738a5` | **final** — user-directed: remove auto-apps (st/nautilus) from GNOME branch |
+| 5 | `f54738a5` | user-directed: remove auto-apps (st/nautilus) from GNOME branch |
+| 6 | `0325190e` | SLU wallpaper attempt — F52: RHEL9 enum is `spanned`, not `span`; invalid value silently kept default `zoom` |
+| 7 | `99da8c14` | **final** — wallpaper `spanned`, screenshot-verified full-desktop |
 
 ## Follow-up: SLU/RHEL wallpaper (same day, user-provided)
 - User dropped `SLU-RHEL.jpg` (1920×1080, SLU crest + "Red Hat Enterprise Linux" badge) into the repo root → moved to `root/usr/share/backgrounds/slu-rhel.jpg` (→ `/usr/share/backgrounds/slu-rhel.jpg` in image; `COPY /root /` picks it up, no Dockerfile change).
