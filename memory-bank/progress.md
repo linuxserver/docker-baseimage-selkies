@@ -14,13 +14,13 @@
 - [x] 2026-08-27 — **GNOME desktop research**: NRP proven launch recipe extracted (F44), RHEL9 AppStream GNOME app set verified (F42/F43), Xvfb extension set confirmed sufficient (F45)
 
 ## In Progress
-- [ ] **RHEL9 GNOME desktop (task 2)** — **PLAN v1 presented 2026-08-27, awaiting user approval**
-  - Standard RHEL GNOME (gnome-shell 40.10) as default X11 DE; openbox kept as fallback (`DESKTOP=openbox` knob)
-  - NRP direct-launch pattern: `dbus-run-session -- gnome-shell --x11 --sm-disable` (bypasses gnome-session → no welcome screen/keyring/lock)
-  - Packages (all AppStream-verified): `gnome-shell nautilus gnome-terminal gedit gnome-calculator gnome-screenshot firefox xorg-x11-server-utils glx-utils`
-  - Touch points: `Dockerfile.rhel9` dnf list + `startwm.sh` gnome branch (5th distro-aware no-op shared-tree edit); `svc-watchdog`/`init-selkies-config` UNCHANGED (exact autostart string preserved for RESTART_APP)
-  - See: `activeContext.md#Task-2`, `findings.md` F42–F45
+- [ ] **RHEL9 GNOME desktop (task 2)** — **BUILD done, autonomous QA ALL PASS, awaiting user manual browser test + approval** (2026-08-28)
+  - 4 build cycles (extension flagged): final image `dgilli/baseimage-selkies:rhel9-p1-gnome` = `15f963f83b71`
+  - Fixes found in QA: F49 (root-owned /config/.cache from base pip hook), F50 (nautilus `--no-desktop`, no `-d` in RHEL9), F51 (EL9 dbus-run-session random /tmp socket → explicit dbus-daemon --address)
+  - Edge matrix 4/4: DESKTOP=openbox · 1280x720 · RESTART_APP respawn · HARDEN_DESKTOP (gnome-terminal disabled too)
+  - Live container `selkies-rhel9-p1-gnome` on :3000/:3001/:8082 for manual test
+  - See: `activeContext.md#Task-2`, `findings.md` F42–F51
 
 ## Next
-1. On approval: build (budget 3 cycles, dnf dry-run first) → autonomous smoke (incl. `gnome-screenshot` visual check) → edge matrix → user manual browser test → commit + docs
+1. User manual browser test → approval → commit + docs (task doc, ADR, package_versions refresh)
 2. Phase 1.5 (separate work item): registry push + NRP template env mapping (F28 rootful gate, F30 tag naming still open)

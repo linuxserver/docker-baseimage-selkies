@@ -7,10 +7,11 @@
 - No task doc (housekeeping)
 
 ## Active
-### [AWAITING APPROVAL] RHEL9 GNOME desktop (task 2)
-- PLAN v1 presented 2026-08-27: standard RHEL GNOME (gnome-shell 40.10) as default X11 DE, NRP-proven direct launch (`dbus-run-session -- gnome-shell --x11 --sm-disable`), openbox fallback via `DESKTOP=openbox`
-- Packages verified AppStream (F42/F43); Xvfb extension set sufficient (F45); NRP recipe source: `slu-nrp-k8s-vm/selkies-rhel9-entrypoint.sh:234`
-- See: `memory-bank/activeContext.md#Task-2`, `memory-bank/findings.md` F42–F45
+### [AWAITING MANUAL TEST + APPROVAL] RHEL9 GNOME desktop (task 2)
+- BUILD done 2026-08-28 (4 cycles, extension flagged): image `dgilli/baseimage-selkies:rhel9-p1-gnome` = `15f963f83b71`; autonomous QA ALL PASS incl. screenshot-confirmed GNOME desktop + edge 4/4
+- Fixes from QA: F49 /config/.cache chown · F50 nautilus --no-desktop · F51 explicit session-bus socket
+- Live container `selkies-rhel9-p1-gnome` :3000/:3001/:8082 — user manual browser test pending
+- See: `memory-bank/activeContext.md#Task-2`, `memory-bank/findings.md` F42–F51
 
 ### [IN-PROGRESS] Add RHEL9 to supported images
 - **Phase 1 (CPU desktop + streaming): DONE 2026-08-27** — built, tested (autonomous matrix + user manual x2), committed `bd46cdb`

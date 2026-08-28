@@ -232,6 +232,21 @@ Disposable run from `10bbd70e1502` (`podman run --rm --entrypoint` — live cont
 **Status**: ✅ design decision 2026-08-28.
 **Evidence**: `init-selkies-config/run:37-41` (VOLUME at `Dockerfile.rhel9` `VOLUME /config`), NRP Dockerfile.ubi9-selkies:40.
 
+### F49 — Root-owned /config/.cache from base init hooks breaks GNOME app caches
+LSIO base `init-mods-package-install` hook runs pip **as root** with `HOME=/config` (container ENV) at boot → leaves root-owned `/config/.cache/pip` (verified: 08:45 boot timestamp, root:root). GNOME apps (gnome-calculator currency cache, nautilus, firefox) then fail to write their `~/.cache/<app>` subtrees ("Permission denied"). Harmless in phase 1 (st/openbox don't use .cache). **Fix**: `init-selkies-config/run` (runs as root, after the base init chain per dependencies.d) normalizes `mkdir -p $HOME/.cache && chown -R abc:abc` — 6 lines, distro-neutral (no-op-equivalent on Debian).
+**Status**: ✅ fixed + verified 2026-08-28 (post-fix boot: /config/.cache abc:abc incl. re-chowned pre-existing pip dir; calc warnings gone).
+**Evidence**: container /config/.cache listings pre/post fix; `root-base/etc/s6-overlay/s6-rc.d/init-mods-package-install` chain position.
+
+### F50 — nautilus 40 (RHEL9) has NO `-d` flag; NRP's exact invocation is `nautilus --no-desktop`
+`-d` (manage-desktop daemonize) was removed in nautilus 3.x; `nautilus -d` → "Unknown option -d" on RHEL9 40.2. NRP's actual command (`supervisord-rhel9.conf:177`): `sleep 10; /usr/bin/nautilus --no-desktop 2>/dev/null || sleep infinity` — file-manager **window** (no desktop takeover). PLAN v2's "nautilus -d (desktop icons)" description was a misremembering of the NRP recipe; the flag itself was wrong. **Fix**: startwm gnome branch uses `nautilus --no-desktop 2>/dev/null &`.
+**Status**: ✅ fixed + verified 2026-08-28 (nautilus "Home" window present at boot, screenshot-confirmed).
+**Evidence**: NRP supervisord-rhel9.conf:177; live "Unknown option -d" error.
+
+### F51 — EL9 dbus-run-session drops the session socket in a random /tmp path
+With `XDG_RUNTIME_DIR=/tmp/runtime-abc` exported, `dbus-run-session -- gnome-shell` (cycle 1/2) still placed the session bus at `/tmp/dbus-glhhPJmPwp` (default session.conf `unix:tmpdir=/tmp` random), NOT `$XDG_RUNTIME_DIR/bus` → separately-launched apps (nautilus, autostart) cannot discover the bus. NRP avoids discovery (their nautilus env carries XDG_RUNTIME_DIR only + errors silenced). **Fix**: explicit `dbus-daemon --session --nofork --address="unix:path=$XDG_RUNTIME_DIR/bus" &` + exported `DBUS_SESSION_BUS_ADDRESS` in the startwm gnome branch — deterministic socket, all child apps inherit.
+**Status**: ✅ fixed + verified 2026-08-28 (socket at /tmp/runtime-abc/bus; calc + nautilus connect on the real bus at boot).
+**Evidence**: /tmp socket listings cycles 1-3; post-fix boot ps + working apps.
+
 ## 5. Upstream Observations
 
 ### F25 — Upstream OS variants = one git branch per OS

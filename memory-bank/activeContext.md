@@ -1,6 +1,6 @@
 # Active Context
 
-**Last Updated**: 2026-08-27 | **State Machine**: `PLAN` (task 2: RHEL9 GNOME desktop — PLAN v1 presented, awaiting user approval. Phase 1 COMPLETE: `bd46cdb` → `23964ff` → `24e1575`, tree clean)
+**Last Updated**: 2026-08-28 | **State Machine**: `QA` (task 2: RHEL9 GNOME desktop — BUILD done (4 cycles, budget extension flagged), autonomous QA ALL PASS, awaiting user manual browser test + approval. Phase 1 COMPLETE: `bd46cdb` → `23964ff` → `24e1575`)
 
 ## Git Reality (changed 2026-08-27)
 - `origin` = **user's fork** `git@github.com:dGilli/docker-baseimage-selkies.git` (commits/pushes allowed)
@@ -195,6 +195,13 @@ fi
 **Risks**: gnome-shell-on-Xvfb (NRP proved on Xorg; extension set matches + GNOME CI precedent → low; **Plan B** = Xorg-in-gnome-mode in svc-xorg, NRP verbatim, one cycle) · +1.5–2 GB image (gnome+firefox) · gsd installed but logind-less → gsd power/idle inert, Settings app NOT installed (user configures via gsettings if ever needed).
 
 **Budget**: 3 build cycles | **State**: awaiting approval ("approved"/"proceed" to start cycle 1).
+
+### BUILD executed 2026-08-28 (approved; PLAN v2)
+**Revert tag**: `pre-gnome-desktop` → `b4c199f`. **Final image**: `dgilli/baseimage-selkies:rhel9-p1-gnome` = `15f963f83b71` (c4).
+**Cycles**: c1 `3c31e79a` — clean build; smoke found nautilus absent + dbus socket mismatch | c2 `5394646a` — F49 cache chown + dbus export attempt (still dbus-run-session) | c3 `a1ac52a0` — Dockerfile +`nautilus` (edit omission), explicit `dbus-daemon --address` (F51) | c4 `15f963f8` — `nautilus --no-desktop` (F50; **budget extension flagged to user, 1-line cached rebuild**).
+**Files**: `Dockerfile.rhel9` (+12 gnome pkgs), `root/defaults/startwm.sh` (gnome branch, 41 lines), `root/etc/s6-overlay/s6-rc.d/init-selkies-config/run` (+6 lines .cache chown, F49).
+**Autonomous QA (ALL PASS, 2026-08-28)**: services 13/13 (s6rc-fdholder down=by design) · gnome-shell 474 + nautilus + st from autostart + deterministic session bus `/tmp/runtime-abc/bus` · GLX llvmpipe 4.5 · web 200 w/ abc:baseimage123 both ports · ws 8082 listening · **screenshot-confirmed full GNOME desktop** (top bar Activities/clock, st, nautilus Home window, dash w/ running indicators) · calc launches on real bus (F49 verified) · `/config/.cache` abc-owned · **edge 4/4**: `DESKTOP=openbox` → openbox+st, no gnome-shell (dbus-launch path) · `SELKIES_MANUAL_WIDTH/HEIGHT=1280x720` → Xvfb `-screen 0 1280x720x24` + gnome-shell up · `RESTART_APP=true` → killed st respawns (PIDs 829/830 → 1616/1620, watchdog exact-string match) · `HARDEN_DESKTOP=true` → sudo/xdg-open/**gnome-terminal** 0000 + CORRUPT_FILE sudoers + gnome-shell still up.
+**Live container**: `selkies-rhel9-p1-gnome` on :3000/:3001/:8082 — ready for user manual browser test.
 
 ## Working Context
 - Branch `rhel9`; **working tree clean**; commits `bd46cdb` (phase-1 build) → `23964ff` (docs) → `24e1575` (close); revert tags: `pre-rhel9-build` → `7b3af8b`, next `pre-gnome-desktop` → `24e1575`
