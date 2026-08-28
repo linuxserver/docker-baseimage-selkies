@@ -247,6 +247,11 @@ With `XDG_RUNTIME_DIR=/tmp/runtime-abc` exported, `dbus-run-session -- gnome-she
 **Status**: ✅ fixed + verified 2026-08-28 (socket at /tmp/runtime-abc/bus; calc + nautilus connect on the real bus at boot).
 **Evidence**: /tmp socket listings cycles 1-3; post-fix boot ps + working apps.
 
+### F52 — RHEL9's `org.gnome.desktop.background` picture-options enum uses `spanned`, not Fedora's `span`
+`gsettings set org.gnome.desktop.background picture-options span` → `The provided value is outside of the valid range` (rc=1) on RHEL9/GNOME 40; valid values: `none, wallpaper, centered, scaled, stretched, zoom, spanned` (older/Fedora naming differs: span/center/scale-down). A silent rejection inside startwm.sh (`|| true`) leaves the default `zoom` — visually identical at native 1920×1080, wrong at other resolutions. **Mechanism** (verified working): gnome-shell's background actor reads these gsettings keys directly (no gnome-settings-daemon needed); `gsettings set` from the startwm gnome branch (as abc, HOME=/config) writes the dconf user DB at `/config/.config/dconf/user` (volume-backed, abc-owned, 0600) — re-applied idempotently every boot, so no build-time dconf seeding is required.
+**Status**: ✅ fixed + verified 2026-08-28 (c6 `0325190e` exposed the bad value; c7 `99da8c14` sets `spanned`; screenshot shows SLU wallpaper full-desktop).
+**Evidence**: `gsettings range org.gnome.desktop.background picture-options` in-image; /tmp/opencode/wall-c7.png.
+
 ## 5. Upstream Observations
 
 ### F25 — Upstream OS variants = one git branch per OS

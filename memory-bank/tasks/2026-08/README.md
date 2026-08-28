@@ -19,10 +19,10 @@
 ## Completed
 ### 2026-08-28: RHEL9 GNOME desktop (task 2) — approved + committed
 - Standard RHEL GNOME (gnome-shell 40.10) as default X11 desktop; NRP-proven direct launch; openbox fallback via `DESKTOP=openbox`; clean desktop (no auto-apps, user decision)
-- Final image `dgilli/baseimage-selkies:rhel9-p1-gnome` = `f54738a5b9d4`; 5 build cycles (QA fixes F49/F50/F51)
+- 7 build cycles (QA fixes F49/F50/F51; wallpaper follow-up F52); **current image `dgilli/baseimage-selkies:rhel9-p1-gnome` = `99da8c1475f5`** (c7, SLU/RHEL wallpaper `root/usr/share/backgrounds/slu-rhel.jpg` set via gsettings at boot)
 - Autonomous smoke + edge matrix 4/4 ALL PASS; screenshot-verified; user approved
-- Commit `11a8afd` on `rhel9`; revert tag `pre-gnome-desktop` → `b4c199f`
-- See: [280828_rhel9-gnome-desktop.md](./280828_rhel9-gnome-desktop.md), `memory-bank/findings.md` F42–F51, `memory-bank/decisions.md` (GNOME ADR)
+- Commits `11a8afd` (desktop) + `06bc207` (wallpaper) on `rhel9`; revert tag `pre-gnome-desktop` → `b4c199f`
+- See: [280828_rhel9-gnome-desktop.md](./280828_rhel9-gnome-desktop.md), `memory-bank/findings.md` F42–F52, `memory-bank/decisions.md` (GNOME ADR)
 
 ### 2026-08-27: RHEL9 phase-1 image built + tested + committed
 - `Dockerfile.rhel9` (SLU-owned UBI9 base, digest-pinned) + `root-base/` vendored s6 tree + 4 shared-tree no-op edits

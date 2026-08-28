@@ -44,8 +44,14 @@ Make **standard RHEL GNOME (gnome-shell 40.10)** — "the standard GNOME WM RHEL
 | 4 | `15f963f8` | `nautilus --no-desktop` (F50; 1-line cached rebuild, extension flagged) |
 | 5 | `f54738a5` | **final** — user-directed: remove auto-apps (st/nautilus) from GNOME branch |
 
+## Follow-up: SLU/RHEL wallpaper (same day, user-provided)
+- User dropped `SLU-RHEL.jpg` (1920×1080, SLU crest + "Red Hat Enterprise Linux" badge) into the repo root → moved to `root/usr/share/backgrounds/slu-rhel.jpg` (→ `/usr/share/backgrounds/slu-rhel.jpg` in image; `COPY /root /` picks it up, no Dockerfile change).
+- `startwm.sh` gnome branch now sets `org.gnome.desktop.background` `picture-uri` + `picture-uri-dark` + `picture-options=spanned` after the session bus is up (F52: RHEL9 enum is `spanned`, not Fedora's `span` — c6 `0325190e` silently kept default `zoom`; dconf user DB under /config, idempotent per boot, no gsd needed — gnome-shell's background actor reads the keys directly).
+- c7 `99da8c14` — **current final image**; screenshot-verified full-desktop wallpaper under the top bar; web 200; gnome-shell up.
+- Commit `06bc207` on `rhel9`.
+
 ## Artifacts
-- Commit: `11a8afd` on `rhel9`; revert tag: `pre-gnome-desktop` → `b4c199f`
-- Image: `dgilli/baseimage-selkies:rhel9-p1-gnome` (`f54738a5b9d4`)
+- Commits: `11a8afd` (desktop) + `06bc207` (wallpaper) on `rhel9`; revert tag: `pre-gnome-desktop` → `b4c199f`
+- Image: `dgilli/baseimage-selkies:rhel9-p1-gnome` (`99da8c1475f5` c7, current)
 - Live container: `selkies-rhel9-p1-gnome` :3000/:3001/:8082 (abc/baseimage123)
-- Evidence screenshots: /tmp/opencode/gnome-boot.png (w/ auto-apps), gnome-clean.png (final)
+- Evidence screenshots: /tmp/opencode/gnome-boot.png (w/ auto-apps), gnome-clean.png (c5), wall-c7.png (final, SLU wallpaper)

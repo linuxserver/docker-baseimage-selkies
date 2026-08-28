@@ -1,6 +1,6 @@
 # Active Context
 
-**Last Updated**: 2026-08-28 | **State Machine**: `COMPLETE` (task 2: RHEL9 GNOME desktop — approved + committed `11a8afd`, docs done. Phase 1 COMPLETE: `bd46cdb` → `23964ff` → `24e1575`. Phase 1.5 = separate work item when user schedules it)
+**Last Updated**: 2026-08-28 | **State Machine**: `COMPLETE` (task 2: RHEL9 GNOME desktop — approved + committed `11a8afd` + wallpaper follow-up `06bc207`, docs done. Phase 1 COMPLETE: `bd46cdb` → `23964ff` → `24e1575`. Phase 1.5 = separate work item when user schedules it)
 
 ## Git Reality (changed 2026-08-27)
 - `origin` = **user's fork** `git@github.com:dGilli/docker-baseimage-selkies.git` (commits/pushes allowed)
@@ -144,7 +144,7 @@ dunst | xorg-x11-drv-{intel,amdgpu,nouveau,qxl} + mesa-va-drivers (NOT in real R
 
 **Needs MANUAL (user)**: browser → dashboard → connect → desktop renders + window drag + keyboard + audio. (Everything up to the browser handshake is verified autonomously.)
 
-## Task 2: GNOME desktop as RHEL9 default X11 DE — **PLAN v2 FINALIZED** (2026-08-28, AWAITING user approval)
+## Task 2: GNOME desktop as RHEL9 default X11 DE — **COMPLETE** (2026-08-28: approved + committed `11a8afd`; SLU wallpaper follow-up committed `06bc207`)
 **User ask**: "get a GUI desktop working locally, not just a shell" → "the standard GNOME WM RHEL ships with" → "finalize your plan to get gnome-shell running as our window manager".
 
 **Goal**: RHEL9 image's streamed X11 desktop boots **standard RHEL GNOME (gnome-shell 40.10)** instead of openbox+st-only. openbox stays as fallback (`DESKTOP=openbox` knob); LSIO autostart/`RESTART_APP` mechanism preserved.
@@ -198,15 +198,15 @@ fi
 
 ### BUILD executed 2026-08-28 (approved; PLAN v2)
 **Revert tag**: `pre-gnome-desktop` → `b4c199f`. **Final image**: `dgilli/baseimage-selkies:rhel9-p1-gnome` = `15f963f83b71` (c4).
-**Cycles**: c1 `3c31e79a` — clean build; smoke found nautilus absent + dbus socket mismatch | c2 `5394646a` — F49 cache chown + dbus export attempt (still dbus-run-session) | c3 `a1ac52a0` — Dockerfile +`nautilus` (edit omission), explicit `dbus-daemon --address` (F51) | c4 `15f963f8` — `nautilus --no-desktop` (F50; **budget extension flagged to user, 1-line cached rebuild**) | c5 `f54738a5` — **final (user-directed at approval: remove st + nautilus auto-launch from the gnome branch — clean desktop)**.
+**Cycles**: c1 `3c31e79a` — clean build; smoke found nautilus absent + dbus socket mismatch | c2 `5394646a` — F49 cache chown + dbus export attempt (still dbus-run-session) | c3 `a1ac52a0` — Dockerfile +`nautilus` (edit omission), explicit `dbus-daemon --address` (F51) | c4 `15f963f8` — `nautilus --no-desktop` (F50; **budget extension flagged to user, 1-line cached rebuild**) | c5 `f54738a5` — **final (user-directed at approval: remove st + nautilus auto-launch from the gnome branch — clean desktop)** | c6 `0325190e` — wallpaper attempt (F52: `span` invalid on RHEL9) | c7 `99da8c14` — **current final** (wallpaper `spanned`, screenshot-verified).
 **Files**: `Dockerfile.rhel9` (+12 gnome pkgs), `root/defaults/startwm.sh` (gnome branch, 41 lines), `root/etc/s6-overlay/s6-rc.d/init-selkies-config/run` (+6 lines .cache chown, F49).
 **Autonomous QA (ALL PASS, 2026-08-28)**: services 13/13 (s6rc-fdholder down=by design) · gnome-shell 474 + nautilus + st from autostart + deterministic session bus `/tmp/runtime-abc/bus` · GLX llvmpipe 4.5 · web 200 w/ abc:baseimage123 both ports · ws 8082 listening · **screenshot-confirmed full GNOME desktop** (top bar Activities/clock, st, nautilus Home window, dash w/ running indicators) · calc launches on real bus (F49 verified) · `/config/.cache` abc-owned · **edge 4/4**: `DESKTOP=openbox` → openbox+st, no gnome-shell (dbus-launch path) · `SELKIES_MANUAL_WIDTH/HEIGHT=1280x720` → Xvfb `-screen 0 1280x720x24` + gnome-shell up · `RESTART_APP=true` → killed st respawns (PIDs 829/830 → 1616/1620, watchdog exact-string match) · `HARDEN_DESKTOP=true` → sudo/xdg-open/**gnome-terminal** 0000 + CORRUPT_FILE sudoers + gnome-shell still up.
-**Live container**: `selkies-rhel9-p1-gnome` on :3000/:3001/:8082 — ready for user manual browser test.
+**Wallpaper follow-up (2026-08-28, user-provided)**: `SLU-RHEL.jpg` (1920×1080) moved to `root/usr/share/backgrounds/slu-rhel.jpg` (→ `/usr/share/backgrounds/slu-rhel.jpg` in image); gnome branch of `startwm.sh` sets `org.gnome.desktop.background` picture-uri/-dark + `picture-options=spanned` after the session bus is up (dconf user DB under /config, idempotent per boot). c6 `0325190e` exposed **F52** (RHEL9 enum is `spanned`, not Fedora's `span` — invalid value silently rejected, default `zoom` left); c7 `99da8c14` final, screenshot-verified SLU/RHEL wallpaper full-desktop under the top bar.
 
 ## Working Context
-- Branch `rhel9`; **working tree clean**; commits `bd46cdb` (phase-1 build) → `23964ff` (docs) → `24e1575` (close); revert tags: `pre-rhel9-build` → `7b3af8b`, next `pre-gnome-desktop` → `24e1575`
-- Live container `selkies-rhel9-p1` (ports 3000/3001/8082, creds abc/baseimage123) = phase-1 image, still openbox default — **exited (137) 2026-08-28**; audit work done via disposable `podman run --rm --entrypoint` (F46); replaced by the GNOME build anyway
+- Branch `rhel9`; **working tree clean**; commits: `bd46cdb` (phase-1 build) → `23964ff` (docs) → `24e1575` (close) → …MB… → `11a8afd` (task-2 GNOME build) → `a6cd73a` (task-2 docs) → `06bc207` (SLU wallpaper); revert tags: `pre-rhel9-build` → `7b3af8b`, `pre-gnome-desktop` → `b4c199f`
+- Live container `selkies-rhel9-p1-gnome` (ports 3000/3001/8082, creds abc/baseimage123) = **final GNOME image `99da8c1475f5`** (c7, SLU wallpaper). Phase-1 container `selkies-rhel9-p1` exited (137) 2026-08-28; phase-1 image `10bbd70e1502` still available for A/B
 - Host: RHEL 9.8 (Plow), subscribed; /dev/dri/renderD128 present; podman 5.8.2 rootless
-- Evidence: vetting `tasks/2026-08/270827_rhel9-vetting-plan-v4.md` · build `tasks/2026-08/270827_rhel9-build.md` · findings `findings.md` F01–F45
+- Evidence: vetting `tasks/2026-08/270827_rhel9-vetting-plan-v4.md` · build `tasks/2026-08/270827_rhel9-build.md` · GNOME `tasks/2026-08/280828_rhel9-gnome-desktop.md` · findings `findings.md` F01–F52
 - NRP recipe source: `/home/its_admin/projects/slu-nrp-k8s-vm/{Dockerfile.ubi9-selkies,selkies-rhel9-entrypoint.sh,supervisord-rhel9.conf}`
 - Scratch: /tmp/opencode/ref/{f44,el9}.Dockerfile, prov_attr.sh, ubi_base.txt, gl_probe.c, baseimage-el clone (disposable)
