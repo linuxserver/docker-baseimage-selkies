@@ -7,5 +7,6 @@ if which nvidia-smi > /dev/null 2>&1 && ls -A /dev/dri 2>/dev/null && [ "${DISAB
   export GALLIUM_DRIVER=zink
 fi
 
-# Start DE
-exec dbus-launch --exit-with-session /usr/bin/openbox-session > /dev/null 2>&1
+# Start DE. Output goes wherever svc-de/run pointed it, so SELKIES_DEBUG
+# decides whether the session's own logs are kept.
+exec dbus-launch --exit-with-session /usr/bin/openbox-session
