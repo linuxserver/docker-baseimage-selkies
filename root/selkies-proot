@@ -16,6 +16,22 @@ if [ -n "$XDG_RUNTIME_DIR" ]; then
   done
 fi
 
+# RHEL9 guard (F54): glycin apps (e.g. filezilla) bundle bwrap in their proot
+# rootfs; bwrap's user-namespace creation deadlocks inside proot's ptrace
+# emulation and glycin awaits the availability test with NO timeout. Stub
+# bwrap in every installed app rootfs so glycin receives the recognized
+# "No permissions" error and falls back to NotSandboxed (verified fix:
+# FileZilla window renders). Idempotent: re-applied on every /selkies-proot
+# invocation (re-extracts by `install`/`update` restore the real binary).
+if [ -f /etc/redhat-release ]; then
+  for bwrap in "$HOME"/proot-apps/*/usr/bin/bwrap "$HOME"/proot-apps/*/bin/bwrap; do
+    if [ -f "$bwrap" ]; then
+      printf '#!/bin/sh\necho "bwrap: No permissions to create a new namespace" >&2\nexit 1\n' > "$bwrap" && \
+      chmod 0755 "$bwrap"
+    fi
+  done
+fi
+
 # Launch terminal proot action
 if [ -n "$TARGET_WAYLAND_SOCKET" ]; then
   export WAYLAND_DISPLAY="$TARGET_WAYLAND_SOCKET"
