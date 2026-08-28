@@ -1,0 +1,168 @@
+# =============================================================================
+# NRP dev deployment — SLU RHEL9 selkies desktop (phase 1.5, 2026-08-28)
+#
+# Image: docker.io/dgilli/selkies-rhel9:latest
+#        pushed digest sha256:462464663a88e8126a96764edccc878c78ef765008a3ccab9ad65300905117e5
+#        (config digest sha256:99da8c1475f5... = local c7 build, verified pull-by-digest)
+#
+# Shape follows NRP's selkies-rhel9.yaml.template (Deployment+Service+Ingress,
+# nrp-workspace-* labels, haproxy ingress) adapted to the LSIO-parity image
+# contract. Env mapping (NRP template -> our image):
+#   @@IMAGE@@               -> docker.io/dgilli/selkies-rhel9:latest
+#   TZ                      -> TZ (same)
+#   DISPLAY_SIZEW/H/        -> n/a: Xvfb boots 1024x768 and resizes per client at
+#   REFRESH/DPI/CDEPTH,     -> connect (cvt/gtf, F41); optional SELKIES_MANUAL_
+#   VIDEO_PORT=DFP              WIDTH/HEIGHT below pins a fixed size
+#   PASSWD (secret)         -> USERNAME + PASSWORD (nginx basic auth, apr1 htpasswd)
+#   SELKIES_ENCODER         -> SELKIES_ENCODER (same name; baked default x264enc,jpeg)
+#   SELKIES_ENABLE_RESIZE   -> n/a (our stack always does per-client resize)
+#   SELKIES_VIDEO_BITRATE / -> n/a: our selkies build (348bc4f) does not read these
+#   SELKIES_FRAMERATE /     -> (verified in-image: SELKIES_* env surface is ENCODER,
+#   SELKIES_AUDIO_BITRATE   -> MANUAL_W/H, PORT, USE_CPU, AUTO_GPU, CURSOR_SIZE,
+#                               MASTER_TOKEN, RENDER_DRI, CLOUDFLARE_TURN_*)
+#   SELKIES_ENABLE_BASIC_   -> n/a: basic auth is nginx-side (USERNAME/PASSWORD)
+#   AUTH + BASIC_AUTH_USER/
+#   PASSWORD
+#   SELKIES_TURN_REST_URI / -> n/a (single-server stream, no TURN)
+#   PROTOCOL / TLS
+#   port 8080               -> Service 80 -> containerPort 3000 (http); 3001 = https
+#                               (self-signed, alternate). The selkies websocket is
+#                               SAME-ORIGIN: nginx location /websocket proxies to the
+#                               internal :8082 — do NOT expose 8082 to the cluster.
+#   /cache + /home/rheluser -> /config (single volume: HOME, /config/ssl auto-gen
+#                               certs, dconf wallpaper) + dshm (kept for gst/mesa)
+#   securityContext         -> NONE: NRP templates carry no runAsNonRoot/PSA
+#                               annotations (F28, verified 2026-08-28); our s6
+#                               image is rootful, services drop to abc
+#   seccomp (roadmap R1)    -> stock docker default (moby/profiles main) ALLOWS
+#                               ptrace on kernel >= 4.8 with no capability —
+#                               proot-apps needs no seccomp override; unshare
+#                               needs CAP_SYS_ADMIN but F54's bwrap stub makes
+#                               glycin apps independent of it (F55, verified)
+#
+# Notes:
+# - DNS: NRP template uses dnsPolicy:None + cluster nameservers — omitted here
+#   (default policy); restore when applying into NRP namespaces.
+# - GPU (phase 2, F29): add NRP's @@GPU_LIMITS@@/@@GPU_REQUEST@@ blocks +
+#   SELKIES_AUTO_GPU / SELKIES_USE_CPU envs + /dev/dri volume.
+# - Resizing: NRP's @@MEMORY@@/@@CPU@@ govern production sizing; dev values below.
+# =============================================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: selkies-rhel9-dev
+  labels:
+    app: selkies-rhel9-dev
+    nrp-workspace-type: desktop
+    nrp-workspace-variant: rhel9
+    nrp-workspace-os: rhel9
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: selkies-rhel9-dev
+  template:
+    metadata:
+      labels:
+        app: selkies-rhel9-dev
+        nrp-workspace-type: desktop
+        nrp-workspace-variant: rhel9
+        nrp-workspace-os: rhel9
+    spec:
+      containers:
+      - name: desktop
+        image: docker.io/dgilli/selkies-rhel9:latest
+        env:
+        - name: TZ
+          value: "UTC"
+        - name: USERNAME
+          value: "abc"
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: selkies-rhel9-password
+              key: password
+        # Optional overrides (baked defaults noted):
+        # - name: SELKIES_ENCODER
+        #   value: "x264enc,jpeg"        # baked default
+        # - name: SELKIES_MANUAL_WIDTH
+        #   value: "1920"                # else per-client resize (F41)
+        # - name: SELKIES_MANUAL_HEIGHT
+        #   value: "1080"
+        # - name: DESKTOP
+        #   value: "openbox"             # else GNOME (image default)
+        # - name: HARDEN_DESKTOP
+        #   value: "true"                # sudo/xdg-open/terminals 0000
+        # - name: TITLE
+        #   value: "SLU RHEL9 Desktop"
+        stdin: true
+        tty: true
+        ports:
+        - name: web
+          containerPort: 3000
+          protocol: TCP
+        - name: web-https
+          containerPort: 3001
+          protocol: TCP
+        resources:
+          limits:
+            memory: 4Gi
+            cpu: "4"
+          requests:
+            memory: 2Gi
+            cpu: "2"
+        volumeMounts:
+        - mountPath: /dev/shm
+          name: dshm
+        - mountPath: /config
+          name: config
+      volumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
+      - name: config
+        # dev: emptyDir (fresh desktop per pod). For a persistent home (certs,
+        # dconf/wallpaper, user files): PVC `selkies-rhel9-config`.
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: selkies-rhel9-dev
+  labels:
+    app: selkies-rhel9-dev
+spec:
+  selector:
+    app: selkies-rhel9-dev
+  ports:
+  - name: web
+    protocol: TCP
+    port: 80
+    targetPort: 3000
+  # Alternate: haproxy -> 3001 (container self-signed TLS):
+  # - name: web-https
+  #   protocol: TCP
+  #   port: 443
+  #   targetPort: 3001
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: selkies-rhel9-dev
+  labels:
+    app: selkies-rhel9-dev
+spec:
+  ingressClassName: haproxy
+  rules:
+  - host: selkies-rhel9-dev.slu.local   # NRP pattern: @@NAME@@.@@INGRESS_DOMAIN@@
+    http:
+      paths:
+      - backend:
+          service:
+            name: selkies-rhel9-dev
+            port:
+              name: web
+        path: /
+        pathType: ImplementationSpecific
+# NRP template also ships tls block (host @@NAME@@.@@INGRESS_DOMAIN@@) — restore
+# from selkies-rhel9.yaml.template when ingress TLS certs are provisioned.
