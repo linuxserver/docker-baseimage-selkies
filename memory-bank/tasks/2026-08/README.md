@@ -7,12 +7,6 @@
 - No task doc (housekeeping)
 
 ## Active
-### [AWAITING MANUAL TEST + APPROVAL] RHEL9 GNOME desktop (task 2)
-- BUILD done 2026-08-28 (4 cycles, extension flagged): image `dgilli/baseimage-selkies:rhel9-p1-gnome` = `15f963f83b71`; autonomous QA ALL PASS incl. screenshot-confirmed GNOME desktop + edge 4/4
-- Fixes from QA: F49 /config/.cache chown · F50 nautilus --no-desktop · F51 explicit session-bus socket
-- Live container `selkies-rhel9-p1-gnome` :3000/:3001/:8082 — user manual browser test pending
-- See: `memory-bank/activeContext.md#Task-2`, `memory-bank/findings.md` F42–F51
-
 ### [IN-PROGRESS] Add RHEL9 to supported images
 - **Phase 1 (CPU desktop + streaming): DONE 2026-08-27** — built, tested (autonomous matrix + user manual x2), committed `bd46cdb`
 - Phase 1.5 (SLU registry push + NRP template env mapping): pending — F28 rootful gate + F30 tag naming open
@@ -23,6 +17,13 @@
 - See: `memory-bank/activeContext.md#BUILD-executed-2026-08-27-user-released-the-hold`, `memory-bank/decisions.md` (4 ADRs), `memory-bank/findings.md` (F01–F41), `memory-bank/techContext.md`
 
 ## Completed
+### 2026-08-28: RHEL9 GNOME desktop (task 2) — approved + committed
+- Standard RHEL GNOME (gnome-shell 40.10) as default X11 desktop; NRP-proven direct launch; openbox fallback via `DESKTOP=openbox`; clean desktop (no auto-apps, user decision)
+- Final image `dgilli/baseimage-selkies:rhel9-p1-gnome` = `f54738a5b9d4`; 5 build cycles (QA fixes F49/F50/F51)
+- Autonomous smoke + edge matrix 4/4 ALL PASS; screenshot-verified; user approved
+- Commit `11a8afd` on `rhel9`; revert tag `pre-gnome-desktop` → `b4c199f`
+- See: [280828_rhel9-gnome-desktop.md](./280828_rhel9-gnome-desktop.md), `memory-bank/findings.md` F42–F51, `memory-bank/decisions.md` (GNOME ADR)
+
 ### 2026-08-27: RHEL9 phase-1 image built + tested + committed
 - `Dockerfile.rhel9` (SLU-owned UBI9 base, digest-pinned) + `root-base/` vendored s6 tree + 4 shared-tree no-op edits
 - Final image `dgilli/baseimage-selkies:rhel9-p1` = `10bbd70e1502`; 5 build cycles (F31–F35, F41)

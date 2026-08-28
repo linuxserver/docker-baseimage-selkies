@@ -1,6 +1,6 @@
 # Progress
 
-**Last Updated**: 2026-08-27
+**Last Updated**: 2026-08-28
 
 ## Done
 - [x] 2026-08-27 — Memory Bank initialized (v1, seeded from Debian-variant analysis)
@@ -12,15 +12,11 @@
 - [x] 2026-08-27 — **PLAN v4 approved** (user chose SLU-owned UBI9 base + entitled RHEL repos)
 - [x] 2026-08-27 — **RHEL9 phase-1 BUILT + ALL TESTS PASS + COMMITTED**: image `dgilli/baseimage-selkies:rhel9-p1` (`10bbd70e1502`, 5 build cycles — F31–F35/F41 RHEL9 deltas); autonomous matrix + user manual test #2 ("I got a shell!"); commits `bd46cdb` (build) → `23964ff` (docs) → `24e1575` (close); revert tag `pre-rhel9-build` → `7b3af8b`
 - [x] 2026-08-27 — **GNOME desktop research**: NRP proven launch recipe extracted (F44), RHEL9 AppStream GNOME app set verified (F42/F43), Xvfb extension set confirmed sufficient (F45)
+- [x] 2026-08-28 — **RHEL9 GNOME desktop (task 2) BUILT + TESTED + APPROVED + COMMITTED**: standard RHEL GNOME (gnome-shell 40.10) as default X11 desktop, NRP-proven direct launch, openbox fallback (`DESKTOP=openbox`), clean desktop (no auto-apps per user decision). 5 build cycles (QA fixes F49/F50/F51); autonomous smoke + edge 4/4 ALL PASS; screenshot-verified; commit `11a8afd`; revert tag `pre-gnome-desktop` → `b4c199f`. See: `tasks/2026-08/280828_rhel9-gnome-desktop.md`, `findings.md` F42–F51, `decisions.md` (GNOME ADR)
 
 ## In Progress
-- [ ] **RHEL9 GNOME desktop (task 2)** — **BUILD done, autonomous QA ALL PASS, awaiting user manual browser test + approval** (2026-08-28)
-  - 4 build cycles (extension flagged): final image `dgilli/baseimage-selkies:rhel9-p1-gnome` = `15f963f83b71`
-  - Fixes found in QA: F49 (root-owned /config/.cache from base pip hook), F50 (nautilus `--no-desktop`, no `-d` in RHEL9), F51 (EL9 dbus-run-session random /tmp socket → explicit dbus-daemon --address)
-  - Edge matrix 4/4: DESKTOP=openbox · 1280x720 · RESTART_APP respawn · HARDEN_DESKTOP (gnome-terminal disabled too)
-  - Live container `selkies-rhel9-p1-gnome` on :3000/:3001/:8082 for manual test
-  - See: `activeContext.md#Task-2`, `findings.md` F42–F51
+- (none — task 2 closed 2026-08-28; phase 1.5 awaits scheduling)
 
 ## Next
-1. User manual browser test → approval → commit + docs (task doc, ADR, package_versions refresh)
-2. Phase 1.5 (separate work item): registry push + NRP template env mapping (F28 rootful gate, F30 tag naming still open)
+1. Phase 1.5 (separate work item, when user schedules): registry push + NRP template env mapping (F28 rootful gate, F30 tag naming still open)
+2. Candidates: GPU/Zink phase 2 (Xorg path, F06/F07/F29) · libreoffice/extra apps on the GNOME desktop · Wayland
