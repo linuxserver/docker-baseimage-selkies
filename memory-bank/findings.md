@@ -262,10 +262,10 @@ The proot-apps **filezilla** image is a NixOS-built Alpine rootfs with the new g
 **Status**: ✅ mechanism + fix verified 2026-08-28 (e-openbox-apps container, filezilla rootfs stubbed; FileZilla UI screenshot); image-level fix **deferred to roadmap R1** (user decision 2026-08-28).
 **Evidence**: /tmp/opencode/fz-stub.png (FileZilla window); RUST_LOG=debug logs (hang vs 9 ms return); glycin 2.1.5 source (sandbox.rs, pool.rs); `file`/`strings` on rootfs.
 
-### F55 — podman default seccomp allows ptrace + unshare (proot works here); runtime implications for NRP/docker (phase 1.5)
-Host podman 5.8.2 default profile `/usr/share/containers/seccomp.json` (SCMP_ACT_ERRNO default) **allows both `ptrace` and `unshare`** (verified: proot runs; `unshare -U true` rc=0) — this is why proot-apps is viable on this rig without special flags. Stock **docker** default seccomp historically blocks `ptrace` (would break proot entirely) — needs verification when NRP maps the rhel9 image; candidate runtime requirements for proot-apps support: ptrace allowed, unshare blocked or allowed (both tested — F54 stub makes the app independent of unshare availability).
-**Status**: ⏳ verify docker default profile at phase 1.5.
-**Evidence**: `jq` on /usr/share/containers/seccomp.json; in-container `unshare -U true` (rc=0 default, ENOSYS with no-unshare profile).
+### F55 — podman default seccomp allows ptrace + unshare (proot works here); stock docker default ALSO allows ptrace (kernel ≥4.8)
+Host podman 5.8.2 default profile `/usr/share/containers/seccomp.json` (SCMP_ACT_ERRNO default) **allows both `ptrace` and `unshare`** (verified: proot runs; `unshare -U true` rc=0) — this is why proot-apps is viable on this rig without special flags. **Stock docker (moby/profiles `main`, verified 2026-08-28 in phase 1.5)**: `ptrace` + `process_vm_readv/writev` are allowed with `includes.minKernel: 4.8` and **no capability requirement** → proot works under stock docker on any modern kernel; `unshare`/`setns` allowed only with CAP_SYS_ADMIN (plain unprivileged container → EPERM; irrelevant to R1 because F54's bwrap stub makes glycin apps independent of unshare). **No seccomp override needed in the NRP mapping** (noted in `deploy/nrp-selkies-rhel9.yaml` header).
+**Status**: ✅ verified 2026-08-28 (phase 1.5).
+**Evidence**: `jq` on /usr/share/containers/seccomp.json; in-container `unshare -U true`; moby/profiles main `seccomp/default.json` (syscalls entries: ptrace minKernel-4.8 cap-less; CAP_SYS_ADMIN-gated unshare/setns group); /tmp/opencode/docker-default-seccomp.json
 
 ## 5. Upstream Observations
 
@@ -297,9 +297,11 @@ Not the Xvfb `-vfbdevice` trick that failed upstream (F16). Intel encode via `li
 **Evidence**: `memory-bank/activeContext.md#RHEL9-GPU-Facts`; `memory-bank/decisions.md`
 
 ### F30 — SLU registry/tag naming for the rhel9 image
-**User decision 2026-08-28 (dev phase)**: registry = user's own development registry, repo **`dgilli/selkies-rhel9`** (host assumed `ghcr.io` — NRP's production pattern is ghcr.io/slu-nrp per build-rhel9-selkies.sh:16; host to be confirmed at push). Tags: **deliberately deferred until production-ready** — dev pushes use `latest` (upstream "no latest" convention applies to the public LSIO lineage, not the SLU dev namespace). Production tag scheme = open until phase-2/production decision.
-**Status**: 🔓 partially resolved — dev: `ghcr.io/dgilli/selkies-rhel9:latest` (pending host confirmation + rootless podman login on this host); production naming: still open.
-**Evidence**: user directive 2026-08-28; `memory-bank/build-deployment.md`; NRP build-rhel9-selkies.sh:16
+**User decision 2026-08-28 (dev phase)**: registry = **Docker Hub**, repo **`docker.io/dgilli/selkies-rhel9`**; tag = `latest` for dev (tag ceremony deliberately deferred until production-ready — upstream "no latest" convention applies to the public LSIO lineage, not the SLU dev namespace). Production registry/tag scheme = open (SLU registry + NRP template merge, later decision).
+**Pushed 2026-08-28**: `docker.io/dgilli/selkies-rhel9:latest` = manifest `sha256:462464663a88e8126a96764edccc878c78ef765008a3ccab9ad65300905117e5` (OCI manifest; config digest = local c7 image `99da8c1475f5`). Verified: pull-by-digest from registry → identical image ID → cold-boot smoke (fresh volume: SSL cert gen, wallpaper dconf apply, web 200 both ports, ws 101, desktop overview screenshot).
+**Format note (operational)**: podman pushes **OCI** manifests to Docker Hub; the local store's docker-format digest (`8df8f5f7…`) differs from the registry OCI manifest digest — pin by registry digest (recipe in `build-deployment.md`).
+**Status**: ✅ dev resolved 2026-08-28; production naming still open.
+**Evidence**: push/pull logs; /tmp/opencode/{reg-manifest.json,verify-pull.png}; `memory-bank/build-deployment.md`; user directive 2026-08-28
 
 ### F39 — UBI9 os-release has `ID=rhel`
 DEV_MODE gate message renders "not supported on rhel"; the non-Debian gate works (M5 matrix test). Relevant for any future ID-based logic.

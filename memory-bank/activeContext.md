@@ -1,6 +1,6 @@
 # Active Context
 
-**Last Updated**: 2026-08-28 | **State Machine**: `COMPLETE` (task 2: RHEL9 GNOME desktop — approved + committed `11a8afd` + wallpaper follow-up `06bc207`, docs done. Phase 1 COMPLETE: `bd46cdb` → `23964ff` → `24e1575`. Phase 1.5 = separate work item when user schedules it)
+**Last Updated**: 2026-08-28 | **State Machine**: `COMPLETE` (phase 1.5 DEV SCOPE: pushed + verified `docker.io/dgilli/selkies-rhel9:latest` + NRP mapping `deploy/nrp-selkies-rhel9.yaml`; F28/F30/F55 closed. Task 2: `11a8afd` + `06bc207`. Phase 1: `bd46cdb` → `23964ff` → `24e1575`. Next work items when scheduled: NRP production merge, roadmap R1 (proot-apps, runtime-side now unblocked per F55), phase 2 candidates)
 
 ## Git Reality (changed 2026-08-27)
 - `origin` = **user's fork** `git@github.com:dGilli/docker-baseimage-selkies.git` (commits/pushes allowed)
@@ -204,10 +204,11 @@ fi
 **Wallpaper follow-up (2026-08-28, user-provided)**: `SLU-RHEL.jpg` (1920×1080) moved to `root/usr/share/backgrounds/slu-rhel.jpg` (→ `/usr/share/backgrounds/slu-rhel.jpg` in image); gnome branch of `startwm.sh` sets `org.gnome.desktop.background` picture-uri/-dark + `picture-options=spanned` after the session bus is up (dconf user DB under /config, idempotent per boot). c6 `0325190e` exposed **F52** (RHEL9 enum is `spanned`, not Fedora's `span` — invalid value silently rejected, default `zoom` left); c7 `99da8c14` final, screenshot-verified SLU/RHEL wallpaper full-desktop under the top bar.
 
 ## Working Context
-- Branch `rhel9`; **working tree clean**; commits: `bd46cdb` (phase-1 build) → `23964ff` (docs) → `24e1575` (close) → …MB… → `11a8afd` (task-2 GNOME build) → `a6cd73a` (task-2 docs) → `06bc207` (SLU wallpaper); revert tags: `pre-rhel9-build` → `7b3af8b`, `pre-gnome-desktop` → `b4c199f`
-- Live container `selkies-rhel9-p1-gnome` (ports 3000/3001/8082, creds abc/baseimage123) = **final GNOME image `99da8c1475f5`** (c7, SLU wallpaper). Phase-1 container `selkies-rhel9-p1` exited (137) 2026-08-28; phase-1 image `10bbd70e1502` still available for A/B
+- Branch `rhel9`; **working tree clean**; commits: `bd46cdb` (phase-1 build) → `23964ff` (docs) → `24e1575` (close) → …MB… → `11a8afd` (task-2 GNOME build) → `a6cd73a` (task-2 docs) → `06bc207` (SLU wallpaper) → `710f7e9` (MB: proot-apps intel F53–F55 + roadmap R1, user session) → phase-1.5 code + MB (push + NRP mapping, this session); revert tags: `pre-rhel9-build` → `7b3af8b`, `pre-gnome-desktop` → `b4c199f`
+- **Pushed image**: `docker.io/dgilli/selkies-rhel9:latest` (manifest `sha256:462464663a88e8126a96764edccc878c78ef765008a3ccab9ad65300905117e5`, OCI; config = local c7 `99da8c1475f5`); verified pull-by-digest + cold-boot smoke. **NRP mapping**: `deploy/nrp-selkies-rhel9.yaml`
+- Live containers: `selkies-rhel9-p1-gnome` (:3000/:3001/:8082, abc/baseimage123, c7 image — has filezilla proot-app installed on its volume per R1 intel) + `selkies-verify-pull` (:3100/:3101/:3182, registry-pulled image). Phase-1 container `selkies-rhel9-p1` exited (137); phase-1 image `10bbd70e1502` available for A/B
 - Host: RHEL 9.8 (Plow), subscribed; /dev/dri/renderD128 present; podman 5.8.2 rootless
-- Evidence: vetting `tasks/2026-08/270827_rhel9-vetting-plan-v4.md` · build `tasks/2026-08/270827_rhel9-build.md` · GNOME `tasks/2026-08/280828_rhel9-gnome-desktop.md` · findings `findings.md` F01–F55
+- Evidence: vetting `tasks/2026-08/270827_rhel9-vetting-plan-v4.md` · build `tasks/2026-08/270827_rhel9-build.md` · GNOME `tasks/2026-08/280828_rhel9-gnome-desktop.md` · phase-1.5 `tasks/2026-08/280828_phase1-5-nrp-dev-push.md` · findings `findings.md` F01–F55
 - NRP recipe source: `/home/its_admin/projects/slu-nrp-k8s-vm/{Dockerfile.ubi9-selkies,selkies-rhel9-entrypoint.sh,supervisord-rhel9.conf}`
 - Scratch: /tmp/opencode/ref/{f44,el9}.Dockerfile, prov_attr.sh, ubi_base.txt, gl_probe.c, baseimage-el clone (disposable)
 

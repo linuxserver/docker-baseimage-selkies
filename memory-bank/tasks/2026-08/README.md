@@ -9,7 +9,7 @@
 ## Active
 ### [IN-PROGRESS] Add RHEL9 to supported images
 - **Phase 1 (CPU desktop + streaming): DONE 2026-08-27** — built, tested (autonomous matrix + user manual x2), committed `bd46cdb`
-- Phase 1.5 (SLU registry push + NRP template env mapping): pending — F28 rootful gate + F30 tag naming open
+- **Phase 1.5 (dev scope): DONE 2026-08-28** — pushed `docker.io/dgilli/selkies-rhel9:latest` (manifest `sha256:46246466…` = c7 `99da8c1475f5`), verified pull-by-digest + cold-boot smoke (web 200, ws 101, wallpaper); NRP mapping `deploy/nrp-selkies-rhel9.yaml`; gates closed F28 (no securityContext in NRP templates — rootful OK) + F30 (Docker Hub dev, tag ceremony deferred) + F55 (docker default seccomp allows ptrace ≥4.8). Production merge (their @@template@@ system + imagePullSecret + SLU registry/tags) = later work item
 - Phase 2 (GPU/Zink, Wayland, DinD, proot-apps, pelorus, DEV_MODE dnf port): deferred
 - **Roadmap R1 (intel done 2026-08-28, deferred by user)**: proot-apps — dashboard app install/update (F53–F55; fix verified incl. FileZilla window; plan in `activeContext.md#Roadmap`)
 - History: v1 (Debian port) → v2/v3 (fedora44-modeled, baseimage-el:9) → **vetting** found baseimage-el deprecated + Oracle-repo-based + 6 defects → **v4** (SLU-owned UBI9 base + entitled RHEL repos, D1–D6 fixes) → **build** (5 cycles, F31–F35/F41 RHEL9 deltas)
