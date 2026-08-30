@@ -260,7 +260,7 @@ RUN \
   ninja -C build && \
   ninja -C build install
 
-COPY /labwc-ipc.patch /labwc-ipc.patch
+COPY /labwc-ipc.patch /labwc-seam.patch /labwc-screens.patch /
 
 RUN \
   echo "**** build labwc 0.9.7 ****" && \
@@ -269,6 +269,10 @@ RUN \
   git checkout 0.9.7 && \
   cp /labwc-ipc.patch labwc-ipc.patch && \
   git apply labwc-ipc.patch && \
+  cp /labwc-seam.patch labwc-seam.patch && \
+  git apply labwc-seam.patch && \
+  cp /labwc-screens.patch labwc-screens.patch && \
+  git apply labwc-screens.patch && \
   meson setup build --prefix=/usr --libdir=lib/x86_64-linux-gnu -Dxwayland=enabled -Dnls=enabled && \
   ninja -C build && \
   ninja -C build install

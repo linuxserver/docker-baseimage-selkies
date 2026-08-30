@@ -354,7 +354,7 @@ index 755a0a0c..a9906e9f 100644
  "  -d, --debug              Enable full logging, including debug information\n"
  "  -e, --exit               Exit the compositor\n"
  "  -h, --help               Show help message and quit\n"
-+"  -i, --ipc                Enable IPC socket at $XDG_RUNTIME_DIR/labwc.sock\n"
++"  -i, --ipc                Accepted for compatibility; the IPC socket is always on\n"
  "  -m, --merge-config       Merge user config files/theme in all XDG Base Dirs\n"
  "  -r, --reconfigure        Reload the compositor configuration\n"
  "  -s, --startup <command>  Run command on startup\n"
@@ -362,7 +362,7 @@ index 755a0a0c..a9906e9f 100644
  {
  	char *startup_cmd = NULL;
  	char *primary_client = NULL;
-+	bool ipc_enabled = false;
++	bool ipc_enabled = true;
  	enum wlr_log_importance verbosity = WLR_ERROR;
  
  	int c;

@@ -6,8 +6,6 @@ if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]];then
   DEF_AUTOSTART="/defaults/autostart_wayland"
   DEF_MENU="/defaults/menu_wayland.xml"
   DEF_RC="/defaults/labwc.xml"
-  # disable second screen
-  printf "false" > /run/s6/container_environment/SELKIES_SECOND_SCREEN
   if [[ "${PELORUS,,}" == "true" ]]; then
     printf "5000" > /run/s6/container_environment/PIXELFLUX_CU
     printf "/pelorus" > /run/s6/container_environment/ROOT_PATH
