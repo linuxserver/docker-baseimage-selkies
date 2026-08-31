@@ -599,6 +599,7 @@ jaraco-functools                                                              4.
 jaraco-text                                                                   3.12.1                                  python                      
 jaraco-text                                                                   4.0.0                                   python                      
 jq                                                                            1.8.1-4ubuntu2                          deb                         
+jq                                                                            1.8.2                                   binary                      
 k8s.io/api                                                                    v0.36.0                                 go-module                   
 k8s.io/apimachinery                                                           v0.36.0                                 go-module  (+1 duplicate)   
 k8s.io/apimachinery                                                           v0.36.3                                 go-module  (+1 duplicate)   
