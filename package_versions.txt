@@ -27,8 +27,8 @@ binutils-common                                                               2.
 binutils-x86-64-linux-gnu                                                     2.46-3ubuntu2                           deb                         
 blinker                                                                       1.9.0                                   python                      
 breeze-cursor-theme                                                           4:6.6.5-0ubuntu0.1                      deb                         
-bsdextrautils                                                                 2.41.3-3ubuntu2                         deb                         
-bsdutils                                                                      1:2.41.3-3ubuntu2                       deb                         
+bsdextrautils                                                                 2.41.3-3ubuntu2.2                       deb                         
+bsdutils                                                                      1:2.41.3-3ubuntu2.2                     deb                         
 bubblewrap                                                                    0.11.1-1ubuntu0.1                       deb                         
 ca-certificates                                                               20260601~26.04.1                        deb                         
 catatonit                                                                     0.2.1-2build1                           deb                         
@@ -645,11 +645,11 @@ libavahi-common3                                                              0.
 libavcodec62                                                                  7:8.0.1-3ubuntu2                        deb                         
 libavutil60                                                                   7:8.0.1-3ubuntu2                        deb                         
 libbinutils                                                                   2.46-3ubuntu2                           deb                         
-libblkid1                                                                     2.41.3-3ubuntu2                         deb                         
+libblkid1                                                                     2.41.3-3ubuntu2.2                       deb                         
 libbpf1                                                                       1:1.6.3-1ubuntu1                        deb                         
 libbrotli1                                                                    1.2.0-3build1                           deb                         
 libbsd0                                                                       0.12.2-2build2                          deb                         
-libbz2-1.0                                                                    1.0.8-6build2                           deb                         
+libbz2-1.0                                                                    1.0.8-6ubuntu0.1                        deb                         
 libc-bin                                                                      2.43-2ubuntu2.3                         deb                         
 libc-dev-bin                                                                  2.43-2ubuntu2.3                         deb                         
 libc-gconv-modules-extra                                                      2.43-2ubuntu2.3                         deb                         
@@ -799,7 +799,7 @@ libmagic-mgc                                                                  1:
 libmagic1t64                                                                  1:5.46-5build2                          deb                         
 libmd0                                                                        1.1.0-2build4                           deb                         
 libmnl0                                                                       1.0.5-3build1                           deb                         
-libmount1                                                                     2.41.3-3ubuntu2                         deb                         
+libmount1                                                                     2.41.3-3ubuntu2.2                       deb                         
 libmp3lame0                                                                   3.101~svn6525+dfsg-2                    deb                         
 libmpc3                                                                       1.3.1-3                                 deb                         
 libmpfr6                                                                      4.2.2-3                                 deb                         
@@ -881,7 +881,7 @@ libsframe3                                                                    2.
 libsharpyuv0                                                                  1.5.0-0.1build1                         deb                         
 libshine3                                                                     3.1.1-3build1                           deb                         
 libsm6                                                                        2:1.2.6-1build1                         deb                         
-libsmartcols1                                                                 2.41.3-3ubuntu2                         deb                         
+libsmartcols1                                                                 2.41.3-3ubuntu2.2                       deb                         
 libsnapd-glib-2-1                                                             1.72-0ubuntu3                           deb                         
 libsnappy1v5                                                                  1.2.2-2                                 deb                         
 libsndfile1                                                                   1.2.2-4                                 deb                         
@@ -894,7 +894,7 @@ libspeexdsp1                                                                  1.
 libsqlite3-0                                                                  3.46.1-9ubuntu0.2                       deb                         
 libss2                                                                        1.47.2-3ubuntu4                         deb                         
 libssh2-1t64                                                                  1.11.1-1ubuntu0.26.04.3                 deb                         
-libssl3t64                                                                    3.5.5-1ubuntu3.4                        deb                         
+libssl3t64                                                                    3.5.5-1ubuntu3.5                        deb                         
 libstartup-notification0                                                      0.12-8build1                            deb                         
 libstdc++-15-dev                                                              15.2.0-16ubuntu1                        deb                         
 libstdc++6                                                                    16-20260322-1ubuntu1                    deb                         
@@ -922,7 +922,7 @@ libunistring5                                                                 1.
 libunwind8                                                                    1.8.3-0ubuntu1                          deb                         
 libutempter0                                                                  1.2.1-4build1                           deb                         
 libutf8proc3                                                                  2.10.0-2                                deb                         
-libuuid1                                                                      2.41.3-3ubuntu2                         deb                         
+libuuid1                                                                      2.41.3-3ubuntu2.2                       deb                         
 libuv1t64                                                                     1.51.0-2ubuntu1                         deb                         
 libva-drm2                                                                    2.23.0-1ubuntu1                         deb                         
 libva-x11-2                                                                   2.23.0-1ubuntu1                         deb                         
@@ -1019,7 +1019,7 @@ libzvbi0t64                                                                   0.
 linux-libc-dev                                                                7.0.0-30.30                             deb                         
 locales                                                                       2.43-2ubuntu2.3                         deb                         
 locales-all                                                                   2.43-2ubuntu2.3                         deb                         
-login                                                                         1:4.16.0-2+really2.41.3-3ubuntu2        deb                         
+login                                                                         1:4.16.0-2+really2.41.3-3ubuntu2.2      deb                         
 login.defs                                                                    1:4.17.4-2ubuntu3                       deb                         
 logsave                                                                       1.47.2-3ubuntu4                         deb                         
 lsb-release                                                                   12.1-2build1                            deb                         
@@ -1031,7 +1031,7 @@ mesa-libgallium                                                               26
 mesa-vulkan-drivers                                                           26.0.8-1ubuntu0.3                       deb                         
 more-itertools                                                                10.3.0                                  python                      
 more-itertools                                                                10.8.0                                  python                      
-mount                                                                         2.41.3-3ubuntu2                         deb                         
+mount                                                                         2.41.3-3ubuntu2.2                       deb                         
 msgpack                                                                       1.2.2                                   python                      
 multidict                                                                     6.7.1                                   python                      
 my-test-package                                                               1.0                                     python                      
@@ -1048,8 +1048,8 @@ oauthlib                                                                      3.
 ocl-icd-libopencl1                                                            2.3.4-1                                 deb                         
 openbox                                                                       3.6.1-12ubuntu3                         deb                         
 openssh-client                                                                1:10.2p1-2ubuntu3.5                     deb                         
-openssl                                                                       3.5.5-1ubuntu3.4                        deb                         
-openssl-provider-legacy                                                       3.5.5-1ubuntu3.4                        deb                         
+openssl                                                                       3.5.5-1ubuntu3.5                        deb                         
+openssl-provider-legacy                                                       3.5.5-1ubuntu3.5                        deb                         
 packagekit                                                                    1.3.4-3ubuntu1.2                        deb                         
 packaging                                                                     24.2                                    python                      
 passwd                                                                        1:4.17.4-2ubuntu3                       deb                         
@@ -1164,7 +1164,7 @@ tzdata                                                                        20
 ubuntu-keyring                                                                2023.11.28.1build1                      deb                         
 udev                                                                          259.5-0ubuntu3.4                        deb                         
 user-session-migration                                                        0.5.1                                   deb                         
-util-linux                                                                    2.41.3-3ubuntu2                         deb                         
+util-linux                                                                    2.41.3-3ubuntu2.2                       deb                         
 uvicorn                                                                       0.52.4                                  python                      
 uvloop                                                                        0.22.1                                  python                      
 vulkan-tools                                                                  1.4.341.0+dfsg1-1                       deb                         
@@ -1210,5 +1210,5 @@ xwayland                                                                      2:
 yarl                                                                          1.24.5                                  python                      
 zipp                                                                          3.19.2                                  python                      
 zipp                                                                          3.23.0                                  python                      
-zlib1g                                                                        1:1.3.dfsg+really1.3.1-1ubuntu3         deb                         
+zlib1g                                                                        1:1.3.dfsg+really1.3.1-1ubuntu3.1       deb                         
 zstd                                                                          1.5.7+dfsg-3                            deb                         
