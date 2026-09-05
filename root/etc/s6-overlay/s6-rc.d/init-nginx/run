@@ -31,12 +31,16 @@ cp /defaults/default.conf ${NGINX_CONFIG}
 sed -i "s/3000/$CPORT/g" ${NGINX_CONFIG}
 sed -i "s/3001/$CHPORT/g" ${NGINX_CONFIG}
 sed -i "s/CWS/$CWS/g" ${NGINX_CONFIG}
+# Drop the download endpoint BEFORE SUBFOLDER is substituted, so the addresses match
+# the literal template token instead of user supplied text. A subfolder of "/files/"
+# is legal and would otherwise make a looser pattern delete the dashboard root.
+if [[ ${SELKIES_FILE_TRANSFERS,,} != *"download"* ]] || [[ ${HARDEN_DESKTOP,,} == "true" ]]; then
+  sed -i -e '/location = SUBFOLDERfiles {/,/^  }/d' \
+         -e '/location SUBFOLDERfiles\/ {/,/^  }/d' ${NGINX_CONFIG}
+fi
 sed -i "s|SUBFOLDER|$SFOLDER|g" ${NGINX_CONFIG}
 sed -i "s|REPLACE_DOWNLOADS_PATH|$FILE_MANAGER_PATH|g" ${NGINX_CONFIG}
 s6-setuidgid abc mkdir -p ${FILE_MANAGER_PATH}
-if [[ ${SELKIES_FILE_TRANSFERS,,} != *"download"* ]] || [[ ${HARDEN_DESKTOP,,} == "true" ]]; then
-  sed -i '/files {/,/^  }/d' ${NGINX_CONFIG}
-fi
 if [ -n "${DISABLE_IPV6}" ]; then
   sed -i '/listen \[::\]/d' ${NGINX_CONFIG}
 fi
