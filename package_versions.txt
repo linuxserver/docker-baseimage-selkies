@@ -21,7 +21,7 @@ anstyle-parse                                                                 0.
 anstyle-query                                                                 1.0.2                                   rust-crate                   
 anyhow                                                                        1.0.79                                  rust-crate                   
 anyhow                                                                        1.0.98                                  rust-crate                   
-anyio                                                                         4.14.2                                  python                       
+anyio                                                                         4.15.0                                  python                       
 apk-tools                                                                     3.0.7-r0                                apk                          
 arg_enum_proc_macro                                                           0.3.4                                   rust-crate                   
 arrayvec                                                                      0.7.4                                   rust-crate                   
@@ -146,7 +146,7 @@ gdbm                                                                          1.
 gdk-pixbuf                                                                    2.44.7-r1                               apk                          
 gdk-pixbuf-lang                                                               2.44.7-r1                               apk                          
 getrandom                                                                     0.2.12                                  rust-crate                   
-giflib                                                                        5.2.2-r1                                apk                          
+giflib                                                                        5.2.2-r2                                apk                          
 git                                                                           2.54.0-r0                               apk                          
 git-init-template                                                             2.54.0-r0                               apk                          
 github.com/AlecAivazis/survey/v2                                              v2.3.7                                  go-module                    
@@ -622,6 +622,7 @@ jaraco-context                                                                6.
 jaraco-functools                                                              4.4.0                                   python                       
 jaraco-text                                                                   4.0.0                                   python                       
 jq                                                                            1.8.1-r0                                apk                          
+jq                                                                            1.8.2                                   binary                       
 k8s.io/api                                                                    v0.35.4                                 go-module                    
 k8s.io/apimachinery                                                           v0.35.4                                 go-module                    
 k8s.io/apimachinery                                                           v0.36.0                                 go-module                    
@@ -668,7 +669,7 @@ libelogind                                                                    25
 libepoxy                                                                      1.5.10-r1                               apk                          
 libev                                                                         4.33-r1                                 apk                          
 libevdev                                                                      1.13.6-r0                               apk                          
-libexpat                                                                      2.8.3-r0                                apk                          
+libexpat                                                                      2.8.4-r0                                apk                          
 libfdisk                                                                      2.42.1-r0                               apk                          
 libffi                                                                        3.5.2-r1                                apk                          
 libflac                                                                       1.4.3-r2                                apk                          
@@ -815,9 +816,9 @@ oniguruma                                                                     6.
 openbox                                                                       3.6.1-r8                                apk                          
 openbox-lang                                                                  3.6.1-r8                                apk                          
 openbox-libs                                                                  3.6.1-r8                                apk                          
-openssh-client-common                                                         10.3_p1-r0                              apk                          
-openssh-client-default                                                        10.3_p1-r0                              apk                          
-openssh-keygen                                                                10.3_p1-r0                              apk                          
+openssh-client-common                                                         10.3_p1-r1                              apk                          
+openssh-client-default                                                        10.3_p1-r1                              apk                          
+openssh-keygen                                                                10.3_p1-r1                              apk                          
 openssl                                                                       3.5.8-r0                                apk                          
 opus                                                                          1.6.1-r0                                apk                          
 orc                                                                           0.4.41-r0                               apk                          
@@ -830,7 +831,7 @@ paste                                                                         1.
 pciutils                                                                      3.15.0-r0                               apk                          
 pciutils-libs                                                                 3.15.0-r0                               apk                          
 pcmflux                                                                       2.0.0                                   python                       
-pcre2                                                                         10.47-r1                                apk                          
+pcre2                                                                         10.48-r0                                apk                          
 pelorus                                                                       0.2.3                                   python                       
 pillow                                                                        12.3.0                                  python                       
 pip                                                                           26.2.1                                  python                       
