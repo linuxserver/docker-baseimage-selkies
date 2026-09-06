@@ -278,6 +278,54 @@ RUN \
   ninja -C build && \
   ninja -C build install
 
+FROM ghcr.io/linuxserver/baseimage-ubuntu:resolute AS interposers
+
+RUN \
+  echo "**** interposer build deps ****" && \
+  apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+    build-essential \
+    gcc-multilib \
+    git
+
+RUN \
+  echo "**** ingest selkies addons ****" && \
+  SELKIES_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/commits/main" \
+    | jq -r '.sha') && \
+  git clone \
+    https://github.com/selkies-project/selkies.git \
+    /src && \
+  cd /src && \
+  git checkout -f ${SELKIES_COMMIT} && \
+  mkdir -p /buildout/usr/lib /buildout/opt/lib && \
+  echo "**** build selkies joystick interposer ****" && \
+  cd /src/addons/js-interposer && \
+  gcc -shared -fPIC -ldl \
+    -o /buildout/usr/lib/selkies_joystick_interposer.so \
+    joystick_interposer.c && \
+  gcc -m32 -shared -fPIC -ldl \
+    -o /buildout/usr/lib/selkies_joystick_interposer_32.so \
+    joystick_interposer.c && \
+  echo "**** build selkies webcam interposer ****" && \
+  cd /src/addons/v4l2-interposer && \
+  gcc -shared -fPIC -ldl -pthread \
+    -o /buildout/usr/lib/selkies_v4l2_interposer.so \
+    v4l2_interposer.c && \
+  gcc -m32 -shared -fPIC -ldl -pthread \
+    -o /buildout/usr/lib/selkies_v4l2_interposer_32.so \
+    v4l2_interposer.c && \
+  echo "**** build selkies fake udev ****" && \
+  cd /src/addons/fake-udev && \
+  make && \
+  mv \
+    libudev.so.1.0.0-fake \
+    /buildout/opt/lib/libudev.so.1.0.0-fake && \
+  make clean && \
+  make CC="gcc -m32" && \
+  mv \
+    libudev.so.1.0.0-fake \
+    /buildout/opt/lib/libudev.so.1.0.0-fake_32
+
 # Runtime stage
 FROM ghcr.io/linuxserver/baseimage-ubuntu:resolute
 
@@ -486,29 +534,6 @@ RUN \
     /tmp/pelorus.tar.gz -C \
     /tmp/pelorus/ --strip-components=1 && \
   pip install /tmp/pelorus && \
-  echo "**** install selkies interposer ****" && \
-  cd addons/js-interposer && \
-  gcc -shared -fPIC -ldl \
-    -o selkies_joystick_interposer.so \
-    joystick_interposer.c && \
-  mv \
-    selkies_joystick_interposer.so \
-    /usr/lib/selkies_joystick_interposer.so && \
-  echo "**** install selkies webcam interposer ****" && \
-  cd ../v4l2-interposer && \
-  gcc -shared -fPIC -ldl -pthread \
-    -o selkies_v4l2_interposer.so \
-    v4l2_interposer.c && \
-  mv \
-    selkies_v4l2_interposer.so \
-    /usr/lib/selkies_v4l2_interposer.so && \
-  echo "**** install selkies fake udev ****" && \
-  cd ../fake-udev && \
-  make && \
-  mkdir /opt/lib && \
-  mv \
-    libudev.so.1.0.0-fake \
-    /opt/lib/ && \
   echo "**** add icon ****" && \
   mkdir -p \
     /usr/share/selkies/www && \
@@ -537,11 +562,18 @@ RUN \
   usermod -aG sudo abc && \
   echo "**** proot-apps ****" && \
   mkdir /proot-apps/ && \
-  PAPPS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/proot-apps/releases/latest" \
-    | jq -r '.tag_name') && \
+  PAPPS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/proot-apps/releases" \
+    | jq -r '[.[] | select(.prerelease == true)][0].tag_name') && \
   curl -L https://github.com/linuxserver/proot-apps/releases/download/${PAPPS_RELEASE}/proot-apps-x86_64.tar.gz \
     | tar -xzf - -C /proot-apps/ && \
   echo "${PAPPS_RELEASE}" > /proot-apps/pversion && \
+  echo "**** proot-bwrap ****" && \
+  PROOT_BWRAP_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/proot-bwrap/commits/main" \
+    | jq -r '.sha') && \
+  curl -o \
+    /proot-apps/proot-bwrap -L \
+    "https://raw.githubusercontent.com/selkies-project/proot-bwrap/${PROOT_BWRAP_COMMIT}/proot-bwrap" && \
+  chmod +x /proot-apps/proot-bwrap && \
   echo "**** dind support ****" && \
   useradd -U dockremap && \
   usermod -G dockremap dockremap && \
@@ -579,6 +611,7 @@ COPY --from=frontend /buildout /usr/share/selkies
 COPY --from=xvfb / /
 COPY --from=wtype /usr/bin/wtype /usr/bin/wtype
 COPY --from=selkies-desktop /usr/bin/selkies-desktop /usr/bin/selkies-desktop
+COPY --from=interposers /buildout /
 COPY --from=labwc-builder /usr/bin/labwc /usr/bin/labwc
 COPY --from=labwc-builder /usr/lib/x86_64-linux-gnu/libwlroots-0.19.so* /usr/lib/x86_64-linux-gnu/
 
