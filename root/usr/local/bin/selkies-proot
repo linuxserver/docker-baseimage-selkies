@@ -1,8 +1,91 @@
 #!/bin/bash
 
-PTERM=st
-if [ -e "${HOME}/.XDG/wayland-1" ]; then
-  PTERM=foot
-fi
+PROOT_APPS_BIN="${HOME}/.local/bin/proot-apps"
+PROOT_BIN="${HOME}/.local/bin/proot"
+STEAM_LOCKFILE="/var/lib/selkies/steam-installed"
+ACTION="${1:-}"
+APP="${2:-}"
 
-"$PTERM" -e "${HOME}/.local/bin/proot-apps" "$@"
+# proot traces every process it starts, so a host that denies ptrace leaves
+proot_runs() {
+  [ -x "${PROOT_BIN}" ] && "${PROOT_BIN}" -0 /bin/true >/dev/null 2>&1
+}
+
+explain_denial() {
+  scope="$(cat /proc/sys/kernel/yama/ptrace_scope 2>/dev/null || echo unknown)"
+  bounding="$(grep CapBnd /proc/self/status 2>/dev/null | cut -f2)"
+  echo "selkies-proot: proot cannot ptrace here, so no app can install or run." >&2
+  echo "  kernel.yama.ptrace_scope=${scope}, container CapBnd=${bounding}" >&2
+  echo "  Grant the container CAP_SYS_PTRACE, or lower the sysctl on the host." >&2
+}
+
+# what is installed
+list_installed() {
+  root="${HOME}/proot-apps"
+  if [ -d "${root}" ]; then
+    for app in "${root}"/*; do
+      [ -d "${app}" ] || continue
+      name="$(basename "${app}")"
+      printf '%s\n' "${name##*_}"
+    done
+  fi
+  if [ -f "${STEAM_LOCKFILE}" ]; then
+    echo "steam"
+  fi
+}
+
+# open a terminal on the app compositor for user facing actions
+run_in_terminal() {
+  if [ -z "${WAYLAND_DISPLAY}" ] && [ -n "${XDG_RUNTIME_DIR}" ]; then
+    for sock in "${XDG_RUNTIME_DIR}"/wayland-*; do
+      if [ -S "${sock}" ] && [ "$(basename "${sock}")" != "wayland-1" ]; then
+        export WAYLAND_DISPLAY="$(basename "${sock}")"
+        break
+      fi
+    done
+  fi
+  if [ -n "${WAYLAND_DISPLAY}" ]; then
+    exec foot "$@"
+  else
+    exec st -e "$@"
+  fi
+}
+
+case "${ACTION}" in
+  check)
+    proot_runs && exit 0
+    explain_denial
+    exit 1
+    ;;
+  list)
+    list_installed
+    exit 0
+    ;;
+  install|remove|uninstall|update)
+    if [ "${APP}" == "steam" ] && [ -z "${3+x}" ]; then
+      if [ "${ACTION}" == "update" ]; then
+        echo "selkies-proot: steam updates itself, nothing to do" >&2
+        exit 0
+      fi
+      run_in_terminal /steam.sh "${ACTION}"
+    fi
+    if [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "uninstall" ] && ! proot_runs; then
+      explain_denial
+      exit 1
+    fi
+    run_in_terminal "${PROOT_APPS_BIN}" "$@"
+    ;;
+  run)
+    if [ "${APP}" == "steam" ]; then
+      exec /usr/bin/steam "${@:3}"
+    fi
+    if ! proot_runs; then
+      explain_denial
+      exit 1
+    fi
+    exec "${PROOT_APPS_BIN}" "$@"
+    ;;
+  *)
+    exec "${PROOT_APPS_BIN}" "$@"
+    ;;
+esac
