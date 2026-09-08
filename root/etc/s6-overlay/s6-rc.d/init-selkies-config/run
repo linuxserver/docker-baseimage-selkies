@@ -379,3 +379,31 @@ if [[ "${WEBRTC_CONFIGURED}" == "true" ]]; then
 elif [[ -z ${SELKIES_ENABLE_DUAL_MODE+x} ]]; then
   printf "false" > /run/s6/container_environment/SELKIES_ENABLE_DUAL_MODE
 fi
+
+# legacy selkies env var adapters
+if [ ! -z ${SELKIES_H264_CRF+x} ] && [ -z ${SELKIES_VIDEO_CRF+x} ]; then
+  printf "${SELKIES_H264_CRF}" > /run/s6/container_environment/SELKIES_VIDEO_CRF
+fi
+if [ ! -z ${SELKIES_H264_FULLCOLOR+x} ] && [ -z ${SELKIES_VIDEO_FULLCOLOR+x} ]; then
+  printf "${SELKIES_H264_FULLCOLOR}" > /run/s6/container_environment/SELKIES_VIDEO_FULLCOLOR
+fi
+if [ ! -z ${SELKIES_H264_PAINTOVER_CRF+x} ] && [ -z ${SELKIES_VIDEO_PAINTOVER_CRF+x} ]; then
+  printf "${SELKIES_H264_PAINTOVER_CRF}" > /run/s6/container_environment/SELKIES_VIDEO_PAINTOVER_CRF
+fi
+if [ ! -z ${SELKIES_H264_PAINTOVER_BURST_FRAMES+x} ] && [ -z ${SELKIES_VIDEO_PAINTOVER_BURST_FRAMES+x} ]; then
+  printf "${SELKIES_H264_PAINTOVER_BURST_FRAMES}" > /run/s6/container_environment/SELKIES_VIDEO_PAINTOVER_BURST_FRAMES
+fi
+if [ ! -z ${SELKIES_IS_MANUAL_RESOLUTION_MODE+x} ] && [ -z ${SELKIES_MANUAL_RESOLUTION+x} ]; then
+  printf "${SELKIES_IS_MANUAL_RESOLUTION_MODE}" > /run/s6/container_environment/SELKIES_MANUAL_RESOLUTION
+fi
+if [ ! -z ${SELKIES_H264_STREAMING_MODE+x} ]; then
+  printf "${SELKIES_H264_STREAMING_MODE}" > /run/s6/container_environment/SELKIES_VIDEO_STREAMING_MODE
+fi
+if [ ! -z ${SELKIES_CLIPBOARD_ENABLED+x} ] && [ -z ${SELKIES_ENABLE_CLIPBOARD+x} ]; then
+  printf "${SELKIES_CLIPBOARD_ENABLED%%|*}" > /run/s6/container_environment/SELKIES_ENABLE_CLIPBOARD
+fi
+case "${SELKIES_ENCODER}" in
+  *x264enc*)
+    printf "${SELKIES_ENCODER}" | sed 's/x264enc/h264enc/g' > /run/s6/container_environment/SELKIES_ENCODER
+    ;;
+esac
