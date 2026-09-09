@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/with-contenv bash
 
 PROOT_APPS_BIN="${HOME}/.local/bin/proot-apps"
 PROOT_BIN="${HOME}/.local/bin/proot"

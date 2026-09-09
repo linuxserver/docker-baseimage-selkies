@@ -38,6 +38,11 @@ mkdir -p "$HOME/.XDG"
 chown abc:abc "$HOME/.XDG"
 printf "$HOME/.XDG" > /run/s6/container_environment/XDG_RUNTIME_DIR
 
+# add games paths
+if [[ "${PATH}" != *"games"* ]]; then
+  printf "/usr/local/games:/usr/games:${PATH}" > /run/s6/container_environment/PATH
+fi
+
 # Clean out pulseaudio locks
 rm -f /defaults/pid /defaults/native
 
@@ -276,6 +281,16 @@ fi
 # bubblewrap stand in
 if [ -z ${BWRAP+x} ]; then
   printf "$HOME/.local/bin/proot-bwrap" > /run/s6/container_environment/BWRAP
+fi
+
+# steam shim
+if [[ "${NO_STEAM,,}" == "true" ]]; then
+  rm -f /usr/local/bin/steam
+  if grep -qs '#SELKIESSHIM' /usr/bin/steam; then
+    rm -f /usr/bin/steam
+  fi
+elif [ -e /usr/local/bin/steam ] && [ ! -e /usr/bin/steam ]; then
+  ln -s /usr/local/bin/steam /usr/bin/steam
 fi
 
 # Enable gpu encode if device detected

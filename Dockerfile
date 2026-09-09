@@ -350,6 +350,7 @@ ENV DISPLAY=:1 \
     SELKIES_ENABLE_BASIC_AUTH=false \
     SELKIES_VIDEO_STREAMING_MODE=false \
     SELKIES_ALLOWED_ORIGINS="*" \
+    SHELL=/bin/bash \
     TITLE=Selkies
 
 RUN \
@@ -574,6 +575,11 @@ RUN \
     /proot-apps/proot-bwrap -L \
     "https://raw.githubusercontent.com/selkies-project/proot-bwrap/${PROOT_BWRAP_COMMIT}/proot-bwrap" && \
   chmod +x /proot-apps/proot-bwrap && \
+  echo "**** steam icon ****" && \
+  mkdir -p /usr/share/icons/hicolor/192x192/apps && \
+  curl -o \
+    /usr/share/icons/hicolor/192x192/apps/steam.png -L \
+    "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/steam-logo.png" && \
   echo "**** dind support ****" && \
   useradd -U dockremap && \
   usermod -G dockremap dockremap && \

@@ -52,6 +52,9 @@ install_steam() {
     as_root dpkg --add-architecture i386 || fail "could not enable the i386 architecture"
   fi
   echo "**** install steam launcher ****"
+  if grep -qs '#SELKIESSHIM' /usr/bin/steam; then
+    as_root rm -f /usr/bin/steam
+  fi
   curl -o /tmp/steam-launcher.deb -fsSL \
     --retry 5 --retry-all-errors --retry-delay 3 --retry-connrefused --retry-max-time 180 \
     "${STEAM_DEB_URL}" || fail "could not download the steam launcher package"
@@ -175,6 +178,9 @@ remove_steam() {
   as_root apt-get clean
   as_root rm -rf /var/lib/apt/lists/*
   as_root rm -f "${LOCKFILE}"
+  if [ ! -e /usr/bin/steam ] && [ -e /usr/local/bin/steam ]; then
+    as_root ln -s /usr/local/bin/steam /usr/bin/steam
+  fi
   if [ -f "$HOME/.config/panel-reload" ]; then
     touch "$HOME/.config/panel-reload"
   fi
