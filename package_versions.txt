@@ -2,7 +2,7 @@ NAME                                                                          VE
 Simple Launcher                                                               1.1.0.14                                binary        (+5 duplicates)  
 abseil-cpp                                                                    20260817.0-2                            alpm                           
 acl                                                                           2.4.0-1                                 alpm                           
-adwaita-fonts                                                                 50.0-1                                  alpm                           
+adwaita-fonts                                                                 51.0-2                                  alpm                           
 aiofiles                                                                      25.1.0                                  python                         
 aiohappyeyeballs                                                              2.7.1                                   python                         
 aiohttp                                                                       3.14.3                                  python                         
@@ -13,8 +13,8 @@ alsa-topology-conf                                                            1.
 alsa-ucm-conf                                                                 1.2.16.1-1                              alpm                           
 annotated-doc                                                                 0.0.5                                   python                         
 annotated-types                                                               0.8.0                                   python                         
-anyio                                                                         4.15.0                                  python                         
-archlinux-keyring                                                             20260902-1                              alpm                           
+anyio                                                                         4.15.1                                  python                         
+archlinux-keyring                                                             20260909-1                              alpm                           
 at-spi2-core                                                                  2.60.6-1                                alpm                           
 attr                                                                          2.6.0-1                                 alpm                           
 attrs                                                                         26.1.0                                  python                         
@@ -42,12 +42,12 @@ cffi                                                                          2.
 click                                                                         8.5.0                                   python                         
 cmake                                                                         4.4.3-2                                 alpm                           
 command-line-arguments                                                        UNKNOWN                                 go-module                      
-containerd                                                                    2.3.4-1                                 alpm                           
+containerd                                                                    2.3.5-1                                 alpm                           
 coreutils                                                                     9.11-2                                  alpm                           
 cpio                                                                          2.15-3                                  alpm                           
 cppdap                                                                        1.58.0-3                                alpm                           
 cryptography                                                                  50.0.1                                  python                         
-cryptsetup                                                                    2.8.7-1                                 alpm                           
+cryptsetup                                                                    2.8.8-1                                 alpm                           
 curl                                                                          8.22.0-1                                alpm                           
 cyphar.com/go-pathrs                                                          v0.2.5                                  go-module                      
 dario.cat/mergo                                                               v1.0.2                                  go-module                      
@@ -82,13 +82,13 @@ findutils                                                                     4.
 flac                                                                          1.5.0-1                                 alpm                           
 flex                                                                          2.6.4-6                                 alpm                           
 fontconfig                                                                    2:2.18.3-2                              alpm                           
-foot                                                                          1.28.0-1                                alpm                           
+foot                                                                          1.28.0-2                                alpm                           
 freetype2                                                                     2.14.3-1                                alpm                           
 fribidi                                                                       1.0.16-2                                alpm                           
 frozenlist                                                                    1.8.0                                   python                         
-fuse-common                                                                   3.18.2-1                                alpm                           
+fuse-common                                                                   3.18.3-1                                alpm                           
 fuse-overlayfs                                                                1.18-1                                  alpm                           
-fuse3                                                                         3.18.2-1                                alpm                           
+fuse3                                                                         3.18.3-1                                alpm                           
 gawk                                                                          5.4.1-1                                 alpm                           
 gc                                                                            8.2.12-1                                alpm                           
 gcc                                                                           16.2.1+r23+gd564253eb6c8-1              alpm                           
@@ -120,7 +120,7 @@ github.com/containerd/cgroups/v3                                              v3
 github.com/containerd/console                                                 v1.0.5                                  go-module     (+4 duplicates)  
 github.com/containerd/containerd/api                                          v1.11.1                                 go-module     (+4 duplicates)  
 github.com/containerd/containerd/v2                                           v2.3.4                                  go-module                      
-github.com/containerd/containerd/v2                                           v2.3.4+dirty                            go-module     (+3 duplicates)  
+github.com/containerd/containerd/v2                                           v2.3.5+dirty                            go-module     (+3 duplicates)  
 github.com/containerd/continuity                                              v0.5.0                                  go-module     (+4 duplicates)  
 github.com/containerd/errdefs                                                 v1.0.0                                  go-module     (+4 duplicates)  
 github.com/containerd/errdefs/pkg                                             v0.3.0                                  go-module     (+4 duplicates)  
@@ -132,8 +132,7 @@ github.com/containerd/imgcrypt/v2                                             v2
 github.com/containerd/log                                                     v0.1.0                                  go-module     (+4 duplicates)  
 github.com/containerd/nri                                                     v0.12.0                                 go-module                      
 github.com/containerd/otelttrpc                                               v0.1.0                                  go-module                      
-github.com/containerd/platforms                                               v1.0.0-rc.4                             go-module     (+2 duplicates)  
-github.com/containerd/platforms                                               v1.0.0-rc.5                             go-module                      
+github.com/containerd/platforms                                               v1.0.0-rc.5                             go-module     (+3 duplicates)  
 github.com/containerd/plugin                                                  v1.1.0                                  go-module     (+3 duplicates)  
 github.com/containerd/ttrpc                                                   v1.2.8                                  go-module     (+3 duplicates)  
 github.com/containerd/ttrpc                                                   v1.2.9                                  go-module                      
@@ -273,7 +272,7 @@ glycin                                                                        2.
 gmp                                                                           6.3.0-3                                 alpm                           
 gnulib-l10n                                                                   20241231-1                              alpm                           
 gnupg                                                                         2.4.9-3                                 alpm                           
-gnutls                                                                        3.8.13-2                                alpm                           
+gnutls                                                                        3.8.13-3                                alpm                           
 go.etcd.io/bbolt                                                              v1.4.3                                  go-module                      
 go.opentelemetry.io/auto/sdk                                                  v1.2.1                                  go-module     (+3 duplicates)  
 go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc   v0.68.0                                 go-module     (+1 duplicate)   
@@ -352,7 +351,7 @@ highway                                                                       1.
 httpcore                                                                      1.0.9                                   python                         
 httptools                                                                     0.8.0                                   python                         
 httpx                                                                         0.28.1                                  python                         
-hwdata                                                                        0.410-1                                 alpm                           
+hwdata                                                                        0.411-1                                 alpm                           
 iana-etc                                                                      20260617-1                              alpm                           
 icu                                                                           78.3-1                                  alpm                           
 idna                                                                          3.19                                    python                         
@@ -392,7 +391,7 @@ l-smash                                                                       2.
 labwc                                                                         0.20.2-1                                alpm                           
 lame                                                                          4.0-1                                   alpm                           
 lcms2                                                                         2.19.1-1                                alpm                           
-leancrypto                                                                    1.8.0-1                                 alpm                           
+leancrypto                                                                    1.9.0-1                                 alpm                           
 less                                                                          1:704-1                                 alpm                           
 libarchive                                                                    3.8.9-1                                 alpm                           
 libasan                                                                       16.2.1+r23+gd564253eb6c8-1              alpm                           
@@ -403,7 +402,7 @@ libbpf                                                                        1.
 libbsd                                                                        0.12.2-2                                alpm                           
 libcacard                                                                     2.8.1-1                                 alpm                           
 libcap                                                                        2.78-1                                  alpm                           
-libcap-ng                                                                     0.9.5-1                                 alpm                           
+libcap-ng                                                                     0.9.6-1                                 alpm                           
 libdatrie                                                                     0.2.14-1                                alpm                           
 libdecor                                                                      0.2.5-1                                 alpm                           
 libdeflate                                                                    1.26-1                                  alpm                           
@@ -453,8 +452,8 @@ libnsl                                                                        2.
 libobjc                                                                       16.2.1+r23+gd564253eb6c8-1              alpm                           
 libogg                                                                        1.3.6-1                                 alpm                           
 libp11-kit                                                                    0.26.5-1                                alpm                           
-libpathrs                                                                     0.2.5-2                                 alpm                           
-libpcap                                                                       1.10.6-1                                alpm                           
+libpathrs                                                                     0.2.6-1                                 alpm                           
+libpcap                                                                       1.10.7-1                                alpm                           
 libpciaccess                                                                  0.19-1                                  alpm                           
 libpng                                                                        1.6.58-2                                alpm                           
 libpsl                                                                        0.21.5-2                                alpm                           
@@ -480,6 +479,7 @@ libtsan                                                                       16
 libubsan                                                                      16.2.1+r23+gd564253eb6c8-1              alpm                           
 libunistring                                                                  1.4.2-1                                 alpm                           
 libunwind                                                                     1.8.3-1                                 alpm                           
+liburing                                                                      2.15-1                                  alpm                           
 libusb                                                                        1.0.30-1                                alpm                           
 libutempter                                                                   1.2.3-1                                 alpm                           
 libutf8proc                                                                   2.11.3-1                                alpm                           
@@ -487,7 +487,7 @@ libuv                                                                         1.
 libva                                                                         2.24.1-1                                alpm                           
 libverto                                                                      0.3.2-6                                 alpm                           
 libvorbis                                                                     1.3.7-4                                 alpm                           
-libwacom                                                                      2.19.1-1                                alpm                           
+libwacom                                                                      2.20.0-1                                alpm                           
 libwebp                                                                       1.6.0-2                                 alpm                           
 libx11                                                                        1.8.13-1                                alpm                           
 libxau                                                                        1.0.12-1                                alpm                           
@@ -507,7 +507,7 @@ libxi                                                                         1.
 libxinerama                                                                   1.1.6-1                                 alpm                           
 libxkbcommon                                                                  1.13.2-1                                alpm                           
 libxkbfile                                                                    1.2.0-1                                 alpm                           
-libxml2                                                                       2.15.3-1                                alpm                           
+libxml2                                                                       2.15.4-1                                alpm                           
 libxmu                                                                        1.3.1-1                                 alpm                           
 libxpm                                                                        3.5.19-1                                alpm                           
 libxrandr                                                                     1.5.5-1                                 alpm                           
@@ -539,7 +539,7 @@ mpfr                                                                          4.
 mpg123                                                                        1.33.7-1                                alpm                           
 msgpack                                                                       1.2.2                                   python                         
 mtdev                                                                         1.1.7-1                                 alpm                           
-multidict                                                                     6.7.1                                   python                         
+multidict                                                                     6.8.0                                   python                         
 ncurses                                                                       6.6-2                                   alpm                           
 nettle                                                                        4.0-1                                   alpm                           
 nftables                                                                      0.1                                     python                         
@@ -553,13 +553,14 @@ noto-fonts-emoji                                                              1:
 npth                                                                          1.8-1                                   alpm                           
 nspr                                                                          4.40-1                                  alpm                           
 nss                                                                           3.128-1                                 alpm                           
+numactl                                                                       2.0.19-1                                alpm                           
 oniguruma                                                                     6.9.10-1                                alpm                           
 openbox                                                                       3.6.1-14                                alpm                           
 openbsd-netcat                                                                1.238_1-1                               alpm                           
 openssh                                                                       10.5p1-1                                alpm                           
 openssl                                                                       3.6.4-1                                 alpm                           
 opus                                                                          1.6.1-1                                 alpm                           
-orc                                                                           0.4.43-1                                alpm                           
+orc                                                                           0.4.44-1                                alpm                           
 p11-kit                                                                       0.26.5-1                                alpm                           
 packaging                                                                     26.3                                    python                         
 pacman                                                                        7.1.0.r9.g54d9411-2                     alpm                           
@@ -580,7 +581,7 @@ pinentry                                                                      1.
 pip                                                                           26.2.1                                  python                         
 pixelflux                                                                     2.0.0                                   python                         
 pixman                                                                        0.46.4-1                                alpm                           
-pkgconf                                                                       3.0.6-1                                 alpm                           
+pkgconf                                                                       3.0.7-1                                 alpm                           
 platformdirs                                                                  4.11.7                                  python                         
 polkit                                                                        127-3                                   alpm                           
 popt                                                                          1.19-2                                  alpm                           
@@ -641,15 +642,15 @@ st-debug                                                                      0.
 starlette                                                                     1.6.0                                   python                         
 startup-notification                                                          0.12-9                                  alpm                           
 stdlib                                                                        go1.26.1-X:nodwarf5                     go-module                      
-stdlib                                                                        go1.26.5-X:nodwarf5                     go-module     (+7 duplicates)  
-stdlib                                                                        go1.27.0-X:nodwarf5                     go-module                      
+stdlib                                                                        go1.26.5-X:nodwarf5                     go-module     (+3 duplicates)  
+stdlib                                                                        go1.27.0-X:nodwarf5                     go-module     (+4 duplicates)  
 sudo                                                                          1.9.17.p2-6                             alpm                           
-systemd                                                                       261.2-1                                 alpm                           
-systemd-libs                                                                  261.2-1                                 alpm                           
+systemd                                                                       261.3-1                                 alpm                           
+systemd-libs                                                                  261.3-1                                 alpm                           
 tags.cncf.io/container-device-interface                                       v1.1.0                                  go-module     (+2 duplicates)  
 tags.cncf.io/container-device-interface/specs-go                              v1.1.0                                  go-module     (+1 duplicate)   
 tar                                                                           1.35-5                                  alpm                           
-tdb                                                                           1.4.15-1                                alpm                           
+tdb                                                                           1.4.15-2                                alpm                           
 texinfo                                                                       7.3-1                                   alpm                           
 tpm2-tss                                                                      4.2.0-2                                 alpm                           
 typing-extensions                                                             4.16.0                                  python                         
@@ -717,9 +718,9 @@ xorg-xwayland                                                                 24
 xorgproto                                                                     2025.1-1                                alpm                           
 xsel                                                                          1.2.1-2                                 alpm                           
 xsettingsd                                                                    1.0.4-1                                 alpm                           
-xterm                                                                         410-1                                   alpm                           
+xterm                                                                         411-1                                   alpm                           
 xxhash                                                                        0.8.3-1                                 alpm                           
-xz                                                                            5.8.3-1                                 alpm                           
+xz                                                                            5.8.4-1                                 alpm                           
 yarl                                                                          1.24.5                                  python                         
 zlib                                                                          1:1.3.2-3                               alpm                           
 zstd                                                                          1.5.7-3                                 alpm                           
