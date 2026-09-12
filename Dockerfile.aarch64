@@ -88,7 +88,7 @@ RUN \
     selkies-desktop \
     /usr/bin/selkies-desktop
 
-FROM ghcr.io/linuxserver/baseimage-ubuntu:resolute AS labwc-builder
+FROM ghcr.io/linuxserver/baseimage-ubuntu:arm64v8-resolute AS labwc-builder
 
 RUN \
   echo "**** install labwc/wlroots build deps ****" && \
