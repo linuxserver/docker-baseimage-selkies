@@ -1,0 +1,8 @@
+#!/bin/bash
+#SELKIESSHIM
+
+if [ -e /usr/bin/steam ] && ! grep -q '#SELKIESSHIM' /usr/bin/steam; then
+  exec /usr/bin/steam "$@"
+fi
+
+exec selkies-proot install steam

@@ -6,8 +6,6 @@ if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]];then
   DEF_AUTOSTART="/defaults/autostart_wayland"
   DEF_MENU="/defaults/menu_wayland.xml"
   DEF_RC="/defaults/labwc.xml"
-  # disable second screen
-  printf "false" > /run/s6/container_environment/SELKIES_SECOND_SCREEN
   if [[ "${PELORUS,,}" == "true" ]]; then
     printf "5000" > /run/s6/container_environment/PIXELFLUX_CU
     printf "/pelorus" > /run/s6/container_environment/ROOT_PATH
@@ -40,6 +38,11 @@ mkdir -p "$HOME/.XDG"
 chown abc:abc "$HOME/.XDG"
 printf "$HOME/.XDG" > /run/s6/container_environment/XDG_RUNTIME_DIR
 
+# add games paths
+if [[ "${PATH}" != *"games"* ]]; then
+  printf "/usr/local/games:/usr/games:${PATH}" > /run/s6/container_environment/PATH
+fi
+
 # Clean out pulseaudio locks
 rm -f /defaults/pid /defaults/native
 
@@ -67,6 +70,11 @@ if [[ ${HARDEN_DESKTOP,,} == "true" ]]; then
   if [ -z ${SELKIES_UI_SIDEBAR_SHOW_APPS+x} ]; then
     printf "false" > /run/s6/container_environment/SELKIES_UI_SIDEBAR_SHOW_APPS
   fi
+fi
+# upstream selkies now defaults command websocket messages to off, the
+# dashboard apps/launcher section depends on them so enable when not hardened
+if [[ ${HARDEN_DESKTOP,,} != "true" ]] && [ -z ${SELKIES_COMMAND_ENABLED+x} ]; then
+  printf "true" > /run/s6/container_environment/SELKIES_COMMAND_ENABLED
 fi
 if [[ ${HARDEN_OPENBOX,,} == "true" ]]; then
   export DISABLE_CLOSE_BUTTON="true"
@@ -261,10 +269,28 @@ if [ ! -f "$HOME/.local/bin/proot-apps" ]; then
 elif ! diff -q /proot-apps/pversion "$HOME/.local/bin/pversion" > /dev/null; then
   cp /proot-apps/* "$HOME/.local/bin/"
   proot_updated=true
+elif ! diff -q /proot-apps/proot-bwrap "$HOME/.local/bin/proot-bwrap" > /dev/null 2>&1; then
+  cp /proot-apps/proot-bwrap "$HOME/.local/bin/"
+  proot_updated=true
 fi
 if [ "$proot_updated" = true ]; then
     chown -R abc:abc "$HOME/.local"
     [ -f "$HOME/.bashrc" ] && chown abc:abc "$HOME/.bashrc"
+fi
+
+# bubblewrap stand in
+if [ -z ${BWRAP+x} ]; then
+  printf "$HOME/.local/bin/proot-bwrap" > /run/s6/container_environment/BWRAP
+fi
+
+# steam shim
+if [[ "${NO_STEAM,,}" == "true" ]]; then
+  rm -f /usr/local/bin/steam
+  if grep -qs '#SELKIESSHIM' /usr/bin/steam; then
+    rm -f /usr/bin/steam
+  fi
+elif [ -e /usr/local/bin/steam ] && [ ! -e /usr/bin/steam ]; then
+  ln -s /usr/local/bin/steam /usr/bin/steam
 fi
 
 # Enable gpu encode if device detected
@@ -310,7 +336,89 @@ else
   printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER4
 fi
 
+# webcam setup
+if [[ -z ${NO_WEBCAM+x} ]] && [[ ! -e /dev/video0 ]] && { mknod /dev/video0 c 81 0 2>/dev/null || touch /dev/video0 2>/dev/null; }; then
+  chmod 777 /dev/video0
+  printf "true" > /run/s6/container_environment/SELKIES_WEBCAM_ENABLED
+  printf "true" > /run/s6/container_environment/SELKIES_UI_SIDEBAR_SHOW_WEBCAM
+  if [[ -s /run/s6/container_environment/LD_PRELOAD ]]; then
+    printf "%s:/usr/lib/selkies_v4l2_interposer.so" "$(cat /run/s6/container_environment/LD_PRELOAD)" > /run/s6/container_environment/LD_PRELOAD
+  else
+    printf "/usr/lib/selkies_v4l2_interposer.so" > /run/s6/container_environment/LD_PRELOAD
+  fi
+fi
+
 # set ws port if unset
 if [[ -z ${CUSTOM_WS_PORT+x} ]]; then
   printf "8082" > /run/s6/container_environment/CUSTOM_WS_PORT
 fi
+
+# do not show webrtc unless user is configuring it and default to it if so
+WEBRTC_ENV_VARS=(
+  SELKIES_RTC_CONFIG_JSON
+  SELKIES_TURN_REST_URI
+  SELKIES_TURN_REST_API_KEY
+  SELKIES_TURN_REST_USERNAME
+  SELKIES_TURN_HOST
+  SELKIES_TURN_PORT
+  SELKIES_TURN_PROTOCOL
+  SELKIES_TURN_TLS
+  SELKIES_TURN_SHARED_SECRET
+  SELKIES_TURN_USERNAME
+  SELKIES_TURN_PASSWORD
+  SELKIES_STUN_HOST
+  SELKIES_STUN_PORT
+  SELKIES_WEBRTC_PUBLIC_IP
+  SELKIES_ENABLE_CLOUDFLARE_TURN
+  SELKIES_CLOUDFLARE_TURN_TOKEN_ID
+  SELKIES_CLOUDFLARE_TURN_API_TOKEN
+)
+WEBRTC_CONFIGURED="false"
+for webrtc_var in "${WEBRTC_ENV_VARS[@]}"; do
+  if [[ -n "${!webrtc_var}" ]]; then
+    echo "[ls.io-init] ${webrtc_var} is set, enabling WebRTC in the dashboard"
+    WEBRTC_CONFIGURED="true"
+    break
+  fi
+done
+if [[ "${SELKIES_MODE,,}" == "webrtc" ]]; then
+  WEBRTC_CONFIGURED="true"
+fi
+if [[ "${WEBRTC_CONFIGURED}" == "true" ]]; then
+  if [[ -z ${SELKIES_MODE+x} ]]; then
+    printf "webrtc" > /run/s6/container_environment/SELKIES_MODE
+  fi
+  if [[ -z ${SELKIES_ENABLE_DUAL_MODE+x} ]]; then
+    printf "true" > /run/s6/container_environment/SELKIES_ENABLE_DUAL_MODE
+  fi
+elif [[ -z ${SELKIES_ENABLE_DUAL_MODE+x} ]]; then
+  printf "false" > /run/s6/container_environment/SELKIES_ENABLE_DUAL_MODE
+fi
+
+# legacy selkies env var adapters
+if [ ! -z ${SELKIES_H264_CRF+x} ] && [ -z ${SELKIES_VIDEO_CRF+x} ]; then
+  printf "${SELKIES_H264_CRF}" > /run/s6/container_environment/SELKIES_VIDEO_CRF
+fi
+if [ ! -z ${SELKIES_H264_FULLCOLOR+x} ] && [ -z ${SELKIES_VIDEO_FULLCOLOR+x} ]; then
+  printf "${SELKIES_H264_FULLCOLOR}" > /run/s6/container_environment/SELKIES_VIDEO_FULLCOLOR
+fi
+if [ ! -z ${SELKIES_H264_PAINTOVER_CRF+x} ] && [ -z ${SELKIES_VIDEO_PAINTOVER_CRF+x} ]; then
+  printf "${SELKIES_H264_PAINTOVER_CRF}" > /run/s6/container_environment/SELKIES_VIDEO_PAINTOVER_CRF
+fi
+if [ ! -z ${SELKIES_H264_PAINTOVER_BURST_FRAMES+x} ] && [ -z ${SELKIES_VIDEO_PAINTOVER_BURST_FRAMES+x} ]; then
+  printf "${SELKIES_H264_PAINTOVER_BURST_FRAMES}" > /run/s6/container_environment/SELKIES_VIDEO_PAINTOVER_BURST_FRAMES
+fi
+if [ ! -z ${SELKIES_IS_MANUAL_RESOLUTION_MODE+x} ] && [ -z ${SELKIES_MANUAL_RESOLUTION+x} ]; then
+  printf "${SELKIES_IS_MANUAL_RESOLUTION_MODE}" > /run/s6/container_environment/SELKIES_MANUAL_RESOLUTION
+fi
+if [ ! -z ${SELKIES_H264_STREAMING_MODE+x} ]; then
+  printf "${SELKIES_H264_STREAMING_MODE}" > /run/s6/container_environment/SELKIES_VIDEO_STREAMING_MODE
+fi
+if [ ! -z ${SELKIES_CLIPBOARD_ENABLED+x} ] && [ -z ${SELKIES_ENABLE_CLIPBOARD+x} ]; then
+  printf "${SELKIES_CLIPBOARD_ENABLED%%|*}" > /run/s6/container_environment/SELKIES_ENABLE_CLIPBOARD
+fi
+case "${SELKIES_ENCODER}" in
+  *x264enc*)
+    printf "${SELKIES_ENCODER}" | sed 's/x264enc/h264enc/g' > /run/s6/container_environment/SELKIES_ENCODER
+    ;;
+esac

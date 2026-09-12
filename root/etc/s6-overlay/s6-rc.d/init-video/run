@@ -44,6 +44,22 @@ if [ "$(uname -m)" = "x86_64" ] \
   AUTO_GPU=true
 fi
 
+# detect Intel i965 driver requirement for older GPUs (10th gen and lower)
+if [ "$(uname -m)" = "x86_64" ] \
+  && [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]] \
+  && ! which nvidia-smi > /dev/null 2>&1; then
+  ENCODING_DEVICE="${DRI_NODE:-}"
+  if [ -z "${ENCODING_DEVICE}" ] && [[ "${AUTO_GPU,,}" == "true" ]]; then
+    ENCODING_DEVICE=$(ls /dev/dri/renderD* 2>/dev/null | head -n1)
+  fi
+  if [ -n "${ENCODING_DEVICE}" ] && [ -e "${ENCODING_DEVICE}" ]; then
+    if LIBVA_DRIVER_NAME=i965 vainfo --display drm --device "${ENCODING_DEVICE}" > /dev/null 2>&1; then
+      echo "**** Intel i965 driver required for this GPU ****"
+      printf "i965" > /run/s6/container_environment/LIBVA_DRIVER_NAME
+    fi
+  fi
+fi
+
 # check if nvidia gpu is present
 if which nvidia-smi > /dev/null 2>&1 && ls -A /dev/dri 2>/dev/null; then
     # nvidia-container-toolkit may not place files correctly, so we set them up here
