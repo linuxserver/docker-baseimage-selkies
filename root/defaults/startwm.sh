@@ -8,4 +8,4 @@ if which nvidia-smi > /dev/null 2>&1 && ls -A /dev/dri 2>/dev/null && [ "${DISAB
 fi
 
 # Start DE
-/usr/bin/openbox-session > /dev/null 2>&1
+exec dbus-launch --exit-with-session /usr/bin/openbox-session > /dev/null 2>&1

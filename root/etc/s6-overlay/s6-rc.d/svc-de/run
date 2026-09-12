@@ -17,6 +17,14 @@ if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]]; then
   exit 1
 fi
 
+# wait for X to be running
+while true; do
+  if xset q &>/dev/null; then
+    break
+  fi
+  sleep .5
+done
+
 # set resolution before starting apps
 RESOLUTION_WIDTH=${SELKIES_MANUAL_WIDTH:-1024}
 RESOLUTION_HEIGHT=${SELKIES_MANUAL_HEIGHT:-768}
@@ -35,7 +43,7 @@ fi
 if [ -f "${HOME}/.Xresources" ]; then
   xrdb "${HOME}/.Xresources"
 else
-  echo "Xcursor.theme: Breeze_Light" > "${HOME}/.Xresources"
+  echo "Xcursor.theme: breeze_cursors" > "${HOME}/.Xresources"
   xrdb "${HOME}/.Xresources"
 fi
 chown abc:abc "${HOME}/.Xresources"

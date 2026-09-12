@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-export XCURSOR_THEME=Breeze_Light
+export XCURSOR_THEME=breeze_cursors
 
 # Default sink setup
 if [ ! -f '/dev/shm/audio.lock' ]; then
@@ -72,7 +72,7 @@ if [ ! -z ${DEV_MODE+x} ]; then
       --ignore "build/" \
       --ignore "*.egg-info/" \
       --ignore "__pycache__/" \
-      --exec "pip uninstall -y pixelflux || true && CPATH='/usr/include/ffmpeg' pip install . --break-system-packages && (killall labwc || true) && (killall selkies-desktop || true) && cd /tmp && python3 -m selkies --addr='localhost' --mode='websockets' --debug='true'"
+      --exec "pip uninstall -y pixelflux || true && CPATH='/usr/include/ffmpeg' pip install . --break-system-packages && (killall labwc || true) && (killall selkies-desktop || true) && cd /tmp && python3 -m selkies --addr='localhost' --debug='true'"
   else
     # Frontend setup
     if [[ "${DEV_MODE}" == "core" ]]; then
@@ -108,7 +108,7 @@ if [ ! -z ${DEV_MODE+x} ]; then
     cd $HOME/src/src
     s6-setuidgid abc \
       nodemon -V --ext py --watch . --exec \
-        "killall labwc || true; killall selkies-desktop || true; python3 -m selkies --addr='localhost' --mode='websockets' --debug='true'"
+        "killall labwc || true; killall selkies-desktop || true; python3 -m selkies --addr='localhost' --debug='true'"
   fi
 fi
 
@@ -117,5 +117,4 @@ GBM_BACKENDS_PATH=/usr/lib/x86_64-linux-gnu/gbm
 export GBM_BACKEND=nvidia-drm
 exec s6-setuidgid abc \
   selkies \
-    --addr="localhost" \
-    --mode="websockets"
+    --addr="localhost"
