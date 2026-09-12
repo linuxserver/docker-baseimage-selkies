@@ -1,6 +1,8 @@
 # syntax=docker/dockerfile:1
 FROM lscr.io/linuxserver/xvfb:kali AS xvfb
-FROM ghcr.io/linuxserver/baseimage-alpine:3.22 AS frontend
+FROM ghcr.io/linuxserver/baseimage-alpine:3.24 AS frontend
+
+ARG SELKIES_RELEASE=v2.0.0rc0
 
 RUN \
   echo "**** install build packages ****" && \
@@ -16,7 +18,7 @@ RUN \
     https://github.com/selkies-project/selkies.git \
     /src && \
   cd /src && \
-  git checkout -f 348bc4f61da66198573e7e57db9a266aca1991d5
+  git checkout -f ${SELKIES_RELEASE}
 
 RUN \
   echo "**** build shared core library ****" && \
@@ -28,14 +30,11 @@ RUN \
   mkdir /buildout && \
   for DASH in $DASHBOARDS; do \
     cd /src/addons/$DASH && \
-    cp ../selkies-web-core/dist/selkies-core.js src/ && \
     npm install && \
     npm run build && \
-    mkdir -p dist/src dist/nginx && \
+    mkdir -p dist/src && \
     cp ../selkies-web-core/dist/selkies-core.js dist/src/ && \
     cp ../universal-touch-gamepad/universalTouchGamepad.js dist/src/ && \
-    cp ../selkies-web-core/nginx/* dist/nginx/ && \
-    cp -r ../selkies-web-core/dist/jsdb dist/ && \
     mkdir -p /buildout/$DASH && \
     cp -ar dist/* /buildout/$DASH/; \
   done
@@ -73,11 +72,11 @@ RUN \
   apt-get update && \
   apt-get install -y \
     build-essential \
-    git \ 
+    git \
     libcairo2-dev \
     libwayland-dev \
-    wayland-protocols 
-  
+    wayland-protocols
+
 RUN \
   echo "**** build selkies-desktop ****" && \
   cd /tmp && \
@@ -261,7 +260,7 @@ RUN \
   ninja -C build && \
   ninja -C build install
 
-COPY /labwc-ipc.patch /labwc-ipc.patch
+COPY /labwc-ipc.patch /labwc-seam.patch /labwc-screens.patch /
 
 RUN \
   echo "**** build labwc 0.9.7 ****" && \
@@ -270,9 +269,61 @@ RUN \
   git checkout 0.9.7 && \
   cp /labwc-ipc.patch labwc-ipc.patch && \
   git apply labwc-ipc.patch && \
+  cp /labwc-seam.patch labwc-seam.patch && \
+  git apply labwc-seam.patch && \
+  cp /labwc-screens.patch labwc-screens.patch && \
+  git apply labwc-screens.patch && \
   meson setup build --prefix=/usr --libdir=lib/x86_64-linux-gnu -Dxwayland=enabled -Dnls=enabled && \
   ninja -C build && \
   ninja -C build install
+
+FROM ghcr.io/linuxserver/baseimage-debian:kali AS interposers
+
+ARG SELKIES_RELEASE=v2.0.0rc0
+
+RUN \
+  echo "**** interposer build deps ****" && \
+  apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+    build-essential \
+    gcc-multilib \
+    git
+
+RUN \
+  echo "**** ingest selkies addons ****" && \
+  git clone \
+    https://github.com/selkies-project/selkies.git \
+    /src && \
+  cd /src && \
+  git checkout -f ${SELKIES_RELEASE} && \
+  mkdir -p /buildout/usr/lib /buildout/opt/lib && \
+  echo "**** build selkies joystick interposer ****" && \
+  cd /src/addons/js-interposer && \
+  gcc -shared -fPIC -ldl \
+    -o /buildout/usr/lib/selkies_joystick_interposer.so \
+    joystick_interposer.c && \
+  gcc -m32 -shared -fPIC -ldl \
+    -o /buildout/usr/lib/selkies_joystick_interposer_32.so \
+    joystick_interposer.c && \
+  echo "**** build selkies webcam interposer ****" && \
+  cd /src/addons/v4l2-interposer && \
+  gcc -shared -fPIC -ldl -pthread \
+    -o /buildout/usr/lib/selkies_v4l2_interposer.so \
+    v4l2_interposer.c && \
+  gcc -m32 -shared -fPIC -ldl -pthread \
+    -o /buildout/usr/lib/selkies_v4l2_interposer_32.so \
+    v4l2_interposer.c && \
+  echo "**** build selkies fake udev ****" && \
+  cd /src/addons/fake-udev && \
+  make && \
+  mv \
+    libudev.so.1.0.0-fake \
+    /buildout/opt/lib/libudev.so.1.0.0-fake && \
+  make clean && \
+  make CC="gcc -m32" && \
+  mv \
+    libudev.so.1.0.0-fake \
+    /buildout/opt/lib/libudev.so.1.0.0-fake_32
 
 # Runtime stage
 FROM ghcr.io/linuxserver/baseimage-debian:kali
@@ -280,6 +331,9 @@ FROM ghcr.io/linuxserver/baseimage-debian:kali
 # set version label
 ARG BUILD_DATE
 ARG VERSION
+ARG SELKIES_RELEASE=v2.0.0rc0
+ARG PIXELFLUX_RELEASE=2.1.0rc0
+ARG PCMFLUX_RELEASE=2.1.0rc0
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="thelamer"
 
@@ -290,10 +344,15 @@ ENV DISPLAY=:1 \
     START_DOCKER=true \
     PULSE_RUNTIME_PATH=/defaults \
     SELKIES_INTERPOSER=/usr/lib/selkies_joystick_interposer.so \
+    SELKIES_WEBCAM_INTERPOSER=/usr/lib/selkies_v4l2_interposer.so \
     NVIDIA_DRIVER_CAPABILITIES=all \
     DISABLE_ZINK=false \
     DISABLE_DRI3=false \
-    SELKIES_ENCODER="x264enc,jpeg" \
+    SELKIES_ENCODER="h264enc,jpeg" \
+    SELKIES_ENABLE_BASIC_AUTH=false \
+    SELKIES_VIDEO_STREAMING_MODE=false \
+    SELKIES_ALLOWED_ORIGINS="*" \
+    SHELL=/bin/bash \
     TITLE=Selkies
 
 RUN \
@@ -335,11 +394,15 @@ RUN \
     g++ \
     gcc \
     gir1.2-atspi-2.0 \
+    gir1.2-gtk-3.0 \
     git \
     i965-va-driver-shaders \
     intel-media-va-driver \
     iproute2 \
     kbd \
+    labwc \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
     libev4 \
     libfontenc1 \
     libfreetype6 \
@@ -347,19 +410,18 @@ RUN \
     libgcrypt20 \
     libgirepository-1.0-1 \
     libgl1-mesa-dri \
-    libgles2 \
+    libglib2.0-bin \
     libglu1-mesa \
     libgnutls30 \
-    libinput10 \
-    libliftoff0 \
+    libgtk-3.0 \
+    libjpeg62-turbo \
     libnginx-mod-http-fancyindex \
     libnotify-bin \
+    libnss3 \
     libnvidia-egl-wayland1 \
     libopus0 \
     libp11-kit0 \
     libpam0g \
-    libseat1 \
-    libsfdo0 \
     libtasn1-6 \
     libvulkan1 \
     libwayland-client0 \
@@ -370,13 +432,10 @@ RUN \
     libx264-165 \
     libxau6 \
     libxcb1 \
-    libxcb-composite0 \
-    libxcb-errors0 \
-    libxcb-ewmh2 \
     libxcb-icccm4 \
+    libxcb-image0 \
+    libxcb-keysyms1 \
     libxcb-render-util0 \
-    libxcb-res0 \
-    libxcb-xinput0 \
     libxcursor1 \
     libxdmcp6 \
     libxext6 \
@@ -385,6 +444,7 @@ RUN \
     libxfont2 \
     libxinerama1 \
     libxkbcommon-dev \
+    libxkbcommon-x11-0 \
     libxshmfence1 \
     libxtst6 \
     locales-all \
@@ -436,25 +496,19 @@ RUN \
     xsettingsd \
     xterm \
     xutils \
-    xvfb \
     xwayland \
-    zlib1g && \
+    xvfb \
+    zlib1g \
+    zstd && \
   echo "**** install selkies ****" && \
-  SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/latest" \
-    | jq -r '.tag_name') && \
-  curl -o \
-    /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/348bc4f61da66198573e7e57db9a266aca1991d5.tar.gz" && \
-  cd /tmp && \
-  tar xf selkies.tar.gz && \
-  cd selkies-* && \
-  sed -i '/"av>/d' pyproject.toml && \
-  sed -i '/cryptography/d' pyproject.toml && \
   python3 \
     -m venv \
     --system-site-packages \
     /lsiopy && \
-  pip install . && \
+  pip install \
+    https://github.com/selkies-project/pixelflux/releases/download/${PIXELFLUX_RELEASE}/pixelflux-${PIXELFLUX_RELEASE}-cp314-cp314-manylinux_2_28_x86_64.whl \
+    https://github.com/selkies-project/pcmflux/releases/download/${PCMFLUX_RELEASE}/pcmflux-${PCMFLUX_RELEASE}-cp314-cp314-manylinux_2_28_x86_64.whl \
+    https://github.com/selkies-project/selkies/releases/download/${SELKIES_RELEASE}/selkies-${SELKIES_RELEASE#v}-py3-none-any.whl && \
   pip install setuptools && \
   echo "**** install pelorus ****" && \
   mkdir -p /tmp/pelorus && \
@@ -467,21 +521,6 @@ RUN \
     /tmp/pelorus.tar.gz -C \
     /tmp/pelorus/ --strip-components=1 && \
   pip install /tmp/pelorus && \
-  echo "**** install selkies interposer ****" && \
-  cd addons/js-interposer && \
-  gcc -shared -fPIC -ldl \
-    -o selkies_joystick_interposer.so \
-    joystick_interposer.c && \
-  mv \
-    selkies_joystick_interposer.so \
-    /usr/lib/selkies_joystick_interposer.so && \
-  echo "**** install selkies fake udev ****" && \
-  cd ../fake-udev && \
-  make && \
-  mkdir /opt/lib && \
-  mv \
-    libudev.so.1.0.0-fake \
-    /opt/lib/ && \
   echo "**** add icon ****" && \
   mkdir -p \
     /usr/share/selkies/www && \
@@ -515,6 +554,18 @@ RUN \
   curl -L https://github.com/linuxserver/proot-apps/releases/download/${PAPPS_RELEASE}/proot-apps-x86_64.tar.gz \
     | tar -xzf - -C /proot-apps/ && \
   echo "${PAPPS_RELEASE}" > /proot-apps/pversion && \
+  echo "**** proot-bwrap ****" && \
+  PROOT_BWRAP_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/proot-bwrap/commits/main" \
+    | jq -r '.sha') && \
+  curl -o \
+    /proot-apps/proot-bwrap -L \
+    "https://raw.githubusercontent.com/selkies-project/proot-bwrap/${PROOT_BWRAP_COMMIT}/proot-bwrap" && \
+  chmod +x /proot-apps/proot-bwrap && \
+  echo "**** steam icon ****" && \
+  mkdir -p /usr/share/icons/hicolor/192x192/apps && \
+  curl -o \
+    /usr/share/icons/hicolor/192x192/apps/steam.png -L \
+    "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/steam-logo.png" && \
   echo "**** dind support ****" && \
   useradd -U dockremap && \
   usermod -G dockremap dockremap && \
@@ -534,7 +585,7 @@ RUN \
   curl -s https://raw.githubusercontent.com/thelamer/lang-stash/master/theme.tar.gz \
     | tar xzvf - -C /usr/share/themes/Clearlooks/openbox-3/ && \
   echo "**** cleanup ****" && \
-  apt-get -y remove \
+  apt-get purge -y --autoremove \
     libcairo2-dev \
     libgirepository-2.0-dev \
     python3-dev && \
@@ -552,6 +603,7 @@ COPY --from=frontend /buildout /usr/share/selkies
 COPY --from=xvfb / /
 COPY --from=wtype /usr/bin/wtype /usr/bin/wtype
 COPY --from=selkies-desktop /usr/bin/selkies-desktop /usr/bin/selkies-desktop
+COPY --from=interposers /buildout /
 COPY --from=labwc-builder /usr/bin/labwc /usr/bin/labwc
 COPY --from=labwc-builder /usr/lib/x86_64-linux-gnu/libwlroots-0.19.so* /usr/lib/x86_64-linux-gnu/
 

@@ -2,7 +2,7 @@
 
 # Start DE
 ulimit -c 0
-export XCURSOR_THEME=Breeze_Light
+export XCURSOR_THEME=breeze_cursors
 export XCURSOR_SIZE=24
 export XKB_DEFAULT_LAYOUT=us
 export XKB_DEFAULT_RULES=evdev
@@ -19,7 +19,7 @@ if [ "${PELORUS,,}" == "true" ]; then
       ATSPI_PID=$!
       pelorus &
       PELORUS_PID=$!
-      labwc -i &
+      labwc &
       LABWC_PID=$!
       sleep 1
       export WAYLAND_DISPLAY=wayland-0
@@ -35,7 +35,7 @@ if [ "${PELORUS,,}" == "true" ]; then
       ATSPI_PID=$!
       pelorus &
       PELORUS_PID=$!
-      labwc -i
+      labwc
       kill $ATSPI_PID
       kill $PELORUS_PID
     ' > /dev/null 2>&1
