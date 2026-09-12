@@ -76,7 +76,7 @@ dirmngr                                                                       2.
 distro                                                                        1.9.0                                   python                      
 distro-info-data                                                              0.72-0ubuntu0.26.04.1                   deb                         
 dnspython                                                                     2.8.0                                   python                      
-docker-buildx-plugin                                                          0.37.0-1~ubuntu.26.04~resolute          deb                         
+docker-buildx-plugin                                                          0.37.1-1~ubuntu.26.04~resolute          deb                         
 docker-ce                                                                     5:29.8.0-1~ubuntu.26.04~resolute        deb                         
 docker-ce-cli                                                                 5:29.8.0-1~ubuntu.26.04~resolute        deb                         
 docker-compose-plugin                                                         5.5.1-1~ubuntu.26.04~resolute           deb                         
@@ -222,7 +222,7 @@ github.com/digitorus/pkcs7                                                    v0
 github.com/digitorus/timestamp                                                v0.0.0-20231217203849-220c5c2851b7      go-module  (+1 duplicate)   
 github.com/dimchansky/utfbom                                                  v1.1.1                                  go-module                   
 github.com/distribution/reference                                             v0.6.0                                  go-module  (+4 duplicates)  
-github.com/docker/buildx                                                      v0.37.0                                 go-module                   
+github.com/docker/buildx                                                      v0.37.1                                 go-module                   
 github.com/docker/cli                                                         v29.7.2+incompatible                    go-module  (+1 duplicate)   
 github.com/docker/cli-docs-tool                                               v0.11.0                                 go-module  (+1 duplicate)   
 github.com/docker/cli/cmd/docker                                              UNKNOWN                                 go-module                   
