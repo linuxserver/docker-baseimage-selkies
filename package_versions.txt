@@ -33,7 +33,7 @@ bubblewrap                                                                    0.
 busybox                                                                       1.36.1-4                                alpm                           
 bzip2                                                                         1.0.8-6                                 alpm                           
 ca-certificates                                                               20240618-1                              alpm                           
-ca-certificates-mozilla                                                       3.128-1                                 alpm                           
+ca-certificates-mozilla                                                       3.129-1                                 alpm                           
 ca-certificates-utils                                                         20240618-1                              alpm                           
 cairo                                                                         1.18.4-1                                alpm                           
 catatonit                                                                     0.2.1-2                                 alpm                           
@@ -64,7 +64,7 @@ device-mapper                                                                 2.
 diffutils                                                                     3.12-2                                  alpm                           
 distro                                                                        1.9.0                                   python                         
 dnspython                                                                     2.8.0                                   python                         
-docker                                                                        1:29.7.2-1                              alpm                           
+docker                                                                        1:29.8.0-1                              alpm                           
 docker-compose                                                                5.5.1-1                                 alpm                           
 duktape                                                                       2.7.0-7                                 alpm                           
 dunst                                                                         1.13.2-2                                alpm                           
@@ -418,7 +418,7 @@ libevent                                                                      2.
 libffi                                                                        3.8.0-1                                 alpm                           
 libfontenc                                                                    1.1.9-1                                 alpm                           
 libgcc                                                                        16.2.1+r23+gd564253eb6c8-1              alpm                           
-libgcrypt                                                                     1.12.3-1                                alpm                           
+libgcrypt                                                                     1.12.4-1                                alpm                           
 libgfortran                                                                   16.2.1+r23+gd564253eb6c8-1              alpm                           
 libgirepository                                                               1.86.0-2                                alpm                           
 libglvnd                                                                      1.7.0-3                                 alpm                           
@@ -433,7 +433,7 @@ libisl                                                                        0.
 libjpeg-turbo                                                                 3.2.0-2                                 alpm                           
 libjxl                                                                        0.12.0-1                                alpm                           
 libksba                                                                       1.8.1-1                                 alpm                           
-libldap                                                                       2.6.13-1                                alpm                           
+libldap                                                                       2.7.1-1                                 alpm                           
 libliftoff                                                                    0.5.0-1                                 alpm                           
 liblsan                                                                       16.2.1+r23+gd564253eb6c8-1              alpm                           
 libmakepkg-dropins                                                            20-2                                    alpm                           
@@ -552,7 +552,7 @@ noto-fonts-cjk                                                                20
 noto-fonts-emoji                                                              1:2.051-1                               alpm                           
 npth                                                                          1.8-1                                   alpm                           
 nspr                                                                          4.40-1                                  alpm                           
-nss                                                                           3.128-1                                 alpm                           
+nss                                                                           3.129-1                                 alpm                           
 numactl                                                                       2.0.19-1                                alpm                           
 oniguruma                                                                     6.9.10-1                                alpm                           
 openbox                                                                       3.6.1-14                                alpm                           
@@ -642,8 +642,9 @@ st-debug                                                                      0.
 starlette                                                                     1.6.0                                   python                         
 startup-notification                                                          0.12-9                                  alpm                           
 stdlib                                                                        go1.26.1-X:nodwarf5                     go-module                      
-stdlib                                                                        go1.26.5-X:nodwarf5                     go-module     (+3 duplicates)  
+stdlib                                                                        go1.26.5-X:nodwarf5                     go-module                      
 stdlib                                                                        go1.27.0-X:nodwarf5                     go-module     (+4 duplicates)  
+stdlib                                                                        go1.27.1-X:nodwarf5                     go-module     (+2 duplicates)  
 sudo                                                                          1.9.17.p2-6                             alpm                           
 systemd                                                                       261.3-1                                 alpm                           
 systemd-libs                                                                  261.3-1                                 alpm                           
