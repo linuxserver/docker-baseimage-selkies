@@ -43,7 +43,7 @@ fi
 if [ -f "${HOME}/.Xresources" ]; then
   xrdb "${HOME}/.Xresources"
 else
-  echo "Xcursor.theme: Breeze_Light" > "${HOME}/.Xresources"
+  echo "Xcursor.theme: breeze_cursors" > "${HOME}/.Xresources"
   xrdb "${HOME}/.Xresources"
 fi
 chown abc:abc "${HOME}/.Xresources"
