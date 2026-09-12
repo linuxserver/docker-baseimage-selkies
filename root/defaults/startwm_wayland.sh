@@ -19,7 +19,7 @@ if [ "${PELORUS,,}" == "true" ]; then
       ATSPI_PID=$!
       pelorus &
       PELORUS_PID=$!
-      labwc -i &
+      labwc &
       LABWC_PID=$!
       sleep 1
       export WAYLAND_DISPLAY=wayland-0
@@ -35,7 +35,7 @@ if [ "${PELORUS,,}" == "true" ]; then
       ATSPI_PID=$!
       pelorus &
       PELORUS_PID=$!
-      labwc -i
+      labwc
       kill $ATSPI_PID
       kill $PELORUS_PID
     ' > /dev/null 2>&1

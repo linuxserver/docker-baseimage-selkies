@@ -12,212 +12,35 @@ full_custom_readme: |
   - There is no `latest` tag for any of our base images, by design. We often make breaking changes between versions, and we don't publish release notes like we do for the downstream images.
   - If you're intending to distribute an image using one of our bases, please read our [docs on container branding](https://docs.linuxserver.io/general/container-branding/) first.
 
-  These images contain the following services:
+  Full documentation for the Selkies platform lives at [docs.linuxserver.io/selkies](https://docs.linuxserver.io/selkies/).
 
-  * [Selkies](https://github.com/selkies-project) - The core technology for interacting with a containerized desktop from a web browser.
-  * [pixelflux](https://github.com/linuxserver/pixelflux/) - The core video/image rendering pipeline.
-  * [pcmflux](https://github.com/linuxserver/pcmflux) - Lean low level web native opus audio encoder. 
-  * [NGINX](https://www.nginx.com/) - Used to serve Selkies with the appropriate paths and provide basic auth.
-  * [Docker](https://www.docker.com/) - Can be used for interacting with a mounted in Docker socket or if the container is run in privileged mode will start a [DinD](https://www.docker.com/blog/docker-can-now-run-within-docker/) setup.
-  * [PulseAudio](https://www.freedesktop.org/wiki/Software/PulseAudio/) - Sound subsystem used to capture audio from the active desktop session and send it to the browser.
-  * [Smithay](https://github.com/Smithay/smithay) - The userspace Wayland compositor used when in Wayland mode.
+  These images bundle [Selkies](https://github.com/selkies-project/selkies) (the streaming server and web client), [pixelflux](https://github.com/linuxserver/pixelflux/) (video capture, encoding and the Wayland compositor), [pcmflux](https://github.com/linuxserver/pcmflux) (Opus audio), [NGINX](https://www.nginx.com/), [PulseAudio](https://www.freedesktop.org/wiki/Software/PulseAudio/), [Docker](https://www.docker.com/) and [labwc](https://labwc.github.io/). Each piece is described in the [Components](https://docs.linuxserver.io/selkies/components/) section of the docs.
 
-  # Options
+  # Quick start
 
-  **Authentication for these containers is included as a convenience and to keep in sync with the previous KasmVNC containers they replace. We use bash to substitute in settings user/password and some strings might break that. In general this authentication mechanism should be used to keep the kids out not the internet**
+  ```
+  docker run --rm -it \
+    --shm-size=1gb \
+    -p 3001:3001 \
+    -e PIXELFLUX_WAYLAND=true \
+    ghcr.io/linuxserver/baseimage-selkies:debiantrixie bash
+  ```
 
-  If you are looking for a robust secure application gateway please check out [SWAG](https://github.com/linuxserver/docker-swag).
+  Open https://localhost:3001 and accept the self signed certificate. The [Quickstart](https://docs.linuxserver.io/selkies/user-guide/quickstart/) explains the flags and the minimal command debugging philosophy, and [Installation](https://docs.linuxserver.io/selkies/user-guide/installation/) covers compose, volumes, PUID/PGID and the rest of the LinuxServer.io conventions.
 
-  All application settings are passed via environment variables:
+  # Configuration
 
-  | Variable | Description |
-  | :----: | --- |
-  | PIXELFLUX_WAYLAND | If set to true the container will initialize in Wayland mode running [Smithay](https://github.com/Smithay/smithay) and Labwc |
-  | SELKIES_DESKTOP | If set to true and in Wayland mode, a simple panel will be initialized with labwc |
-  | PELORUS | If set to true and in Wayland mode enable /pelorus agentic web interface and [text based api control plane](https://github.com/linuxserver/pelorus/blob/master/API.md) |
-  | CUSTOM_PORT | Internal port the container listens on for http if it needs to be swapped from the default 3000 |
-  | CUSTOM_HTTPS_PORT | Internal port the container listens on for https if it needs to be swapped from the default 3001 |
-  | CUSTOM_WS_PORT | Internal port the container listens on for websockets if it needs to be swapped from the default 8082 |
-  | CUSTOM_USER | HTTP Basic auth username, abc is default. |
-  | DRI_NODE | Enable GPU stream encoding and use the specified device IE `/dev/dri/renderD128` |
-  | DRINODE | Specify which GPU to use for acceleration IE `/dev/dri/renderD129` |
-  | AUTO_GPU | When a GPU is detected this is automatically enabled and the first available GPU will be used for encoding and rendering IE `/dev/dri/renderD128`. Set to `false` to disable this behavior if you want to mount in a GPU but not use it for encoding or rendering. |
-  | PIXELFLUX_RECORDING_SOCKET | Full path of and optional unix socket to be able to record the stream IE `/defaults/pixelflux_record` |
-  | PIXELFLUX_CU | Port to enable the Computer Use API server for AI agent control of the desktop (Wayland mode only). See the [Computer Use](#computer-use) section for details. |
-  | PASSWORD | HTTP Basic auth password, abc is default. If unset there will be no auth |
-  | SUBFOLDER | Subfolder for the application if running a subfolder reverse proxy, need both slashes IE `/subfolder/` |
-  | TITLE | The page title displayed on the web browser, default "Selkies" |
-  | DASHBOARD | Allows the user to set their dashboard. Options: `selkies-dashboard`, `selkies-dashboard-zinc`, `selkies-dashboard-wish` |
-  | FILE_MANAGER_PATH | Modifies the default upload/download file path, path must have proper permissions for abc user |
-  | START_DOCKER | If set to false a container with privilege will not automatically start the DinD Docker setup |
-  | DISABLE_IPV6 | If set to true or any value this will disable IPv6 |
-  | LC_ALL | Set the Language for the container to run as IE `fr_FR.UTF-8` `ar_AE.UTF-8` |
-  | NO_DECOR | If set the application will run without window borders for use as a PWA. (Decor can be enabled and disabled with Ctrl+Shift+d) |
-  | NO_FULL | Do not autmatically fullscreen applications. |
-  | NO_GAMEPAD | Disable userspace gamepad interposer injection. |
-  | DISABLE_ZINK | Set to `true` to disable Zink (Mesa OpenGL-on-Vulkan) acceleration for NVIDIA GPUs in X11 mode. Enabled by default when an NVIDIA GPU is detected. |
-  | DISABLE_DRI3 | Set to `true` to disable DRI3 GPU passthrough in X11 mode. Enabled by default when a GPU is detected. |
-  | MAX_RES | Pass a larger maximum resolution for the container default is 16k `15360x8640` (X11 only) |
-  | WATERMARK_PNG | Full path inside the container to a watermark png IE `/usr/share/selkies/www/icon.png` |
-  | WATERMARK_LOCATION | Where to paint the image over the stream integer options below |
+  Every facet of the container is configured with environment variables. The baseimage variables (ports, basic auth, subfolder, Wayland mode, GPU nodes, dashboard selection, and so on) and the complete list of Selkies application settings are documented in the [Configuration Reference](https://docs.linuxserver.io/selkies/user-guide/configuration/). Other topics that used to live in this README:
 
-  **`WATERMARK_LOCATION` Options:**
-  - **1**: Top Left
-  - **2**: Top Right
-  - **3**: Bottom Left
-  - **4**: Bottom Right
-  - **5**: Centered
-  - **6**: Animated
+  * [GPU Acceleration](https://docs.linuxserver.io/selkies/user-guide/gpu/) - Intel, AMD and Nvidia passthrough, zero copy encoding, multi GPU and the Nvidia host requirements.
+  * [Security and Hardening](https://docs.linuxserver.io/selkies/user-guide/security/) - authentication, the hardening variables for kiosk style deployments, locking client settings and the token control plane.
+  * [Reverse Proxy](https://docs.linuxserver.io/selkies/user-guide/reverse-proxy/) - SWAG, Nginx, Traefik and subfolder setups.
+  * [Using the Web Client](https://docs.linuxserver.io/selkies/user-guide/web-client/) - the sidebar, clipboard, file transfer, gamepads, webcam and session sharing.
+  * [WebRTC Transport](https://docs.linuxserver.io/selkies/user-guide/webrtc/) - the opt in UDP transport and the STUN/TURN setup it needs.
+  * [Pelorus](https://docs.linuxserver.io/selkies/components/pelorus/) and [Pixelflux](https://docs.linuxserver.io/selkies/components/pixelflux/) - the agentic web interface, the Computer Use API and session recording.
+  * [Troubleshooting](https://docs.linuxserver.io/selkies/user-guide/troubleshooting/) - the checklist to run before opening an issue.
 
-  ## Hardening
-
-  These variables can be used to lock down the desktop environment for single-application use cases or to restrict user capabilities.
-
-  ### Meta Variables
-
-  These variables act as presets, enabling multiple hardening options at once. Individual options can still be set to override the preset.
-
-  | Variable | Description |
-  | :----: | --- |
-  | **`HARDEN_DESKTOP`** | Enables `DISABLE_OPEN_TOOLS`, `DISABLE_SUDO`, and `DISABLE_TERMINALS`. Also sets related Selkies UI settings (`SELKIES_FILE_TRANSFERS`, `SELKIES_COMMAND_ENABLED`, `SELKIES_UI_SIDEBAR_SHOW_FILES`, `SELKIES_UI_SIDEBAR_SHOW_APPS`) if they are not explicitly set by the user. |
-  | **`HARDEN_OPENBOX`** | Enables `DISABLE_CLOSE_BUTTON`, `DISABLE_MOUSE_BUTTONS`, and `HARDEN_KEYBINDS`. It also flags `RESTART_APP` if not set by the user, ensuring the primary application is automatically restarted if closed. |
-
-  ### Individual Hardening Variables
-
-  | Variable | Description |
-  | :--- | --- |
-  | **`DISABLE_OPEN_TOOLS`** | If true, disables `xdg-open` and `exo-open` binaries by removing their execute permissions. |
-  | **`DISABLE_SUDO`** | If true, disables the `sudo` command by removing its execute permissions and invalidating the passwordless sudo configuration. |
-  | **`DISABLE_TERMINALS`** | If true, disables common terminal emulators by removing their execute permissions and hiding them from the Openbox right-click menu. |
-  | **`DISABLE_CLOSE_BUTTON`** | If true, removes the close button from window title bars in the Openbox window manager. |
-  | **`DISABLE_MOUSE_BUTTONS`** | If true, disables the right-click and middle-click context menus and actions within the Openbox window manager. |
-  | **`HARDEN_KEYBINDS`** | If true, disables default Openbox keybinds that can bypass other hardening options (e.g., `Alt+F4` to close windows, `Alt+Escape` to show the root menu). |
-  | **`RESTART_APP`** | If true, enables a watchdog service that automatically restarts the main application if it is closed. The user's autostart script is made read-only and root owned to prevent tampering. |
-
-  ## Selkies application settings
-
-  Using environment variables every facet of the application can be configured.
-
-  ### Setting Types and UI Customization
-
-  Certain setting types have special syntax for advanced control over the client-side UI and available options. A key concept is that **any setting that is locked to a single value will not be rendered in the UI**, giving the user no option to change it. This, combined with the various `ui_` visibility settings, allows administrators to completely customize the client interface.
-
-  #### Booleans and Locking
-  Boolean settings accept `true` or `false`. You can also prevent the user from changing a boolean setting in the UI by appending `|locked`. The UI toggle for this setting will be hidden.
-
-  *   **Example**: To force CPU encoding on and prevent the user from disabling it:
-      ```bash
-      -e SELKIES_USE_CPU="true|locked"
-      ```
-
-  #### Enums and Lists
-  These settings accept a comma-separated list of values. Their behavior depends on the number of items provided:
-
-  *   **Multiple Values**: The first item in the list becomes the default selection, and all items in the list become the available options in the UI dropdown.
-  *   **Single Value**: The provided value becomes the default, and the UI dropdown is hidden because the choice is locked.
-
-  *   **Example**: Force the encoder to be `jpeg` with no other options available to the user:
-      ```bash
-      -e SELKIES_ENCODER="jpeg"
-      ```
-
-  #### Ranges
-  Range settings define a minimum and maximum for a value (e.g., framerate).
-
-  *   **To set a range**: Use a hyphen-separated `min-max` format. The UI will show a slider.
-  *   **To set a fixed value**: Provide a single number. This will lock the value and hide the UI slider.
-
-  *   **Example**: Lock the framerate to exactly 60 FPS.
-      ```bash
-      -e SELKIES_FRAMERATE="60"
-      ```
-
-  #### Manual Resolution Mode
-  The server can be forced to use a single, fixed resolution for all connecting clients. This mode is automatically activated if `SELKIES_MANUAL_WIDTH`, `SELKIES_MANUAL_HEIGHT`, or `SELKIES_IS_MANUAL_RESOLUTION_MODE` is set.
-
-  *   If `SELKIES_MANUAL_WIDTH` and/or `SELKIES_MANUAL_HEIGHT` are set, the resolution is locked to those values.
-  *   If `SELKIES_IS_MANUAL_RESOLUTION_MODE` is set to `true` without specifying width or height, the resolution defaults to **1024x768**.
-  *   When this mode is active, the client UI for changing resolution is disabled.
-
-  | Environment Variable | Default Value | Description |
-  | --- | --- | --- |
-  | `SELKIES_UI_TITLE` | `'Selkies'` | Title in top left corner of sidebar. |
-  | `SELKIES_UI_SHOW_LOGO` | `True` | Show the Selkies logo in the sidebar. |
-  | `SELKIES_UI_SHOW_SIDEBAR` | `True` | Show the main sidebar UI. |
-  | `SELKIES_UI_SHOW_CORE_BUTTONS` | `True` | Show the core components buttons display, audio, microphone, and gamepad. |
-  | `SELKIES_UI_SIDEBAR_SHOW_VIDEO_SETTINGS` | `True` | Show the video settings section in the sidebar. |
-  | `SELKIES_UI_SIDEBAR_SHOW_SCREEN_SETTINGS` | `True` | Show the screen settings section in the sidebar. |
-  | `SELKIES_UI_SIDEBAR_SHOW_AUDIO_SETTINGS` | `True` | Show the audio settings section in the sidebar. |
-  | `SELKIES_UI_SIDEBAR_SHOW_STATS` | `True` | Show the stats section in the sidebar. |
-  | `SELKIES_UI_SIDEBAR_SHOW_CLIPBOARD` | `True` | Show the clipboard section in the sidebar. |
-  | `SELKIES_UI_SIDEBAR_SHOW_FILES` | `True` | Show the file transfer section in the sidebar. |
-  | `SELKIES_UI_SIDEBAR_SHOW_APPS` | `True` | Show the applications section in the sidebar. |
-  | `SELKIES_UI_SIDEBAR_SHOW_SHARING` | `True` | Show the sharing section in the sidebar. |
-  | `SELKIES_UI_SIDEBAR_SHOW_GAMEPADS` | `True` | Show the gamepads section in the sidebar. |
-  | `SELKIES_UI_SIDEBAR_SHOW_FULLSCREEN` | `True` | Show the fullscreen button in the sidebar. |
-  | `SELKIES_UI_SIDEBAR_SHOW_GAMING_MODE` | `True` | Show the gaming mode button in the sidebar. |
-  | `SELKIES_UI_SIDEBAR_SHOW_TRACKPAD` | `True` | Show the virtual trackpad button in the sidebar. |
-  | `SELKIES_UI_SIDEBAR_SHOW_KEYBOARD_BUTTON` | `True` | Show the on-screen keyboard button in the display area. |
-  | `SELKIES_UI_SIDEBAR_SHOW_SOFT_BUTTONS` | `True` | Show the soft buttons section in the sidebar. |
-  | `SELKIES_AUDIO_ENABLED` | `True` | Enable server-to-client audio streaming. |
-  | `SELKIES_MICROPHONE_ENABLED` | `True` | Enable client-to-server microphone forwarding. |
-  | `SELKIES_GAMEPAD_ENABLED` | `True` | Enable gamepad support. |
-  | `SELKIES_CLIPBOARD_ENABLED` | `True` | Enable clipboard synchronization. |
-  | `SELKIES_CLIPBOARD_IN_ENABLED` | `True` | Enable client-to-server clipboard synchronization (ignored if `SELKIES_CLIPBOARD_ENABLED` is false). | 
-  | `SELKIES_CLIPBOARD_OUT_ENABLED` | `True` | Enable server-to-client clipboard synchronization (ignored if `SELKIES_CLIPBOARD_ENABLED` is false). |
-  | `SELKIES_COMMAND_ENABLED` | `True` | Enable parsing of command websocket messages. |
-  | `SELKIES_FILE_TRANSFERS` | `'upload,download'` | Allowed file transfer directions (comma-separated: "upload,download"). Set to "" or "none" to disable. |
-  | `SELKIES_ENCODER` | `'x264enc,jpeg'` | The default video encoders. |
-  | `SELKIES_FRAMERATE` | `'8-120'` | Allowed framerate range or a fixed value. |
-  | `SELKIES_H264_CRF` | `'5-50'` | Allowed H.264 CRF range or a fixed value. |
-  | `SELKIES_JPEG_QUALITY` | `'1-100'` | Allowed JPEG quality range or a fixed value. |
-  | `SELKIES_H264_FULLCOLOR` | `False` | Enable H.264 full color range for pixelflux encoders. |
-  | `SELKIES_H264_STREAMING_MODE` | `False` | Enable H.264 streaming mode for pixelflux encoders. |
-  | `SELKIES_FORCE_ALIGNED_RESOLUTION` | `False` | Forces the display resolution to be a multiple of 16 pixels. |
-  | `SELKIES_USE_CPU` | `False` | Force CPU-based encoding for pixelflux. |
-  | `SELKIES_USE_PAINT_OVER_QUALITY` | `True` | Enable high-quality paint-over for static scenes. |
-  | `SELKIES_PAINT_OVER_JPEG_QUALITY` | `'1-100'` | Allowed JPEG paint-over quality range or a fixed value. |
-  | `SELKIES_H264_PAINTOVER_CRF` | `'5-50'` | Allowed H.264 paint-over CRF range or a fixed value. |
-  | `SELKIES_H264_PAINTOVER_BURST_FRAMES` | `'1-30'` | Allowed H.264 paint-over burst frames range or a fixed value. |
-  | `SELKIES_SECOND_SCREEN` | `True` | Enable support for a second monitor/display. |
-  | `SELKIES_AUDIO_BITRATE` | `'320000'` | The default audio bitrate. |
-  | `SELKIES_IS_MANUAL_RESOLUTION_MODE` | `False` | Lock the resolution to the manual width/height values. |
-  | `SELKIES_MANUAL_WIDTH` | `0` | Lock width to a fixed value. Setting this forces manual resolution mode. |
-  | `SELKIES_MANUAL_HEIGHT` | `0` | Lock height to a fixed value. Setting this forces manual resolution mode. |
-  | `SELKIES_SCALING_DPI` | `'96'` | The default DPI for UI scaling. |
-  | `SELKIES_ENABLE_BINARY_CLIPBOARD` | `False` | Allow binary data on the clipboard. |
-  | `SELKIES_USE_BROWSER_CURSORS` | `False` | Use browser CSS cursors instead of rendering to canvas. |
-  | `SELKIES_USE_CSS_SCALING` | `False` | HiDPI when false, if true a lower resolution is sent from the client and the canvas is stretched. |
-  | `SELKIES_PORT` (or `CUSTOM_WS_PORT`) | `8082` | Port for the data websocket server. |
-  | `SELKIES_CONTROL_PORT` | `8083` | Port for the internal control plane API, used for managing access tokens when in secure mode. |
-  | `SELKIES_MASTER_TOKEN` | `''` | Master token to enable secure mode. If set, clients must authenticate using tokens provided via the control plane API. |
-  | `SELKIES_DRI_NODE` (or `DRI_NODE`) | `''` | Path to the DRI render node for VA-API. |
-  | `SELKIES_AUDIO_DEVICE_NAME` | `'output.monitor'` | Audio device name for pcmflux capture. |
-  | `SELKIES_WATERMARK_PATH` (or `WATERMARK_PNG`) | `''` | Absolute path to the watermark PNG file. |
-  | `SELKIES_WATERMARK_LOCATION` (or `WATERMARK_LOCATION`) | `-1` | Watermark location enum (0-6). |
-  | `SELKIES_DEBUG` | `False` | Enable debug logging. |
-  | `SELKIES_WAYLAND_SOCKET_INDEX` | `0` | Index for the Wayland command socket (e.g. 0 for wayland-0). |
-  | `SELKIES_ENABLE_SHARING` | `True` | Master toggle for all sharing features. |
-  | `SELKIES_ENABLE_COLLAB` | `True` | Enable collaborative (read-write) sharing link. |
-  | `SELKIES_ENABLE_SHARED` | `True` | Enable view-only sharing links. |
-  | `SELKIES_ENABLE_PLAYER2` | `True` | Enable sharing link for gamepad player 2. |
-  | `SELKIES_ENABLE_PLAYER3` | `True` | Enable sharing link for gamepad player 3. |
-  | `SELKIES_ENABLE_PLAYER4` | `True` | Enable sharing link for gamepad player 4. |
-
-  ## Language Support - Internationalization
-
-  The environment variable `LC_ALL` can be used to start this image in a different language than English simply pass for example to launch the Desktop session in French `LC_ALL=fr_FR.UTF-8`. Some other examples: 
-
-  * `-e LC_ALL=zh_CN.UTF-8` - Chinese
-  * `-e LC_ALL=ja_JP.UTF-8` - Japanese
-  * `-e LC_ALL=ko_KR.UTF-8` - Korean
-  * `-e LC_ALL=ar_AE.UTF-8` - Arabic
-  * `-e LC_ALL=ru_RU.UTF-8` - Russian
-  * `-e LC_ALL=es_MX.UTF-8` - Spanish (Latin America)
-  * `-e LC_ALL=de_DE.UTF-8` - German
-  * `-e LC_ALL=fr_FR.UTF-8` - French
-  * `-e LC_ALL=nl_NL.UTF-8` - Netherlands
-  * `-e LC_ALL=it_IT.UTF-8` - Italian
+  **Authentication for these containers is included as a convenience. In general this authentication mechanism should be used to keep the kids out not the internet. If you are looking for a robust secure application gateway please check out [SWAG](https://github.com/linuxserver/docker-swag).**
 
   # Available Distros
 
@@ -234,257 +57,37 @@ full_custom_readme: |
 
   **A `dev` tag is also available based on the latest Ubuntu and the head Selkies codebase for integration testing.**
 
-  ### Control Plane API for Token Management
+  # Installing applications
 
-  When secure mode is enabled (`SELKIES_MASTER_TOKEN` is set), the server runs a control plane API on the `control_port` (default: 8083). This API is used to dynamically set and update the access tokens that clients can use to connect. This control plane port is meant for integrators that want to wrap the baseimage in their own platforms and handle authentication, this port should never be exposed publically.
+  * All images include [proot-apps](https://github.com/linuxserver/proot-apps), which install portable applications into the user's `$HOME` so they survive image updates and can be mounted into any other flavor of Selkies container. See [Installing Applications](https://docs.linuxserver.io/selkies/user-guide/installing-apps/).
+  * The glibc based images carry a built in Steam installer, run `steam` inside the container without any permissions. See the [Steam section](https://docs.linuxserver.io/selkies/user-guide/installing-apps/#steam-built-in-reinstalls-itself) for the limits and how to disable it.
+  * Selkies baseimages are compatible with [SealSkin](https://sealskin.app), a self hosted platform that launches isolated application containers on demand with browser extensions and mobile apps. See the [SealSkin docs](https://docs.linuxserver.io/selkies/components/sealskin/).
 
-  **Endpoint:** `POST /tokens`
+  # Building images
 
-  **Authentication:** The request must include an `Authorization` header with the master token: `Authorization: Bearer <your-master-token>`
-
-  **Request Body:** A JSON object where each key is a unique access token string you create, and the value is a permissions object defining that token's capabilities.
-
-  **Permissions Object Fields:**
-  *   `"role"`: (String, required) Can be one of the following:
-      *   `"controller"`: Full access. Can send keyboard, mouse, and all other input events (unless overridden by `mk_control`).
-      *   `"viewer"`: Restricted access. Primarily for viewing the stream. Can be granted specific input rights via the `slot` or `mk_control` properties.
-  *   `"slot"`: (Integer or `null`, required) Assigns an input slot, primarily for gamepads.
-      *   `null`: No specific input slot.
-      *   `1` - `4`: Grants the user control over the specific virtual gamepad slot (Player 1 through Player 4).
-  *   `"mk_control"`: (Boolean, optional) Exclusive override for Mouse & Keyboard input.
-      *   If `true` on **any** active token in the set, only that specific client processes mouse and keyboard events.
-      *   If `false` or omitted on **all** active tokens, mouse and keyboard access defaults to clients with the `"controller"` role.
-
-  **Behavior:** When a valid request is received, the server replaces its entire set of active tokens with the new set provided in the payload. It then runs a reconciliation process:
-  1.  Clients with tokens not present in the new set are disconnected.
-  2.  Clients with tokens that remain valid but have changed permissions (`role`, `slot`, or `mk_control`) receive an immediate state update without disconnection.
-
-  **Example `curl` Command:**
-  ```bash
-  curl -X POST http://localhost:8083/tokens \
-  -H "Authorization: Bearer my-secret-master-token" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "token-1": {"role": "controller", "slot": null, "mk_control": false},
-    "token-2": {"role": "viewer", "slot": 1, "mk_control": true}
-  }'
-  ```
- 
-  Clients in this mode must connect with a valid token (`?token=...`) to establish a WebSocket connection.
-
-  # GPU Acceleration
-
-  GPU acceleration for X11 is no longer in development, the current focus is on Wayland activated with `-e PIXELFLUX_WAYLAND=true`.
-
-  **Hardware Fallback Note:** On `x86_64` architecture, the Wayland stack requires a processor with AVX2 support (Intel Haswell generation or newer). If your processor lacks AVX2 (such as older CPUs or certain low-end Celerons), the container will automatically fall back to X11.
-
-  ### GPU Configuration
-
-  To use hardware acceleration in Wayland mode, we distinguish between the card used for **Rendering** (3D apps/Desktops) and **Encoding** (Video Stream).
-
-  **Configuration Variables:**
-
-  * `DRINODE`: The path to the GPU used for **Rendering** (EGL).
-  * `DRI_NODE`: The path to the GPU used for **Encoding** (VAAPI/NVENC).
-
-  If both variables point to the same device, the container will automatically enable **Zero Copy** encoding, significantly reducing CPU usage and latency. If they are set to different devices one will be used for **Rendering** and one for **Encoding** with a cpu readback.
-
-  **Auto GPU Detection:** When a GPU is detected and neither `AUTO_GPU`, `DRI_NODE`, nor `DRINODE` are set, the container will automatically enable `AUTO_GPU` and use the first available GPU for both rendering and encoding with **Zero Copy**. To disable this behavior (for example if you want to mount in a GPU but not use it), set `AUTO_GPU=false`.
-
-  **Multi-GPU:** If your system has multiple GPUs, auto-detection will pick the first one (`/dev/dri/renderD128`). To target a specific GPU, set `DRI_NODE` and `DRINODE` to the desired device path IE `/dev/dri/renderD129`.
-
-  The most basic test commands are:
-
-  * Intel/AMD -
-    * Docker run
-      ```
-      docker run --rm -it \
-        --shm-size=1gb \
-        -p 3001:3001 \
-        --device /dev/dri \
-        -e PIXELFLUX_WAYLAND=true \
-        lsiobase/selkies:debiantrixie bash
-      ```
-    * Compose
-      ```yaml
-          devices:
-            - /dev/dri:/dev/dri
-          environment:
-            - PIXELFLUX_WAYLAND=true
-      ```
-  * Nvidia - 
-    * Docker run
-      ```
-      docker run --rm -it \
-        --shm-size=1gb \
-        -p 3001:3001 \
-        --runtime nvidia \
-        --gpus all \
-        -e PIXELFLUX_WAYLAND=true \
-        lsiobase/selkies:debiantrixie bash
-      ```
-    * Compose
-      ```yaml
-          environment:
-            - PIXELFLUX_WAYLAND=true
-          deploy:
-            resources:
-              reservations:
-                devices:
-                  - driver: nvidia
-                    count: 1
-                    capabilities: [compute,video,graphics,utility]
-      ```
-
-  ##### Nvidia required host setup
-
-  **Note: Nvidia support is not available for Alpine-based images.**
-
-  **Prerequisites:**
-
-  1. **Driver:** Proprietary drivers **580 or higher** are required. **Crucially, you should install the driver using the `.run` file downloaded directly from the Nvidia website.**
-      * **Unraid:** Use the production branch from the Nvidia Driver Plugin.
-
-  2. **Kernel Parameter:** You must set `nvidia-drm.modeset=1 nvidia_drm.fbdev=1` in your host bootloader.
-      * **Standard Linux (GRUB):** Edit `/etc/default/grub` and add the parameter to your existing `GRUB_CMDLINE_LINUX_DEFAULT` line:
-
-          ```text
-          GRUB_CMDLINE_LINUX_DEFAULT="<other existing options> nvidia-drm.modeset=1 nvidia_drm.fbdev=1"
-          ```
-
-          Then apply the changes by running:
-
-          ```bash
-          sudo update-grub
-          ```
-
-      * **Unraid (Syslinux):** Edit the file `/boot/syslinux/syslinux.cfg` and add `nvidia-drm.modeset=1 nvidia_drm.fbdev=1` to the end of the `append` line for the Unraid OS boot entry.
-
-  3. **Hardware Initialization:** **On headless systems, the Nvidia video card requires a physical dummy plug inserted into the GPU so that DRM initializes properly.**
-
-  4. **Docker Runtime:** Configure the host docker daemon to use the Nvidia runtime:
-
-      ```bash
-      sudo nvidia-ctk runtime configure --runtime=docker
-      sudo systemctl restart docker
-      ```
-
-  * **Unraid:** Ensure you're properly setting the DRINODE/DRI_NODE and adding `--gpus all --runtime nvidia` to your extra parameters.
-
-  # PRoot Apps
-
-  All images include [proot-apps](https://github.com/linuxserver/proot-apps) which allow portable applications to be installed to persistent storage in the user's `$HOME` directory. These applications and their settings will persist upgrades of the base container and can be mounted into different flavors of Selkies containers. IE if you are running an Alpine based container you will be able to use the same `/config` directory mounted into a Debian based container and retain the same applications and settings as long as they were installed with `proot-apps install`.
-
-  A list of linuxserver.io supported applications is located [HERE](https://github.com/linuxserver/proot-apps?tab=readme-ov-file#supported-apps).
-
-  # SealSkin Compatibility
-
-  Selkies baseimages are compatible with [SealSkin](https://sealskin.app).
-
-  SealSkin is a self-hosted, client-server platform that provides secure authentication and collaboration features while using a browser extension to intercept user actions such as clicking a link or downloading a file and redirect them to a secure, isolated application environment running on a remote server.
-
-  * **SealSkin Server:** [Get it Here](https://github.com/linuxserver/docker-sealskin)
-  * **Browser Extension:** [Chrome](https://chromewebstore.google.com/detail/sealskin-isolation/lclgfmnljgacfdpmmmjmfpdelndbbfhk) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/sealskin-isolation/).
-  * **Mobile App:** [iOS](https://apps.apple.com/us/app/sealskin/id6758210210) and [Android](https://play.google.com/store/apps/details?id=io.linuxserver.sealskin)
-
-  # I like to read documentation
-
-  ## Building images
-
-  ### Application containers
-
-  Included in these base images is a simple [Openbox DE](http://openbox.org/) or [Labwc](https://labwc.github.io/) and the accompanying logic needed to launch a single application. Lets look at the bare minimum needed to create an application container starting with a Dockerfile:
+  Included in these base images is [labwc](https://labwc.github.io/) (or [Openbox](http://openbox.org/) in X11 fallback mode) and the init logic needed to launch a single application. The bare minimum needed to create an application container is a Dockerfile:
 
   ```
-  FROM ghcr.io/linuxserver/baseimage-selkies:alpine322
-  RUN apk add --no-cache firefox
+  FROM ghcr.io/linuxserver/baseimage-selkies:debiantrixie
+  RUN apt-get update && apt-get install -y --no-install-recommends firefox-esr
   COPY /root /
   ```
 
-  And we can define the application to start using:
+  and a `root/defaults/autostart_wayland` file containing the command to run, in this case `firefox-esr`. Build it, run it with the quick start command above and Firefox is streaming in the browser.
 
-  ```
-  mkdir -p root/defaults
-  echo "firefox" > root/defaults/autostart
-  ```
+  Right click menus, full desktop environments via `startwm.sh`, hardening and kiosk builds, testing and multi arch CI are all covered in [Building Custom Images](https://docs.linuxserver.io/selkies/developer-guide/building-images/), with [Baseimage Internals](https://docs.linuxserver.io/selkies/developer-guide/baseimage-internals/) describing the init chain, services and nginx layout, and [Customizing Containers](https://docs.linuxserver.io/selkies/developer-guide/customization/) covering the runtime hooks available without rebuilding. Examples of full desktop images can be found in our [Webtop repository](https://github.com/linuxserver/docker-webtop).
 
-  Resulting in a folder that looks like this:
+  # Docker in Docker (DinD)
 
-  ```
-  ├── Dockerfile
-  └── root
-    └── defaults
-      └── autostart
-  ```
-
-  Now build and test:
-
-  ```
-  docker build -t firefox .
-  docker run --rm -it -p 3001:3001 firefox bash
-  ```
-
-  On https://localhost:3001 you should be presented with a Firefox web browser interface.
-
-  This similar setup can be used to embed any Linux Desktop application in a web accesible container.
-
-  **If building images it is important to note that many application will not work inside of Docker without `--security-opt seccomp=unconfined`, they may have launch flags to not use syscalls blocked by Docker like with chromium based applications and `--no-sandbox`. In general do not expect every application will simply work like a native Linux installation without some modifications**
-
-  #### In container application launching
-
-  Also included in the init logic is the ability to define application launchers. As the user has the ability to close the application or if they want to open multiple instances of it this can be useful. Here is an example of a menu definition file for Firefox:
-
-  ```
-  <?xml version="1.0" encoding="utf-8"?>
-  <openbox_menu xmlns="http://openbox.org/3.4/menu">
-  <menu id="root-menu" label="MENU">
-  <item label="xterm" icon="/usr/share/pixmaps/xterm-color_48x48.xpm"><action name="Execute"><command>/usr/bin/xterm</command></action></item>
-  <item label="FireFox" icon="/usr/share/icons/hicolor/48x48/apps/firefox.png"><action name="Execute"><command>/usr/bin/firefox</command></action></item>
-  </menu>
-  </openbox_menu>
-  ```
-
-  Simply create this file and add it to your defaults folder as `menu.xml`:
-
-  ```
-  ├── Dockerfile
-  └── root
-    └── defaults
-      └── autostart
-      └── menu.xml
-  ```
-
-  This allows users to right click the desktop background to launch the application.
-
-
-  ### Full Desktop environments
-
-  When building an application container we are leveraging the Labwc DE to handle window management, but it is also possible to completely replace the DE that is launched on container init using the `startwm.sh` script, located again in defaults:
-
-  ```
-  ├── Dockerfile
-  └── root
-    └── defaults
-      └── startwm.sh
-  ```
-
-  If included in the build logic it will be launched in place of Openbox. Examples for this kind of configuration can be found in our [Webtop repository](https://github.com/linuxserver/docker-webtop)
-
-  ## Docker in Docker (DinD)
-
-  These base images include an installation of Docker that can be used in two ways. The simple method is simply leveraging the Docker/Docker Compose cli bins to manage the host level Docker installation by mounting in `-v /var/run/docker.sock:/var/run/docker.sock`.
-
-  The base images can also run an isolated in container DinD setup simply by passing `--privileged` to the container when launching. If for any reason the application needs privilege but Docker is not wanted the `-e START_DOCKER=false` can be set at runtime or in the Dockerfile.
-  In container Docker (DinD) will most likely use the fuse-overlayfs driver for storage which is not as fast as native overlay2. To increase perormance the `/var/lib/docker/` directory in the container can be mounted out to a Linux host and will use overlay2. Keep in mind Docker runs as root and the contents of this directory will not respect the PUID/PGID environment variables available on all LinuxServer.io containers.
+  These base images include an installation of Docker. Mount `-v /var/run/docker.sock:/var/run/docker.sock` to manage the host Docker installation from inside the session, or pass `--privileged` to start an isolated in container Docker daemon (set `-e START_DOCKER=false` to keep privilege without the daemon). Details and the performance notes are in the [Docker in Docker](https://docs.linuxserver.io/selkies/user-guide/installation/#docker-in-docker) section of the installation docs.
 
   # Development
 
-  This container and any downstream images can also be used as a rapid development environment for the Selkies Project. Simply clone the upstream repo and run the container as shown: 
+  This container and any downstream images can also be used as a rapid development environment for the Selkies Project. Simply clone the upstream repo and run the container as shown:
 
   ```
   git clone https://github.com/selkies-project/selkies.git
   cd selkies
-  git checkout -f lsio
   docker run --rm -it \
     --shm-size=1gb \
     -e DEV_MODE=selkies-dashboard \
@@ -494,7 +97,7 @@ full_custom_readme: |
     -p 3001:3001 ghcr.io/linuxserver/webtop:ubuntu-kde bash
   ```
 
-  The application will be restarted on code changes to the src directory you mounted in and provide feedback for debugging.
+  The application will be restarted on code changes to the src directory you mounted in and provide feedback for debugging. The web side runs through Vite with hot module reload and is served at the root path of the container. `DEV_MODE` accepts the name of any dashboard directory under `addons/` in the Selkies repo, `core` to watch and rebuild `selkies-web-core` (the streaming engine itself), or `pixelflux` as shown below.
 
   To run a pixelflux rapid development environment:
 
@@ -510,35 +113,7 @@ full_custom_readme: |
     -p 3001:3001 ghcr.io/linuxserver/webtop:ubuntu-kde bash
   ```
 
-  # Session recording
-
-  `PIXELFLUX_RECORDING_SOCKET` can be used to define a unix socket path inside the container to record the frames for the desktop session, this only works in fullframe mode `x264enc`. This does not encode the stream again, it just presents the existing h.264 frames that are sent to the client for capture. When this is activated this forces IDR frames every 30 frames and on connection. If `-e PIXELFLUX_RECORDING_SOCKET=/defaults/recording` is passed you can: 
-
-  ```
-  docker exec -it containername
-  apt-get update && apt-get install -y ffmpeg
-  ffmpeg -f h264 -i unix:///defaults/recording -c:v copy test.h264
-  # Optional re-encode the stream to clean it up
-  ffmpeg -f h264 -framerate 60 -i unix:///defaults/recording -c:v libx264 -preset fast -crf 23 -pix_fmt yuv420p test.mp4
-  ```
-
-  If the stream is resized this will stop the recording, and the stream needs to be active to the client for capture. This can be used programatically to generate thumbnails or any other desktop catpure needs.
-
-  # Computer Use
-
-  `PIXELFLUX_CU` enables the Computer Use API server, providing an HTTP interface for AI agents to control the desktop (Wayland mode only). Set this to the port the server should listen on.
-
-  When using Computer Use, the screenshot path forces a single-frame CPU readback when the GPU is in zero-copy mode. The API accepts `POST` requests to `/computer-use` with a JSON body.
-
-  To take a screenshot:
-
-  ```
-  curl -s -X POST http://localhost:5000/computer-use \
-    -H 'Content-Type: application/json' \
-    -d '{"action":"screenshot"}' | jq -r '.data' | base64 -d > screen.png
-  ```
-
-  Other available actions include `mouse_move`, `left_click`, `right_click`, `double_click`, `type`, `key`, `scroll`, `zoom`, and `cursor_position`. Coordinates are specified in absolute framebuffer pixels.
+  The container builds the mounted source, all Rust build dependencies are present in the image, and runs the session against your working copy so a compositor or encoder change is one container restart away from being on screen. More on the workflow and a map of the repositories involved is in [Development Environment](https://docs.linuxserver.io/selkies/developer-guide/development/).
 
   The following line is only in this repo for loop testing:
   - { date: "01.01.50:", desc: "I am the release message for this internal repo." }

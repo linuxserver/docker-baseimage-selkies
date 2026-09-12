@@ -41,9 +41,6 @@ fi
 
 # set xresources
 if [ -f "${HOME}/.Xresources" ]; then
-  if ! grep -q "breeze_cursors" "${HOME}/.Xresources"; then
-    echo "Xcursor.theme: breeze_cursors" > "${HOME}/.Xresources"
-  fi
   xrdb "${HOME}/.Xresources"
 else
   echo "Xcursor.theme: breeze_cursors" > "${HOME}/.Xresources"

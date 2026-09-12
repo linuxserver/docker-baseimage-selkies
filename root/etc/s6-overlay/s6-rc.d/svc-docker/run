@@ -1,6 +1,5 @@
 #!/usr/bin/with-contenv bash
 
-
 # Make sure this is a priv container
 if [ -e /dev/cpu_dma_latency ]; then
   if [ "${START_DOCKER,,}" == "true" ]; then
