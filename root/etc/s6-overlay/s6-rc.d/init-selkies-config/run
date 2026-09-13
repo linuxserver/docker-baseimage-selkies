@@ -44,7 +44,7 @@ if [[ "${PATH}" != *"games"* ]]; then
 fi
 
 # Clean out pulseaudio locks
-rm -f /defaults/pid /defaults/native
+rm -f /defaults/pid /defaults/native /dev/shm/audio.lock
 
 # locale Support
 if [ ! -z ${LC_ALL+x} ]; then
