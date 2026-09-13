@@ -7,6 +7,12 @@ if [ ! -f '/dev/shm/audio.lock' ]; then
   until [ -f /defaults/pid ]; do
     sleep .5
   done
+  for _ in $(seq 1 10); do
+    if s6-setuidgid abc with-contenv pactl info > /dev/null 2>&1; then
+      break
+    fi
+    sleep .5
+  done
   if s6-setuidgid abc with-contenv pactl \
     load-module module-null-sink \
     sink_name="output" \
@@ -16,6 +22,8 @@ if [ ! -f '/dev/shm/audio.lock' ]; then
       sink_name="input" \
       sink_properties=device.description="input"; then
     touch /dev/shm/audio.lock
+  else
+    echo "[svc-selkies] pulseaudio not ready or sink creation failed, starting without audio sinks"
   fi
 fi
 
