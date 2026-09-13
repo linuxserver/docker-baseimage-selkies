@@ -28,7 +28,7 @@ if [ "${PELORUS,,}" == "true" ]; then
       kill $ATSPI_PID
       kill $LABWC_PID
       kill $PELORUS_PID
-    ' > /dev/null 2>&1
+    '
   else
     dbus-run-session bash -c '
       /usr/libexec/at-spi2-registryd &
@@ -38,11 +38,11 @@ if [ "${PELORUS,,}" == "true" ]; then
       labwc -i
       kill $ATSPI_PID
       kill $PELORUS_PID
-    ' > /dev/null 2>&1
+    '
   fi
 else
   if [ "${SELKIES_DESKTOP,,}" == "true" ]; then
-    labwc > /dev/null 2>&1 &
+    labwc &
     LABWC_PID=$!
     sleep 1
     export WAYLAND_DISPLAY=wayland-0
@@ -50,6 +50,6 @@ else
     selkies-desktop
     kill $LABWC_PID
   else
-    labwc > /dev/null 2>&1
+    labwc
   fi
 fi
