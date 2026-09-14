@@ -298,14 +298,14 @@ RUN \
   cd /src && \
   git checkout -f ${SELKIES_COMMIT} && \
   mkdir -p /buildout/usr/lib /buildout/opt/lib && \
-  echo "**** build selkies joystick interposer ****" && \
-  cd /src/addons/js-interposer && \
+  echo "**** build selkies input interposer ****" && \
+  cd /src/addons/input-interposer && \
   gcc -shared -fPIC -ldl \
-    -o /buildout/usr/lib/selkies_joystick_interposer.so \
-    joystick_interposer.c && \
+    -o /buildout/usr/lib/selkies_input_interposer.so \
+    input_interposer.c && \
   gcc -m32 -shared -fPIC -ldl \
-    -o /buildout/usr/lib/selkies_joystick_interposer_32.so \
-    joystick_interposer.c && \
+    -o /buildout/usr/lib/selkies_input_interposer_32.so \
+    input_interposer.c && \
   echo "**** build selkies webcam interposer ****" && \
   cd /src/addons/v4l2-interposer && \
   gcc -shared -fPIC -ldl -pthread \
@@ -341,12 +341,12 @@ ENV DISPLAY=:1 \
     HOME=/config \
     START_DOCKER=true \
     PULSE_RUNTIME_PATH=/defaults \
-    SELKIES_INTERPOSER=/usr/lib/selkies_joystick_interposer.so \
+    SELKIES_INTERPOSER=/usr/lib/selkies_input_interposer.so \
     SELKIES_WEBCAM_INTERPOSER=/usr/lib/selkies_v4l2_interposer.so \
     NVIDIA_DRIVER_CAPABILITIES=all \
     DISABLE_ZINK=false \
     DISABLE_DRI3=false \
-    SELKIES_ENCODER="h264enc,jpeg" \
+    SELKIES_ENCODER="h264enc,h265enc,vp8enc,vp9enc,av1enc,jpeg" \
     SELKIES_ENABLE_BASIC_AUTH=false \
     SELKIES_VIDEO_STREAMING_MODE=false \
     SELKIES_ALLOWED_ORIGINS="*" \
@@ -376,6 +376,9 @@ RUN \
     cmake \
     console-data \
     containerd.io \
+    cups-client \
+    cups-daemon \
+    cups-filters \
     dbus-x11 \
     docker-buildx-plugin \
     docker-ce \
