@@ -1,8 +1,7 @@
 # syntax=docker/dockerfile:1
-FROM lscr.io/linuxserver/xvfb:arch AS xvfb
 FROM ghcr.io/linuxserver/baseimage-alpine:3.24 AS frontend
 
-ARG SELKIES_RELEASE=v2.0.0rc0
+ARG SELKIES_RELEASE=2.0.0rc1
 
 RUN \
   echo "**** install build packages ****" && \
@@ -39,121 +38,9 @@ RUN \
     cp -ar dist/* /buildout/$DASH/; \
   done
 
-FROM ghcr.io/linuxserver/baseimage-arch:latest AS wtype
-
-RUN \
-  echo "**** wtype build deps ****" && \
-  pacman -Sy --noconfirm --needed \
-    base-devel \
-    cmake \
-    git \
-    libxkbcommon \
-    meson \
-    ninja \
-    pkgconf \
-    wayland
-
-RUN \
-  echo "**** build wtype ****" && \
-  cd /tmp && \
-  git clone \
-    https://github.com/linuxserver/waylandtyper.git && \
-  cd waylandtyper && \
-  make && \
-  mv \
-    wtype \
-    /usr/sbin/wtype
-
-FROM ghcr.io/linuxserver/baseimage-arch:latest AS selkies-desktop
-
-RUN \
-  echo "**** selkies-desktop build deps ****" && \
-  pacman -Sy --noconfirm \
-    base-devel \
-    cairo \
-    git \
-    wayland \
-    wayland-protocols
-
-RUN \
-  echo "**** build selkies-desktop ****" && \
-  cd /tmp && \
-  git clone \
-    https://github.com/selkies-project/selkies-desktop.git && \
-  cd selkies-desktop && \
-  make && \
-  mv \
-    selkies-desktop \
-    /usr/bin/selkies-desktop
-
-FROM ghcr.io/linuxserver/baseimage-arch:latest AS labwc-builder
-
-RUN \
-  echo "**** install labwc/wlroots build deps ****" && \
-  pacman -Sy --noconfirm \
-    base-devel \
-    cairo \
-    git \
-    glib2 \
-    glslang \
-    hwdata \
-    libdisplay-info \
-    libdrm \
-    libinput \
-    libliftoff \
-    librsvg \
-    libsfdo \
-    libx11 \
-    libxcb \
-    libxkbcommon \
-    libxml2 \
-    mesa \
-    meson \
-    ninja \
-    pango \
-    pixman \
-    pkgconf \
-    scdoc \
-    seatd \
-    systemd-libs \
-    vulkan-headers \
-    vulkan-icd-loader \
-    wayland \
-    wayland-protocols \
-    xcb-util-errors \
-    xcb-util-renderutil \
-    xcb-util-wm \
-    xorg-xwayland
-
-RUN \
-  echo "**** build wlroots 0.19.3 ****" && \
-  git clone https://gitlab.freedesktop.org/wlroots/wlroots.git /tmp/wlroots && \
-  cd /tmp/wlroots && \
-  git checkout 0.19.3 && \
-  meson setup build --prefix=/usr --libdir=lib -Dxwayland=enabled && \
-  ninja -C build && \
-  ninja -C build install
-
-COPY /labwc-ipc.patch /labwc-seam.patch /labwc-screens.patch /
-
-RUN \
-  echo "**** build labwc 0.9.7 ****" && \
-  git clone https://github.com/labwc/labwc.git /tmp/labwc && \
-  cd /tmp/labwc && \
-  git checkout 0.9.7 && \
-  cp /labwc-ipc.patch labwc-ipc.patch && \
-  git apply labwc-ipc.patch && \
-  cp /labwc-seam.patch labwc-seam.patch && \
-  git apply labwc-seam.patch && \
-  cp /labwc-screens.patch labwc-screens.patch && \
-  git apply labwc-screens.patch && \
-  meson setup build --prefix=/usr --libdir=lib -Dxwayland=enabled -Dnls=enabled && \
-  ninja -C build && \
-  ninja -C build install
-
 FROM ghcr.io/linuxserver/baseimage-arch:latest AS interposers
 
-ARG SELKIES_RELEASE=v2.0.0rc0
+ARG SELKIES_RELEASE=2.0.0rc1
 
 RUN \
   echo "**** interposer build deps ****" && \
@@ -171,14 +58,14 @@ RUN \
   cd /src && \
   git checkout -f ${SELKIES_RELEASE} && \
   mkdir -p /buildout/usr/lib /buildout/opt/lib && \
-  echo "**** build selkies joystick interposer ****" && \
-  cd /src/addons/js-interposer && \
+  echo "**** build selkies input interposer ****" && \
+  cd /src/addons/input-interposer && \
   gcc -shared -fPIC -ldl \
-    -o /buildout/usr/lib/selkies_joystick_interposer.so \
-    joystick_interposer.c && \
+    -o /buildout/usr/lib/selkies_input_interposer.so \
+    input_interposer.c && \
   gcc -m32 -shared -fPIC -ldl \
-    -o /buildout/usr/lib/selkies_joystick_interposer_32.so \
-    joystick_interposer.c && \
+    -o /buildout/usr/lib/selkies_input_interposer_32.so \
+    input_interposer.c && \
   echo "**** build selkies webcam interposer ****" && \
   cd /src/addons/v4l2-interposer && \
   gcc -shared -fPIC -ldl -pthread \
@@ -205,9 +92,9 @@ FROM ghcr.io/linuxserver/baseimage-arch:latest
 # set version label
 ARG BUILD_DATE
 ARG VERSION
-ARG SELKIES_RELEASE=v2.0.0rc0
-ARG PIXELFLUX_RELEASE=2.1.0rc0
-ARG PCMFLUX_RELEASE=2.1.0rc0
+ARG SELKIES_RELEASE=2.0.0rc1
+ARG PIXELFLUX_RELEASE=2.1.0rc1
+ARG PCMFLUX_RELEASE=2.1.0rc1
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="thelamer"
 
@@ -217,17 +104,17 @@ ENV DISPLAY=:1 \
     HOME=/config \
     START_DOCKER=true \
     PULSE_RUNTIME_PATH=/defaults \
-    SELKIES_INTERPOSER=/usr/lib/selkies_joystick_interposer.so \
+    SELKIES_INTERPOSER=/usr/lib/selkies_input_interposer.so \
     SELKIES_WEBCAM_INTERPOSER=/usr/lib/selkies_v4l2_interposer.so \
     NVIDIA_DRIVER_CAPABILITIES=all \
-    DISABLE_ZINK=false \
     DISABLE_DRI3=false \
     LC_ALL=en_US.UTF-8 \
-    SELKIES_ENCODER="h264enc,jpeg" \
+    SELKIES_ENCODER="h264enc,h265enc,vp8enc,vp9enc,av1enc,jpeg" \
     SELKIES_ENABLE_BASIC_AUTH=false \
     SELKIES_VIDEO_STREAMING_MODE=false \
     SELKIES_ALLOWED_ORIGINS="*" \
     SHELL=/bin/bash \
+    __GL_SYNC_TO_VBLANK=0 \
     TITLE=Selkies
 
 RUN \
@@ -242,10 +129,15 @@ RUN \
     bash \
     ca-certificates \
     cmake \
+    cups \
+    cups-filters \
     dbus \
     docker \
     docker-compose \
     dunst \
+    egl-gbm \
+    egl-wayland \
+    egl-x11 \
     file \
     foot \
     freetype2 \
@@ -456,12 +348,11 @@ RUN \
 # add local files
 COPY /root /
 COPY --from=frontend /buildout /usr/share/selkies
-COPY --from=xvfb / /
-COPY --from=wtype /usr/sbin/wtype /usr/sbin/wtype
-COPY --from=selkies-desktop /usr/bin/selkies-desktop /usr/bin/selkies-desktop
 COPY --from=interposers /buildout /
-COPY --from=labwc-builder /usr/bin/labwc /usr/bin/labwc
-COPY --from=labwc-builder /usr/lib/libwlroots-0.19.so* /usr/lib/
+COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-arch-xvfb / /
+COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-arch-wtype / /
+COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-arch-selkies-desktop / /
+COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-arch-labwc / /
 
 # ports and volumes
 EXPOSE 3000 3001

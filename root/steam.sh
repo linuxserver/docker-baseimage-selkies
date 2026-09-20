@@ -3,7 +3,7 @@
 # Native Steam install for the Arch selkies baseimage.
 
 LOCKFILE="/var/lib/selkies/steam-installed"
-STEAM_PRELOAD="/usr/lib/selkies_joystick_interposer.so:/usr/lib/libudev.so.1.0.0-fake:/usr/lib/selkies_joystick_interposer_32.so:/usr/lib/libudev.so.1.0.0-fake_32"
+STEAM_PRELOAD="/usr/lib/selkies_input_interposer.so:/usr/lib/libudev.so.1.0.0-fake:/usr/lib/selkies_input_interposer_32.so:/usr/lib/libudev.so.1.0.0-fake_32"
 # proot-bwrap only probes debian multiarch paths for libfakechroot.so, which it
 # needs to run steamwebhelper (proot is too slow for it to start in time)
 FAKECHROOT_LIB="/usr/lib/libfakeroot/fakechroot/libfakechroot.so"
@@ -105,7 +105,7 @@ SETTINGS
 
 # bubblewrap stand in for containers without user namespaces
 export BWRAP="\${BWRAP:-\$HOME/.local/bin/proot-bwrap}"
-# 64 and 32 bit joystick interposers and fake udev for gamepads
+# 64 and 32 bit input interposers and fake udev for gamepads
 export LD_PRELOAD="${STEAM_PRELOAD}"
 
 STEAM_ARGS=(-no-cef-sandbox)
