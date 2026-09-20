@@ -8,36 +8,37 @@ fi
 # Cleanup
 rm -f /tmp/.X1-lock
 
-# Enable DRI3 support if detected
-VFBCOMMAND=""
-if ! which nvidia-smi && [ -e "/dev/dri/renderD128" ]; then
-  VFBCOMMAND="-vfbdevice /dev/dri/renderD128"
-fi
+# Kernel driver behind a render node, e.g. i915, amdgpu
+node_driver() {
+  local drv
+  drv="$(readlink -f "/sys/class/drm/$(basename "$1")/device/driver" 2>/dev/null)"
+  echo "${drv##*/}"
+}
+
+# Pick the render node glamor draws on. DRINODE wins outright
+DRI3_NODE=""
 if [ -n "${DRINODE}" ]; then
-  VFBCOMMAND="-vfbdevice ${DRINODE}"
-fi
-if [ "${DISABLE_DRI3,,}" != "false" ]; then
-  VFBCOMMAND=""
+  DRI3_NODE="${DRINODE}"
+else
+  for node in /dev/dri/renderD*; do
+    [ -e "${node}" ] || continue
+    DRI3_NODE="${node}"
+    break
+  done
 fi
 
-# Clamp virtual screen max size based on env
-DEFAULT_RES="15360x8640"
-if [ -n "${MAX_RES}" ]; then
-  DEFAULT_RES="${MAX_RES}"
-fi
-if [ -n "${SELKIES_MANUAL_HEIGHT}" ] || [ -n "${SELKIES_MANUAL_WIDTH}" ]; then
-  T_WIDTH="${SELKIES_MANUAL_WIDTH:-1024}"
-  T_HEIGHT="${SELKIES_MANUAL_HEIGHT:-768}"
-  if [ "${T_WIDTH}" = "0" ]; then T_WIDTH="1024"; fi
-  if [ "${T_HEIGHT}" = "0" ]; then T_HEIGHT="768"; fi
-  DEFAULT_RES="${T_WIDTH}x${T_HEIGHT}"
+# Set DRI3 node
+VFBCOMMAND=""
+if [ "${DISABLE_DRI3,,}" == "false" ] && [ -n "${DRI3_NODE}" ] \
+  && /usr/bin/Xvfb -help 2>&1 | grep -q -- '-glamor'; then
+  VFBCOMMAND="-glamor -dri ${DRI3_NODE}"
+  echo "**** Xvfb using DRI3 on ${DRI3_NODE} ($(node_driver "${DRI3_NODE}")) ****"
 fi
 
 # Run Xvfb server with required extensions
 exec s6-setuidgid abc \
   /usr/bin/Xvfb \
     "${DISPLAY}" \
-    -screen 0 "${DEFAULT_RES}x24" \
     -dpi "96" \
     +extension "COMPOSITE" \
     +extension "DAMAGE" \
@@ -51,6 +52,5 @@ exec s6-setuidgid abc \
     +render \
     -nolisten "tcp" \
     -ac \
-    -noreset \
     -shmem \
     ${VFBCOMMAND}
