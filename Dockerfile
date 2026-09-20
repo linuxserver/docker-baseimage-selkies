@@ -1,8 +1,7 @@
 # syntax=docker/dockerfile:1
-FROM lscr.io/linuxserver/xvfb:ubunturesolute AS xvfb
 FROM ghcr.io/linuxserver/baseimage-alpine:3.24 AS frontend
 
-ARG SELKIES_RELEASE=v2.0.0rc0
+ARG SELKIES_RELEASE=2.0.0rc1
 
 RUN \
   echo "**** install build packages ****" && \
@@ -39,248 +38,9 @@ RUN \
     cp -ar dist/* /buildout/$DASH/; \
   done
 
-FROM ghcr.io/linuxserver/baseimage-ubuntu:resolute AS wtype
-
-RUN \
-  echo "**** wtype build deps ****" && \
-  apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-    build-essential \
-    cmake \
-    git \
-    libwayland-dev \
-    libxkbcommon-dev \
-    meson \
-    ninja-build \
-    pkg-config
-
-RUN \
-  echo "**** build wtype ****" && \
-  cd /tmp && \
-  git clone \
-    https://github.com/linuxserver/waylandtyper.git && \
-  cd waylandtyper && \ 
-  make && \
-  mv \
-    wtype \ 
-    /usr/bin/wtype
-
-FROM ghcr.io/linuxserver/baseimage-ubuntu:resolute AS selkies-desktop
-
-RUN \
-  echo "**** selkies-desktop build deps ****" && \
-  apt-get update && \
-  apt-get install -y \
-    build-essential \
-    git \
-    libcairo2-dev \
-    libwayland-dev \
-    wayland-protocols
-
-RUN \
-  echo "**** build selkies-desktop ****" && \
-  cd /tmp && \
-  git clone \
-    https://github.com/selkies-project/selkies-desktop.git && \
-  cd selkies-desktop && \
-  make && \
-  mv \
-    selkies-desktop \
-    /usr/bin/selkies-desktop
-
-FROM ghcr.io/linuxserver/baseimage-ubuntu:resolute AS labwc-builder
-
-RUN \
-  echo "**** install labwc/wlroots build deps ****" && \
-  apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-    autoconf \
-    automake \
-    autopoint \
-    autotools-dev \
-    build-essential \
-    bzip2 \
-    cmake \
-    debhelper \
-    debugedit \
-    dh-autoreconf \
-    dh-strip-nondeterminism \
-    dpkg-dev \
-    dwz \
-    gettext \
-    gettext-base \
-    gir1.2-freedesktop \
-    gir1.2-freedesktop-dev \
-    gir1.2-gdkpixbuf-2.0 \
-    gir1.2-glib-2.0-dev \
-    gir1.2-gly-2 \
-    gir1.2-gudev-1.0 \
-    gir1.2-harfbuzz-0.0 \
-    gir1.2-pango-1.0 \
-    gir1.2-rsvg-2.0 \
-    girepository-tools \
-    git \
-    glslang-tools \
-    hwdata \
-    icu-devtools \
-    intltool-debian \
-    libarchive-zip-perl \
-    libblkid-dev \
-    libbrotli-dev \
-    libbz2-dev \
-    libcairo2-dev \
-    libcairo-script-interpreter2 \
-    libcap-dev \
-    libdatrie-dev \
-    libdebhelper-perl \
-    libdisplay-info-dev \
-    libdpkg-perl \
-    libdrm-dev \
-    libdw1t64 \
-    libegl-dev \
-    libevdev-dev \
-    libexpat1-dev \
-    libffi-dev \
-    libfile-stripnondeterminism-perl \
-    libfontconfig-dev \
-    libfreetype-dev \
-    libfribidi-dev \
-    libgbm-dev \
-    libgdk-pixbuf2.0-bin \
-    libgdk-pixbuf-2.0-dev \
-    libgio-2.0-dev \
-    libgio-2.0-dev-bin \
-    libgl-dev \
-    libgles1 \
-    libgles2-mesa-dev \
-    libgles-dev \
-    libglib2.0-dev \
-    libglib2.0-dev-bin \
-    libglvnd-core-dev \
-    libglvnd-dev \
-    libglx-dev \
-    libglycin-2-dev \
-    libgraphite2-dev \
-    libgudev-1.0-dev \
-    libharfbuzz-cairo0 \
-    libharfbuzz-dev \
-    libharfbuzz-gobject0 \
-    libharfbuzz-icu0 \
-    libharfbuzz-subset0 \
-    libice-dev \
-    libicu78 \
-    libicu-dev \
-    libinput-dev \
-    liblcms2-dev \
-    libliftoff-dev \
-    liblzma-dev \
-    liblzo2-2 \
-    libmount-dev \
-    libmtdev-dev \
-    libopengl-dev \
-    libpango1.0-dev \
-    libpciaccess-dev \
-    libpcre2-16-0 \
-    libpcre2-32-0 \
-    libpcre2-dev \
-    libpcre2-posix3 \
-    libpixman-1-dev \
-    libpkgconf7 \
-    libpng-dev \
-    librsvg2-common \
-    librsvg2-dev \
-    libseat-dev \
-    libseccomp-dev \
-    libselinux-dev \
-    libsepol-dev \
-    libsfdo-dev \
-    libsm-dev \
-    libsysprof-capture-4-dev \
-    libsystemd-dev \
-    libthai-dev \
-    libtool \
-    libudev-dev \
-    libvulkan-dev \
-    libwacom-dev \
-    libwayland-bin \
-    libwayland-dev \
-    libx11-dev \
-    libx11-xcb-dev \
-    libxau-dev \
-    libxcb1-dev \
-    libxcb-composite0-dev \
-    libxcb-dri3-dev \
-    libxcb-errors-dev \
-    libxcb-ewmh-dev \
-    libxcb-icccm4-dev \
-    libxcb-image0-dev \
-    libxcb-present-dev \
-    libxcb-randr0-dev \
-    libxcb-render0-dev \
-    libxcb-render-util0-dev \
-    libxcb-res0-dev \
-    libxcb-shape0-dev \
-    libxcb-shm0-dev \
-    libxcb-sync-dev \
-    libxcb-xfixes0-dev \
-    libxcb-xinput-dev \
-    libxdmcp-dev \
-    libxext-dev \
-    libxft-dev \
-    libxkbcommon-dev \
-    libxml2-dev \
-    libxrender-dev \
-    lto-disabled-list \
-    m4 \
-    meson \
-    native-architecture \
-    ninja-build \
-    pango1.0-tools \
-    patch \
-    pkgconf \
-    pkgconf-bin \
-    po-debconf \
-    python3-packaging \
-    scdoc \
-    uuid-dev \
-    vainfo \
-    wayland-protocols \
-    x11proto-dev \
-    xorg-sgml-doctools \
-    xtrans-dev \
-    xwayland \
-    xz-utils \
-    zlib1g-dev
-
-RUN \
-  echo "**** build wlroots 0.19.3 ****" && \
-  git clone https://gitlab.freedesktop.org/wlroots/wlroots.git /tmp/wlroots && \
-  cd /tmp/wlroots && \
-  git checkout 0.19.3 && \
-  meson setup build --prefix=/usr --libdir=lib/x86_64-linux-gnu -Dxwayland=enabled && \
-  ninja -C build && \
-  ninja -C build install
-
-COPY /labwc-ipc.patch /labwc-seam.patch /labwc-screens.patch /
-
-RUN \
-  echo "**** build labwc 0.9.7 ****" && \
-  git clone https://github.com/labwc/labwc.git /tmp/labwc && \
-  cd /tmp/labwc && \
-  git checkout 0.9.7 && \
-  cp /labwc-ipc.patch labwc-ipc.patch && \
-  git apply labwc-ipc.patch && \
-  cp /labwc-seam.patch labwc-seam.patch && \
-  git apply labwc-seam.patch && \
-  cp /labwc-screens.patch labwc-screens.patch && \
-  git apply labwc-screens.patch && \
-  meson setup build --prefix=/usr --libdir=lib/x86_64-linux-gnu -Dxwayland=enabled -Dnls=enabled && \
-  ninja -C build && \
-  ninja -C build install
-
 FROM ghcr.io/linuxserver/baseimage-ubuntu:resolute AS interposers
 
-ARG SELKIES_RELEASE=v2.0.0rc0
+ARG SELKIES_RELEASE=2.0.0rc1
 
 RUN \
   echo "**** interposer build deps ****" && \
@@ -298,14 +58,14 @@ RUN \
   cd /src && \
   git checkout -f ${SELKIES_RELEASE} && \
   mkdir -p /buildout/usr/lib /buildout/opt/lib && \
-  echo "**** build selkies joystick interposer ****" && \
-  cd /src/addons/js-interposer && \
+  echo "**** build selkies input interposer ****" && \
+  cd /src/addons/input-interposer && \
   gcc -shared -fPIC -ldl \
-    -o /buildout/usr/lib/selkies_joystick_interposer.so \
-    joystick_interposer.c && \
+    -o /buildout/usr/lib/selkies_input_interposer.so \
+    input_interposer.c && \
   gcc -m32 -shared -fPIC -ldl \
-    -o /buildout/usr/lib/selkies_joystick_interposer_32.so \
-    joystick_interposer.c && \
+    -o /buildout/usr/lib/selkies_input_interposer_32.so \
+    input_interposer.c && \
   echo "**** build selkies webcam interposer ****" && \
   cd /src/addons/v4l2-interposer && \
   gcc -shared -fPIC -ldl -pthread \
@@ -332,9 +92,9 @@ FROM ghcr.io/linuxserver/baseimage-ubuntu:resolute
 # set version label
 ARG BUILD_DATE
 ARG VERSION
-ARG SELKIES_RELEASE=v2.0.0rc0
-ARG PIXELFLUX_RELEASE=2.1.0rc0
-ARG PCMFLUX_RELEASE=2.1.0rc0
+ARG SELKIES_RELEASE=2.0.0rc1
+ARG PIXELFLUX_RELEASE=2.1.0rc1
+ARG PCMFLUX_RELEASE=2.1.0rc1
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="thelamer"
 
@@ -344,16 +104,16 @@ ENV DISPLAY=:1 \
     HOME=/config \
     START_DOCKER=true \
     PULSE_RUNTIME_PATH=/defaults \
-    SELKIES_INTERPOSER=/usr/lib/selkies_joystick_interposer.so \
+    SELKIES_INTERPOSER=/usr/lib/selkies_input_interposer.so \
     SELKIES_WEBCAM_INTERPOSER=/usr/lib/selkies_v4l2_interposer.so \
     NVIDIA_DRIVER_CAPABILITIES=all \
-    DISABLE_ZINK=false \
     DISABLE_DRI3=false \
-    SELKIES_ENCODER="h264enc,jpeg" \
+    SELKIES_ENCODER="h264enc,h265enc,vp8enc,vp9enc,av1enc,jpeg" \
     SELKIES_ENABLE_BASIC_AUTH=false \
     SELKIES_VIDEO_STREAMING_MODE=false \
     SELKIES_ALLOWED_ORIGINS="*" \
     SHELL=/bin/bash \
+    __GL_SYNC_TO_VBLANK=0 \
     TITLE=Selkies
 
 RUN \
@@ -379,6 +139,9 @@ RUN \
     cmake \
     console-data \
     containerd.io \
+    cups-client \
+    cups-daemon \
+    cups-filters \
     dbus-x11 \
     docker-buildx-plugin \
     docker-ce \
@@ -397,7 +160,7 @@ RUN \
     gir1.2-gtk-3.0 \
     git \
     i965-va-driver-shaders \
-    intel-media-va-driver \
+    intel-media-va-driver-non-free \
     iproute2 \
     kbd \
     labwc \
@@ -418,6 +181,9 @@ RUN \
     libnotify-bin \
     libnss3 \
     libnvidia-egl-wayland1 \
+    libnvidia-egl-gbm1 \
+    libnvidia-egl-xcb1 \
+    libnvidia-egl-xlib1 \
     libopus0 \
     libp11-kit0 \
     libpam0g \
@@ -600,12 +366,11 @@ RUN \
 # add local files
 COPY /root /
 COPY --from=frontend /buildout /usr/share/selkies
-COPY --from=xvfb / /
-COPY --from=wtype /usr/bin/wtype /usr/bin/wtype
-COPY --from=selkies-desktop /usr/bin/selkies-desktop /usr/bin/selkies-desktop
 COPY --from=interposers /buildout /
-COPY --from=labwc-builder /usr/bin/labwc /usr/bin/labwc
-COPY --from=labwc-builder /usr/lib/x86_64-linux-gnu/libwlroots-0.19.so* /usr/lib/x86_64-linux-gnu/
+COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-ubunturesolute-xvfb / /
+COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-ubunturesolute-wtype / /
+COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-ubunturesolute-selkies-desktop / /
+COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-ubunturesolute-labwc / /
 
 # ports and volumes
 EXPOSE 3000 3001
