@@ -4,7 +4,7 @@
 
 LOCKFILE="/var/lib/selkies/steam-installed"
 STEAM_DEB_URL="https://repo.steampowered.com/steam/archive/stable/steam_latest.deb"
-STEAM_PRELOAD="/usr/lib/selkies_joystick_interposer.so:/usr/lib/libudev.so.1.0.0-fake:/usr/lib/selkies_joystick_interposer_32.so:/usr/lib/libudev.so.1.0.0-fake_32"
+STEAM_PRELOAD="/usr/lib/selkies_input_interposer.so:/usr/lib/libudev.so.1.0.0-fake:/usr/lib/selkies_input_interposer_32.so:/usr/lib/libudev.so.1.0.0-fake_32"
 ACTION="${1:-}"
 
 # Keep the terminal readable when launched from the dashboard
@@ -127,7 +127,7 @@ SETTINGS
 
 # bubblewrap stand in for containers without user namespaces
 export BWRAP="\${BWRAP:-\$HOME/.local/bin/proot-bwrap}"
-# 64 and 32 bit joystick interposers and fake udev for gamepads
+# 64 and 32 bit input interposers and fake udev for gamepads
 export LD_PRELOAD="${STEAM_PRELOAD}"
 
 STEAM_ARGS=(-no-cef-sandbox)
