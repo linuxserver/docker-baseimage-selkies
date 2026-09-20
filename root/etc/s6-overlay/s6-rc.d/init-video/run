@@ -136,4 +136,21 @@ EOF
             ldconfig
         fi
     fi
+    GLX_NODE="${DRINODE:-}"
+    if [ -z "${GLX_NODE}" ]; then
+        for node in /dev/dri/renderD*; do
+            [ -e "${node}" ] || continue
+            drv="$(readlink -f "/sys/class/drm/$(basename "${node}")/device/driver" 2>/dev/null)"
+            case "${drv##*/}" in nvidia|nvidia-drm) GLX_NODE="${node}"; break ;; esac
+        done
+    fi
+    if [ -n "${GLX_NODE}" ] && [ "${DISABLE_DRI3,,}" == "false" ]; then
+        drv="$(readlink -f "/sys/class/drm/$(basename "${GLX_NODE}")/device/driver" 2>/dev/null)"
+        case "${drv##*/}" in
+            nvidia|nvidia-drm)
+                echo "**** Routing GLX to the NVIDIA library ****"
+                printf "nvidia" > /run/s6/container_environment/__GLX_VENDOR_LIBRARY_NAME
+                ;;
+        esac
+    fi
 fi
