@@ -62,6 +62,10 @@ RUN \
   gcc -shared -fPIC -ldl \
     -o /buildout/usr/lib/selkies_input_interposer.so \
     input_interposer.c && \
+  echo "**** link legacy joystick interposer name ****" && \
+  ln -s \
+    selkies_input_interposer.so \
+    /buildout/usr/lib/selkies_joystick_interposer.so && \
   echo "**** build selkies webcam interposer ****" && \
   cd /src/addons/v4l2-interposer && \
   gcc -shared -fPIC -ldl -pthread \
@@ -263,10 +267,10 @@ RUN \
     | jq -r '.sha' | cut -c1-7) && \
   PCMFLUX_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/pcmflux/commits/main" \
     | jq -r '.sha' | cut -c1-7) && \
-  PIXELFLUX_VERSION=$(curl -s "https://raw.githubusercontent.com/selkies-project/pixelflux/${PIXELFLUX_COMMIT}/setup.py" \
-    | awk '/version=/{print $2;exit}' FS='[""]') && \
-  PCMFLUX_VERSION=$(curl -s "https://raw.githubusercontent.com/selkies-project/pcmflux/${PCMFLUX_COMMIT}/setup.py" \
-    | awk '/version=/{print $2;exit}' FS='[""]') && \
+  PIXELFLUX_VERSION=$(curl -s "https://raw.githubusercontent.com/selkies-project/pixelflux/${PIXELFLUX_COMMIT}/pixelflux/Cargo.toml" \
+    | awk -F'"' '/^version = /{print $2;exit}') && \
+  PCMFLUX_VERSION=$(curl -s "https://raw.githubusercontent.com/selkies-project/pcmflux/${PCMFLUX_COMMIT}/pcmflux/Cargo.toml" \
+    | awk -F'"' '/^version = /{print $2;exit}') && \
   pip install \
     https://github.com/selkies-project/pixelflux/releases/download/${PIXELFLUX_COMMIT}/pixelflux-${PIXELFLUX_VERSION}-cp314-cp314-manylinux_2_28_aarch64.whl \
     https://github.com/selkies-project/pcmflux/releases/download/${PCMFLUX_COMMIT}/pcmflux-${PCMFLUX_VERSION}-cp314-cp314-manylinux_2_28_aarch64.whl && \
