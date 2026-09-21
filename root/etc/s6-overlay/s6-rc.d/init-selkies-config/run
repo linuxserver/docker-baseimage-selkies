@@ -277,6 +277,10 @@ elif ! diff -q /proot-apps/proot-bwrap "$HOME/.local/bin/proot-bwrap" > /dev/nul
   cp /proot-apps/proot-bwrap "$HOME/.local/bin/"
   proot_updated=true
 fi
+if ! grep -qsF 'source <(proot-apps completion bash)' "$HOME/.bashrc"; then
+  echo 'source <(proot-apps completion bash)' >> "$HOME/.bashrc"
+  chown abc:abc "$HOME/.bashrc"
+fi
 if [ "$proot_updated" = true ]; then
     chown -R abc:abc "$HOME/.local"
     [ -f "$HOME/.bashrc" ] && chown abc:abc "$HOME/.bashrc"
@@ -339,6 +343,26 @@ else
   printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER3
   printf "false" > /run/s6/container_environment/SELKIES_ENABLE_PLAYER4
 fi
+
+# migrate emulator configs from the legacy gamepad id
+PAD_FILES=(
+  "$HOME/.config/eden/qt-config.ini"
+  "$HOME/.config/azahar-emu/qt-config.ini"
+  "$HOME/.local/share/xemu/xemu/xemu.toml"
+  "$HOME"/.config/Cemu/controllerProfiles/*.xml
+  "$HOME/.config/dolphin-emu/GCPadNew.ini"
+)
+for pad_file in "${PAD_FILES[@]}"; do
+  if [[ -f "$pad_file" ]] && grep -qE '(000081b8|00000000)4d6963726f736f6674205800|^Device = SDL/[0-9]+/Microsoft X-Box 360 pad' "$pad_file"; then
+    echo "[ls.io-init] Migrating legacy gamepad id in $pad_file"
+    sed -i \
+      -e 's/000081b84d6963726f736f6674205800/030081b85e0400008e02000014010000/g' \
+      -e 's/000000004d6963726f736f6674205800/030000005e0400008e02000014010000/g' \
+      -e 's|^\(Device = SDL/[0-9]*\)/Microsoft X-Box 360 pad|\1/Xbox 360 Controller|' \
+      "$pad_file"
+    chown abc:abc "$pad_file"
+  fi
+done
 
 # webcam setup
 if [[ -z ${NO_WEBCAM+x} ]] && [[ ! -e /dev/video0 ]] && { mknod /dev/video0 c 81 0 2>/dev/null || touch /dev/video0 2>/dev/null; }; then
