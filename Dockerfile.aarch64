@@ -62,6 +62,10 @@ RUN \
   gcc -shared -fPIC -ldl \
     -o /buildout/usr/lib/selkies_input_interposer.so \
     input_interposer.c && \
+  echo "**** link legacy joystick interposer name ****" && \
+  ln -s \
+    selkies_input_interposer.so \
+    /buildout/usr/lib/selkies_joystick_interposer.so && \
   echo "**** build selkies webcam interposer ****" && \
   cd /src/addons/v4l2-interposer && \
   gcc -shared -fPIC -ldl -pthread \
