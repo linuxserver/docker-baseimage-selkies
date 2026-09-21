@@ -1101,7 +1101,7 @@ more-itertools                                                                10
 more-itertools                                                                10.8.0                                  python                      
 mount                                                                         2.41.3-3ubuntu2.2                       deb                         
 msgpack                                                                       1.2.2                                   python                      
-multidict                                                                     6.9.0                                   python                      
+multidict                                                                     6.9.1                                   python                      
 my-test-package                                                               1.0                                     python                      
 ncurses-base                                                                  6.6+20251231-1                          deb                         
 ncurses-bin                                                                   6.6+20251231-1                          deb                         
