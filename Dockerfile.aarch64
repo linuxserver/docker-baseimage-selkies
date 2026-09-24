@@ -248,6 +248,7 @@ RUN \
     https://github.com/selkies-project/pcmflux/releases/download/${PCMFLUX_RELEASE}/pcmflux-${PCMFLUX_RELEASE}-cp314-cp314-manylinux_2_28_aarch64.whl \
     https://github.com/selkies-project/selkies/releases/download/${SELKIES_RELEASE}/selkies-${SELKIES_RELEASE#v}-py3-none-any.whl && \
   pip install setuptools && \
+  chmod 755 /usr/bin/cupsd && \
   echo "**** install pelorus ****" && \
   mkdir -p /tmp/pelorus && \
   PELORUS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/pelorus/releases/latest" \

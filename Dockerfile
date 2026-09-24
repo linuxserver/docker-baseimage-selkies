@@ -270,6 +270,7 @@ RUN \
     https://github.com/selkies-project/pcmflux/releases/download/${PCMFLUX_RELEASE}/pcmflux-${PCMFLUX_RELEASE}-cp314-cp314-manylinux_2_28_x86_64.whl \
     https://github.com/selkies-project/selkies/releases/download/${SELKIES_RELEASE}/selkies-${SELKIES_RELEASE#v}-py3-none-any.whl && \
   pip install setuptools && \
+  chmod 755 /usr/bin/cupsd && \
   echo "**** install pelorus ****" && \
   mkdir -p /tmp/pelorus && \
   PELORUS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/pelorus/releases/latest" \
@@ -319,6 +320,7 @@ RUN \
   curl -o \
     /usr/share/icons/hicolor/192x192/apps/steam.png -L \
     "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/steam-logo.png" && \
+  chmod 755 /usr/bin/cupsd && \
   echo "**** dind support ****" && \
   groupadd -r dockremap && \
   useradd -r -g dockremap dockremap && \
