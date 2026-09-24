@@ -40,7 +40,7 @@ RUN \
 
 FROM ghcr.io/linuxserver/baseimage-debian:trixie AS interposers
 
-ARG SELKIES_RELEASE=2.0.0rc1
+ARG SELKIES_RELEASE=2.0.0
 
 RUN \
   echo "**** interposer build deps ****" && \
