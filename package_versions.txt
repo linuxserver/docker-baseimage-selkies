@@ -54,7 +54,7 @@ cloud.google.com/go/logging                                                   v1
 cloud.google.com/go/longrunning                                               v0.9.0                                  go-module                   
 cmake                                                                         4.2.3-r0                                apk                         
 code.cloudfoundry.org/clock                                                   v1.60.0                                 go-module                   
-containerd                                                                    2.3.5-r5                                apk                         
+containerd                                                                    2.3.6-r0                                apk                         
 coreutils                                                                     9.11-r0                                 apk                         
 coreutils-env                                                                 9.11-r0                                 apk                         
 coreutils-fmt                                                                 9.11-r0                                 apk                         
@@ -541,7 +541,7 @@ golang.org/x/text                                                             v0
 golang.org/x/text                                                             v0.38.0                                 go-module                   
 golang.org/x/time                                                             v0.14.0                                 go-module                   
 golang.org/x/time                                                             v0.15.0                                 go-module  (+2 duplicates)  
-google-crc32c                                                                 1.8.0                                   python                      
+google-crc32c                                                                 1.9.0                                   python                      
 google.golang.org/api                                                         v0.274.0                                go-module                   
 google.golang.org/genproto                                                    v0.0.0-20260401024825-9d38bb4040a9      go-module                   
 google.golang.org/genproto/googleapis/api                                     v0.0.0-20260226221140-a57be14db171      go-module                   
@@ -635,7 +635,7 @@ libepoxy                                                                      1.
 libev                                                                         4.33-r1                                 apk                         
 libevdev                                                                      1.13.6-r0                               apk                         
 libexif                                                                       0.6.26-r0                               apk                         
-libexpat                                                                      2.8.4-r0                                apk                         
+libexpat                                                                      2.8.5-r0                                apk                         
 libfdisk                                                                      2.42.3-r1                               apk                         
 libffi                                                                        3.5.2-r1                                apk                         
 libflac                                                                       1.4.3-r2                                apk                         
@@ -771,7 +771,7 @@ nginx                                                                         1.
 nginx-mod-http-fancyindex                                                     1.30.4-r1                               apk                         
 nspr                                                                          4.38.2-r0                               apk                         
 nss                                                                           3.124-r0                                apk                         
-nvidia-ml-py                                                                  13.610.43                               python                      
+nvidia-ml-py                                                                  13.615.71                               python                      
 oniguruma                                                                     6.9.10-r0                               apk                         
 openbox                                                                       3.6.1-r8                                apk                         
 openbox-lang                                                                  3.6.1-r8                                apk                         
@@ -873,7 +873,7 @@ util-linux-misc                                                               2.
 util-macros                                                                   1.20.2-r0                               apk                         
 utmps-libs                                                                    0.1.3.3-r0                              apk                         
 uuidgen                                                                       2.42.3-r1                               apk                         
-uvicorn                                                                       0.53.0                                  python                      
+uvicorn                                                                       0.54.0                                  python                      
 uvloop                                                                        0.22.1                                  python                      
 vulkan-loader                                                                 1.4.347-r0                              apk                         
 vulkan-tools                                                                  1.4.347-r0                              apk                         
