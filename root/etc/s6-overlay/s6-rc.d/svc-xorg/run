@@ -18,7 +18,11 @@ node_driver() {
 # Pick the render node glamor draws on. DRINODE wins outright
 DRI3_NODE=""
 if [ -n "${DRINODE}" ]; then
-  DRI3_NODE="${DRINODE}"
+  if [ -c "${DRINODE}" ]; then
+    DRI3_NODE="${DRINODE}"
+  else
+    echo "**** DRINODE ${DRINODE} is not in the container, Xvfb runs without DRI3 ****"
+  fi
 else
   for node in /dev/dri/renderD*; do
     [ -e "${node}" ] || continue
