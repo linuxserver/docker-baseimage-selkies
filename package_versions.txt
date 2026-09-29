@@ -89,7 +89,7 @@ docker-compose-plugin                                                         5.
 dpkg                                                                          1.23.7ubuntu1                           deb                         
 dunst                                                                         1.12.2-1build1                          deb                         
 e2fsprogs                                                                     1.47.2-3ubuntu4                         deb                         
-fastapi                                                                       0.141.1                                 python                      
+fastapi                                                                       0.142.0                                 python                      
 file                                                                          1:5.46-5build2                          deb                         
 findutils                                                                     4.10.0-3build2                          deb                         
 fontconfig                                                                    2.17.1-3ubuntu1                         deb                         
@@ -810,8 +810,8 @@ libgtk-3-common                                                               3.
 libgudev-1.0-0                                                                1:238-7build1                           deb                         
 libharfbuzz-gobject0                                                          12.3.2-2                                deb                         
 libharfbuzz0b                                                                 12.3.2-2                                deb                         
-libheif-plugin-aomdec                                                         1.21.2-3ubuntu0.5                       deb                         
-libheif1                                                                      1.21.2-3ubuntu0.5                       deb                         
+libheif-plugin-aomdec                                                         1.21.2-3ubuntu0.6                       deb                         
+libheif1                                                                      1.21.2-3ubuntu0.6                       deb                         
 libhogweed6t64                                                                3.10.2-1                                deb                         
 libhwasan0                                                                    16-20260322-1ubuntu1                    deb                         
 libhwy1t64                                                                    1.3.0-2                                 deb                         
@@ -1119,6 +1119,7 @@ openbox                                                                       3.
 openssh-client                                                                1:10.2p1-2ubuntu3.6                     deb                         
 openssl                                                                       3.5.5-1ubuntu3.5                        deb                         
 openssl-provider-legacy                                                       3.5.5-1ubuntu3.5                        deb                         
+opentelemetry-api                                                             1.45.0                                  python                      
 packagekit                                                                    1.3.4-3ubuntu1.2                        deb                         
 packaging                                                                     24.2                                    python                      
 passwd                                                                        1:4.17.4-2ubuntu3                       deb                         
