@@ -48,9 +48,13 @@ fi
 # Clear Zink env for xvfb
 unset GALLIUM_DRIVER MESA_LOADER_DRIVER_OVERRIDE LIBGL_KOPPER_DRI2
 
-# A software server probes GLX through EGL at startup
-if [ -z "${VFBCOMMAND}" ] && [ -f /usr/share/glvnd/egl_vendor.d/50_mesa.json ]; then
-  export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json
+# A software server probes GLX through EGL at startup: keep it on Mesa's EGL,
+# and load no EGL external platform for a driver libEGL that comes before glvnd's
+if [ -z "${VFBCOMMAND}" ]; then
+  if [ -f /usr/share/glvnd/egl_vendor.d/50_mesa.json ]; then
+    export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json
+  fi
+  export __EGL_EXTERNAL_PLATFORM_CONFIG_FILENAMES=""
 fi
 
 # Run Xvfb server with required extensions
