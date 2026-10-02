@@ -112,7 +112,7 @@ elfutils-libelf                                                               0.
 elfutils-libs                                                                 0.196-1.fc44                                       rpm                         
 emacs-filesystem                                                              1:30.2-2.fc44                                      rpm                         
 expat                                                                         2.8.3-1.fc44                                       rpm                         
-fastapi                                                                       0.141.1                                            python                      
+fastapi                                                                       0.142.2                                            python                      
 fcft                                                                          3.3.3-2.fc44                                       rpm                         
 fdk-aac                                                                       2.0.3-6.fc44                                       rpm                         
 fedora-gpg-keys                                                               44-2                                               rpm                         
@@ -458,12 +458,12 @@ glfw                                                                          1:
 glib-networking                                                               2.80.1-4.fc44                                      rpm                         
 glib2                                                                         2.88.3-1.fc44                                      rpm                         
 glib2-devel                                                                   2.88.3-1.fc44                                      rpm                         
-glibc                                                                         2.43-8.fc44                                        rpm                         
-glibc-all-langpacks                                                           2.43-8.fc44                                        rpm                         
-glibc-common                                                                  2.43-8.fc44                                        rpm                         
-glibc-devel                                                                   2.43-8.fc44                                        rpm                         
-glibc-locale-source                                                           2.43-8.fc44                                        rpm                         
-glibc-minimal-langpack                                                        2.43-8.fc44                                        rpm                         
+glibc                                                                         2.43-9.fc44                                        rpm                         
+glibc-all-langpacks                                                           2.43-9.fc44                                        rpm                         
+glibc-common                                                                  2.43-9.fc44                                        rpm                         
+glibc-devel                                                                   2.43-9.fc44                                        rpm                         
+glibc-locale-source                                                           2.43-9.fc44                                        rpm                         
+glibc-minimal-langpack                                                        2.43-9.fc44                                        rpm                         
 glycin-libs                                                                   2.1.5-1.fc44                                       rpm                         
 glycin-loaders                                                                2.1.5-1.fc44                                       rpm                         
 gmp                                                                           1:6.3.0-5.fc44                                     rpm                         
@@ -538,7 +538,7 @@ golang.org/x/text                                                             v0
 golang.org/x/time                                                             v0.15.0                                            go-module  (+2 duplicates)  
 google-crc32c                                                                 1.9.0                                              python                      
 google-droid-sans-fonts                                                       20200215-24.fc44                                   rpm                         
-google-noto-emoji-fonts                                                       20250623-4.fc44                                    rpm                         
+google-noto-emoji-fonts                                                       20260921-1.fc44                                    rpm                         
 google-noto-fonts-common                                                      20251201-2.fc44                                    rpm                         
 google-noto-sans-cjk-vf-fonts                                                 1:2.004-11.fc44                                    rpm                         
 google-noto-sans-fonts                                                        20251201-2.fc44                                    rpm                         
@@ -725,7 +725,7 @@ libgpg-error                                                                  1.
 libgs                                                                         10.06.0-2.fc44                                     rpm                         
 libgudev                                                                      238-9.fc44                                         rpm                         
 libgusb                                                                       0.4.9-5.fc44                                       rpm                         
-libheif                                                                       1.23.4-6.fc44                                      rpm                         
+libheif                                                                       1.23.5-3.fc44                                      rpm                         
 libicu                                                                        77.1-3.fc44                                        rpm                         
 libicu-devel                                                                  77.1-3.fc44                                        rpm                         
 libidn2                                                                       2.3.8-3.fc44                                       rpm                         
@@ -864,7 +864,7 @@ more-itertools                                                                10
 mpdecimal                                                                     4.0.1-3.fc44                                       rpm                         
 mpfr                                                                          4.2.2-3.fc44                                       rpm                         
 mpg123-libs                                                                   1.32.10-3.fc44                                     rpm                         
-msgpack                                                                       1.2.2                                              python                      
+msgpack                                                                       1.2.3                                              python                      
 mtdev                                                                         1.1.6-12.fc44                                      rpm                         
 multidict                                                                     6.9.1                                              python                      
 ncurses                                                                       6.6-1.fc44                                         rpm                         
@@ -899,6 +899,7 @@ openssh                                                                       10
 openssh-clients                                                               10.2p1-14.fc44                                     rpm                         
 openssl                                                                       1:3.5.8-1.fc44                                     rpm                         
 openssl-libs                                                                  1:3.5.8-1.fc44                                     rpm                         
+opentelemetry-api                                                             1.45.0                                             python                      
 opus                                                                          1.6-2.fc44                                         rpm                         
 orc                                                                           0.4.41-3.fc44                                      rpm                         
 p11-kit                                                                       0.26.5-1.fc44                                      rpm                         
@@ -1028,7 +1029,7 @@ pyee                                                                          14
 pygobject                                                                     3.56.3                                             python                      
 pylibsrtp                                                                     1.0.0                                              python                      
 pyopenssl                                                                     26.4.0                                             python                      
-python-dotenv                                                                 1.2.3                                              python                      
+python-dotenv                                                                 1.2.4                                              python                      
 python-pip-wheel                                                              26.0.1-3.fc44                                      rpm                         
 python-setuptools-wheel                                                       80.10.2-3.fc44                                     rpm                         
 python-unversioned-command                                                    3.14.7-1.fc44                                      rpm                         
@@ -1130,9 +1131,9 @@ utf8proc                                                                      2.
 util-linux                                                                    2.41.5-1.fc44                                      rpm                         
 util-linux-core                                                               2.41.5-1.fc44                                      rpm                         
 uvicorn                                                                       0.54.0                                             python                      
-uvloop                                                                        0.22.1                                             python                      
+uvloop                                                                        0.23.0                                             python                      
 vim-data                                                                      2:9.2.1061-1.fc44                                  rpm                         
-vim-filesystem                                                                2:9.2.1119-1.fc44                                  rpm                         
+vim-filesystem                                                                2:9.2.1129-1.fc44                                  rpm                         
 vim-minimal                                                                   2:9.2.1061-1.fc44                                  rpm                         
 virtualenv                                                                    20.35.4                                            python                      
 vulkan-loader                                                                 1.4.341.0-1.fc44                                   rpm                         
