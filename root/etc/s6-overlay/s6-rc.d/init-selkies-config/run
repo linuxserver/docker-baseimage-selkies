@@ -174,6 +174,10 @@ if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]];then
       echo "[ls.io-init] Disabling close button"
       sed -i 's/close//' "$USER_RC_XML"
     fi
+    if [[ ${DISABLE_WINDOW_BUTTONS,,} == "true" ]]; then
+      echo "[ls.io-init] Disabling window buttons"
+      sed -i -E '/<layout>/s/(iconify|max|close),?//g' "$USER_RC_XML"
+    fi
     if [[ ${DISABLE_MOUSE_BUTTONS,,} == "true" ]]; then
       echo "[ls.io-init] Disabling right and middle mouse clicks"
       sed -i -e '/<mousebind button="Right"/,/<\/mousebind>/d' \
@@ -219,6 +223,10 @@ else
   if [[ "${DISABLE_CLOSE_BUTTON,,}" == "true" ]]; then
     echo "[ls.io-init] Disabling close button"
     sed -i '/<titleLayout>/s/C//' "$SYS_RC_XML"
+  fi
+  if [[ ${DISABLE_WINDOW_BUTTONS,,} == "true" ]]; then
+    echo "[ls.io-init] Disabling window buttons"
+    sed -i '/<titleLayout>/s/[IMC]//g' "$SYS_RC_XML"
   fi
   if [[ ${DISABLE_MOUSE_BUTTONS,,} == "true" ]]; then
     echo "[ls.io-init] Disabling right and middle mouse clicks"
