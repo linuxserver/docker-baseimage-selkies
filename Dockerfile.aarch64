@@ -101,6 +101,7 @@ ENV DISPLAY=:1 \
     SELKIES_ENABLE_BASIC_AUTH=false \
     SELKIES_VIDEO_STREAMING_MODE=false \
     SELKIES_ALLOWED_ORIGINS="*" \
+    SELKIES_RATE_CONTROL_MODE="crf,cbr" \
     SHELL=/bin/bash \
     TITLE=Selkies
 
@@ -263,17 +264,25 @@ RUN \
     --system-site-packages \
     /lsiopy && \
   echo "**** install pixelflux and pcmflux wheels ****" && \
-  PIXELFLUX_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/pixelflux/commits/main" \
-    | jq -r '.sha' | cut -c1-7) && \
-  PCMFLUX_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/pcmflux/commits/main" \
-    | jq -r '.sha' | cut -c1-7) && \
-  PIXELFLUX_VERSION=$(curl -s "https://raw.githubusercontent.com/selkies-project/pixelflux/${PIXELFLUX_COMMIT}/pixelflux/Cargo.toml" \
-    | awk -F'"' '/^version = /{print $2;exit}') && \
-  PCMFLUX_VERSION=$(curl -s "https://raw.githubusercontent.com/selkies-project/pcmflux/${PCMFLUX_COMMIT}/pcmflux/Cargo.toml" \
-    | awk -F'"' '/^version = /{print $2;exit}') && \
-  pip install \
-    https://github.com/selkies-project/pixelflux/releases/download/${PIXELFLUX_COMMIT}/pixelflux-${PIXELFLUX_VERSION}-cp314-cp314-manylinux_2_28_aarch64.whl \
-    https://github.com/selkies-project/pcmflux/releases/download/${PCMFLUX_COMMIT}/pcmflux-${PCMFLUX_VERSION}-cp314-cp314-manylinux_2_28_aarch64.whl && \
+  for PKG in pixelflux pcmflux; do \
+    WHEEL="" && \
+    for COMMIT in $(curl -sX GET "https://api.github.com/repos/selkies-project/${PKG}/commits?sha=main&per_page=5" \
+      | jq -r '.[].sha[0:7]'); do \
+      VERSION=$(curl -s "https://raw.githubusercontent.com/selkies-project/${PKG}/${COMMIT}/${PKG}/Cargo.toml" \
+        | awk -F'"' '/^version = /{print $2;exit}') && \
+      URL="https://github.com/selkies-project/${PKG}/releases/download/${COMMIT}/${PKG}-${VERSION}-cp314-cp314-manylinux_2_28_aarch64.whl" && \
+      if curl -sfILo /dev/null "${URL}"; then \
+        WHEEL="${URL}" && \
+        break; \
+      fi; \
+    done && \
+    if [ -z "${WHEEL}" ]; then \
+      echo "no ${PKG} wheel found in the last 5 commits" && \
+      exit 1; \
+    fi && \
+    WHEELS="${WHEELS} ${WHEEL}"; \
+  done && \
+  pip install ${WHEELS} && \
   pip install . && \
   pip install setuptools && \
   echo "**** install pelorus ****" && \
