@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# fd 3 is opened by svc-de/run and follows SELKIES_DEBUG, stay quiet without it
+[ -e /proc/self/fd/3 ] || exec 3>/dev/null
+
 # Start DE
 ulimit -c 0
 export XCURSOR_THEME=breeze_cursors
@@ -28,7 +31,7 @@ if [ "${PELORUS,,}" == "true" ]; then
       kill $ATSPI_PID
       kill $LABWC_PID
       kill $PELORUS_PID
-    ' > /dev/null 2>&1
+    ' >&3 2>&3
   else
     dbus-run-session bash -c '
       /usr/libexec/at-spi2-registryd &
@@ -38,11 +41,11 @@ if [ "${PELORUS,,}" == "true" ]; then
       labwc
       kill $ATSPI_PID
       kill $PELORUS_PID
-    ' > /dev/null 2>&1
+    ' >&3 2>&3
   fi
 else
   if [ "${SELKIES_DESKTOP,,}" == "true" ]; then
-    labwc > /dev/null 2>&1 &
+    labwc >&3 2>&3 &
     LABWC_PID=$!
     sleep 1
     export WAYLAND_DISPLAY=wayland-0
@@ -50,6 +53,6 @@ else
     selkies-desktop
     kill $LABWC_PID
   else
-    labwc > /dev/null 2>&1
+    labwc >&3 2>&3
   fi
 fi

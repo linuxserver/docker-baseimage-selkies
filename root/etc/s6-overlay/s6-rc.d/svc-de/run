@@ -1,5 +1,13 @@
 #!/usr/bin/with-contenv bash
 
+# session output goes to fd 3, opened here while still root because abc
+# cannot open /dev/stdout itself but inherits the descriptor
+if [[ "${SELKIES_DEBUG,,}" == "true" ]]; then
+  exec 3>&1
+else
+  exec 3>/dev/null
+fi
+
 # wayland entrypoint
 if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]]; then
   SOCKET_PATH="${XDG_RUNTIME_DIR}/${WAYLAND_DISPLAY:-wayland-1}"
