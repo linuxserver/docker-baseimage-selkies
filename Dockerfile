@@ -103,6 +103,7 @@ ENV DISPLAY=:1 \
     SELKIES_ENABLE_BASIC_AUTH=false \
     SELKIES_VIDEO_STREAMING_MODE=false \
     SELKIES_ALLOWED_ORIGINS="*" \
+    SELKIES_RATE_CONTROL_MODE="crf,cbr" \
     SHELL=/bin/bash \
     TITLE=Selkies
 
@@ -156,6 +157,8 @@ RUN \
     libjpeg-turbo \
     libnotify \
     libtasn1 \
+    libva-intel-driver \
+    libva-utils \
     libx11 \
     libxau \
     libxcb \

@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv bash
+
+# Folder setup
+mkdir -p /run/dbus
+chown abc:abc /run/dbus
+rm -f /run/dbus/pid
+chown messagebus:messagebus /run/dbus
+
+# Run dbus
+exec s6-setuidgid \
+  messagebus \
+  dbus-daemon \
+    --system \
+    --nofork \
+    --nosyslog > /dev/null 2>&1
