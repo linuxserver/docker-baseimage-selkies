@@ -46,7 +46,6 @@ fi
 
 # detect Intel i965 driver requirement for older GPUs (10th gen and lower)
 if [ "$(uname -m)" = "x86_64" ] \
-  && [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]] \
   && ! which nvidia-smi > /dev/null 2>&1; then
   ENCODING_DEVICE="${DRI_NODE:-}"
   if [ -z "${ENCODING_DEVICE}" ] && [[ "${AUTO_GPU,,}" == "true" ]]; then
