@@ -372,8 +372,8 @@ for pad_file in "${PAD_FILES[@]}"; do
   fi
 done
 
-# webcam setup
-if [[ -z ${NO_WEBCAM+x} ]] && [[ ! -e /dev/video0 ]] && { mknod /dev/video0 c 81 0 2>/dev/null || touch /dev/video0 2>/dev/null; }; then
+# webcam setup, a regular file at /dev/video0 is our own placeholder from an earlier init
+if [[ -z ${NO_WEBCAM+x} ]] && { [[ -f /dev/video0 ]] || { [[ ! -e /dev/video0 ]] && { mknod /dev/video0 c 81 0 2>/dev/null || touch /dev/video0 2>/dev/null; }; }; }; then
   chmod 777 /dev/video0
   printf "true" > /run/s6/container_environment/SELKIES_WEBCAM_ENABLED
   printf "true" > /run/s6/container_environment/SELKIES_UI_SIDEBAR_SHOW_WEBCAM
