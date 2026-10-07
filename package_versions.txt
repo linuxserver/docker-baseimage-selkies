@@ -89,7 +89,7 @@ docker-compose-plugin                                                         5.
 dpkg                                                                          1.23.7ubuntu1                           deb                         
 dunst                                                                         1.12.2-1build1                          deb                         
 e2fsprogs                                                                     1.47.2-3ubuntu4                         deb                         
-fastapi                                                                       0.142.2                                 python                      
+fastapi                                                                       0.142.3                                 python                      
 file                                                                          1:5.46-5build2                          deb                         
 findutils                                                                     4.10.0-3build2                          deb                         
 fontconfig                                                                    2.17.1-3ubuntu1                         deb                         
