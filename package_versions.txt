@@ -1040,7 +1040,7 @@ libxkbcommon-dev                                                              1.
 libxkbcommon-x11-0                                                            1.13.1-1                                deb                         
 libxkbcommon0                                                                 1.13.1-1                                deb                         
 libxkbfile1                                                                   1:1.1.0-1build5                         deb                         
-libxml2-16                                                                    2.15.2+dfsg-0.1ubuntu0.2                deb                         
+libxml2-16                                                                    2.15.2+dfsg-0.1ubuntu0.3                deb                         
 libxmlb2                                                                      0.3.24-2                                deb                         
 libxmu6                                                                       2:1.1.3-4                               deb                         
 libxmuu1                                                                      2:1.1.3-4                               deb                         
