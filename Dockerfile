@@ -100,7 +100,7 @@ FROM ghcr.io/linuxserver/baseimage-debian:kali
 ARG BUILD_DATE
 ARG VERSION
 ARG SELKIES_RELEASE=2.0.0
-ARG PIXELFLUX_RELEASE=2.1.0
+ARG PIXELFLUX_RELEASE=ae95506
 ARG PCMFLUX_RELEASE=2.1.0
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="thelamer"
@@ -281,7 +281,7 @@ RUN \
     --system-site-packages \
     /lsiopy && \
   pip install \
-    https://github.com/selkies-project/pixelflux/releases/download/${PIXELFLUX_RELEASE}/pixelflux-${PIXELFLUX_RELEASE}-cp314-cp314-manylinux_2_28_x86_64.whl \
+    https://github.com/thelamer/pixelflux/releases/download/${PIXELFLUX_RELEASE}/pixelflux-2.1.0-cp314-cp314-manylinux_2_28_x86_64.whl \
     https://github.com/selkies-project/pcmflux/releases/download/${PCMFLUX_RELEASE}/pcmflux-${PCMFLUX_RELEASE}-cp314-cp314-manylinux_2_28_x86_64.whl \
     https://github.com/selkies-project/selkies/releases/download/${SELKIES_RELEASE}/selkies-${SELKIES_RELEASE#v}-py3-none-any.whl && \
   pip install setuptools && \
