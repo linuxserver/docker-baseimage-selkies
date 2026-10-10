@@ -675,7 +675,7 @@ h11                                                                           0.
 harfbuzz                                                                      13.2.1-r0                               apk                         
 hexdump                                                                       2.42.3-r1                               apk                         
 httpcore                                                                      1.0.9                                   python                      
-httptools                                                                     0.8.0                                   python                      
+httptools                                                                     0.9.0                                   python                      
 httpx                                                                         0.28.1                                  python                      
 hwdata-pci                                                                    0.408-r0                                apk                         
 idna                                                                          3.20                                    python                      
