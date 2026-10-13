@@ -67,8 +67,6 @@ install_steam() {
     libasound2-plugins:i386 \
     libc6:i386 \
     libegl1:i386 \
-    libfakechroot:amd64 \
-    libfakechroot:i386 \
     libfontconfig1:i386 \
     libgbm1:i386 \
     libgl1:i386 \
@@ -126,7 +124,7 @@ SETTINGS
 }
 
 # bubblewrap stand in for containers without user namespaces
-export BWRAP="\${BWRAP:-\$HOME/.local/bin/proot-bwrap}"
+export BWRAP="\${BWRAP:-\$HOME/.local/bin/bwrap}"
 # 64 and 32 bit input interposers and fake udev for gamepads
 export LD_PRELOAD="${STEAM_PRELOAD}"
 

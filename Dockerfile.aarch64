@@ -330,13 +330,14 @@ RUN \
   curl -L https://github.com/linuxserver/proot-apps/releases/download/${PAPPS_RELEASE}/proot-apps-aarch64.tar.gz \
     | tar -xzf - -C /proot-apps/ && \
   echo "${PAPPS_RELEASE}" > /proot-apps/pversion && \
-  echo "**** proot-bwrap ****" && \
-  PROOT_BWRAP_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/proot-bwrap/commits/main" \
-    | jq -r '.sha') && \
+  echo "**** proot-next ****" && \
+  PROOT_NEXT_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/proot-next/commits/main" \
+    | jq -r '.sha[0:7]') && \
   curl -o \
-    /proot-apps/proot-bwrap -L \
-    "https://raw.githubusercontent.com/selkies-project/proot-bwrap/${PROOT_BWRAP_COMMIT}/proot-bwrap" && \
-  chmod +x /proot-apps/proot-bwrap && \
+    /proot-apps/proot -L \
+    "https://github.com/selkies-project/proot-next/releases/download/${PROOT_NEXT_RELEASE}/proot-aarch64" && \
+  chmod +x /proot-apps/proot && \
+  echo "${PROOT_NEXT_RELEASE}" > /proot-apps/proot-next-version && \
   echo "**** dind support ****" && \
   useradd -U dockremap && \
   usermod -G dockremap dockremap && \

@@ -281,10 +281,16 @@ if [ ! -f "$HOME/.local/bin/proot-apps" ]; then
 elif ! diff -q /proot-apps/pversion "$HOME/.local/bin/pversion" > /dev/null; then
   cp /proot-apps/* "$HOME/.local/bin/"
   proot_updated=true
-elif ! diff -q /proot-apps/proot-bwrap "$HOME/.local/bin/proot-bwrap" > /dev/null 2>&1; then
-  cp /proot-apps/proot-bwrap "$HOME/.local/bin/"
+elif ! diff -q /proot-apps/proot-next-version "$HOME/.local/bin/proot-next-version" > /dev/null 2>&1; then
+  cp /proot-apps/proot /proot-apps/proot-next-version "$HOME/.local/bin/"
   proot_updated=true
 fi
+# proot doubles as bubblewrap when launched as bwrap
+if [ "$(readlink "$HOME/.local/bin/bwrap" 2>/dev/null)" != "proot" ]; then
+  ln -sfn proot "$HOME/.local/bin/bwrap"
+  proot_updated=true
+fi
+rm -f "$HOME/.local/bin/proot-bwrap"
 if ! grep -qsF 'source <(proot-apps completion bash)' "$HOME/.bashrc"; then
   echo 'source <(proot-apps completion bash)' >> "$HOME/.bashrc"
   chown abc:abc "$HOME/.bashrc"
@@ -296,7 +302,7 @@ fi
 
 # bubblewrap stand in
 if [ -z ${BWRAP+x} ]; then
-  printf "$HOME/.local/bin/proot-bwrap" > /run/s6/container_environment/BWRAP
+  printf "$HOME/.local/bin/bwrap" > /run/s6/container_environment/BWRAP
 fi
 
 # steam shim
