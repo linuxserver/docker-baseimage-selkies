@@ -127,6 +127,9 @@ SETTINGS
 export BWRAP="\${BWRAP:-\$HOME/.local/bin/bwrap}"
 # 64 and 32 bit input interposers and fake udev for gamepads
 export LD_PRELOAD="${STEAM_PRELOAD}"
+if [ -z "\${SELKIES_JS_SOCKET_PATH}" ] && [ -n "\${XDG_RUNTIME_DIR}" ]; then
+  export SELKIES_JS_SOCKET_PATH="\${XDG_RUNTIME_DIR}"
+fi
 
 STEAM_ARGS=(-no-cef-sandbox)
 if [ -n "\${WAYLAND_DISPLAY}" ]; then
