@@ -281,9 +281,6 @@ if [ ! -f "$HOME/.local/bin/proot-apps" ]; then
 elif ! diff -q /proot-apps/pversion "$HOME/.local/bin/pversion" > /dev/null; then
   cp /proot-apps/* "$HOME/.local/bin/"
   proot_updated=true
-elif ! diff -q /proot-apps/proot-next-version "$HOME/.local/bin/proot-next-version" > /dev/null 2>&1; then
-  cp /proot-apps/proot /proot-apps/proot-next-version "$HOME/.local/bin/"
-  proot_updated=true
 fi
 # proot doubles as bubblewrap when launched as bwrap
 if [ "$(readlink "$HOME/.local/bin/bwrap" 2>/dev/null)" != "proot" ]; then

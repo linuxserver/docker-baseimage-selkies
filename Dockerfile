@@ -116,8 +116,7 @@ ENV DISPLAY=:1 \
     SELKIES_ENABLE_BASIC_AUTH=false \
     SELKIES_VIDEO_STREAMING_MODE=false \
     SELKIES_ALLOWED_ORIGINS="*" \
-    SELKIES_RATE_CONTROL_MODE="cbr,crf" \
-    SELKIES_VIDEO_BITRATE="12000" \
+    SELKIES_RATE_CONTROL_MODE="crf,cbr" \
     SHELL=/bin/bash \
     __GL_SYNC_TO_VBLANK=0 \
     TITLE=Selkies
@@ -351,14 +350,6 @@ RUN \
   curl -L https://github.com/linuxserver/proot-apps/releases/download/${PAPPS_RELEASE}/proot-apps-x86_64.tar.gz \
     | tar -xzf - -C /proot-apps/ && \
   echo "${PAPPS_RELEASE}" > /proot-apps/pversion && \
-  echo "**** proot-next ****" && \
-  PROOT_NEXT_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/proot-next/commits/main" \
-    | jq -r '.sha[0:7]') && \
-  curl -o \
-    /proot-apps/proot -L \
-    "https://github.com/selkies-project/proot-next/releases/download/${PROOT_NEXT_RELEASE}/proot-x86_64" && \
-  chmod +x /proot-apps/proot && \
-  echo "${PROOT_NEXT_RELEASE}" > /proot-apps/proot-next-version && \
   echo "**** steam icon ****" && \
   mkdir -p /usr/share/icons/hicolor/192x192/apps && \
   curl -o \
