@@ -37,7 +37,6 @@ rm -Rf "$HOME/.XDG"
 mkdir -p "$HOME/.XDG"
 chown abc:abc "$HOME/.XDG"
 printf "$HOME/.XDG" > /run/s6/container_environment/XDG_RUNTIME_DIR
-printf "$HOME/.XDG/selkies-cups/cups.sock" > /run/s6/container_environment/CUPS_SERVER
 
 # add games paths
 if [[ "${PATH}" != *"games"* ]]; then
@@ -66,6 +65,7 @@ if [[ ${HARDEN_DESKTOP,,} == "true" ]]; then
     printf "false" > /run/s6/container_environment/SELKIES_COMMAND_ENABLED
   fi
   if [ -z ${SELKIES_PRINTING_ENABLED+x} ]; then
+    export SELKIES_PRINTING_ENABLED="false"
     printf "false" > /run/s6/container_environment/SELKIES_PRINTING_ENABLED
   fi
   if [ -z ${SELKIES_UI_SIDEBAR_SHOW_FILES+x} ]; then
@@ -75,6 +75,10 @@ if [[ ${HARDEN_DESKTOP,,} == "true" ]]; then
     printf "false" > /run/s6/container_environment/SELKIES_UI_SIDEBAR_SHOW_APPS
   fi
 fi
+if [ -z "${CUPS_SERVER}" ] && [[ "${SELKIES_PRINTING_ENABLED,,}" != "false" ]]; then
+  printf "$HOME/.XDG/selkies-cups/cups.sock" > /run/s6/container_environment/CUPS_SERVER
+fi
+
 # upstream selkies now defaults command websocket messages to off, the
 # dashboard apps/launcher section depends on them so enable when not hardened
 if [[ ${HARDEN_DESKTOP,,} != "true" ]] && [ -z ${SELKIES_COMMAND_ENABLED+x} ]; then
