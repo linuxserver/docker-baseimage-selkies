@@ -32,7 +32,7 @@ bsdutils                                                                      1:
 bubblewrap                                                                    0.11.1-1ubuntu0.3                      deb                         
 ca-certificates                                                               20260601~26.04.1                       deb                         
 catatonit                                                                     0.2.1-2build1                          deb                         
-certifi                                                                       2026.7.22                              python                      
+certifi                                                                       2026.10.18                             python                      
 cffi                                                                          2.1.1                                  python                      
 click                                                                         8.5.0                                  python                      
 cloud.google.com/go/auth                                                      v0.20.0                                go-module                   
@@ -89,7 +89,7 @@ docker-compose-plugin                                                         5.
 dpkg                                                                          1.23.7ubuntu1                          deb                         
 dunst                                                                         1.12.2-1build1                         deb                         
 e2fsprogs                                                                     1.47.2-3ubuntu4                        deb                         
-fastapi                                                                       0.143.3                                python                      
+fastapi                                                                       0.147.0                                python                      
 file                                                                          1:5.46-5build2                         deb                         
 findutils                                                                     4.10.0-3build2                         deb                         
 fontconfig                                                                    2.17.1-3ubuntu1                        deb                         
@@ -1063,7 +1063,7 @@ pulsectl-asyncio                                                              1.
 pycparser                                                                     3.11                                   python                      
 pydantic                                                                      2.14.1                                 python                      
 pydantic-core                                                                 2.50.1                                 python                      
-pyee                                                                          14.0.0                                 python                      
+pyee                                                                          15.0.0                                 python                      
 pygobject                                                                     3.56.2                                 python                      
 pyjwt                                                                         2.10.1                                 python                      
 pylibsrtp                                                                     1.0.0                                  python                      
@@ -1125,7 +1125,7 @@ sigs.k8s.io/structured-merge-diff/v6                                          v6
 sigs.k8s.io/yaml                                                              v1.6.0                                 go-module  (+3 duplicates)  
 software-properties-common                                                    0.120.1                                deb                         
 ssl-cert                                                                      1.1.3ubuntu2                           deb                         
-starlette                                                                     1.8.0                                  python                      
+starlette                                                                     1.9.0                                  python                      
 stdlib                                                                        go1.26.8                               go-module  (+1 duplicate)   
 stdlib                                                                        go1.26.9                               go-module  (+2 duplicates)  
 stdlib                                                                        go1.27.1                               go-module                   
