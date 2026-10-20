@@ -8,6 +8,9 @@ if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]];then
   DEF_RC="/defaults/labwc.xml"
   if [[ "${PELORUS,,}" == "true" ]]; then
     printf "5000" > /run/s6/container_environment/PIXELFLUX_CU
+    if [ -z "${PIXELFLUX_CU_TOKEN}" ]; then
+      printf "%s" "$(openssl rand -hex 32)" > /run/s6/container_environment/PIXELFLUX_CU_TOKEN
+    fi
     printf "/pelorus" > /run/s6/container_environment/ROOT_PATH
   fi
 else
@@ -329,8 +332,6 @@ fi
 
 # js setup
 mkdir -pm1777 /dev/input
-touch /tmp/selkies_js.log
-chmod 777 /tmp/selkies*
 if [[ -z ${NO_GAMEPAD+x} ]] && mknod /dev/input/js0 c 13 0; then
   printf "/usr/lib/selkies_input_interposer.so:/opt/lib/libudev.so.1.0.0-fake" > /run/s6/container_environment/LD_PRELOAD
   mknod /dev/input/js1 c 13 1
