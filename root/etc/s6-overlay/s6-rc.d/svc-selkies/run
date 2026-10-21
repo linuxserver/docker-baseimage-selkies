@@ -45,28 +45,20 @@ if [ ! -z ${DEV_MODE+x} ]; then
       g++ \
       gcc \
       git \
-      libavcodec-dev \
-      libavdevice-dev \
-      libavformat-dev \
-      libavformat-dev \
-      libavutil-dev \
+      libclang-dev \
+      libdav1d-dev \
+      libde265-dev \
       libdrm-dev \
-      libev-dev \
       libgbm-dev \
       libinput-dev \
-      libjpeg-dev \
       libpixman-1-dev \
-      libsystemd-dev \
-      libva-dev \
+      libsvtav1enc-dev \
+      libudev-dev \
+      libvpx-dev \
       libwayland-dev \
-      libx11-dev \
       libx264-dev \
-      libxcomposite-dev \
-      libxcursor-dev \
-      libxext-dev \
-      libxfixes-dev \
+      libx265-dev \
       libxkbcommon-dev \
-      libyuv-dev \
       make \
       nasm \
       python3-dev \

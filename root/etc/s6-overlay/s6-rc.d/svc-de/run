@@ -47,7 +47,6 @@ else
   xrdb "${HOME}/.Xresources"
 fi
 chown abc:abc "${HOME}/.Xresources"
-chmod 777 /tmp/selkies*
 
 # run
 cd $HOME
