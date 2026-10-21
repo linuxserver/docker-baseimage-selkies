@@ -88,7 +88,7 @@ dunst                                                                         1.
 exim4-base                                                                    4.98.2-1+deb13u5                       deb                         
 exim4-config                                                                  4.98.2-1+deb13u5                       deb                         
 exim4-daemon-light                                                            4.98.2-1+deb13u5                       deb                         
-fastapi                                                                       0.157.0                                python                      
+fastapi                                                                       0.159.1                                python                      
 file                                                                          1:5.46-5                               deb                         
 findutils                                                                     4.10.0-3                               deb                         
 firmware-amd-graphics                                                         20250410-2                             deb                         
