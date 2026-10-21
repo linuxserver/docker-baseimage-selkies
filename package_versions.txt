@@ -80,7 +80,7 @@ eglexternalplatform                                                           1.
 elfutils                                                                      0.197-1                               alpm                           
 expat                                                                         2.9.0-1                               alpm                           
 fakeroot                                                                      1:1.37.2-3                            alpm                           
-fastapi                                                                       0.157.0                               python                         
+fastapi                                                                       0.159.1                               python                         
 fcft                                                                          3.3.3-1                               alpm                           
 fftw                                                                          3.3.11-1                              alpm                           
 file                                                                          5.48-1                                alpm                           
@@ -332,7 +332,7 @@ imlib2                                                                        1.
 inetutils                                                                     2.8-1                                 alpm                           
 intel-gmmlib                                                                  22.10.0-1                             alpm                           
 intel-media-driver                                                            26.3.5-1                              alpm                           
-iproute2                                                                      7.2.0-1                               alpm                           
+iproute2                                                                      7.3.0-1                               alpm                           
 iptables                                                                      1:1.8.13-1                            alpm                           
 iso-codes                                                                     4.20.1-1                              alpm                           
 jansson                                                                       2.15.1-1                              alpm                           
