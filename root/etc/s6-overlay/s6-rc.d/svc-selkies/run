@@ -42,25 +42,16 @@ if [ ! -z ${DEV_MODE+x} ]; then
       clang20-libclang \
       cmake \
       curl \
+      dav1d-dev \
       eudev-dev \
-      ffmpeg-dev \
       g++ \
       gcc \
       git \
-      jpeg-dev \
+      libde265-dev \
       libdrm-dev \
-      libev-dev \
       libinput-dev \
-      libjpeg-turbo-dev \
-      libva-dev \
-      libx11-dev \
-      libxcomposite-dev \
-      libxcursor-dev \
-      libxext-dev \
-      libxfixes-dev \
+      libvpx-dev \
       libxkbcommon-dev \
-      libyuv \
-      libyuv-dev \
       make \
       mesa-dev \
       musl-dev \
@@ -72,8 +63,10 @@ if [ ! -z ${DEV_MODE+x} ]; then
       py3-wheel \
       python3-dev \
       rust \
+      svt-av1-dev \
       wayland-dev \
-      x264-dev 
+      x264-dev \
+      x265-dev
     # Run backend watcher
     chown -R abc:abc /lsiopy
     cd /config/src
