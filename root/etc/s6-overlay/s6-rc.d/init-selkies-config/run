@@ -8,6 +8,9 @@ if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]];then
   DEF_RC="/defaults/labwc.xml"
   if [[ "${PELORUS,,}" == "true" ]]; then
     printf "5000" > /run/s6/container_environment/PIXELFLUX_CU
+    if [ -z "${PIXELFLUX_CU_TOKEN}" ]; then
+      printf "%s" "$(openssl rand -hex 32)" > /run/s6/container_environment/PIXELFLUX_CU_TOKEN
+    fi
     printf "/pelorus" > /run/s6/container_environment/ROOT_PATH
   fi
 else
@@ -37,7 +40,6 @@ rm -Rf "$HOME/.XDG"
 mkdir -p "$HOME/.XDG"
 chown abc:abc "$HOME/.XDG"
 printf "$HOME/.XDG" > /run/s6/container_environment/XDG_RUNTIME_DIR
-printf "$HOME/.XDG/selkies-cups/cups.sock" > /run/s6/container_environment/CUPS_SERVER
 
 # add games paths
 if [[ "${PATH}" != *"games"* ]]; then
@@ -66,6 +68,7 @@ if [[ ${HARDEN_DESKTOP,,} == "true" ]]; then
     printf "false" > /run/s6/container_environment/SELKIES_COMMAND_ENABLED
   fi
   if [ -z ${SELKIES_PRINTING_ENABLED+x} ]; then
+    export SELKIES_PRINTING_ENABLED="false"
     printf "false" > /run/s6/container_environment/SELKIES_PRINTING_ENABLED
   fi
   if [ -z ${SELKIES_UI_SIDEBAR_SHOW_FILES+x} ]; then
@@ -75,6 +78,10 @@ if [[ ${HARDEN_DESKTOP,,} == "true" ]]; then
     printf "false" > /run/s6/container_environment/SELKIES_UI_SIDEBAR_SHOW_APPS
   fi
 fi
+if [ -z "${CUPS_SERVER}" ] && [[ "${SELKIES_PRINTING_ENABLED,,}" != "false" ]]; then
+  printf "$HOME/.XDG/selkies-cups/cups.sock" > /run/s6/container_environment/CUPS_SERVER
+fi
+
 # upstream selkies now defaults command websocket messages to off, the
 # dashboard apps/launcher section depends on them so enable when not hardened
 if [[ ${HARDEN_DESKTOP,,} != "true" ]] && [ -z ${SELKIES_COMMAND_ENABLED+x} ]; then
@@ -281,10 +288,13 @@ if [ ! -f "$HOME/.local/bin/proot-apps" ]; then
 elif ! diff -q /proot-apps/pversion "$HOME/.local/bin/pversion" > /dev/null; then
   cp /proot-apps/* "$HOME/.local/bin/"
   proot_updated=true
-elif ! diff -q /proot-apps/proot-bwrap "$HOME/.local/bin/proot-bwrap" > /dev/null 2>&1; then
-  cp /proot-apps/proot-bwrap "$HOME/.local/bin/"
+fi
+# proot doubles as bubblewrap when launched as bwrap
+if [ "$(readlink "$HOME/.local/bin/bwrap" 2>/dev/null)" != "proot" ]; then
+  ln -sfn proot "$HOME/.local/bin/bwrap"
   proot_updated=true
 fi
+rm -f "$HOME/.local/bin/proot-bwrap"
 if ! grep -qsF 'source <(proot-apps completion bash)' "$HOME/.bashrc"; then
   echo 'source <(proot-apps completion bash)' >> "$HOME/.bashrc"
   chown abc:abc "$HOME/.bashrc"
@@ -296,7 +306,7 @@ fi
 
 # bubblewrap stand in
 if [ -z ${BWRAP+x} ]; then
-  printf "$HOME/.local/bin/proot-bwrap" > /run/s6/container_environment/BWRAP
+  printf "$HOME/.local/bin/bwrap" > /run/s6/container_environment/BWRAP
 fi
 
 # steam shim
@@ -322,8 +332,6 @@ fi
 
 # js setup
 mkdir -pm1777 /dev/input
-touch /tmp/selkies_js.log
-chmod 777 /tmp/selkies*
 if [[ -z ${NO_GAMEPAD+x} ]] && mknod /dev/input/js0 c 13 0; then
   printf "/usr/lib/selkies_input_interposer.so:/opt/lib/libudev.so.1.0.0-fake" > /run/s6/container_environment/LD_PRELOAD
   mknod /dev/input/js1 c 13 1
