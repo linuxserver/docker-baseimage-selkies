@@ -43,24 +43,20 @@ if [ ! -z ${DEV_MODE+x} ]; then
       gcc-c++ \
       gcc \
       git \
-      ffmpeg-devel \
+      clang-devel \
+      libdav1d-devel \
+      libde265-devel \
       libdrm-devel \
-      libev-devel \
       mesa-libgbm-devel \
       libinput-devel \
-      libjpeg-turbo-devel \
       pixman-devel \
+      svt-av1-devel \
       systemd-devel \
-      libva-devel \
+      libvpx-devel \
       wayland-devel \
-      libX11-devel \
       x264-devel \
-      libXcomposite-devel \
-      libXcursor-devel \
-      libXext-devel \
-      libXfixes-devel \
+      x265-devel \
       libxkbcommon-devel \
-      libyuv-devel \
       make \
       nasm \
       python3-devel \

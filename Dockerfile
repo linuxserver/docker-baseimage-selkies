@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM ghcr.io/linuxserver/baseimage-alpine:3.24 AS frontend
 
-ARG SELKIES_RELEASE=2.0.0
+ARG SELKIES_RELEASE=2.1.0
 
 RUN \
   echo "**** install build packages ****" && \
@@ -40,7 +40,7 @@ RUN \
 
 FROM ghcr.io/linuxserver/baseimage-fedora:44 AS interposers
 
-ARG SELKIES_RELEASE=2.0.0
+ARG SELKIES_RELEASE=2.1.0
 
 RUN \
   echo "**** interposer build deps ****" && \
@@ -103,9 +103,9 @@ FROM ghcr.io/linuxserver/baseimage-fedora:44
 # set version label
 ARG BUILD_DATE
 ARG VERSION
-ARG SELKIES_RELEASE=2.0.0
-ARG PIXELFLUX_RELEASE=ae95506
-ARG PCMFLUX_RELEASE=2.1.0
+ARG SELKIES_RELEASE=2.1.0
+ARG PIXELFLUX_RELEASE=2.2.1
+ARG PCMFLUX_RELEASE=2.2.0
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="thelamer"
 
@@ -275,7 +275,7 @@ RUN \
     --system-site-packages \
     /lsiopy && \
   pip install \
-    https://github.com/thelamer/pixelflux/releases/download/${PIXELFLUX_RELEASE}/pixelflux-2.1.0-cp314-cp314-manylinux_2_28_x86_64.whl \
+    https://github.com/selkies-project/pixelflux/releases/download/${PIXELFLUX_RELEASE}/pixelflux-${PIXELFLUX_RELEASE}-cp314-cp314-manylinux_2_28_x86_64.whl \
     https://github.com/selkies-project/pcmflux/releases/download/${PCMFLUX_RELEASE}/pcmflux-${PCMFLUX_RELEASE}-cp314-cp314-manylinux_2_28_x86_64.whl \
     https://github.com/selkies-project/selkies/releases/download/${SELKIES_RELEASE}/selkies-${SELKIES_RELEASE#v}-py3-none-any.whl && \
   pip install setuptools && \
@@ -321,13 +321,6 @@ RUN \
   curl -L https://github.com/linuxserver/proot-apps/releases/download/${PAPPS_RELEASE}/proot-apps-x86_64.tar.gz \
     | tar -xzf - -C /proot-apps/ && \
   echo "${PAPPS_RELEASE}" > /proot-apps/pversion && \
-  echo "**** proot-bwrap ****" && \
-  PROOT_BWRAP_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/proot-bwrap/commits/main" \
-    | jq -r '.sha') && \
-  curl -o \
-    /proot-apps/proot-bwrap -L \
-    "https://raw.githubusercontent.com/selkies-project/proot-bwrap/${PROOT_BWRAP_COMMIT}/proot-bwrap" && \
-  chmod +x /proot-apps/proot-bwrap && \
   echo "**** steam icon ****" && \
   mkdir -p /usr/share/icons/hicolor/192x192/apps && \
   curl -o \
