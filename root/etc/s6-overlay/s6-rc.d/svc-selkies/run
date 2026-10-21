@@ -42,24 +42,19 @@ if [ ! -z ${DEV_MODE+x} ]; then
       curl \
       gcc \
       git \
-      ffmpeg \
+      dav1d \
+      libde265 \
       libdrm \
-      libev \
       mesa \
       libinput \
-      libjpeg-turbo \
       pixman \
+      svt-av1 \
       systemd-libs \
-      libva \
+      libvpx \
       wayland \
-      libx11 \
       x264 \
-      libxcomposite \
-      libxcursor \
-      libxext \
-      libxfixes \
+      x265 \
       libxkbcommon \
-      libyuv \
       make \
       nasm \
       python \

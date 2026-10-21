@@ -4,10 +4,6 @@
 
 LOCKFILE="/var/lib/selkies/steam-installed"
 STEAM_PRELOAD="/usr/lib/selkies_input_interposer.so:/usr/lib/libudev.so.1.0.0-fake:/usr/lib/selkies_input_interposer_32.so:/usr/lib/libudev.so.1.0.0-fake_32"
-# proot-bwrap only probes debian multiarch paths for libfakechroot.so, which it
-# needs to run steamwebhelper (proot is too slow for it to start in time)
-FAKECHROOT_LIB="/usr/lib/libfakeroot/fakechroot/libfakechroot.so"
-FAKECHROOT_LINK="/usr/local/lib/x86_64-linux-gnu/fakechroot/libfakechroot.so"
 ACTION="${1:-}"
 
 # Keep the terminal readable when launched from the dashboard
@@ -61,15 +57,11 @@ install_steam() {
     as_root rm -f /usr/bin/steam
   fi
   as_root pacman -Sy --noconfirm --needed \
-    fakechroot \
     lib32-mesa \
     lib32-vulkan-intel \
     lib32-vulkan-radeon \
     steam \
     ttf-liberation || fail "could not install the steam package"
-  echo "**** expose fakechroot to proot-bwrap ****"
-  as_root mkdir -p "$(dirname "${FAKECHROOT_LINK}")"
-  as_root ln -sfn "${FAKECHROOT_LIB}" "${FAKECHROOT_LINK}"
   echo "**** install 32 bit interposer libs ****"
   as_root cp /opt/lib/libudev.so.1.0.0-fake /opt/lib/libudev.so.1.0.0-fake_32 /usr/lib/
   as_root ldconfig
@@ -104,9 +96,12 @@ SETTINGS
 }
 
 # bubblewrap stand in for containers without user namespaces
-export BWRAP="\${BWRAP:-\$HOME/.local/bin/proot-bwrap}"
+export BWRAP="\${BWRAP:-\$HOME/.local/bin/bwrap}"
 # 64 and 32 bit input interposers and fake udev for gamepads
 export LD_PRELOAD="${STEAM_PRELOAD}"
+if [ -z "\${SELKIES_JS_SOCKET_PATH}" ] && [ -n "\${XDG_RUNTIME_DIR}" ]; then
+  export SELKIES_JS_SOCKET_PATH="\${XDG_RUNTIME_DIR}"
+fi
 
 STEAM_ARGS=(-no-cef-sandbox)
 if [ -n "\${WAYLAND_DISPLAY}" ]; then
@@ -144,7 +139,6 @@ remove_steam() {
     as_root rm -f /usr/bin/steam
     as_root mv /usr/bin/steam.distrib /usr/bin/steam
   fi
-  as_root rm -f "${FAKECHROOT_LINK}"
   echo "**** remove steam package ****"
   # Deps, the multilib repo and the user's steam data are left in place
   as_root pacman -Rn --noconfirm steam || fail "could not remove the steam package"
