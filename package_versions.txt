@@ -43,13 +43,13 @@ busybox                                                                       1:
 bzip2                                                                         1.0.8-23.fc44                                      rpm                         
 bzip2-devel                                                                   1.0.8-23.fc44                                      rpm                         
 bzip2-libs                                                                    1.0.8-23.fc44                                      rpm                         
-ca-certificates                                                               2026.2.92_v9.0.319-1.fc44                          rpm                         
+ca-certificates                                                               2026.2.92_v9.0.319-2.fc44                          rpm                         
 cairo                                                                         1.18.6-1.fc44                                      rpm                         
 cairo-devel                                                                   1.18.6-1.fc44                                      rpm                         
 cairo-gobject                                                                 1.18.6-1.fc44                                      rpm                         
 catatonit                                                                     0.2.1-5.fc44                                       rpm                         
 cdparanoia-libs                                                               10.2-50.fc44                                       rpm                         
-certifi                                                                       2026.10.19                                         python                      
+certifi                                                                       2026.10.23                                         python                      
 cffi                                                                          2.0.0                                              python                      
 click                                                                         8.5.0                                              python                      
 cloud.google.com/go/auth                                                      v0.20.0                                            go-module                   
@@ -113,7 +113,7 @@ elfutils-libelf                                                               0.
 elfutils-libs                                                                 0.196-1.fc44                                       rpm                         
 emacs-filesystem                                                              1:30.2-2.fc44                                      rpm                         
 expat                                                                         2.8.5-1.fc44                                       rpm                         
-fastapi                                                                       0.159.1                                            python                      
+fastapi                                                                       0.162.0                                            python                      
 fcft                                                                          3.3.3-2.fc44                                       rpm                         
 fdk-aac                                                                       2.0.3-6.fc44                                       rpm                         
 fedora-gpg-keys                                                               44-2                                               rpm                         
