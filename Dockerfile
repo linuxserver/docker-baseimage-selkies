@@ -350,6 +350,14 @@ RUN \
   curl -L https://github.com/linuxserver/proot-apps/releases/download/${PAPPS_RELEASE}/proot-apps-x86_64.tar.gz \
     | tar -xzf - -C /proot-apps/ && \
   echo "${PAPPS_RELEASE}" > /proot-apps/pversion && \
+  echo "**** selkies-desktop ****" && \
+  DESKTOP_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies-desktop/commits/main" \
+    | jq -r '.sha[0:7]') && \
+  curl -fo \
+    /usr/bin/selkies-desktop -L \
+    "https://github.com/selkies-project/selkies-desktop/releases/download/${DESKTOP_COMMIT}/selkies-desktop-x86_64" && \
+  chmod 755 /usr/bin/selkies-desktop && \
+  echo "${DESKTOP_COMMIT}" > /usr/share/selkies/desktop-version && \
   echo "**** steam icon ****" && \
   mkdir -p /usr/share/icons/hicolor/192x192/apps && \
   curl -o \
@@ -392,7 +400,6 @@ COPY --from=frontend /buildout /usr/share/selkies
 COPY --from=interposers /buildout /
 COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-ubunturesolute-xvfb / /
 COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-ubunturesolute-wtype / /
-COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-ubunturesolute-selkies-desktop / /
 COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-ubunturesolute-labwc / /
 
 # ports and volumes
