@@ -29,9 +29,9 @@ breeze-cursor-theme                                                           4:
 bsdextrautils                                                                 2.42.4-1                               deb                         
 bsdutils                                                                      1:2.42.4-1                             deb                         
 bubblewrap                                                                    0.13.0-1                               deb                         
-ca-certificates                                                               20260816                               deb                         
+ca-certificates                                                               20260816+nmu1                          deb                         
 catatonit                                                                     0.2.1-2+b31                            deb                         
-certifi                                                                       2026.10.19                             python                      
+certifi                                                                       2026.10.23                             python                      
 cffi                                                                          2.1.1                                  python                      
 cli                                                                           UNKNOWN                                binary                      
 cli-32                                                                        UNKNOWN                                binary                      
@@ -88,7 +88,7 @@ docker-ce-cli                                                                 5:
 docker-compose-plugin                                                         5.6.1-1~debian.12~bookworm             deb                         
 dpkg                                                                          1.23.11+kali1                          deb                         
 dunst                                                                         1.13.2-1                               deb                         
-fastapi                                                                       0.159.1                                python                      
+fastapi                                                                       0.162.0                                python                      
 file                                                                          1:5.47-4                               deb                         
 findutils                                                                     4.11.0-2                               deb                         
 firmware-amd-graphics                                                         20260810-1                             deb                         
@@ -544,7 +544,7 @@ httpx                                                                         0.
 i965-va-driver-shaders                                                        2.4.1-2                                deb                         
 idna                                                                          3.20                                   python                      
 importlib-metadata                                                            8.7.1                                  python                      
-init-system-helpers                                                           1.69+nmu1+kali1                        deb                         
+init-system-helpers                                                           1.69+nmu3+kali1                        deb                         
 intel-media-va-driver-non-free                                                26.2.4+ds1-1                           deb                         
 iproute2                                                                      7.2.0-1                                deb                         
 iptables                                                                      1.8.13-1                               deb                         
@@ -1037,7 +1037,7 @@ pulseaudio                                                                    17
 pulseaudio-utils                                                              17.0+dfsg1-3                           deb                         
 pulsectl                                                                      24.12.0                                python                      
 pulsectl-asyncio                                                              1.3.2                                  python                      
-pycparser                                                                     3.11                                   python                      
+pycparser                                                                     3.12                                   python                      
 pydantic                                                                      2.14.1                                 python                      
 pydantic-core                                                                 2.50.1                                 python                      
 pyee                                                                          15.0.0                                 python                      
@@ -1051,7 +1051,7 @@ python-apt-common                                                             3.
 python-dotenv                                                                 1.2.4                                  python                      
 python3                                                                       3.14.7-3                               deb                         
 python3-apt                                                                   3.1.0+b1                               deb                         
-python3-bcrypt                                                                5.0.0-6+b1                             deb                         
+python3-bcrypt                                                                5.0.0-8                                deb                         
 python3-blinker                                                               1.9.0-2                                deb                         
 python3-cffi-backend                                                          2.1.1-1+b1                             deb                         
 python3-cryptography                                                          49.0.0-2                               deb                         
@@ -1104,7 +1104,7 @@ tar                                                                           1.
 tomli                                                                         2.4.0                                  python                      
 typing-extensions                                                             4.16.0                                 python                      
 typing-inspection                                                             0.4.4                                  python                      
-tzdata                                                                        2026c-1                                deb                         
+tzdata                                                                        2026e-1                                deb                         
 udev                                                                          262-1                                  deb                         
 user-session-migration                                                        0.5.2                                  deb                         
 util-linux                                                                    2.42.4-1                               deb                         
