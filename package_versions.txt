@@ -80,7 +80,7 @@ eglexternalplatform                                                           1.
 elfutils                                                                      0.197-1                               alpm                           
 expat                                                                         2.9.0-1                               alpm                           
 fakeroot                                                                      1:1.37.2-3                            alpm                           
-fastapi                                                                       0.161.1                               python                         
+fastapi                                                                       0.162.0                               python                         
 fcft                                                                          3.3.3-1                               alpm                           
 fftw                                                                          3.3.11-1                              alpm                           
 file                                                                          5.48-1                                alpm                           
@@ -255,7 +255,7 @@ github.com/vishvananda/netlink                                                v1
 github.com/vishvananda/netns                                                  v0.0.5                                go-module     (+1 duplicate)   
 github.com/x448/float16                                                       v0.8.4                                go-module     (+1 duplicate)   
 github.com/xhit/go-str2duration/v2                                            v2.1.0                                go-module                      
-glib-networking                                                               1:2.90.0-1                            alpm                           
+glib-networking                                                               1:2.90.1-1                            alpm                           
 glib2                                                                         2.90.1-1                              alpm                           
 glibc                                                                         2.44+r50+g1848099f063e-1              alpm                           
 glycin                                                                        2.2.4-1                               alpm                           
@@ -442,14 +442,14 @@ libproxy                                                                      0.
 libpsl                                                                        0.21.5-2                              alpm                           
 libpulse                                                                      17.0+r134+g77d25a1e6-1                alpm                           
 libquadmath                                                                   16.2.1+r23+gd564253eb6c8-1            alpm                           
-librsvg                                                                       2:2.63.3-1                            alpm                           
+librsvg                                                                       2:2.63.4-1                            alpm                           
 libsasl                                                                       2.1.28-5                              alpm                           
 libseccomp                                                                    2.6.0-1                               alpm                           
 libsecret                                                                     0.21.8.2-1                            alpm                           
 libsfdo                                                                       0.1.4-1                               alpm                           
 libsm                                                                         1.2.6-1                               alpm                           
 libsndfile                                                                    1.2.2-4                               alpm                           
-libsoup3                                                                      3.8.0-1                               alpm                           
+libsoup3                                                                      3.8.1-1                               alpm                           
 libsoxr                                                                       0.1.3-5                               alpm                           
 libssh2                                                                       1.11.1-7                              alpm                           
 libstdc++                                                                     16.2.1+r23+gd564253eb6c8-1            alpm                           
@@ -509,7 +509,7 @@ libxv                                                                         1.
 libxvmc                                                                       1.0.15-1                              alpm                           
 libxxf86vm                                                                    1.1.7-1                               alpm                           
 linux-api-headers                                                             7.3-1                                 alpm                           
-llvm-libs                                                                     23.1.3-4                              alpm                           
+llvm-libs                                                                     23.1.4-1                              alpm                           
 lm_sensors                                                                    1:3.6.2-1                             alpm                           
 lmdb                                                                          0.9.35-1                              alpm                           
 lua54                                                                         5.4.9-1                               alpm                           
@@ -526,9 +526,9 @@ more-itertools                                                                11
 mpdecimal                                                                     4.0.1-3                               alpm                           
 mpfr                                                                          4.2.2-1                               alpm                           
 mpg123                                                                        1.33.7-1                              alpm                           
-msgpack                                                                       1.2.3                                 python                         
+msgpack                                                                       1.2.4                                 python                         
 mtdev                                                                         1.1.7-1                               alpm                           
-multidict                                                                     7.1.0                                 python                         
+multidict                                                                     7.2.1                                 python                         
 ncurses                                                                       6.6-2                                 alpm                           
 nettle                                                                        4.0-1                                 alpm                           
 nftables                                                                      0.1                                   python                         
@@ -560,7 +560,7 @@ pacman-mirrorlist                                                             20
 pam                                                                           1.7.3-1                               alpm                           
 pambase                                                                       20260616-1                            alpm                           
 pango                                                                         1:1.58.2-1                            alpm                           
-patch                                                                         2.8-1                                 alpm                           
+patch                                                                         2.8.1-1                               alpm                           
 pciutils                                                                      3.15.0-1                              alpm                           
 pcmflux                                                                       2.2.0                                 python                         
 pcre2                                                                         10.49-1                               alpm                           
@@ -589,7 +589,7 @@ pulsectl-asyncio                                                              1.
 pycparser                                                                     3.12                                  python                         
 pydantic                                                                      2.14.1                                python                         
 pydantic-core                                                                 2.50.1                                python                         
-pyee                                                                          15.0.0                                python                         
+pyee                                                                          16.0.0                                python                         
 pygobject                                                                     3.58.1                                python                         
 pylibsrtp                                                                     1.0.0                                 python                         
 pyopenssl                                                                     26.4.0                                python                         
@@ -630,7 +630,7 @@ spirv-tools                                                                   1:
 sqlite                                                                        3.54.0-1                              alpm                           
 st                                                                            0.9.3-1                               alpm                           
 st-debug                                                                      0.9.3-1                               alpm                           
-starlette                                                                     1.9.0                                 python                         
+starlette                                                                     1.10.0                                python                         
 startup-notification                                                          0.12-9                                alpm                           
 stdlib                                                                        go1.26.1-X:nodwarf5                   go-module                      
 stdlib                                                                        go1.27.1-X:nodwarf5                   go-module                      
