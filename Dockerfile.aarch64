@@ -222,7 +222,10 @@ RUN \
     zlib \
     zstd && \
   pacman -Sy --noconfirm \
-    glibc && \
+    glib2 \
+    glibc \
+    glibc-locales \
+    libsecret && \
   echo "**** user perms ****" && \
   echo "abc:abc" | chpasswd && \
   usermod -s /bin/bash abc && \
@@ -305,10 +308,7 @@ RUN \
     https://raw.githubusercontent.com/moby/moby/master/hack/dind && \
   chmod +x /usr/local/bin/dind && \
   usermod -aG docker abc && \
-  echo "**** configure locale and nginx ****" && \
-  for LOCALE in $(curl -sL https://raw.githubusercontent.com/thelamer/lang-stash/master/langs); do \
-    localedef -i $LOCALE -f UTF-8 $LOCALE.UTF-8; \
-  done && \
+  echo "**** configure nginx ****" && \
   sed -i '$d' /etc/nginx/nginx.conf && \
   echo "include /etc/nginx/conf.d/*;}" >> /etc/nginx/nginx.conf && \
   mkdir -p /etc/nginx/conf.d && \
