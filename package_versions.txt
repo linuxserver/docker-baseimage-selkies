@@ -381,7 +381,7 @@ libcap-ng                                                                     0.
 libcloudproviders                                                             0.4.1-1                               alpm                           
 libcolord                                                                     1.4.8-2                               alpm                           
 libcups                                                                       2:2.4.20-1                            alpm                           
-libcupsfilters                                                                2.2.1.r32.gd49e9284-1                 alpm                           
+libcupsfilters                                                                2.2.1.r57.g9fcc4bf4-1                 alpm                           
 libdaemon                                                                     0.14-6                                alpm                           
 libdatrie                                                                     0.2.14-1                              alpm                           
 libdecor                                                                      0.2.5-1                               alpm                           
@@ -566,7 +566,7 @@ pciutils                                                                      3.
 pcmflux                                                                       2.2.0                                 python                         
 pcre2                                                                         10.49-1                               alpm                           
 pcsclite                                                                      2.5.3-1                               alpm                           
-pdfio                                                                         1.6.5-1                               alpm                           
+pdfio                                                                         1.6.6-1                               alpm                           
 pelorus                                                                       0.2.3                                 python                         
 perl                                                                          5.44.0-1                              alpm                           
 pillow                                                                        13.0.0                                python                         
@@ -689,7 +689,7 @@ xf86-video-intel                                                              1:
 xf86-video-nouveau                                                            1.0.18-1                              alpm                           
 xf86-video-qxl                                                                0.1.6-3                               alpm                           
 xfconf                                                                        4.20.0-2                              alpm                           
-xkeyboard-config                                                              2.48-1                                alpm                           
+xkeyboard-config                                                              2.49-1                                alpm                           
 xorg-font-util                                                                1.4.2-1                               alpm                           
 xorg-fonts-100dpi                                                             1.0.4-3                               alpm                           
 xorg-fonts-75dpi                                                              1.0.4-2                               alpm                           
