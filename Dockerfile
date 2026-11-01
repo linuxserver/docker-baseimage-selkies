@@ -344,10 +344,6 @@ RUN \
     https://raw.githubusercontent.com/moby/moby/master/hack/dind && \
   chmod +x /usr/local/bin/dind && \
   usermod -aG docker abc && \
-  echo "**** configure locale ****" && \
-  for LOCALE in $(curl -sL https://raw.githubusercontent.com/thelamer/lang-stash/master/langs); do \
-    localedef -i $LOCALE -f UTF-8 $LOCALE.UTF-8; \
-  done && \
   echo "**** theme ****" && \
   curl -s https://raw.githubusercontent.com/thelamer/lang-stash/master/theme.tar.gz \
     | tar xzvf - -C /usr/share/themes/Clearlooks/openbox-3/ && \
