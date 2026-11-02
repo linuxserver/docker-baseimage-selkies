@@ -24,19 +24,12 @@ RUN \
   cd /src/addons/selkies-web-core && \
   npm install && \
   npm run build && \
-  echo "**** build multiple dashboards ****" && \
-  DASHBOARDS="selkies-dashboard selkies-dashboard-wish" && \
-  mkdir /buildout && \
-  for DASH in $DASHBOARDS; do \
-    cd /src/addons/$DASH && \
-    npm install && \
-    npm run build && \
-    mkdir -p dist/src && \
-    cp ../selkies-web-core/dist/selkies-core.js dist/src/ && \
-    cp ../universal-touch-gamepad/universalTouchGamepad.js dist/src/ && \
-    mkdir -p /buildout/$DASH && \
-    cp -ar dist/* /buildout/$DASH/; \
-  done
+  echo "**** build dashboard ****" && \
+  cd /src/addons/selkies-dashboard && \
+  npm install && \
+  npm run build && \
+  mkdir -p /buildout/selkies-dashboard && \
+  cp -ar dist/* /buildout/selkies-dashboard/
 
 FROM ghcr.io/linuxserver/baseimage-ubuntu:resolute AS interposers
 
