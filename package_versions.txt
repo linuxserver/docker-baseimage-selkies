@@ -113,7 +113,7 @@ elfutils-libelf                                                               0.
 elfutils-libs                                                                 0.197-1.fc44                                       rpm                         
 emacs-filesystem                                                              1:30.2-2.fc44                                      rpm                         
 expat                                                                         2.9.0-1.fc44                                       rpm                         
-fastapi                                                                       0.162.0                                            python                      
+fastapi                                                                       0.162.2                                            python                      
 fcft                                                                          3.3.3-2.fc44                                       rpm                         
 fdk-aac                                                                       2.0.3-6.fc44                                       rpm                         
 fedora-gpg-keys                                                               44-2                                               rpm                         
@@ -123,8 +123,8 @@ fedora-release-container                                                      44
 fedora-release-identity-container                                             44-18                                              rpm                         
 fedora-repos                                                                  44-2                                               rpm                         
 fftw-libs-single                                                              3.3.10-17.fc44                                     rpm                         
-file                                                                          5.46-10.fc44                                       rpm                         
-file-libs                                                                     5.46-10.fc44                                       rpm                         
+file                                                                          5.48-2.fc44                                        rpm                         
+file-libs                                                                     5.48-2.fc44                                        rpm                         
 filelock                                                                      3.15.4                                             python                      
 filesystem                                                                    3.18-52.fc44                                       rpm                         
 findutils                                                                     1:4.10.0-7.fc44                                    rpm                         
@@ -879,11 +879,11 @@ paste                                                                         3.
 pciutils                                                                      3.15.0-1.fc44                                      rpm                         
 pciutils-libs                                                                 3.15.0-1.fc44                                      rpm                         
 pcmflux                                                                       2.2.1                                              python                      
-pcre2                                                                         10.47-1.fc44.1                                     rpm                         
-pcre2-devel                                                                   10.47-1.fc44.1                                     rpm                         
-pcre2-syntax                                                                  10.47-1.fc44.1                                     rpm                         
-pcre2-utf16                                                                   10.47-1.fc44.1                                     rpm                         
-pcre2-utf32                                                                   10.47-1.fc44.1                                     rpm                         
+pcre2                                                                         10.49-1.fc44                                       rpm                         
+pcre2-devel                                                                   10.49-1.fc44                                       rpm                         
+pcre2-syntax                                                                  10.49-1.fc44                                       rpm                         
+pcre2-utf16                                                                   10.49-1.fc44                                       rpm                         
+pcre2-utf32                                                                   10.49-1.fc44                                       rpm                         
 pelorus                                                                       0.2.3                                              python                      
 perl-AutoLoader                                                               0:5.74-525.fc44                                    rpm                         
 perl-B                                                                        0:1.89-525.fc44                                    rpm                         
