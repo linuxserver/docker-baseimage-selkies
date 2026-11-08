@@ -2,6 +2,23 @@
 
 export XCURSOR_THEME=breeze
 
+# interposers are for session apps, keep them out of the server and drop by value
+if [[ -n "${LD_PRELOAD}" ]]; then
+  KEPT_PRELOAD=""
+  IFS=':' read -ra PRELOADS <<< "${LD_PRELOAD}"
+  for preload in "${PRELOADS[@]}"; do
+    case "${preload}" in
+      ""|"${SELKIES_INTERPOSER}"|"${SELKIES_WEBCAM_INTERPOSER}"|/opt/lib/libudev.so.1.0.0-fake) ;;
+      *) KEPT_PRELOAD="${KEPT_PRELOAD:+${KEPT_PRELOAD}:}${preload}" ;;
+    esac
+  done
+  if [[ -n "${KEPT_PRELOAD}" ]]; then
+    export LD_PRELOAD="${KEPT_PRELOAD}"
+  else
+    unset LD_PRELOAD
+  fi
+fi
+
 # Default sink setup
 if [ ! -f '/dev/shm/audio.lock' ]; then
   until [ -f /defaults/pid ]; do

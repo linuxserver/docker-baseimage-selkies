@@ -45,7 +45,10 @@ if [ ! -z ${DEV_MODE+x} ] && [[ "${DEV_MODE}" != "pixelflux" ]]; then
     ${NGINX_CONFIG}
 fi
 
-# set dashboard and icon
+# set dashboard and icon, legacy dashboard names are layouts of the one dashboard now
+if [[ ! -d "/usr/share/selkies/${DASHBOARD}" ]]; then
+  DASHBOARD="selkies-dashboard"
+fi
 rm -Rf \
   /usr/share/selkies/web
 cp -a \

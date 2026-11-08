@@ -1,5 +1,16 @@
 #!/usr/bin/with-contenv bash
 
+# selkies reads SELKIES_WAYLAND ahead of PIXELFLUX_WAYLAND, mirror it for scripts keyed on the legacy name
+if [[ -n "${SELKIES_WAYLAND}" ]]; then
+  WAYLAND_VALUE="${SELKIES_WAYLAND%%|*}"
+  if [[ "${WAYLAND_VALUE,,}" == "true" ]] || [[ "${WAYLAND_VALUE}" == "1" ]]; then
+    PIXELFLUX_WAYLAND="true"
+  else
+    PIXELFLUX_WAYLAND="false"
+  fi
+  printf "${PIXELFLUX_WAYLAND}" > /run/s6/container_environment/PIXELFLUX_WAYLAND
+fi
+
 # set paths for wayland or xorg
 if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]];then
   CONF_DIR="$HOME/.config/labwc"
@@ -462,6 +473,9 @@ if [ ! -z ${SELKIES_H264_STREAMING_MODE+x} ]; then
 fi
 if [ ! -z ${SELKIES_CLIPBOARD_ENABLED+x} ] && [ -z ${SELKIES_ENABLE_CLIPBOARD+x} ]; then
   printf "${SELKIES_CLIPBOARD_ENABLED%%|*}" > /run/s6/container_environment/SELKIES_ENABLE_CLIPBOARD
+fi
+if [[ "${DASHBOARD}" == "selkies-dashboard-wish" ]] && [ -z ${SELKIES_UI_LAYOUT+x} ]; then
+  printf "wish,default,edge" > /run/s6/container_environment/SELKIES_UI_LAYOUT
 fi
 case "${SELKIES_ENCODER}" in
   *x264enc*)

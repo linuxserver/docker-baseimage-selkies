@@ -1,36 +1,4 @@
 # syntax=docker/dockerfile:1
-FROM ghcr.io/linuxserver/baseimage-alpine:3.24 AS frontend
-
-RUN \
-  echo "**** install build packages ****" && \
-  apk add \
-    cmake \
-    git \
-    nodejs \
-    npm
-
-RUN \
-  echo "**** ingest code ****" && \
-  SELKIES_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/commits/main" \
-    | jq -r '.sha') && \
-  git clone \
-    https://github.com/selkies-project/selkies.git \
-    /src && \
-  cd /src && \
-  git checkout -f ${SELKIES_COMMIT}
-
-RUN \
-  echo "**** build shared core library ****" && \
-  cd /src/addons/selkies-web-core && \
-  npm install && \
-  npm run build && \
-  echo "**** build dashboard ****" && \
-  cd /src/addons/selkies-dashboard && \
-  npm install && \
-  npm run build && \
-  mkdir -p /buildout/selkies-dashboard && \
-  cp -ar dist/* /buildout/selkies-dashboard/
-
 FROM ghcr.io/linuxserver/baseimage-ubuntu:resolute AS interposers
 
 RUN \
@@ -42,9 +10,20 @@ RUN \
     git
 
 RUN \
-  echo "**** ingest selkies addons ****" && \
-  SELKIES_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/commits/main" \
-    | jq -r '.sha') && \
+  echo "**** ingest selkies addons from the newest published commit ****" && \
+  SELKIES_COMMIT="" && \
+  for COMMIT in $(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/commits?sha=main&per_page=10" \
+    | jq -r '.[].sha[0:7]'); do \
+    if curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/tags/${COMMIT}" \
+      | jq -e '.assets[]?.browser_download_url | select(test("/selkies-[^/]+-py3-none-manylinux[^/]+_x86_64[.]whl$"))' > /dev/null; then \
+      SELKIES_COMMIT="${COMMIT}" && \
+      break; \
+    fi; \
+  done && \
+  if [ -z "${SELKIES_COMMIT}" ]; then \
+    echo "no selkies wheel found in the last 10 commits" && \
+    exit 1; \
+  fi && \
   git clone \
     https://github.com/selkies-project/selkies.git \
     /src && \
@@ -265,40 +244,32 @@ RUN \
     zlib1g \
     zstd && \
   echo "**** install selkies ****" && \
-  SELKIES_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/commits/main" \
-    | jq -r '.sha') && \
-  curl -o \
-    /tmp/selkies.tar.gz -L \
-    "https://github.com/selkies-project/selkies/archive/${SELKIES_COMMIT}.tar.gz" && \
-  cd /tmp && \
-  tar xf selkies.tar.gz && \
-  cd selkies-* && \
   python3 \
     -m venv \
     --system-site-packages \
     /lsiopy && \
-  echo "**** install pixelflux and pcmflux wheels ****" && \
-  for PKG in pixelflux pcmflux; do \
-    WHEEL="" && \
-    for COMMIT in $(curl -sX GET "https://api.github.com/repos/selkies-project/${PKG}/commits?sha=main&per_page=5" \
-      | jq -r '.[].sha[0:7]'); do \
-      VERSION=$(curl -s "https://raw.githubusercontent.com/selkies-project/${PKG}/${COMMIT}/${PKG}/Cargo.toml" \
-        | awk -F'"' '/^version = /{print $2;exit}') && \
-      URL="https://github.com/selkies-project/${PKG}/releases/download/${COMMIT}/${PKG}-${VERSION}-cp314-cp314-manylinux_2_28_x86_64.whl" && \
-      if curl -sfILo /dev/null "${URL}"; then \
-        WHEEL="${URL}" && \
-        break; \
-      fi; \
-    done && \
-    if [ -z "${WHEEL}" ]; then \
-      echo "no ${PKG} wheel found in the last 5 commits" && \
-      exit 1; \
-    fi && \
-    WHEELS="${WHEELS} ${WHEEL}"; \
+  SELKIES_WHEEL="" && \
+  for COMMIT in $(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/commits?sha=main&per_page=10" \
+    | jq -r '.[].sha[0:7]'); do \
+    SELKIES_WHEEL=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/tags/${COMMIT}" \
+      | jq -r '.assets[]?.browser_download_url | select(test("/selkies-[^/]+-py3-none-manylinux[^/]+_x86_64[.]whl$"))' \
+      | head -n1) && \
+    if [ -n "${SELKIES_WHEEL}" ]; then \
+      break; \
+    fi; \
   done && \
-  pip install ${WHEELS} && \
-  pip install . && \
+  if [ -z "${SELKIES_WHEEL}" ]; then \
+    echo "no selkies wheel found in the last 10 commits" && \
+    exit 1; \
+  fi && \
+  pip install "${SELKIES_WHEEL}" && \
   pip install setuptools && \
+  echo "**** stage dashboard from the selkies wheel ****" && \
+  mkdir -p \
+    /usr/share/selkies/selkies-dashboard && \
+  cp -a \
+    /lsiopy/share/selkies/web/. \
+    /usr/share/selkies/selkies-dashboard/ && \
   echo "**** install pelorus ****" && \
   mkdir -p /tmp/pelorus && \
   PELORUS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/pelorus/releases/latest" \
@@ -385,7 +356,6 @@ RUN \
 
 # add local files
 COPY /root /
-COPY --from=frontend /buildout /usr/share/selkies
 COPY --from=interposers /buildout /
 COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-ubunturesolute-xvfb / /
 COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-ubunturesolute-wtype / /
