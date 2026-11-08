@@ -89,7 +89,7 @@ docker-ce-cli                                                                 5:
 docker-compose-plugin                                                         5.7.0-1~debian.12~bookworm             deb                         
 dpkg                                                                          1.23.11+kali1                          deb                         
 dunst                                                                         1.13.2-1                               deb                         
-fastapi                                                                       0.162.0                                python                      
+fastapi                                                                       0.162.2                                python                      
 file                                                                          1:5.47-4                               deb                         
 findutils                                                                     4.11.0-3                               deb                         
 firmware-amd-graphics                                                         20260810-1                             deb                         
