@@ -65,6 +65,8 @@ done
 
 # XDG Home
 printf "$HOME/.XDG" > /run/s6/container_environment/XDG_RUNTIME_DIR
+# svc-app-exit takes a new lock file as the sign that the app has started
+rm -f "$HOME/.XDG/selkies-autostart.lock"
 printf "$HOME/.XDG/Xauthority" > /run/s6/container_environment/XAUTHORITY
 if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]]; then
   printf "wayland-1" > /run/s6/container_environment/WAYLAND_DISPLAY
@@ -236,7 +238,7 @@ set_unset() {
     export "$1=$2"
   fi
 }
-if [[ ${RESTART_APP,,} == "true" ]]; then
+if [[ ${RESTART_APP,,} == "true" ]] && [[ ${EXIT_ON_APP_CLOSE,,} != "true" ]]; then
   set_unset SELKIES_APP_RESTART true
 fi
 if [[ ! -z ${NO_FULL+x} ]]; then
