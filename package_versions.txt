@@ -58,7 +58,7 @@ cyphar.com/go-pathrs                                                          v0
 dario.cat/mergo                                                               v1.0.2                                go-module                      
 dav1d                                                                         1.5.4-1                               alpm                           
 db5.3                                                                         5.3.28-7                              alpm                           
-dbus                                                                          1.16.2-2                              alpm                           
+dbus                                                                          1.16.4-1                              alpm                           
 dbus-broker                                                                   37-3                                  alpm                           
 dbus-broker-units                                                             37-3                                  alpm                           
 dbus-units                                                                    37-3                                  alpm                           
@@ -81,14 +81,14 @@ eglexternalplatform                                                           1.
 elfutils                                                                      0.197-1                               alpm                           
 expat                                                                         2.10.0-1                              alpm                           
 fakeroot                                                                      2:1.37.2-1                            alpm                           
-fastapi                                                                       0.162.5                               python                         
+fastapi                                                                       0.162.7                               python                         
 fcft                                                                          3.3.3-1                               alpm                           
 fftw                                                                          3.3.11-1                              alpm                           
 file                                                                          5.48-1                                alpm                           
 filesystem                                                                    2025.10.12-1                          alpm                           
 findutils                                                                     4.11.0-1                              alpm                           
 flac                                                                          1.5.0-1                               alpm                           
-flex                                                                          2.6.4-6                               alpm                           
+flex                                                                          2.6.10-1                              alpm                           
 fontconfig                                                                    2:2.18.3-2                            alpm                           
 foot                                                                          1.28.0-2                              alpm                           
 freetype2                                                                     2.15.0-1                              alpm                           
@@ -313,7 +313,7 @@ google.golang.org/protobuf                                                    v1
 gopkg.in/inf.v0                                                               v0.9.1                                go-module     (+1 duplicate)   
 gopkg.in/ini.v1                                                               v1.67.3                               go-module                      
 gotest.tools/v3                                                               v3.5.2                                go-module                      
-gperftools                                                                    2.19.2-1                              alpm                           
+gperftools                                                                    2.19.3-1                              alpm                           
 gpgme                                                                         2.2.0-1                               alpm                           
 gpgmepp                                                                       2.2.0-1                               alpm                           
 graphite                                                                      1:1.3.15-1                            alpm                           
@@ -440,7 +440,7 @@ libnotify                                                                     0.
 libnsl                                                                        2.0.1-2                               alpm                           
 libobjc                                                                       16.2.1+r23+gd564253eb6c8-1            alpm                           
 libogg                                                                        1.3.6-1                               alpm                           
-libp11-kit                                                                    0.26.5-1                              alpm                           
+libp11-kit                                                                    0.26.6-1                              alpm                           
 libpaper                                                                      2.2.8-1                               alpm                           
 libpathrs                                                                     0.2.6-1                               alpm                           
 libpcap                                                                       1.11.0-1                              alpm                           
@@ -518,7 +518,7 @@ libxv                                                                         1.
 libxvmc                                                                       1.0.15-1                              alpm                           
 libxxf86vm                                                                    1.1.7-1                               alpm                           
 linux-api-headers                                                             7.3-1                                 alpm                           
-llvm-libs                                                                     23.1.4-1                              alpm                           
+llvm-libs                                                                     23.1.5-1                              alpm                           
 lm_sensors                                                                    1:3.6.2-1                             alpm                           
 lmdb                                                                          0.9.35-1                              alpm                           
 lua54                                                                         5.4.9-1                               alpm                           
@@ -557,13 +557,13 @@ oniguruma                                                                     6.
 openbox                                                                       3.6.1-14                              alpm                           
 openbsd-netcat                                                                1.239_1-1                             alpm                           
 openjpeg2                                                                     2.5.4-1                               alpm                           
-openssh                                                                       10.6p1-3                              alpm                           
+openssh                                                                       10.6p2-1                              alpm                           
 openssl                                                                       4.1.0-1                               alpm                           
 openssl-3                                                                     3.5.9-2                               alpm                           
 opentelemetry-api                                                             1.45.2                                python                         
 opus                                                                          1.6.1-1                               alpm                           
 orc                                                                           0.4.44-1                              alpm                           
-p11-kit                                                                       0.26.5-1                              alpm                           
+p11-kit                                                                       0.26.6-1                              alpm                           
 packaging                                                                     26.3                                  python                         
 pacman                                                                        7.1.0.r9.g54d9411-4                   alpm                           
 pacman-mirrorlist                                                             20260610-1                            alpm                           
