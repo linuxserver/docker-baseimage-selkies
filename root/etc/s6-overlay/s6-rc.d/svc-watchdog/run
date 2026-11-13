@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-if [[ ${RESTART_APP,,} != "true" ]]; then
+if [[ ${RESTART_APP,,} != "true" ]] && [[ ${EXIT_ON_APP_CLOSE,,} != "true" ]]; then
   exec sleep infinity
 fi
 
@@ -23,6 +23,10 @@ last_known_pid=""
 while true; do
   current_pid=$(pgrep -o -u abc -f "$AUTOSTART_CMD")
   if [ -z "$current_pid" ]; then
+    if [[ ${EXIT_ON_APP_CLOSE,,} == "true" ]]; then
+      echo "SVC Watchdog: Application has exited. Stopping the container..."
+      exec /run/s6/basedir/bin/halt
+    fi
     if [ -n "$last_known_pid" ]; then
       echo "SVC Watchdog: Application process (PID: $last_known_pid) has terminated. Restarting..."
     else
