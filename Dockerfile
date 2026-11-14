@@ -252,28 +252,28 @@ RUN \
     /opt/selkies/bin/selkies-desktop \
     /usr/bin/selkies-desktop && \
   mkdir -p /opt/lib && \
-  ln -s \
+  cp \
     /opt/selkies/lib/selkies/preload/selkies_input_interposer.so \
     /usr/lib/selkies_input_interposer.so && \
-  ln -s \
+  cp \
     /opt/selkies/lib/selkies/preload/selkies_v4l2_interposer.so \
     /usr/lib/selkies_v4l2_interposer.so && \
   ln -s \
     selkies_input_interposer.so \
     /usr/lib/selkies_joystick_interposer.so && \
-  ln -s \
+  cp \
     /opt/selkies/lib/selkies/preload/libudev.so.1.0.0-fake \
     /opt/lib/libudev.so.1.0.0-fake && \
-  ln -s \
+  cp \
     /opt/selkies/lib/selkies/preload/selkies_input_interposer_32.so \
     /usr/lib/selkies_input_interposer_32.so && \
-  ln -s \
+  cp \
     /opt/selkies/lib/selkies/preload/selkies_v4l2_interposer_32.so \
     /usr/lib/selkies_v4l2_interposer_32.so && \
   ln -s \
     selkies_input_interposer_32.so \
     /usr/lib/selkies_joystick_interposer_32.so && \
-  ln -s \
+  cp \
     /opt/selkies/lib/selkies/preload/libudev.so.1.0.0-fake_32 \
     /opt/lib/libudev.so.1.0.0-fake_32 && \
   selkies --version && \
