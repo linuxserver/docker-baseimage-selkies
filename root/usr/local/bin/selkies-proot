@@ -1,91 +1,127 @@
-#!/usr/bin/with-contenv bash
+#!/bin/sh
 
-PROOT_APPS_BIN="${HOME}/.local/bin/proot-apps"
-PROOT_BIN="${HOME}/.local/bin/proot"
-STEAM_LOCKFILE="/var/lib/selkies/steam-installed"
-ACTION="${1:-}"
-APP="${2:-}"
+# proot-apps wrapper for the dashboard apps panel
 
-# proot traces every process it starts, so a host that denies ptrace leaves
+set -eu
+
+staging="/opt/proot-apps"
+capable="/opt/proot-apps-cap/proot"
+bin="${HOME}/.local/bin"
+
+# atomic link for concurrent runs
+link_name() {
+    ln -sfn "$1" "$2.link.$$" && mv -fT "$2.link.$$" "$2"
+}
+
+if [ -d "${staging}" ]; then
+    mkdir -p "${bin}"
+    for tool in "${staging}"/*; do
+        link_name "${tool}" "${bin}/$(basename "${tool}")"
+    done
+    # use the CAP_SYS_PTRACE proot if it runs
+    if [ -x "${capable}" ] && "${capable}" -0 /bin/true > /dev/null 2>&1; then
+        link_name "${capable}" "${bin}/proot"
+    fi
+    # proot as bwrap, keep a user bwrap
+    if [ ! -e "${bin}/bwrap" ] && [ ! -L "${bin}/bwrap" ] || [ "$(readlink "${bin}/bwrap")" = "proot" ]; then
+        link_name proot "${bin}/bwrap"
+    fi
+fi
+
+# check proot can run here
 proot_runs() {
-  [ -x "${PROOT_BIN}" ] && "${PROOT_BIN}" -0 /bin/true >/dev/null 2>&1
+    [ -x "${bin}/proot" ] && "${bin}/proot" -0 /bin/true > /dev/null 2>&1
 }
 
 explain_denial() {
-  scope="$(cat /proc/sys/kernel/yama/ptrace_scope 2>/dev/null || echo unknown)"
-  bounding="$(grep CapBnd /proc/self/status 2>/dev/null | cut -f2)"
-  echo "selkies-proot: proot cannot ptrace here, so no app can install or run." >&2
-  echo "  kernel.yama.ptrace_scope=${scope}, container CapBnd=${bounding}" >&2
-  echo "  Grant the container CAP_SYS_PTRACE, or lower the sysctl on the host." >&2
+    scope="$(cat /proc/sys/kernel/yama/ptrace_scope 2>/dev/null || echo unknown)"
+    bounding="$(grep CapBnd /proc/self/status 2>/dev/null | cut -f2)"
+    echo "selkies-proot: proot cannot start an app here, so no app can install or run." >&2
+    if [ -x "${bin}/proot" ]; then
+        "${bin}/proot" -0 /bin/true 2>&1 > /dev/null | head -n 3 | sed 's/^/  /' >&2
+    else
+        echo "  no proot at ${bin}/proot" >&2
+    fi
+    echo "  kernel.yama.ptrace_scope=${scope}, container CapBnd=${bounding}" >&2
+}
+
+# mark proot-apps desktop entries trusted
+trust_desktop_entries() {
+    command -v gio > /dev/null 2>&1 || return 0
+    config="${XDG_CONFIG_HOME:-${HOME}/.config}/user-dirs.dirs"
+    if [ -f "${config}" ]; then
+        # shellcheck disable=SC1090
+        . "${config}" 2>/dev/null || true
+    fi
+    desktop="${XDG_DESKTOP_DIR:-${HOME}/Desktop}"
+    [ -d "${desktop}" ] || return 0
+    for entry in "${desktop}"/*.desktop; do
+        [ -f "${entry}" ] || continue
+        grep -q "proot-apps" "${entry}" || continue
+        chmod +x "${entry}" 2>/dev/null || true
+        gio set "${entry}" metadata::trust true > /dev/null 2>&1 || true
+        gio set "${entry}" metadata::trusted true > /dev/null 2>&1 || true
+    done
+    return 0
 }
 
 # what is installed
 list_installed() {
-  root="${HOME}/proot-apps"
-  if [ -d "${root}" ]; then
+    root="${HOME}/proot-apps"
+    [ -d "${root}" ] || return 0
     for app in "${root}"/*; do
-      [ -d "${app}" ] || continue
-      name="$(basename "${app}")"
-      printf '%s\n' "${name##*_}"
+        [ -d "${app}" ] || continue
+        # skip partial downloads
+        [ -e "${app}/DOWNLOADING" ] && continue
+        name="$(basename "${app}")"
+        printf '%s\n' "${name##*_}"
     done
-  fi
-  if [ -f "${STEAM_LOCKFILE}" ]; then
-    echo "steam"
-  fi
 }
 
-# open a terminal on the app compositor for user facing actions
+# open a terminal for user facing actions
 run_in_terminal() {
-  if [ -z "${WAYLAND_DISPLAY}" ] && [ -n "${XDG_RUNTIME_DIR}" ]; then
-    for sock in "${XDG_RUNTIME_DIR}"/wayland-*; do
-      if [ -S "${sock}" ] && [ "$(basename "${sock}")" != "wayland-1" ]; then
-        export WAYLAND_DISPLAY="$(basename "${sock}")"
-        break
-      fi
-    done
-  fi
-  if [ -n "${WAYLAND_DISPLAY}" ]; then
-    exec foot "$@"
-  else
-    exec st -e "$@"
-  fi
+    if [ -n "${WAYLAND_DISPLAY:-}" ]; then
+        exec foot "$@"
+    fi
+    exec xfce4-terminal -x "$@"
 }
 
-case "${ACTION}" in
-  check)
-    proot_runs && exit 0
-    explain_denial
-    exit 1
-    ;;
-  list)
-    list_installed
-    exit 0
-    ;;
-  install|remove|uninstall|update)
-    if [ "${APP}" == "steam" ] && [ -z "${3+x}" ]; then
-      if [ "${ACTION}" == "update" ]; then
-        echo "selkies-proot: steam updates itself, nothing to do" >&2
+# run in place for server jobs, else in a terminal
+run_job() {
+    if [ -z "${PA_STATUS:-}" ]; then
+        run_in_terminal "$@"
+    fi
+    status=0
+    "$@" || status=$?
+    trust_desktop_entries
+    exit "${status}"
+}
+
+case "${1:-}" in
+    link)
         exit 0
-      fi
-      run_in_terminal /steam.sh "${ACTION}"
-    fi
-    if [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "uninstall" ] && ! proot_runs; then
-      explain_denial
-      exit 1
-    fi
-    run_in_terminal "${PROOT_APPS_BIN}" "$@"
-    ;;
-  run)
-    if [ "${APP}" == "steam" ]; then
-      exec /usr/bin/steam "${@:3}"
-    fi
-    if ! proot_runs; then
-      explain_denial
-      exit 1
-    fi
-    exec "${PROOT_APPS_BIN}" "$@"
-    ;;
-  *)
-    exec "${PROOT_APPS_BIN}" "$@"
-    ;;
+        ;;
+    check)
+        proot_runs && exit 0
+        explain_denial
+        exit 1
+        ;;
+    list)
+        list_installed
+        exit 0
+        ;;
+    install|update|run|get)
+        if ! proot_runs; then
+            explain_denial
+            exit 1
+        fi
+        ;;
 esac
+
+case "${1:-}" in
+    install|update|remove|uninstall)
+        run_job "${bin}/proot-apps" "$@"
+        ;;
+esac
+
+exec "${bin}/proot-apps" "$@"

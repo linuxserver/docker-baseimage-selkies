@@ -1,8 +1,10 @@
 #!/bin/bash
 #SELKIESSHIM
 
+# install native steam on first run
 if [ -e /usr/bin/steam ] && ! grep -q '#SELKIESSHIM' /usr/bin/steam; then
   exec /usr/bin/steam "$@"
 fi
 
-exec selkies-proot install steam
+/steam.sh install || exit 1
+exec /usr/bin/steam "$@"

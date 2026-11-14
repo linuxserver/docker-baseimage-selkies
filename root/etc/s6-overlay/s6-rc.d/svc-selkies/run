@@ -1,14 +1,12 @@
 #!/usr/bin/with-contenv bash
 
-export XCURSOR_THEME=breeze
-
 # interposers are for session apps, keep them out of the server and drop by value
 if [[ -n "${LD_PRELOAD}" ]]; then
   KEPT_PRELOAD=""
   IFS=':' read -ra PRELOADS <<< "${LD_PRELOAD}"
   for preload in "${PRELOADS[@]}"; do
     case "${preload}" in
-      ""|"${SELKIES_INTERPOSER}"|"${SELKIES_WEBCAM_INTERPOSER}"|/opt/lib/libudev.so.1.0.0-fake) ;;
+      ""|"${SELKIES_INTERPOSER}"|"${SELKIES_WEBCAM_INTERPOSER}"|"${FAKE_UDEV_LIB}"|/opt/lib/libudev.so.1.0.0-fake) ;;
       *) KEPT_PRELOAD="${KEPT_PRELOAD:+${KEPT_PRELOAD}:}${preload}" ;;
     esac
   done
@@ -16,31 +14,6 @@ if [[ -n "${LD_PRELOAD}" ]]; then
     export LD_PRELOAD="${KEPT_PRELOAD}"
   else
     unset LD_PRELOAD
-  fi
-fi
-
-# Default sink setup
-if [ ! -f '/dev/shm/audio.lock' ]; then
-  until [ -f /defaults/pid ]; do
-    sleep .5
-  done
-  for _ in $(seq 1 10); do
-    if s6-setuidgid abc with-contenv pactl info > /dev/null 2>&1; then
-      break
-    fi
-    sleep .5
-  done
-  if s6-setuidgid abc with-contenv pactl \
-    load-module module-null-sink \
-    sink_name="output" \
-    sink_properties=device.description="output" && \
-    s6-setuidgid abc with-contenv pactl \
-      load-module module-null-sink \
-      sink_name="input" \
-      sink_properties=device.description="input"; then
-    touch /dev/shm/audio.lock
-  else
-    echo "[svc-selkies] pulseaudio not ready or sink creation failed, starting without audio sinks"
   fi
 fi
 
@@ -135,7 +108,25 @@ if [ ! -z ${DEV_MODE+x} ]; then
   fi
 fi
 
+# listen and auth flags
+LISTEN="--public"
+if [ -n "${DISABLE_IPV6}" ]; then
+  LISTEN="--addr=0.0.0.0"
+fi
+AUTH=""
+if [ -n "${PASSWORD}" ]; then
+  AUTH="--enable-basic-auth=true"
+fi
+
 # Start Selkies
 exec s6-setuidgid abc \
-  selkies \
-    --addr="localhost"
+  selkies session \
+    --runtime-dir="${XDG_RUNTIME_DIR}" \
+    --session="bash /defaults/startwm.sh" \
+    --wayland-session="bash /defaults/startwm_wayland.sh" \
+    ${LISTEN} \
+    ${AUTH} \
+    --port="${CUSTOM_PORT:-3000}" \
+    --https-port="${CUSTOM_HTTPS_PORT:-3001}" \
+    --https-cert=/config/ssl/cert.pem \
+    --https-key=/config/ssl/cert.key

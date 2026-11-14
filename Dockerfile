@@ -1,76 +1,10 @@
 # syntax=docker/dockerfile:1
-FROM ghcr.io/linuxserver/baseimage-ubuntu:resolute AS interposers
-
-RUN \
-  echo "**** interposer build deps ****" && \
-  apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-    build-essential \
-    gcc-multilib \
-    git
-
-RUN \
-  echo "**** ingest selkies addons from the newest published commit ****" && \
-  SELKIES_COMMIT="" && \
-  for COMMIT in $(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/commits?sha=main&per_page=10" \
-    | jq -r '.[].sha[0:7]'); do \
-    if curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/tags/${COMMIT}" \
-      | jq -e '.assets[]?.browser_download_url | select(test("/selkies-[^/]+-py3-none-manylinux[^/]+_x86_64[.]whl$"))' > /dev/null; then \
-      SELKIES_COMMIT="${COMMIT}" && \
-      break; \
-    fi; \
-  done && \
-  if [ -z "${SELKIES_COMMIT}" ]; then \
-    echo "no selkies wheel found in the last 10 commits" && \
-    exit 1; \
-  fi && \
-  git clone \
-    https://github.com/selkies-project/selkies.git \
-    /src && \
-  cd /src && \
-  git checkout -f ${SELKIES_COMMIT} && \
-  mkdir -p /buildout/usr/lib /buildout/opt/lib && \
-  echo "**** build selkies input interposer ****" && \
-  cd /src/addons/input-interposer && \
-  gcc -shared -fPIC -ldl \
-    -o /buildout/usr/lib/selkies_input_interposer.so \
-    input_interposer.c && \
-  gcc -m32 -shared -fPIC -ldl \
-    -o /buildout/usr/lib/selkies_input_interposer_32.so \
-    input_interposer.c && \
-  echo "**** link legacy joystick interposer names ****" && \
-  ln -s \
-    selkies_input_interposer.so \
-    /buildout/usr/lib/selkies_joystick_interposer.so && \
-  ln -s \
-    selkies_input_interposer_32.so \
-    /buildout/usr/lib/selkies_joystick_interposer_32.so && \
-  echo "**** build selkies webcam interposer ****" && \
-  cd /src/addons/v4l2-interposer && \
-  gcc -shared -fPIC -ldl -pthread \
-    -o /buildout/usr/lib/selkies_v4l2_interposer.so \
-    v4l2_interposer.c && \
-  gcc -m32 -shared -fPIC -ldl -pthread \
-    -o /buildout/usr/lib/selkies_v4l2_interposer_32.so \
-    v4l2_interposer.c && \
-  echo "**** build selkies fake udev ****" && \
-  cd /src/addons/fake-udev && \
-  make && \
-  mv \
-    libudev.so.1.0.0-fake \
-    /buildout/opt/lib/libudev.so.1.0.0-fake && \
-  make clean && \
-  make CC="gcc -m32" && \
-  mv \
-    libudev.so.1.0.0-fake \
-    /buildout/opt/lib/libudev.so.1.0.0-fake_32
-
-# Runtime stage
 FROM ghcr.io/linuxserver/baseimage-ubuntu:resolute
 
 # set version label
 ARG BUILD_DATE
 ARG VERSION
+ARG SELKIES_RELEASE
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="thelamer"
 
@@ -79,70 +13,66 @@ ENV DISPLAY=:1 \
     PERL5LIB=/usr/local/bin \
     HOME=/config \
     START_DOCKER=true \
-    PULSE_RUNTIME_PATH=/defaults \
     SELKIES_INTERPOSER=/usr/lib/selkies_input_interposer.so \
     SELKIES_WEBCAM_INTERPOSER=/usr/lib/selkies_v4l2_interposer.so \
+    FAKE_UDEV_LIB=/opt/lib/libudev.so.1.0.0-fake \
     NVIDIA_DRIVER_CAPABILITIES=all \
     DISABLE_DRI3=false \
     SELKIES_ENCODER="h264enc,h265enc,vp8enc,vp9enc,av1enc,jpeg" \
     SELKIES_ENABLE_BASIC_AUTH=false \
     SELKIES_VIDEO_STREAMING_MODE=false \
     SELKIES_ALLOWED_ORIGINS="*" \
+    SELKIES_APP_LOGS=false \
     SELKIES_RATE_CONTROL_MODE="crf,cbr" \
     SHELL=/bin/bash \
     __GL_SYNC_TO_VBLANK=0 \
     TITLE=Selkies
 
 RUN \
-  echo "**** dev deps ****" && \
-  apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-    libcairo2-dev \
-    libgirepository-2.0-dev \
-    python3-dev && \
   echo "**** enable locales ****" && \
   sed -i \
     '/locale/d' \
     /etc/dpkg/dpkg.cfg.d/excludes && \
+  echo "**** exclude extra cjk fonts ****" && \
+  printf '%s\n' \
+    'path-exclude=/usr/share/fonts/opentype/noto/NotoSerifCJK-*' \
+    'path-exclude=/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc' \
+    > /etc/dpkg/dpkg.cfg.d/selkies-fonts && \
   echo "**** install deps ****" && \
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | tee /usr/share/keyrings/docker.asc >/dev/null && \
-  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/ubuntu resolute stable" > /etc/apt/sources.list.d/docker.list && \
   curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
     at-spi2-core \
+    bash-completion \
     breeze-cursor-theme \
+    breeze-icon-theme \
     ca-certificates \
-    cmake \
     console-data \
-    containerd.io \
     cups-client \
-    cups-daemon \
-    cups-filters \
     dbus-x11 \
-    docker-buildx-plugin \
-    docker-ce \
-    docker-ce-cli \
-    docker-compose-plugin \
-    dunst \
     file \
     fonts-noto-cjk \
     fonts-noto-color-emoji \
     fonts-noto-core \
     foot \
     fuse-overlayfs \
-    g++ \
-    gcc \
     gir1.2-atspi-2.0 \
     gir1.2-gtk-3.0 \
     git \
+    gtk-update-icon-cache \
+    gvfs \
+    gvfs-daemons \
+    htop \
     i965-va-driver-shaders \
     intel-media-va-driver-non-free \
     iproute2 \
+    iptables \
+    iputils-ping \
     kbd \
-    labwc \
+    less \
     libatk1.0-0 \
     libatk-bridge2.0-0 \
+    libegl-mesa0 \
     libev4 \
     libfontenc1 \
     libfreetype6 \
@@ -150,11 +80,11 @@ RUN \
     libgcrypt20 \
     libgirepository-1.0-1 \
     libgl1-mesa-dri \
+    libglib2.0-bin \
     libglu1-mesa \
     libgnutls30 \
     libgtk-3.0 \
     libjpeg-turbo8 \
-    libnginx-mod-http-fancyindex \
     libnotify-bin \
     libnss3 \
     libnvidia-egl-wayland1 \
@@ -165,6 +95,7 @@ RUN \
     libp11-kit0 \
     libpam0g \
     libtasn1-6 \
+    libva-drm2 \
     libvulkan1 \
     libwayland-client0 \
     libwayland-cursor0 \
@@ -189,32 +120,31 @@ RUN \
     libxkbcommon-x11-0 \
     libxshmfence1 \
     libxtst6 \
-    locales-all \
-    make \
+    locales \
     mesa-libgallium \
     mesa-va-drivers \
     mesa-vulkan-drivers \
-    nginx \
-    openbox \
     openssh-client \
     openssl \
     pciutils \
     procps \
     psmisc \
-    pulseaudio \
     pulseaudio-utils \
     python3 \
-    python3-venv \
     python3-gi \
+    rsync \
     software-properties-common \
     ssl-cert \
-    stterm \
     sudo \
     tar \
+    tree \
+    unzip \
+    vainfo \
     util-linux \
+    vim-tiny \
     vulkan-tools \
+    wget \
     wl-clipboard \
-    wlr-randr \
     x11-apps \
     x11-common \
     x11-utils \
@@ -225,62 +155,15 @@ RUN \
     xcvt \
     xdg-utils \
     xdotool \
+    xfce4-terminal \
     xfconf \
     xfonts-base \
     xkb-data \
     xsel \
-    xserver-common \
-    xserver-xorg-core \
-    xserver-xorg-video-amdgpu \
-    xserver-xorg-video-ati \
-    xserver-xorg-video-intel \
-    xserver-xorg-video-nouveau \
-    xserver-xorg-video-qxl \
-    xsettingsd \
-    xterm \
     xutils \
-    xwayland \
-    xvfb \
+    zip \
     zlib1g \
     zstd && \
-  echo "**** install selkies ****" && \
-  python3 \
-    -m venv \
-    --system-site-packages \
-    /lsiopy && \
-  SELKIES_WHEEL="" && \
-  for COMMIT in $(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/commits?sha=main&per_page=10" \
-    | jq -r '.[].sha[0:7]'); do \
-    SELKIES_WHEEL=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/tags/${COMMIT}" \
-      | jq -r '.assets[]?.browser_download_url | select(test("/selkies-[^/]+-py3-none-manylinux[^/]+_x86_64[.]whl$"))' \
-      | head -n1) && \
-    if [ -n "${SELKIES_WHEEL}" ]; then \
-      break; \
-    fi; \
-  done && \
-  if [ -z "${SELKIES_WHEEL}" ]; then \
-    echo "no selkies wheel found in the last 10 commits" && \
-    exit 1; \
-  fi && \
-  pip install "${SELKIES_WHEEL}" && \
-  pip install setuptools && \
-  echo "**** stage dashboard from the selkies wheel ****" && \
-  mkdir -p \
-    /usr/share/selkies/selkies-dashboard && \
-  cp -a \
-    /lsiopy/share/selkies/web/. \
-    /usr/share/selkies/selkies-dashboard/ && \
-  echo "**** install pelorus ****" && \
-  mkdir -p /tmp/pelorus && \
-  PELORUS_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/pelorus/releases/latest" \
-    | jq -r '.tag_name') && \
-  curl -o \
-    /tmp/pelorus.tar.gz -L \
-    "https://github.com/linuxserver/pelorus/archive/${PELORUS_RELEASE}.tar.gz" && \
-  tar xf \
-    /tmp/pelorus.tar.gz -C \
-    /tmp/pelorus/ --strip-components=1 && \
-  pip install /tmp/pelorus && \
   echo "**** add icon ****" && \
   mkdir -p \
     /usr/share/selkies/www && \
@@ -290,17 +173,24 @@ RUN \
   curl -o \
     /usr/share/selkies/www/favicon.ico \
     https://raw.githubusercontent.com/linuxserver/docker-templates/refs/heads/master/linuxserver.io/img/selkies-icon.ico && \
-  echo "**** openbox tweaks ****" && \
-  sed -i \
-    -e 's/NLIMC/NLMC/g' \
-    -e '/debian-menu/d' \
-    -e 's|</applications>|  <application class="*"><maximized>yes</maximized></application>\n</applications>|' \
-    -e 's|</keyboard>|  <keybind key="C-S-d"><action name="ToggleDecorations"/></keybind>\n</keyboard>|' \
-    -e 's|<number>4</number>|<number>1</number>|' \
-    /etc/xdg/openbox/rc.xml && \
-  sed -i \
-    's/--startup/--replace --startup/g' \
-    /usr/bin/openbox-session && \
+  echo "**** wallpaper ****" && \
+  mkdir -p \
+    /usr/share/wallpapers/Next/contents/images \
+    /usr/share/wallpapers/Next/contents/images_dark && \
+  curl -fsSL -o \
+    /usr/share/wallpapers/Next/metadata.json \
+    https://raw.githubusercontent.com/KDE/breeze/master/wallpapers/Next/metadata.json && \
+  curl -fsSL -o \
+    /usr/share/wallpapers/Next/contents/images/5120x2880.png \
+    https://raw.githubusercontent.com/KDE/breeze/master/wallpapers/Next/contents/images/5120x2880.png && \
+  curl -fsSL -o \
+    /usr/share/wallpapers/Next/contents/images_dark/5120x2880.png \
+    https://raw.githubusercontent.com/KDE/breeze/master/wallpapers/Next/contents/images_dark/5120x2880.png && \
+  ln -sf /usr/bin/vim.tiny /usr/bin/vim && \
+  echo "**** titlebar buttons for client-side decorations ****" && \
+  printf "[org.gnome.desktop.wm.preferences]\nbutton-layout=':minimize,maximize,close'\n" \
+    > /usr/share/glib-2.0/schemas/selkies-decoration.gschema.override && \
+  glib-compile-schemas /usr/share/glib-2.0/schemas/ && \
   echo "**** user perms ****" && \
   sed -e 's/%sudo	ALL=(ALL:ALL) ALL/%sudo ALL=(ALL:ALL) NOPASSWD: ALL/g' \
     -i /etc/sudoers && \
@@ -314,14 +204,6 @@ RUN \
   curl -L https://github.com/linuxserver/proot-apps/releases/download/${PAPPS_RELEASE}/proot-apps-x86_64.tar.gz \
     | tar -xzf - -C /proot-apps/ && \
   echo "${PAPPS_RELEASE}" > /proot-apps/pversion && \
-  echo "**** selkies-desktop ****" && \
-  DESKTOP_COMMIT=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies-desktop/commits/main" \
-    | jq -r '.sha[0:7]') && \
-  curl -fo \
-    /usr/bin/selkies-desktop -L \
-    "https://github.com/selkies-project/selkies-desktop/releases/download/${DESKTOP_COMMIT}/selkies-desktop-x86_64" && \
-  chmod 755 /usr/bin/selkies-desktop && \
-  echo "${DESKTOP_COMMIT}" > /usr/share/selkies/desktop-version && \
   echo "**** steam icon ****" && \
   mkdir -p /usr/share/icons/hicolor/192x192/apps && \
   curl -o \
@@ -337,15 +219,65 @@ RUN \
     https://raw.githubusercontent.com/moby/moby/master/hack/dind && \
   chmod +x /usr/local/bin/dind && \
   echo 'hosts: files dns' > /etc/nsswitch.conf && \
+  groupadd -f docker && \
   usermod -aG docker abc && \
-  echo "**** theme ****" && \
-  curl -s https://raw.githubusercontent.com/thelamer/lang-stash/master/theme.tar.gz \
-    | tar xzvf - -C /usr/share/themes/Clearlooks/openbox-3/ && \
+  echo "**** install the selkies bundle ****" && \
+  BUNDLE_PATTERN='^selkies-.+-x86_64-linux-gnu[.]tar[.]gz$' && \
+  if [ -z "${SELKIES_RELEASE}" ]; then \
+    SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases?per_page=30" \
+      | jq -r --arg pattern "${BUNDLE_PATTERN}" \
+        '[.[] | select(.prerelease == true) | select(any(.assets[]; .name | test($pattern)))][0].tag_name // empty'); \
+  fi && \
+  if [ -z "${SELKIES_RELEASE}" ]; then \
+    echo "no selkies pre-release carries a bundle for this architecture yet" && \
+    exit 1; \
+  fi && \
+  BUNDLE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/tags/${SELKIES_RELEASE}" \
+    | jq -r --arg pattern "${BUNDLE_PATTERN}" '.assets[] | select(.name | test($pattern)) | .name') && \
+  if [ -z "${BUNDLE}" ] || [ "${BUNDLE}" = "null" ]; then \
+    echo "no x86_64 selkies bundle in release ${SELKIES_RELEASE}" && \
+    exit 1; \
+  fi && \
+  echo "selkies ${SELKIES_RELEASE}: ${BUNDLE}" && \
+  mkdir -p /tmp/selkies && \
+  curl -fsSL -o "/tmp/selkies/${BUNDLE}" \
+    "https://github.com/selkies-project/selkies/releases/download/${SELKIES_RELEASE}/${BUNDLE}" && \
+  tar -xzf "/tmp/selkies/${BUNDLE}" -C /opt && \
+  echo "**** link the selkies bundle ****" && \
+  mv /opt/selkies-*-linux-gnu /opt/selkies && \
+  ln -s \
+    /opt/selkies/bin/selkies \
+    /usr/bin/selkies && \
+  ln -s \
+    /opt/selkies/bin/selkies-desktop \
+    /usr/bin/selkies-desktop && \
+  mkdir -p /opt/lib && \
+  ln -s \
+    /opt/selkies/lib/selkies/preload/selkies_input_interposer.so \
+    /usr/lib/selkies_input_interposer.so && \
+  ln -s \
+    /opt/selkies/lib/selkies/preload/selkies_v4l2_interposer.so \
+    /usr/lib/selkies_v4l2_interposer.so && \
+  ln -s \
+    selkies_input_interposer.so \
+    /usr/lib/selkies_joystick_interposer.so && \
+  ln -s \
+    /opt/selkies/lib/selkies/preload/libudev.so.1.0.0-fake \
+    /opt/lib/libudev.so.1.0.0-fake && \
+  ln -s \
+    /opt/selkies/lib/selkies/preload/selkies_input_interposer_32.so \
+    /usr/lib/selkies_input_interposer_32.so && \
+  ln -s \
+    /opt/selkies/lib/selkies/preload/selkies_v4l2_interposer_32.so \
+    /usr/lib/selkies_v4l2_interposer_32.so && \
+  ln -s \
+    selkies_input_interposer_32.so \
+    /usr/lib/selkies_joystick_interposer_32.so && \
+  ln -s \
+    /opt/selkies/lib/selkies/preload/libudev.so.1.0.0-fake_32 \
+    /opt/lib/libudev.so.1.0.0-fake_32 && \
+  selkies --version && \
   echo "**** cleanup ****" && \
-  apt-get purge -y --autoremove \
-    libcairo2-dev \
-    libgirepository-2.0-dev \
-    python3-dev && \
   apt-get autoclean && \
   rm -rf \
     /config/.cache \
@@ -356,10 +288,6 @@ RUN \
 
 # add local files
 COPY /root /
-COPY --from=interposers /buildout /
-COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-ubunturesolute-xvfb / /
-COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-ubunturesolute-wtype / /
-COPY --from=ghcr.io/linuxserver/selkies-layers:amd64-ubunturesolute-labwc / /
 
 # ports and volumes
 EXPOSE 3000 3001

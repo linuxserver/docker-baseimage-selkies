@@ -1,13 +1,36 @@
 #!/usr/bin/with-contenv bash
 
 # Make sure this is a priv container
-if [ -e /dev/cpu_dma_latency ]; then
-  if [ "${START_DOCKER,,}" == "true" ]; then
-    mount -t tmpfs none /tmp
-    exec /usr/local/bin/dockerd-entrypoint.sh -l error
-  else
-    sleep infinity
+if [ ! -e /dev/cpu_dma_latency ] || [[ "${START_DOCKER,,}" != "true" ]] || [ -S /var/run/docker.sock ]; then
+  exec sleep infinity
+fi
+
+# fetch docker on first run
+if ! command -v dockerd > /dev/null; then
+  ARCH="$(uname -m)"
+  case "${ARCH}" in
+    x86_64) GOARCH=amd64 ;;
+    aarch64) GOARCH=arm64 ;;
+  esac
+  STATIC="https://download.docker.com/linux/static/stable/${ARCH}"
+  if ! (
+    set -e
+    VERSION="${DOCKER_VERSION:-$(curl -fsSL "${STATIC}/" \
+      | grep -oE 'docker-[0-9]+\.[0-9]+\.[0-9]+\.tgz' | sort -uV | tail -n1 | sed 's/^docker-//; s/\.tgz$//')}"
+    echo "[svc-docker] Fetching Docker ${VERSION}"
+    curl -fsSL --retry 5 "${STATIC}/docker-${VERSION}.tgz" | tar -xzf - -C /usr/local/bin --strip-components=1
+    mkdir -p /usr/local/lib/docker/cli-plugins
+    BUILDX="$(curl -fsSL https://api.github.com/repos/docker/buildx/releases/latest | jq -r .tag_name)"
+    curl -fsSL --retry 5 -o /usr/local/lib/docker/cli-plugins/docker-buildx \
+      "https://github.com/docker/buildx/releases/download/${BUILDX}/buildx-${BUILDX}.linux-${GOARCH}"
+    COMPOSE="$(curl -fsSL https://api.github.com/repos/docker/compose/releases/latest | jq -r .tag_name)"
+    curl -fsSL --retry 5 -o /usr/local/lib/docker/cli-plugins/docker-compose \
+      "https://github.com/docker/compose/releases/download/${COMPOSE}/docker-compose-linux-${ARCH}"
+    chmod 755 /usr/local/lib/docker/cli-plugins/docker-buildx /usr/local/lib/docker/cli-plugins/docker-compose
+  ); then
+    echo "[svc-docker] Docker could not be fetched; Docker in Docker stays off"
+    exec sleep infinity
   fi
 fi
-# if anything goes wrong with Docker don't loop
-sleep infinity
+
+exec /usr/local/bin/dockerd-entrypoint.sh -l error
