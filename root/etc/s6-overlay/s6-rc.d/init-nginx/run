@@ -37,6 +37,7 @@ fi
 if [ -n "${PASSWORD}" ]; then
   printf '%s:%s\n' "${CUSER}" "$(openssl passwd -apr1 "${PASSWORD}")" > /etc/nginx/.htpasswd
   sed -i 's/#//g' ${NGINX_CONFIG}
+  sed -i "s/SOCKETKEY/$(openssl rand -hex 32)/g" ${NGINX_CONFIG}
 fi
 if [ ! -z ${DEV_MODE+x} ] && [[ "${DEV_MODE}" != "pixelflux" ]]; then
   sed -i \
