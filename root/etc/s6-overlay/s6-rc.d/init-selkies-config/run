@@ -36,13 +36,31 @@ if [[ "$(cat "$HOME/.config/openbox/autostart" 2>/dev/null)" == "st" ]]; then
   printf 'xfce4-terminal\n' > "$HOME/.config/openbox/autostart"
 fi
 
-# remove unmodified legacy menu.xml
+# remove unmodified legacy menu.xml, and first run copies of the image's menus, which a home copy would shadow
+menu_is_default() {
+  case "$(md5sum "$1" 2>/dev/null | cut -d' ' -f1)" in
+    c05fbb01c54f7c7d0557e3c5ba459427|9f7fd0b0c65124b95b43787fd9b2b0a3) return 0 ;;
+  esac
+  cmp -s "$1" /defaults/menu.xml || cmp -s "$1" /defaults/menu_wayland.xml
+}
 for menu_dir in "$HOME/.config/openbox" "$HOME/.config/labwc"; do
-  for menu_file in "$menu_dir/menu.xml" "$menu_dir/menu.xml.bak"; do
-    case "$(md5sum "$menu_file" 2>/dev/null | cut -d' ' -f1)" in
-      c05fbb01c54f7c7d0557e3c5ba459427|9f7fd0b0c65124b95b43787fd9b2b0a3) rm -f "$menu_file" ;;
-    esac
-  done
+  if [[ -f "$menu_dir/menu.xml.bak" ]] && menu_is_default "$menu_dir/menu.xml.bak"; then
+    rm -f "$menu_dir/menu.xml" "$menu_dir/menu.xml.bak"
+  elif [[ -f "$menu_dir/menu.xml" ]] && [[ ! -f "$menu_dir/menu.xml.bak" ]] && menu_is_default "$menu_dir/menu.xml"; then
+    rm -f "$menu_dir/menu.xml"
+  fi
+done
+
+# the image's menus, which the selkies window manager puts above its own menu
+SYSTEM_MENUS=()
+for menu_pair in "menu.xml:openbox" "menu_wayland.xml:labwc"; do
+  menu_src="/defaults/${menu_pair%%:*}"
+  menu_dst="/etc/xdg/${menu_pair##*:}/menu.xml"
+  if [[ -f "$menu_src" ]]; then
+    mkdir -p "${menu_dst%/*}"
+    cp "$menu_src" "$menu_dst"
+    SYSTEM_MENUS+=("$menu_dst")
+  fi
 done
 
 # XDG Home
@@ -160,10 +178,10 @@ if [[ ${DISABLE_TERMINALS,,} == "true" ]]; then
     term_path=$(which "$term_name" 2>/dev/null)
     if [ -n "$term_path" ]; then
       chmod 0000 "$term_path"
-      if [ -f "$USER_MENU_XML" ]; then
-        escaped_path=$(echo "$term_path" | sed 's/[&/\]/\\&/g')
-        sed -i "/<command>${escaped_path}<\/command>/d" "$USER_MENU_XML"
-      fi
+      escaped_path=$(echo "$term_path" | sed 's/[&/\]/\\&/g')
+      for menu_file in "$USER_MENU_XML" "${SYSTEM_MENUS[@]}"; do
+        [ -f "$menu_file" ] && sed -i "/<command>${escaped_path}<\/command>/d" "$menu_file"
+      done
     fi
   done
   [ -f "$USER_MENU_XML" ] && chown abc:abc "$USER_MENU_XML"
@@ -258,6 +276,35 @@ if [[ "${PELORUS,,}" == "true" ]]; then
   set_unset QT_LINUX_ACCESSIBILITY_ALWAYS_ON 1
   set_unset GTK_MODULES gail:atk-bridge
   set_unset MOZ_ENABLE_WAYLAND 0
+fi
+
+# brand the on disk web client for external hosts, selkies serves its embedded copy
+if [[ -f /usr/share/selkies/web/index.html ]]; then
+  if [[ -f /usr/share/selkies/www/icon.png ]]; then
+    cp \
+      /usr/share/selkies/www/icon.png \
+      /usr/share/selkies/web/favicon.ico
+    cp \
+      /usr/share/selkies/www/icon.png \
+      /usr/share/selkies/web/icon.png
+  fi
+  echo "{
+  \"name\": \"${TITLE}\",
+  \"short_name\": \"${TITLE}\",
+  \"manifest_version\": 2,
+  \"version\": \"1.0.0\",
+  \"display\": \"fullscreen\",
+  \"background_color\": \"#000000\",
+  \"theme_color\": \"#000000\",
+  \"icons\": [
+    {
+      \"src\": \"icon.png\",
+      \"type\": \"image/png\",
+      \"sizes\": \"180x180\"
+    }
+  ],
+  \"start_url\": \"${SUBFOLDER:-/}\"
+}" > /usr/share/selkies/web/manifest.json
 fi
 
 # add proot-apps

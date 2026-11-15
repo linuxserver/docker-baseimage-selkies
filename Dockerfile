@@ -72,6 +72,7 @@ RUN \
     less \
     libatk1.0-0 \
     libatk-bridge2.0-0 \
+    libegl1 \
     libegl-mesa0 \
     libev4 \
     libfontenc1 \
@@ -80,6 +81,7 @@ RUN \
     libgcrypt20 \
     libgirepository-1.0-1 \
     libgl1-mesa-dri \
+    libgles2 \
     libglib2.0-bin \
     libglu1-mesa \
     libgnutls30 \
@@ -160,6 +162,7 @@ RUN \
     xfonts-base \
     xkb-data \
     xsel \
+    xterm \
     xutils \
     zip \
     zlib1g \
@@ -243,6 +246,17 @@ RUN \
   curl -fsSL -o "/tmp/selkies/${BUNDLE}" \
     "https://github.com/selkies-project/selkies/releases/download/${SELKIES_RELEASE}/${BUNDLE}" && \
   tar -xzf "/tmp/selkies/${BUNDLE}" -C /opt && \
+  echo "**** web client on disk for external hosts ****" && \
+  SOURCE="${BUNDLE%-*-linux-gnu.tar.gz}.tar.gz" && \
+  curl -fsSL -o "/tmp/selkies/${SOURCE}" \
+    "https://github.com/selkies-project/selkies/releases/download/${SELKIES_RELEASE}/${SOURCE}" && \
+  mkdir -p /usr/share/selkies/web && \
+  tar -xzf "/tmp/selkies/${SOURCE}" \
+    -C /usr/share/selkies/web \
+    --no-same-owner \
+    --strip-components=3 \
+    --wildcards '*/dist/web/*' && \
+  test -f /usr/share/selkies/web/index.html && \
   echo "**** link the selkies bundle ****" && \
   mv /opt/selkies-*-linux-gnu /opt/selkies && \
   ln -s \
