@@ -1,0 +1,15 @@
+--- a/addons/selkies-dashboard/src/state/dashboard.tsx
++++ b/addons/selkies-dashboard/src/state/dashboard.tsx
+@@ -30,2 +30,3 @@
+ import { fragmentWithSessionToken } from "../../../selkies-web-core/lib/page-url.js";
++import { showVirtualKeyboard as raiseVirtualKeyboard } from "../../../selkies-web-core/lib/virtual-keyboard.js";
+ import { PALETTE_CHORDS, PALETTE_KEYS, TRACKPAD_SPEEDS, TRACKPAD_SPEED_KEY, USER_CHORDS_KEY, chordEvents,
+@@ -344,5 +345,6 @@
+   const showVirtualKeyboard = React.useCallback(() => {
++    if (isViewer) return;
+     keyboardWatch.reset();
+-    window.postMessage({ type: "showVirtualKeyboard" }, window.location.origin);
+-  }, []);
++    raiseVirtualKeyboard(document.getElementById("overlayInput"));
++  }, [isViewer]);
+ 
