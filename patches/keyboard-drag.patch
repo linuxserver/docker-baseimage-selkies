@@ -1,0 +1,30 @@
+--- a/addons/selkies-dashboard/src/panels/gamepads.tsx
++++ b/addons/selkies-dashboard/src/panels/gamepads.tsx
+@@ -157,2 +157,21 @@
+   const d = useDashboard();
++  const [pos, setPos] = React.useState({ right: 16, bottom: 16 });
++  const drag = React.useRef({ id: -1, moved: false, x: 0, y: 0, right: 0, bottom: 0 });
++  const onPointerDown = (e: React.PointerEvent) => {
++    drag.current = { id: e.pointerId, moved: false, x: e.clientX, y: e.clientY, ...pos };
++    e.currentTarget.setPointerCapture(e.pointerId);
++  };
++  const onPointerMove = (e: React.PointerEvent) => {
++    const g = drag.current;
++    if (g.id !== e.pointerId) return;
++    const dx = e.clientX - g.x, dy = e.clientY - g.y;
++    if (!g.moved && Math.abs(dx) <= 10 && Math.abs(dy) <= 10) return;
++    g.moved = true;
++    setPos({ right: g.right - dx, bottom: g.bottom - dy });
++  };
++  const onPointerUp = () => { drag.current.id = -1; };
++  const onClick = () => {
++    if (drag.current.moved) { drag.current.moved = false; return; }
++    d.showVirtualKeyboard();
++  };
+   const coarse = React.useSyncExternalStore(subscribeCoarsePointer, isCoarsePointer);
+@@ -166,3 +185,4 @@
+       aria-label={t("topMenu.virtualKeyboard")} title={t("topMenu.virtualKeyboard")}
+-      onClick={d.showVirtualKeyboard}>
++      style={{ ...pos, touchAction: "none", transition: "none" }} onClick={onClick} onPointerDown={onPointerDown}
++      onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerCancel={onPointerUp}>
+       <Keyboard className="size-4" />

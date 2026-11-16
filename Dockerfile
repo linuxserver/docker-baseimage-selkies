@@ -19,7 +19,12 @@ RUN \
   cd /src && \
   git checkout -f ${SELKIES_RELEASE}
 
+COPY /patches /patches
+
 RUN \
+  echo "**** apply patches ****" && \
+  cd /src && \
+  git apply /patches/*.patch && \
   echo "**** build shared core library ****" && \
   cd /src/addons/selkies-web-core && \
   npm install && \
