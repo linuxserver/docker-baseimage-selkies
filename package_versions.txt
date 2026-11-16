@@ -83,7 +83,7 @@ dunst                                                                         1.
 dunstify                                                                      1.13.0-r0                               apk                         
 encodings                                                                     1.1.0-r0                                apk                         
 eudev-libs                                                                    3.2.14-r6                               apk                         
-fastapi                                                                       0.162.7                                 python                      
+fastapi                                                                       0.163.1                                 python                      
 fcft                                                                          3.3.3-r0                                apk                         
 fftw-single-libs                                                              3.3.11-r0                               apk                         
 file                                                                          5.47-r2                                 apk                         
@@ -785,7 +785,7 @@ nghttp2-libs                                                                  1.
 nginx                                                                         1.30.6-r0                               apk                         
 nginx-mod-http-fancyindex                                                     1.30.6-r0                               apk                         
 nspr                                                                          4.38.2-r0                               apk                         
-nss                                                                           3.124-r0                                apk                         
+nss                                                                           3.133-r0                                apk                         
 nvidia-ml-py                                                                  13.615.71                               python                      
 oniguruma                                                                     6.9.10-r0                               apk                         
 openbox                                                                       3.6.1-r8                                apk                         
@@ -832,7 +832,7 @@ pycairo                                                                       1.
 pycparser                                                                     3.12                                    python                      
 pydantic                                                                      2.14.3                                  python                      
 pydantic-core                                                                 2.50.4                                  python                      
-pyee                                                                          16.0.2                                  python                      
+pyee                                                                          16.1.0                                  python                      
 pygobject                                                                     3.58.1                                  python                      
 pylibsrtp                                                                     1.0.0                                   python                      
 pyopenssl                                                                     26.4.0                                  python                      
