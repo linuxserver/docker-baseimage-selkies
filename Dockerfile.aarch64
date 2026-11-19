@@ -218,12 +218,20 @@ RUN \
   echo "**** install the selkies bundle ****" && \
   BUNDLE_PATTERN='^selkies-.+-aarch64-linux-gnu[.]tar[.]gz$' && \
   if [ -z "${SELKIES_RELEASE}" ]; then \
-    SELKIES_RELEASE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases?per_page=30" \
-      | jq -r --arg pattern "${BUNDLE_PATTERN}" \
-        '[.[] | select(.prerelease == true) | select(any(.assets[]; .name | test($pattern)))][0].tag_name // empty'); \
+    curl -fsSL -o /tmp/selkies-commits.json \
+      "https://api.github.com/repos/selkies-project/selkies/commits?sha=main&per_page=100" && \
+    curl -fsSL -o /tmp/selkies-releases.json \
+      "https://api.github.com/repos/selkies-project/selkies/releases?per_page=100" && \
+    SELKIES_RELEASE=$(jq -rn \
+      --slurpfile commits /tmp/selkies-commits.json \
+      --slurpfile releases /tmp/selkies-releases.json \
+      --arg pattern "${BUNDLE_PATTERN}" \
+      '[$releases[0][] | select(any(.assets[]; .name | test($pattern))) | .tag_name] as $tags \
+       | first($commits[0][].sha as $sha | $tags[] | select(. as $tag | $sha | startswith($tag))) // empty') && \
+    rm -f /tmp/selkies-commits.json /tmp/selkies-releases.json; \
   fi && \
   if [ -z "${SELKIES_RELEASE}" ]; then \
-    echo "no selkies pre-release carries a bundle for this architecture yet" && \
+    echo "no recent selkies commit on main carries a bundle for this architecture yet" && \
     exit 1; \
   fi && \
   BUNDLE=$(curl -sX GET "https://api.github.com/repos/selkies-project/selkies/releases/tags/${SELKIES_RELEASE}" \
