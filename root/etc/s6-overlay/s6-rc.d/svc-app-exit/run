@@ -1,0 +1,23 @@
+#!/usr/bin/with-contenv bash
+
+if [[ ${EXIT_ON_APP_CLOSE,,} != "true" ]]; then
+  exec sleep infinity
+fi
+
+# selkies holds this lock until everything the app started has exited, only read it so selkies never finds it taken,
+# by inode as lslocks cannot resolve the path inside a container
+LOCK="${XDG_RUNTIME_DIR}/selkies-autostart.lock"
+app_running() {
+  grep -qE "FLOCK +ADVISORY +WRITE +[0-9]+ [0-9a-f]+:[0-9a-f]+:$(stat -c %i "${LOCK}") " /proc/locks
+}
+until [[ -e "${LOCK}" ]]; do
+  sleep 1
+done
+# selkies creates the file just before it takes the lock
+sleep 1
+echo "[svc-app-exit] Application started, the container stops when it exits"
+while app_running; do
+  sleep 1
+done
+echo "[svc-app-exit] Application has exited. Stopping the container..."
+exec /run/s6/basedir/bin/halt
