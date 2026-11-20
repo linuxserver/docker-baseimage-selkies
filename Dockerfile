@@ -194,6 +194,10 @@ RUN \
   printf "[org.gnome.desktop.wm.preferences]\nbutton-layout=':minimize,maximize,close'\n" \
     > /usr/share/glib-2.0/schemas/selkies-decoration.gschema.override && \
   glib-compile-schemas /usr/share/glib-2.0/schemas/ && \
+  echo "**** default icon theme ****" && \
+  sed -i \
+    's/^gtk-icon-theme-name.*/gtk-icon-theme-name = breeze/' \
+    /etc/gtk-3.0/settings.ini && \
   echo "**** user perms ****" && \
   sed -e 's/%sudo	ALL=(ALL:ALL) ALL/%sudo ALL=(ALL:ALL) NOPASSWD: ALL/g' \
     -i /etc/sudoers && \
