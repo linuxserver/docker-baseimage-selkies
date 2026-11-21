@@ -59,6 +59,7 @@ RUN \
     gir1.2-atspi-2.0 \
     gir1.2-gtk-3.0 \
     git \
+    glib-networking \
     gtk-update-icon-cache \
     gvfs \
     gvfs-daemons \
@@ -70,8 +71,11 @@ RUN \
     iputils-ping \
     kbd \
     less \
+    libarchive13t64 \
+    libasound2t64 \
     libatk1.0-0 \
     libatk-bridge2.0-0 \
+    libdecor-0-0 \
     libegl1 \
     libegl-mesa0 \
     libev4 \
@@ -79,12 +83,14 @@ RUN \
     libfreetype6 \
     libgbm1 \
     libgcrypt20 \
+    libgif7 \
     libgirepository-1.0-1 \
     libgl1-mesa-dri \
     libgles2 \
     libglib2.0-bin \
     libglu1-mesa \
     libgnutls30 \
+    libgomp1 \
     libgtk-3.0 \
     libjpeg-turbo8 \
     libnotify-bin \
@@ -93,24 +99,34 @@ RUN \
     libnvidia-egl-gbm1 \
     libnvidia-egl-xcb1 \
     libnvidia-egl-xlib1 \
+    libopenjp2-7 \
     libopus0 \
     libp11-kit0 \
     libpam0g \
+    libpulse-mainloop-glib0 \
+    libsamplerate0 \
+    libspeexdsp1 \
     libtasn1-6 \
+    libtiff6 \
     libva-drm2 \
     libvulkan1 \
     libwayland-client0 \
     libwayland-cursor0 \
     libwayland-egl1 \
     libwayland-server0 \
+    libwebpdemux2 \
+    libwebpmux3 \
     libx11-6 \
     libx264-165 \
     libxau6 \
     libxcb1 \
+    libxcb-cursor0 \
     libxcb-icccm4 \
     libxcb-image0 \
     libxcb-keysyms1 \
     libxcb-render-util0 \
+    libxcb-xinerama0 \
+    libxcb-xinput0 \
     libxcursor1 \
     libxdmcp6 \
     libxext6 \
@@ -121,6 +137,7 @@ RUN \
     libxkbcommon-dev \
     libxkbcommon-x11-0 \
     libxshmfence1 \
+    libxss1 \
     libxtst6 \
     locales \
     mesa-libgallium \
