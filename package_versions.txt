@@ -87,6 +87,9 @@ github.com/canonical/go-flags   v0.0.0-20230403090104-105d09a091b8     go-module
 github.com/canonical/pebble     v1.33.3-0.20261021134118-f036f355de35  go-module                  
 github.com/canonical/x-go       v0.0.0-20230522092633-7947a7587f5b     go-module                  
 github.com/gorilla/websocket    v1.5.3                                 go-module                  
+glib-networking                 2.80.1-1build2                         deb                        
+glib-networking-common          2.80.1-1build2                         deb                        
+glib-networking-services        2.80.1-1build2                         deb                        
 glycin-loaders                  2.1.5+ds-0ubuntu0.2                    deb                        
 glycin-thumbnailers             2.1.5+ds-0ubuntu0.2                    deb                        
 gnu-coreutils                   9.7-3ubuntu2.1                         deb                        
@@ -149,6 +152,9 @@ libaom3                         3.13.1-2ubuntu0.1                      deb
 libapparmor1                    5.0.2-0ubuntu1~26.04.1                 deb                        
 libappstream5                   1.1.2-1                                deb                        
 libapt-pkg7.0                   3.2.1ubuntu0.1                         deb                        
+libarchive13t64                 3.8.5-1ubuntu2.3                       deb                        
+libasound2-data                 1.2.15.3-1ubuntu1.1                    deb                        
+libasound2t64                   1.2.15.3-1ubuntu1.1                    deb                        
 libassuan9                      3.0.2-2build1                          deb                        
 libasyncns0                     0.8-7                                  deb                        
 libatasmart4                    0.19-6                                 deb                        
@@ -200,6 +206,8 @@ libdb5.3t64                     5.3.28+dfsg2-10ubuntu1                 deb
 libdbus-1-3                     1.16.2-2ubuntu4                        deb                        
 libdconf1                       0.49.0-4                               deb                        
 libdebconfclient0               0.280ubuntu1                           deb                        
+libdecor-0-0                    0.2.5-1                                deb                        
+libdeflate0                     1.23-2ubuntu1                          deb                        
 libdevmapper1.02.1              2:1.02.205-2ubuntu3                    deb                        
 libdisplay-info3                0.3.0-1                                deb                        
 libdrm-amdgpu1                  2.4.131-1                              deb                        
@@ -238,6 +246,7 @@ libgdbm-compat4t64              1.26-1build1                           deb
 libgdbm6t64                     1.26-1build1                           deb                        
 libgdk-pixbuf-2.0-0             2.44.5+dfsg-4ubuntu1                   deb                        
 libgdk-pixbuf2.0-common         2.44.5+dfsg-4ubuntu1                   deb                        
+libgif7                         5.2.2-1ubuntu3.2                       deb                        
 libgirepository-1.0-1           1.86.0-6build1                         deb                        
 libgirepository-2.0-0           2.88.0-1ubuntu0.1                      deb                        
 libgl1                          1.7.0-3                                deb                        
@@ -253,6 +262,7 @@ libglx0                         1.7.0-3                                deb
 libglycin-2-0                   2.1.5+ds-0ubuntu0.2                    deb                        
 libgmp10                        2:6.3.0+dfsg-5ubuntu2                  deb                        
 libgnutls30t64                  3.8.12-2ubuntu1.1                      deb                        
+libgomp1                        16-20260322-1ubuntu1                   deb                        
 libgpg-error0                   1.58-2                                 deb                        
 libgpgme45                      2.0.1-2build1                          deb                        
 libgraphite2-3                  1.3.14-11ubuntu1.1                     deb                        
@@ -276,7 +286,9 @@ libip4tc2                       1.8.11-2ubuntu3                        deb
 libip6tc2                       1.8.11-2ubuntu3                        deb                        
 libisl23                        0.27-1build1                           deb                        
 libjansson4                     2.14-2build4                           deb                        
+libjbig0                        2.1-6.1ubuntu3                         deb                        
 libjpeg-turbo8                  2.1.5-4ubuntu4                         deb                        
+libjpeg8                        8c-2ubuntu12                           deb                        
 libjq1                          1.8.1-4ubuntu2                         deb                        
 libjson-c5                      0.18+ds-3                              deb                        
 libjxl0.11                      0.11.1-6ubuntu4.2                      deb                        
@@ -289,6 +301,7 @@ libksba8                        1.6.7-2build1                          deb
 liblcms2-2                      2.17-1ubuntu0.2                        deb                        
 libldap-common                  2.6.10+dfsg-1ubuntu5                   deb                        
 libldap2                        2.6.10+dfsg-1ubuntu5                   deb                        
+liblerc4                        4.0.0+ds-5ubuntu2                      deb                        
 libllvm21                       1:21.1.8-6ubuntu1                      deb                        
 liblocale-gettext-perl          1.07-8                                 deb                        
 liblsof0                        4.99.4+dfsg-2build2                    deb                        
@@ -322,6 +335,7 @@ libnvme1t64                     1.16.1-4                               deb
 libogg0                         1.3.6-2                                deb                        
 libonig5                        6.9.10-1build1                         deb                        
 libopengl0                      1.7.0-3                                deb                        
+libopenjp2-7                    2.5.4-1ubuntu0.1                       deb                        
 libopus0                        1.6.1-1                                deb                        
 libp11-kit0                     0.26.2-2                               deb                        
 libpackagekit-glib2-18          1.3.4-3ubuntu1.2                       deb                        
@@ -346,7 +360,9 @@ libpolkit-agent-1-0             127-2ubuntu1.1                         deb
 libpolkit-gobject-1-0           127-2ubuntu1.1                         deb                        
 libpopt0                        1.19+dfsg-2build1                      deb                        
 libproc2-0                      2:4.0.4-9ubuntu1                       deb                        
+libproxy1v5                     0.5.12-1                               deb                        
 libpsl5t64                      0.21.2-1.1build2                       deb                        
+libpulse-mainloop-glib0         1:17.0+dfsg1-2ubuntu4                  deb                        
 libpulse0                       1:17.0+dfsg1-2ubuntu4                  deb                        
 libpulsedsp                     1:17.0+dfsg1-2ubuntu4                  deb                        
 libpython3-stdlib               3.14.3-0ubuntu2                        deb                        
@@ -355,6 +371,7 @@ libpython3.14-stdlib            3.14.4-1ubuntu0.2                      deb
 libreadline8t64                 8.3-4                                  deb                        
 librsvg2-2                      2.61.3+dfsg-3ubuntu0.1                 deb                        
 librtmp1                        2.4+20151223.gitfa8646d.1-3            deb                        
+libsamplerate0                  0.2.2-4build2                          deb                        
 libsasl2-2                      2.1.28+dfsg1-9ubuntu3                  deb                        
 libsasl2-modules                2.1.28+dfsg1-9ubuntu3                  deb                        
 libsasl2-modules-db             2.1.28+dfsg1-9ubuntu3                  deb                        
@@ -372,6 +389,7 @@ libsimdutf31                    8.0.0-1                                deb
 libsm6                          2:1.2.6-1build1                        deb                        
 libsmartcols1                   2.41.3-3ubuntu2.2                      deb                        
 libsndfile1                     1.2.2-4                                deb                        
+libspeexdsp1                    1.2.1-3build1                          deb                        
 libsqlite3-0                    3.46.1-9ubuntu0.3                      deb                        
 libss2                          1.47.2-3ubuntu4                        deb                        
 libssh2-1t64                    1.11.1-1ubuntu0.26.04.4                deb                        
@@ -384,6 +402,7 @@ libsystemd0                     259.9-0ubuntu0.1                       deb
 libtasn1-6                      4.21.0-2                               deb                        
 libthai-data                    0.1.30-1                               deb                        
 libthai0                        0.1.30-1                               deb                        
+libtiff6                        4.7.0-3ubuntu5                         deb                        
 libtinfo6                       6.6+20251231-1                         deb                        
 libtirpc-common                 1.3.7-0.1                              deb                        
 libtirpc3t64                    1.3.7-0.1                              deb                        
@@ -408,12 +427,16 @@ libwayland-client0              1.24.0-2                               deb
 libwayland-cursor0              1.24.0-2                               deb                        
 libwayland-egl1                 1.24.0-2                               deb                        
 libwayland-server0              1.24.0-2                               deb                        
+libwebp7                        1.5.0-0.1build1                        deb                        
+libwebpdemux2                   1.5.0-0.1build1                        deb                        
+libwebpmux3                     1.5.0-0.1build1                        deb                        
 libx11-6                        2:1.8.13-1ubuntu0.1                    deb                        
 libx11-data                     2:1.8.13-1ubuntu0.1                    deb                        
 libx11-xcb1                     2:1.8.13-1ubuntu0.1                    deb                        
 libx264-165                     2:0.165.3222+gitb35605ac-3build1       deb                        
 libxau6                         1:1.0.11-1build2                       deb                        
 libxaw7                         2:1.0.16-1build1                       deb                        
+libxcb-cursor0                  0.1.6-1                                deb                        
 libxcb-damage0                  1.17.0-2ubuntu1                        deb                        
 libxcb-dri3-0                   1.17.0-2ubuntu1                        deb                        
 libxcb-glx0                     1.17.0-2ubuntu1                        deb                        
@@ -429,6 +452,8 @@ libxcb-shm0                     1.17.0-2ubuntu1                        deb
 libxcb-sync1                    1.17.0-2ubuntu1                        deb                        
 libxcb-util1                    0.4.1-1build1                          deb                        
 libxcb-xfixes0                  1.17.0-2ubuntu1                        deb                        
+libxcb-xinerama0                1.17.0-2ubuntu1                        deb                        
+libxcb-xinput0                  1.17.0-2ubuntu1                        deb                        
 libxcb-xkb1                     1.17.0-2ubuntu1                        deb                        
 libxcb1                         1.17.0-2ubuntu1                        deb                        
 libxcomposite1                  1:0.4.6-1build1                        deb                        
@@ -461,6 +486,7 @@ libxrandr2                      2:1.5.4-1build1                        deb
 libxrender1                     1:0.9.12-1build1                       deb                        
 libxres1                        2:1.2.1-1build2                        deb                        
 libxshmfence1                   1.3.3-1build1                          deb                        
+libxss1                         1:1.2.3-1build4                        deb                        
 libxt6t64                       1:1.2.1-1.3build1                      deb                        
 libxtables12                    1.8.11-2ubuntu3                        deb                        
 libxtst6                        2:1.2.5-1ubuntu0.1                     deb                        
