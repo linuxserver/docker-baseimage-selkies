@@ -262,6 +262,11 @@ if [[ ${HARDEN_OPENBOX,,} == "true" ]] || [[ ${HARDEN_DESKTOP,,} == "true" ]]; t
   set_unset SELKIES_SESSION_SWITCH false
 fi
 
+# default basic auth user
+if [[ -n "${PASSWORD}" ]]; then
+  set_unset SELKIES_BASIC_AUTH_USER "${CUSTOM_USER:-abc}"
+fi
+
 # cursor theme
 set_unset XCURSOR_THEME breeze_cursors
 
@@ -278,6 +283,31 @@ if [[ "${PELORUS,,}" == "true" ]]; then
   set_unset QT_LINUX_ACCESSIBILITY_ALWAYS_ON 1
   set_unset GTK_MODULES gail:atk-bridge
   set_unset MOZ_ENABLE_WAYLAND 0
+fi
+
+# legacy pelorus env var adapters
+if [[ -n "${PELORUS_PROVIDER}${PELORUS_ENDPOINT}${PELORUS_MODEL}${PELORUS_API_KEY}" ]]; then
+  LEGACY_PROVIDER="${PELORUS_PROVIDER:-ollama}"
+  LEGACY_PROVIDER="${LEGACY_PROVIDER,,}"
+  set_unset SELKIES_PELORUS_PROVIDER "${LEGACY_PROVIDER}"
+  if [[ -n "${PELORUS_ENDPOINT}" ]]; then
+    LEGACY_ENDPOINT="${PELORUS_ENDPOINT%/}"
+    case "${LEGACY_PROVIDER}" in
+      gemini)
+        [[ "${LEGACY_ENDPOINT}" != */openai ]] && LEGACY_ENDPOINT="${LEGACY_ENDPOINT}/v1beta/openai"
+        ;;
+      *)
+        [[ "${LEGACY_ENDPOINT}" != */v1 ]] && LEGACY_ENDPOINT="${LEGACY_ENDPOINT}/v1"
+        ;;
+    esac
+    set_unset SELKIES_PELORUS_ENDPOINT "${LEGACY_ENDPOINT}"
+  fi
+  if [[ -n "${PELORUS_MODEL}" ]]; then
+    set_unset SELKIES_PELORUS_MODEL "${PELORUS_MODEL}"
+  fi
+  if [[ -n "${PELORUS_API_KEY}" ]]; then
+    set_unset SELKIES_PELORUS_API_KEY "${PELORUS_API_KEY}"
+  fi
 fi
 
 # brand the on disk web client for external hosts, selkies serves its embedded copy

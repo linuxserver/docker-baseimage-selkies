@@ -110,7 +110,10 @@ fi
 
 # listen and auth flags
 LISTEN="--public"
-if [ -n "${DISABLE_IPV6}" ]; then
+if [ -n "${SELKIES_ADDR}" ]; then
+  # selkies reads SELKIES_ADDR
+  LISTEN=""
+elif [ -n "${DISABLE_IPV6}" ]; then
   LISTEN="--addr=0.0.0.0"
 fi
 AUTH=""
