@@ -10,7 +10,6 @@ LABEL maintainer="thelamer"
 
 # env
 ENV DISPLAY=:1 \
-    PERL5LIB=/usr/local/bin \
     HOME=/config \
     START_DOCKER=true \
     SELKIES_INTERPOSER=/usr/lib/selkies_input_interposer.so \
@@ -24,6 +23,7 @@ ENV DISPLAY=:1 \
     SELKIES_ALLOWED_ORIGINS="*" \
     SELKIES_APP_LOGS=false \
     SELKIES_RATE_CONTROL_MODE="crf,cbr" \
+    QT_QPA_PLATFORMTHEME=gtk3 \
     SHELL=/bin/bash \
     __GL_SYNC_TO_VBLANK=0 \
     TITLE=Selkies
@@ -151,6 +151,8 @@ RUN \
     pulseaudio-utils \
     python3 \
     python3-gi \
+    qt5-gtk-platformtheme \
+    qt6-gtk-platformtheme \
     rsync \
     software-properties-common \
     ssl-cert \

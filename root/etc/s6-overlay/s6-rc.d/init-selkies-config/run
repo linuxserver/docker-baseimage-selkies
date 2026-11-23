@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-# selkies reads SELKIES_WAYLAND ahead of PIXELFLUX_WAYLAND, mirror it for scripts keyed on the legacy name
+# selkies reads SELKIES_WAYLAND ahead of PIXELFLUX_WAYLAND
 if [[ -n "${SELKIES_WAYLAND}" ]]; then
   WAYLAND_VALUE="${SELKIES_WAYLAND%%|*}"
   if [[ "${WAYLAND_VALUE,,}" == "true" ]] || [[ "${WAYLAND_VALUE}" == "1" ]]; then
@@ -15,7 +15,6 @@ fi
 if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]];then
   CONF_DIR="$HOME/.config/labwc"
   DEF_AUTOSTART="/defaults/autostart_wayland"
-  DEF_RC="/defaults/labwc.xml"
 else
   CONF_DIR="$HOME/.config/openbox"
   DEF_AUTOSTART="/defaults/autostart"
@@ -36,7 +35,7 @@ if [[ "$(cat "$HOME/.config/openbox/autostart" 2>/dev/null)" == "st" ]]; then
   printf 'xfce4-terminal\n' > "$HOME/.config/openbox/autostart"
 fi
 
-# remove unmodified legacy menu.xml, and first run copies of the image's menus, which a home copy would shadow
+# remove unmodified legacy menu.xml
 menu_is_default() {
   case "$(md5sum "$1" 2>/dev/null | cut -d' ' -f1)" in
     c05fbb01c54f7c7d0557e3c5ba459427|9f7fd0b0c65124b95b43787fd9b2b0a3) return 0 ;;
@@ -51,7 +50,7 @@ for menu_dir in "$HOME/.config/openbox" "$HOME/.config/labwc"; do
   fi
 done
 
-# the image's menus, which the selkies window manager puts above its own menu
+# the image's menus
 SYSTEM_MENUS=()
 for menu_pair in "menu.xml:openbox" "menu_wayland.xml:labwc"; do
   menu_src="/defaults/${menu_pair%%:*}"
@@ -125,8 +124,7 @@ if [ -z "${CUPS_SERVER}" ] && [[ "${SELKIES_PRINTING_ENABLED,,}" != "false" ]]; 
   printf "$HOME/.XDG/selkies-cups/cups.sock" > /run/s6/container_environment/CUPS_SERVER
 fi
 
-# upstream selkies now defaults command websocket messages to off, the
-# dashboard apps/launcher section depends on them so enable when not hardened
+# upstream selkies defaults command websocket messages to off
 if [[ ${HARDEN_DESKTOP,,} != "true" ]] && [ -z ${SELKIES_COMMAND_ENABLED+x} ]; then
   printf "true" > /run/s6/container_environment/SELKIES_COMMAND_ENABLED
 fi
@@ -213,11 +211,11 @@ if [ -f "$AUTOSTART_SCRIPT" ]; then
   fi
 fi
 
-# labwc rc.xml first run
-if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]] && [[ -f "$DEF_RC" ]] && [[ ! -f "$CONF_DIR/rc.xml" ]]; then
-  cp "$DEF_RC" "$CONF_DIR/rc.xml"
-  chown abc:abc "$CONF_DIR/rc.xml"
-fi
+# remove unmodified first run copies of the legacy labwc rc.xml
+case "$(md5sum "$HOME/.config/labwc/rc.xml" 2>/dev/null | cut -d' ' -f1)" in
+  095d33ff98419222e97d87c4654896d5|3a89fc54d578a5132fa82e7d9d877c8b|8d23c68cc8c7f3132fa623c5a59f3a37)
+    rm -f "$HOME/.config/labwc/rc.xml" ;;
+esac
 
 # use selkies wm for stock startwm scripts
 if [ -z ${SELKIES_WM+x} ]; then
@@ -270,7 +268,7 @@ fi
 # cursor theme
 set_unset XCURSOR_THEME breeze_cursors
 
-# ui title, icon and pelorus
+# ui title, icon, and pelorus
 if [[ -n "${TITLE}" ]]; then
   set_unset SELKIES_UI_TITLE "${TITLE}"
 fi
