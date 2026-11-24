@@ -68,7 +68,7 @@ printf "$HOME/.XDG" > /run/s6/container_environment/XDG_RUNTIME_DIR
 rm -f "$HOME/.XDG/selkies-autostart.lock"
 printf "$HOME/.XDG/Xauthority" > /run/s6/container_environment/XAUTHORITY
 if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]]; then
-  printf "wayland-1" > /run/s6/container_environment/WAYLAND_DISPLAY
+  printf "wayland-0" > /run/s6/container_environment/WAYLAND_DISPLAY
   printf ":0" > /run/s6/container_environment/DISPLAY
 fi
 # tmpfs for dind
@@ -226,6 +226,7 @@ if [ -z ${SELKIES_WM+x} ]; then
   fi
   if grep -qs '^# selkies-session$' "$STARTWM"; then
     printf "true" > /run/s6/container_environment/SELKIES_WM
+    export SELKIES_WM=true
   fi
 fi
 
@@ -236,6 +237,10 @@ set_unset() {
     export "$1=$2"
   fi
 }
+# selkies wm serves wayland apps itself, on the socket they expect
+if [[ "${PIXELFLUX_WAYLAND,,}" == "true" ]] && [[ "${SELKIES_WM,,}" == "true" ]]; then
+  set_unset SELKIES_WAYLAND_SOCKET_INDEX 0
+fi
 if [[ ${RESTART_APP,,} == "true" ]] && [[ ${EXIT_ON_APP_CLOSE,,} != "true" ]]; then
   set_unset SELKIES_APP_RESTART true
 fi
