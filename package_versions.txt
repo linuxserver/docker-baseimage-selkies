@@ -155,9 +155,9 @@ gettext-devel                                                                 0.
 gettext-envsubst                                                              0.26-5.fc44                                        rpm                         
 gettext-libs                                                                  0.26-5.fc44                                        rpm                         
 gettext-runtime                                                               0.26-5.fc44                                        rpm                         
-ghostscript                                                                   10.06.0-3.fc44                                     rpm                         
-ghostscript-tools-fontutils                                                   10.06.0-3.fc44                                     rpm                         
-ghostscript-tools-printing                                                    10.06.0-3.fc44                                     rpm                         
+ghostscript                                                                   10.06.0-4.fc44                                     rpm                         
+ghostscript-tools-fontutils                                                   10.06.0-4.fc44                                     rpm                         
+ghostscript-tools-printing                                                    10.06.0-4.fc44                                     rpm                         
 giflib                                                                        6.1.3-2.fc44                                       rpm                         
 git                                                                           2.56.1-1.fc44                                      rpm                         
 git-core                                                                      2.56.1-1.fc44                                      rpm                         
@@ -692,7 +692,7 @@ libglvnd-gles                                                                 1:
 libglvnd-glx                                                                  1:1.7.0-9.fc44                                     rpm                         
 libgomp                                                                       16.2.1-3.fc44                                      rpm                         
 libgpg-error                                                                  1.58-2.fc44                                        rpm                         
-libgs                                                                         10.06.0-3.fc44                                     rpm                         
+libgs                                                                         10.06.0-4.fc44                                     rpm                         
 libgudev                                                                      238-9.fc44                                         rpm                         
 libgusb                                                                       0.4.9-5.fc44                                       rpm                         
 libheif                                                                       1.23.7-1.fc44                                      rpm                         
@@ -963,7 +963,7 @@ perl-vars                                                                     0:
 pigz                                                                          2.8-8.fc44                                         rpm                         
 pillow                                                                        13.0.0                                             python                      
 pip                                                                           26.0.1                                             python     (+1 duplicate)   
-pipewire-libs                                                                 1.6.11-1.fc44                                      rpm                         
+pipewire-libs                                                                 1.6.12-1.fc44                                      rpm                         
 pixelflux                                                                     2.2.3                                              python                      
 pixman                                                                        0.46.2-3.fc44                                      rpm                         
 pixman-devel                                                                  0.46.2-3.fc44                                      rpm                         
@@ -1104,7 +1104,7 @@ util-linux-core                                                               2.
 uvicorn                                                                       0.54.0                                             python                      
 uvloop                                                                        0.23.0                                             python                      
 vim-data                                                                      2:9.2.1302-2.fc44                                  rpm                         
-vim-filesystem                                                                2:9.2.1302-2.fc44                                  rpm                         
+vim-filesystem                                                                2:9.2.1302-3.fc44                                  rpm                         
 vim-minimal                                                                   2:9.2.1302-2.fc44                                  rpm                         
 virtualenv                                                                    20.35.4                                            python                      
 vulkan-loader                                                                 1.4.341.0-1.fc44                                   rpm                         
